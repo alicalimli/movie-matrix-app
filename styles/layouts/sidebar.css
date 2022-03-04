@@ -36,7 +36,6 @@
 
 .nav-lists {
   display: flex;
-  gap: 1rem;
   flex-direction: column;
   list-style: none;
 }
@@ -60,7 +59,7 @@
   font-size: 1rem;
   font-weight: 500;
   overflow: hidden;
-  padding: 0.5rem 0.5rem;
+  padding: 1rem 0.5rem;
   position: relative;
 }
 
