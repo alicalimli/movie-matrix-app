@@ -59,6 +59,7 @@
   transition: all 0.3s ease;
   font-size: 1rem;
   font-weight: 500;
+  overflow: hidden;
   padding: 0.5rem 0.5rem;
   position: relative;
 }
@@ -75,4 +76,27 @@
   position: relative;
   top: 50%;
   margin-left: 1rem;
+}
+
+/* BUTTON RIPPLE EFFECT */
+
+.btn-ripple {
+  animation: ripple-effect 1s linear infinite;
+  border-radius: 100px;
+  background: #ffffff;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+
+@keyframes ripple-effect {
+  0% {
+    width: 0px;
+    height: 0px;
+    opacity: 0.5;
+  }
+  100% {
+    width: 70rem;
+    height: 70rem;
+    opacity: 0;
+  }
 }
