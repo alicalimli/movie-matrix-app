@@ -1,0 +1,78 @@
+/* Sidebar navigation */
+
+.movie-sidebar-nav {
+  background-color: #111;
+  display: flex;
+  height: 100vh;
+  width: 5rem;
+  transition: all 0.4s ease;
+  text-align: center;
+  overflow: hidden;
+  padding: 1.5rem 0rem;
+  position: fixed;
+  z-index: 3;
+}
+
+.movie-sidebar-nav:hover {
+  width: 15rem;
+}
+
+/* Website Logo */
+
+.logo-container {
+  align-items: center;
+  color: white;
+  display: flex;
+  gap: 1rem;
+  width: 15rem;
+  margin-top: auto;
+}
+
+.logo-img {
+  width: 30%;
+}
+
+/* Navigation Lists and Buttons */
+
+.nav-lists {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  list-style: none;
+}
+
+.nav-list {
+  transition: all 0.3s ease;
+}
+
+.nav-list:hover {
+  background-color: rgb(32, 32, 32);
+}
+
+.nav-btn {
+  align-items: center;
+  cursor: pointer;
+  color: white;
+  display: flex;
+  width: 15rem;
+  gap: 1rem;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.5rem 0.5rem;
+  position: relative;
+}
+
+.nav-btn.active {
+  color: #20c997;
+}
+
+.nav-icon {
+  font-size: 2rem;
+}
+
+.nav-title {
+  position: relative;
+  top: 50%;
+  margin-left: 1rem;
+}
