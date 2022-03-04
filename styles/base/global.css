@@ -1,0 +1,15 @@
+/* Resets every elements */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
+  outline: none;
+  border: none;
+  background: none;
+}
+
+body {
+  background-color: #222;
+}
