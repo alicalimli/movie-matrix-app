@@ -1,28 +1,26 @@
 .section-header {
+  align-items: center;
   color: white;
   display: flex;
-  align-items: center;
+  padding: 1.5rem;
 }
-/* 
-* {
-  border: 1px solid red;
-} */
 
 .movie-title {
   font-size: 2rem;
 }
 .search-form {
-  margin-left: auto;
-  background: #111;
-  height: 2.5rem;
-  border-radius: 100px;
-  padding: 1rem 1rem;
-  display: flex;
   align-items: center;
+  background: #111;
+  border-radius: 100px;
+  display: flex;
+  height: 2.5rem;
+  margin-left: auto;
   gap: 0.5rem;
   transition: all 0.3s ease;
-  align-items: center;
+  padding: 1rem 1rem;
 }
+
+/* Animates searchbar when form is hovered */
 
 .search-form:hover input {
   width: 13rem;
@@ -32,15 +30,15 @@
 .input-search {
   color: white;
   width: 0rem;
-  opacity: 0;
   font-size: 1.2rem;
   font-weight: 500;
+  opacity: 0;
   transition: all 0.4s ease;
 }
 
 .search-btn {
   color: white;
-  margin-top: 0.5rem;
-  font-size: 1.5rem;
   cursor: pointer;
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
 }
