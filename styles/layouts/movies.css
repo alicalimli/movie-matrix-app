@@ -70,4 +70,24 @@
 .showall-btn {
   color: white;
   font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+/* Animates the right arrow and the showall text when card is hovered */
+
+.showall-card-btn:hover .right-arrow {
+  color: #20c997;
+  transform: translateX(10%);
+  left: 5%;
+}
+
+.showall-card-btn:hover .showall-btn {
+  color: #20c997;
+}
+
+.right-arrow {
+  transform: translate();
+  transition: all 0.3s ease;
+  position: relative;
+  left: 0%;
 }

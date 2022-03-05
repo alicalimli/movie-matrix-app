@@ -41,10 +41,12 @@ const showMoves = async function () {
   // Creates the showall button HTML and render it to the DOM
 
   const showAllMarkup = `
-    <button class="showall-card-btn">
-      <span class="showall-btn">Show All &rightarrow;</span>
-    </button>
-  `;
+      <button class="showall-card-btn">
+        <span class="showall-btn"
+          >Show All <span class="right-arrow">&rightarrow;</span></span
+        >
+      </button>
+    `;
   parentEl.insertAdjacentHTML("beforeend", showAllMarkup);
 };
 
