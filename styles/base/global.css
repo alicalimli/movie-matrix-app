@@ -11,5 +11,6 @@
 }
 
 body {
+  position: relative;
   background-color: #222;
 }
