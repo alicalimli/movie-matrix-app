@@ -6,9 +6,11 @@
 
 .movie-card {
   width: 20rem;
-  position: relative;
   overflow: hidden;
+  position: relative;
 }
+
+/* Animates the movie-info when the user mouse hovers in movie card */
 
 .movie-card:hover .movie-info {
   opacity: 1;
@@ -22,21 +24,21 @@
 }
 
 .movie-info {
-  position: absolute;
-  transition: all 0.3s ease;
-  top: 100%;
-  left: 50%;
-  border-radius: 5px;
-  opacity: 0;
-  transform: translate(-50%, -90%);
   background-color: #222;
+  border-radius: 5px;
   color: white;
-  width: 95%;
-  padding: 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  transition: all 0.3s ease;
+  transform: translate(-50%, -90%);
   text-align: center;
+  top: 100%;
+  left: 50%;
+  opacity: 0;
+  width: 95%;
+  padding: 1rem;
+  position: absolute;
 }
 
 .movie-title {
@@ -44,11 +46,11 @@
 }
 
 .expand-btn {
+  background-color: #20c997;
   border-radius: 5px;
   color: #333;
-  padding: 0.5rem 1rem;
-  background-color: #20c997;
-  text-transform: uppercase;
   cursor: pointer;
   font-size: 1rem;
+  text-transform: uppercase;
+  padding: 0.5rem 1rem;
 }
