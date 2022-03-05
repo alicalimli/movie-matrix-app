@@ -1,0 +1,54 @@
+.movie-main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.movie-card {
+  width: 20rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.movie-card:hover .movie-info {
+  opacity: 1;
+  transform: translate();
+  transform: translate(-50%, -110%);
+}
+
+.movie-img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.movie-info {
+  position: absolute;
+  transition: all 0.3s ease;
+  top: 100%;
+  left: 50%;
+  border-radius: 5px;
+  opacity: 0;
+  transform: translate(-50%, -90%);
+  background-color: #222;
+  color: white;
+  width: 95%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.movie-title {
+  font-size: 1.3rem;
+}
+
+.expand-btn {
+  border-radius: 5px;
+  color: #333;
+  padding: 0.5rem 1rem;
+  background-color: #20c997;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-size: 1rem;
+}
