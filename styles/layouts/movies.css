@@ -5,7 +5,7 @@
 }
 
 .movie-card {
-  width: 20rem;
+  width: 13rem;
   overflow: hidden;
   position: relative;
 }
@@ -53,4 +53,21 @@
   font-size: 1rem;
   text-transform: uppercase;
   padding: 0.5rem 1rem;
+}
+
+/* Show all Button */
+
+.showall-card-btn {
+  align-self: center;
+  cursor: pointer;
+  background-color: #111;
+  border-radius: 5px;
+  width: 13rem;
+  height: 19rem;
+  text-align: center;
+}
+
+.showall-btn {
+  color: white;
+  font-size: 1.2rem;
 }
