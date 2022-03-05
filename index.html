@@ -14,7 +14,9 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="styles/base/global.css" />
+    <link rel="stylesheet" href="styles/layouts/header.css" />
     <link rel="stylesheet" href="styles/layouts/sidebar.css" />
+    <link rel="stylesheet" href="styles/components/reusables.css" />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -68,6 +70,22 @@
           </div>
         </ul>
       </nav>
+      <header class="section section-header">
+        <h1 class="movie-title">Most Popular</h1>
+        <form action="#" class="search-form">
+          <button class="search-btn">
+            <ion-icon class="search-icon" name="search"></ion-icon>
+          </button>
+          <input
+            type="text"
+            required
+            class="input-search"
+            placeholder="Search Movies..."
+            name=""
+            id=""
+          />
+        </form>
+      </header>
     </section>
   </body>
 </html>
