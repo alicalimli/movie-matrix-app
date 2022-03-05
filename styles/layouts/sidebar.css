@@ -17,6 +17,10 @@
   width: 15rem;
 }
 
+.movie-sidebar-nav:hover .nav-title {
+  opacity: 1;
+}
+
 /* Website Logo */
 
 .logo-container {
@@ -73,6 +77,8 @@
 
 .nav-title {
   position: relative;
+  opacity: 0;
+  transition: all 0.4s ease;
   top: 50%;
   margin-left: 1rem;
 }
