@@ -17,6 +17,10 @@
   width: 15rem;
 }
 
+.movie-sidebar-nav.unexpand {
+  width: 5rem;
+}
+
 /* makes fade animation to the nav titles when sidebar is hovered */
 
 .movie-sidebar-nav:hover .nav-title {

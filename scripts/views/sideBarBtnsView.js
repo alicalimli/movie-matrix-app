@@ -31,8 +31,11 @@ class SideBarBtnView {
     // Toggles active class to the buttons
 
     btn.classList.toggle("active");
+    this._parentEl.classList.add("unexpand");
     this.buttonPage = btn.dataset.page;
     console.log(this.buttonPage);
+
+    setTimeout(() => this._parentEl.classList.remove("unexpand"), 500);
   }
 
   _renderRipple(parent, x, y) {
