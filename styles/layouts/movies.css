@@ -53,6 +53,11 @@
   font-size: 1rem;
   text-transform: uppercase;
   padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.expand-btn:hover {
+  background-color: #38d9a9;
 }
 
 /* Show all Button */
