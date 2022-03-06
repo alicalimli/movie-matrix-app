@@ -4,15 +4,37 @@ import { async } from "regenerator-runtime";
 
 import * as model from "./model.js";
 import sideBarBtnsView from "./views/sideBarBtnsView.js";
-import movieCardsView from "./views/movieCardsView.js";
+import discoverMoviesView from "./views/discoverView.js";
+import popularMoviesView from "./views/popularMoviesView.js";
 
-const controlHomepageMovies = async function () {
+const controlDiscoverMovies = async function () {
   try {
-    await model.createPosterCard();
-    movieCardsView.renderHTML(model.data.homePageMovies);
+    await model.createDiscoverCards();
+    discoverMoviesView.renderHTML(model.data.discoverMovies);
   } catch (error) {
     console.log(error);
   }
 };
 
-controlHomepageMovies();
+const controlNavBtns = async function (event) {
+  sideBarBtnsView._renderActive(event);
+  if (sideBarBtnsView.buttonPage === "home") {
+    console.log("discover");
+    await model.createDiscoverCards();
+    discoverMoviesView.renderHTML(model.data.discoverMovies);
+  }
+  if (sideBarBtnsView.buttonPage === "movies-pop") {
+    console.log("Popular Movies");
+    await model.createPopularMovies();
+    popularMoviesView.renderHTML(model.data.popularMovies);
+  }
+};
+
+const init = function () {
+  controlDiscoverMovies();
+
+  // Event Handlers
+  sideBarBtnsView.addHandlerEvent(controlNavBtns);
+};
+
+init();

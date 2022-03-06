@@ -1,14 +1,21 @@
 import { IMG_PATH } from "../config";
+import mainView from "./mainView";
 
-class movieCardsView {
+export default class mainView {
   _parentEl = document.querySelector(".movie-main");
   _movieData;
+  _headTitle = document.querySelector(".header-title");
+  _title = "Discover Movies";
 
   renderHTML(movieData) {
     this._movieData = movieData;
     this._clearHTML();
     this._generateHTML();
-    this._generateShowAllHTML();
+    this._updateTitle();
+  }
+
+  _updateTitle() {
+    this._headTitle.textContent = this._title;
   }
 
   _clearHTML() {
@@ -33,15 +40,4 @@ class movieCardsView {
       this._parentEl.insertAdjacentHTML("beforeend", markupHTML);
     });
   }
-
-  _generateShowAllHTML() {
-    const showAllHTML = `
-      <button class="showall-card-btn">
-        <span class="showall-btn">Show All <span class="right-arrow">&rightarrow;</span></span>
-      </button>
-      `;
-    this._parentEl.insertAdjacentHTML("beforeend", showAllHTML);
-  }
 }
-
-export default new movieCardsView();

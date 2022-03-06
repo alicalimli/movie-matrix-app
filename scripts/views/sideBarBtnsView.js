@@ -1,13 +1,16 @@
 class SideBarBtnView {
   _parentEl = document.querySelector(".movie-sidebar-nav");
   _navBtns = document.querySelectorAll(".nav-btn");
+  buttonPage = "";
 
-  constructor() {
-    this._parentEl.addEventListener("click", this._renderActive.bind(this));
+  addHandlerEvent(handle) {
+    this._parentEl.addEventListener("click", function (event) {
+      handle(event);
+    });
   }
 
-  _renderActive(e) {
-    const btn = e.target.closest(".nav-btn");
+  _renderActive(event) {
+    const btn = event.target.closest(".nav-btn");
 
     if (!btn) return;
 
@@ -20,14 +23,16 @@ class SideBarBtnView {
 
     // Creates the ripple effect for the buttons
 
-    const x = e.clientX - btn.offsetLeft;
-    const y = e.clientY - btn.offsetTop;
+    const x = event.clientX - btn.offsetLeft;
+    const y = event.clientY - btn.offsetTop;
 
     this._renderRipple(btn, x, y);
 
     // Toggles active class to the buttons
 
     btn.classList.toggle("active");
+    this.buttonPage = btn.dataset.page;
+    console.log(this.buttonPage);
   }
 
   _renderRipple(parent, x, y) {
