@@ -1,7 +1,7 @@
 import DEFAULT_PAGE from "../config.js";
 
 class SideBarBtnView {
-  _parentEl = document.querySelector(".movie-sidebar-nav");
+  _parentEl = document.body;
   _navBtns = document.querySelectorAll(".nav-btn");
   buttonPage = DEFAULT_PAGE;
 
@@ -12,7 +12,9 @@ class SideBarBtnView {
   }
 
   _renderActive(event) {
-    const btn = event.target.closest(".nav-btn");
+    const btn =
+      event.target.closest(".nav-btn") ||
+      event.target.closest(".showall-card-btn");
 
     if (!btn) return;
 

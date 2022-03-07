@@ -13,7 +13,7 @@ class discoverMoviesView extends mainView {
 
   _generateShowAllHTML() {
     const showAllHTML = `
-      <button class="card showall-card-btn">
+      <button data-page="movies-pop" class="card showall-card-btn">
         <span class="card-text showall-btn">Show All <span class="right-arrow">&rightarrow;</span></span>
       </button>
       `;
