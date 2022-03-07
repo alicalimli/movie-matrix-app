@@ -21,7 +21,6 @@ const controlDiscoverMovies = async function () {
 };
 
 const controlNavBtns = async function (event) {
-  sideBarBtnsView._renderActive(event);
   if (sideBarBtnsView.buttonPage === "home") {
     console.log("discover");
     await model.createDiscoverCards("home");
@@ -42,6 +41,7 @@ const controlNavBtns = async function (event) {
     await model.createDiscoverCards("tvs-pop");
     popularTVsView.renderHTML(model.data.popularTVS);
   }
+  sideBarBtnsView._renderActive(event);
 };
 
 const controlSearchResults = async function () {

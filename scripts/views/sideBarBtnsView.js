@@ -35,11 +35,27 @@ class SideBarBtnView {
     // Toggles active class to the buttons
 
     btn.classList.toggle("active");
+
+    // Unexpand the sidebar navigation
+
     this._parentEl.classList.add("unexpand");
+
     this.buttonPage = btn.dataset.page;
-    console.log(this.buttonPage);
+
+    // Scrolls window back to the top
+
+    this._scrollToTop();
+
+    // Removes unexpand class after 500ms
 
     setTimeout(() => this._parentEl.classList.remove("unexpand"), 500);
+  }
+
+  _scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   }
 
   _renderRipple(parent, x, y) {
