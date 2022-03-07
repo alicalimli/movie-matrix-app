@@ -24,6 +24,7 @@ export default class mainView {
 
   _generateHTML() {
     this._movieData.forEach((movie) => {
+      console.log(IMG_PATH + movie.img);
       const markupHTML = `
             <div class="movie-card">
                 <img

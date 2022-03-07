@@ -9,6 +9,7 @@ import discoverMoviesView from "./views/discoverView.js";
 import popularMoviesView from "./views/popularMoviesView.js";
 import trendingView from "./views/trendingView.js";
 import popularTVsView from "./views/popularTVsView.js";
+import searchResultsView from "./views/searchResultsView.js";
 
 const controlDiscoverMovies = async function () {
   try {
@@ -43,11 +44,22 @@ const controlNavBtns = async function (event) {
   }
 };
 
+const controlSearchResults = async function () {
+  try {
+    const searchVal = searchResultsView.getInputValue();
+    await model.createSearchResults(searchVal);
+    searchResultsView.renderHTML(model.data.searchResults);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const init = function () {
   controlDiscoverMovies();
 
   // Event Handlers
   sideBarBtnsView.addHandlerEvent(controlNavBtns);
+  searchResultsView.addHandlerEvent(controlSearchResults);
 };
 
 init();

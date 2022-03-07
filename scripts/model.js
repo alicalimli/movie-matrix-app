@@ -5,6 +5,7 @@ import {
   POPULAR_MOVIES_API_URL,
   TRENDING_API_URL,
   POPULAR_TVS_API_URL,
+  SEARCH_API_URL,
 } from "./config";
 
 export const data = {
@@ -13,9 +14,8 @@ export const data = {
   popularMovies: [],
   trendingMovies: [],
   popularTVS: [],
+  searchResults: [],
 };
-
-console.log(data["discoverMovies"]);
 
 export const createDiscoverCards = async function (pageName) {
   try {
@@ -42,7 +42,9 @@ export const createDiscoverCards = async function (pageName) {
     console.log(res);
 
     if (!movieData.ok) throw new Error();
+
     // Returns when the response fails
+
     data[obj] = res.results.map((data) => {
       return {
         title: data.title || data.name,
@@ -51,5 +53,26 @@ export const createDiscoverCards = async function (pageName) {
     });
   } catch (error) {
     console.error(error);
+  }
+};
+
+export const createSearchResults = async function (searchVal) {
+  try {
+    // Fetches Search API
+    const resultData = await fetch(SEARCH_API_URL + searchVal);
+    const res = await resultData.json();
+
+    if (!resultData.ok) throw new Error();
+
+    console.log(res);
+
+    data.searchResults = res.results.map((data) => {
+      return {
+        title: data.title || data.name,
+        img: data.poster_path,
+      };
+    });
+  } catch (error) {
+    console.log(error);
   }
 };
