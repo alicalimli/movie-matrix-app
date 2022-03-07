@@ -4,6 +4,7 @@ import {
   DISCOVER_API_URL,
   POPULAR_MOVIES_API_URL,
   TRENDING_API_URL,
+  POPULAR_TVS_API_URL,
 } from "./config";
 
 export const data = {
@@ -11,6 +12,7 @@ export const data = {
   discoverMovies: [],
   popularMovies: [],
   trendingMovies: [],
+  popularTVS: [],
 };
 
 console.log(data["discoverMovies"]);
@@ -31,9 +33,9 @@ export const createDiscoverCards = async function (pageName) {
       movieData = await fetch(TRENDING_API_URL);
       obj = "trendingMovies";
     }
-    if (pageName === "home") {
-      movieData = await fetch(DISCOVER_API_URL);
-      obj = "discoverMovies";
+    if (pageName === "tvs-pop") {
+      movieData = await fetch(POPULAR_TVS_API_URL);
+      obj = "popularTVS";
     }
 
     const res = await movieData.json();

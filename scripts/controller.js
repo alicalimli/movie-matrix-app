@@ -8,6 +8,7 @@ import sideBarBtnsView from "./views/sideBarBtnsView.js";
 import discoverMoviesView from "./views/discoverView.js";
 import popularMoviesView from "./views/popularMoviesView.js";
 import trendingView from "./views/trendingView.js";
+import popularTVsView from "./views/popularTVsView.js";
 
 const controlDiscoverMovies = async function () {
   try {
@@ -34,6 +35,11 @@ const controlNavBtns = async function (event) {
     console.log("Popular Movies");
     await model.createDiscoverCards("trending");
     trendingView.renderHTML(model.data.trendingMovies);
+  }
+  if (sideBarBtnsView.buttonPage === "tvs-pop") {
+    console.log("Popular TV Shows");
+    await model.createDiscoverCards("tvs-pop");
+    popularTVsView.renderHTML(model.data.popularTVS);
   }
 };
 
