@@ -1,7 +1,9 @@
+import DEFAULT_PAGE from "../config.js";
+
 class SideBarBtnView {
   _parentEl = document.querySelector(".movie-sidebar-nav");
   _navBtns = document.querySelectorAll(".nav-btn");
-  buttonPage = "";
+  buttonPage = DEFAULT_PAGE;
 
   addHandlerEvent(handle) {
     this._parentEl.addEventListener("click", function (event) {

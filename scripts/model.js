@@ -8,14 +8,35 @@ export const data = {
   popularMovies: [],
 };
 
-export const createDiscoverCards = async function () {
+console.log(data["discoverMovies"]);
+
+export const createDiscoverCards = async function (pageName) {
   try {
-    const movieData = await fetch(DISCOVER_API_URL);
+    let movieData;
+    let obj;
+    if (pageName === "home") {
+      movieData = await fetch(DISCOVER_API_URL);
+      obj = "discoverMovies";
+    }
+    if (pageName === "movies-pop") {
+      movieData = await fetch(POPULAR_MOVIES_API_URL);
+      obj = "popularMovies";
+    }
+    if (pageName === "home") {
+      movieData = await fetch(DISCOVER_API_URL);
+      obj = "discoverMovies";
+    }
+    if (pageName === "home") {
+      movieData = await fetch(DISCOVER_API_URL);
+      obj = "discoverMovies";
+    }
+
     const res = await movieData.json();
 
+    console.log(movieData);
     if (!movieData.ok) throw new Error();
     // Returns when the response fails
-    data.discoverMovies = res.results.map((data) => {
+    data[obj] = res.results.map((data) => {
       return {
         title: data.title,
         img: data.poster_path,
@@ -23,23 +44,5 @@ export const createDiscoverCards = async function () {
     });
   } catch (error) {
     console.error(error);
-  }
-};
-
-export const createPopularMovies = async function () {
-  try {
-    const popularMovieData = await fetch(POPULAR_MOVIES_API_URL);
-    const res = await popularMovieData.json();
-
-    if (!popularMovieData.ok) throw new Error();
-    // Returns when the response fails
-    data.popularMovies = res.results.map((data) => {
-      return {
-        title: data.title,
-        img: data.poster_path,
-      };
-    });
-  } catch (error) {
-    console.log(error);
   }
 };
