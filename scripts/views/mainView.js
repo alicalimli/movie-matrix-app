@@ -27,11 +27,20 @@ export default class mainView {
       console.log(IMG_PATH + movie.img);
       const markupHTML = `
             <div class="movie-card">
-                <img
-                    class="movie-img"
-                    src="${IMG_PATH + movie.img}"
-                    alt="${movie.title}"
-                />
+            ${
+              movie.img !== null
+                ? `
+              <img
+              class="movie-img"
+              src="${IMG_PATH + movie.img}"
+              alt="${movie.title}"/>
+              `
+                : `
+              <div class="card img-card">
+              <span class="card-text text-unavailable">Image <br/>unavailable</span>
+              </div>
+              `
+            }
                 <div class="movie-info">
                     <span class="movie-title">${movie.title}</span>
                     <button class="expand-btn">expand</button>

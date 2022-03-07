@@ -13,8 +13,8 @@ class discoverMoviesView extends mainView {
 
   _generateShowAllHTML() {
     const showAllHTML = `
-      <button class="showall-card-btn">
-        <span class="showall-btn">Show All <span class="right-arrow">&rightarrow;</span></span>
+      <button class="card showall-card-btn">
+        <span class="card-text showall-btn">Show All <span class="right-arrow">&rightarrow;</span></span>
       </button>
       `;
     this._parentEl.insertAdjacentHTML("beforeend", showAllHTML);

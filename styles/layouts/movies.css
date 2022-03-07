@@ -60,22 +60,30 @@
   background-color: #38d9a9;
 }
 
-/* Show all Button */
+/* Cards */
 
-.showall-card-btn {
+.card {
   align-self: center;
-  cursor: pointer;
   background-color: #111;
   border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 13rem;
-  height: 19rem;
+  height: 19.5rem;
   text-align: center;
 }
 
-.showall-btn {
+.card-text {
   color: white;
   font-size: 1.2rem;
   transition: all 0.3s ease;
+}
+
+/* Show all Button */
+
+.showall-card-btn {
+  cursor: pointer;
 }
 
 /* Animates the right arrow and the showall text when card is hovered */
