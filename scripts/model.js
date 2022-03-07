@@ -1,11 +1,16 @@
 import { async } from "regenerator-runtime";
 
-import { DISCOVER_API_URL, POPULAR_MOVIES_API_URL } from "./config";
+import {
+  DISCOVER_API_URL,
+  POPULAR_MOVIES_API_URL,
+  TRENDING_API_URL,
+} from "./config";
 
 export const data = {
   movie: {},
   discoverMovies: [],
   popularMovies: [],
+  trendingMovies: [],
 };
 
 console.log(data["discoverMovies"]);
@@ -22,9 +27,9 @@ export const createDiscoverCards = async function (pageName) {
       movieData = await fetch(POPULAR_MOVIES_API_URL);
       obj = "popularMovies";
     }
-    if (pageName === "home") {
-      movieData = await fetch(DISCOVER_API_URL);
-      obj = "discoverMovies";
+    if (pageName === "trending") {
+      movieData = await fetch(TRENDING_API_URL);
+      obj = "trendingMovies";
     }
     if (pageName === "home") {
       movieData = await fetch(DISCOVER_API_URL);
@@ -32,13 +37,13 @@ export const createDiscoverCards = async function (pageName) {
     }
 
     const res = await movieData.json();
+    console.log(res);
 
-    console.log(movieData);
     if (!movieData.ok) throw new Error();
     // Returns when the response fails
     data[obj] = res.results.map((data) => {
       return {
-        title: data.title,
+        title: data.title || data.name,
         img: data.poster_path,
       };
     });
