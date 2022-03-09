@@ -1,9 +1,9 @@
 import DEFAULT_PAGE from "../config.js";
 
 class SideBarBtnView {
-  _parentEl = document.body;
+  _parentEl = document.querySelector(".movie-sidebar-nav");
   _navBtns = document.querySelectorAll(".nav-btn");
-  buttonPage = DEFAULT_PAGE;
+  buttonPage;
 
   addHandlerEvent(handle) {
     this._parentEl.addEventListener("click", function (event) {
@@ -12,18 +12,12 @@ class SideBarBtnView {
   }
 
   _renderActive(event) {
-    const btn =
-      event.target.closest(".nav-btn") ||
-      event.target.closest(".showall-card-btn");
+    const btn = event.target.closest(".nav-btn");
 
     if (!btn) return;
 
-    // Removes the active classes to all buttons
-    // except the btn that has been clicked
-
-    this._navBtns.forEach((el) => {
-      if (el !== btn) el.classList.remove("active");
-    });
+    this.buttonPage = btn.dataset.page;
+    console.log(this.buttonPage);
 
     // Creates the ripple effect for the buttons
 
@@ -32,15 +26,9 @@ class SideBarBtnView {
 
     this._renderRipple(btn, x, y);
 
-    // Toggles active class to the buttons
-
-    btn.classList.toggle("active");
-
     // Unexpand the sidebar navigation
 
     this._parentEl.classList.add("unexpand");
-
-    this.buttonPage = btn.dataset.page;
 
     // Scrolls window back to the top
 

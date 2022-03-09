@@ -17,7 +17,7 @@ export const data = {
   searchResults: [],
 };
 
-export const createDiscoverCards = async function (pageName) {
+export const createDiscoverCards = async function (pageName = "home") {
   try {
     let movieData;
     let obj;

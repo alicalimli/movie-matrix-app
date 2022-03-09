@@ -32,7 +32,7 @@ const controlNavBtns = async function (event) {
     popularMoviesView.renderHTML(model.data.popularMovies);
   }
   if (sideBarBtnsView.buttonPage === "trending") {
-    console.log("Popular Movies");
+    console.log("Trending");
     await model.createDiscoverCards("trending");
     trendingView.renderHTML(model.data.trendingMovies);
   }
