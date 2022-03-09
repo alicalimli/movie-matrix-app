@@ -22,7 +22,7 @@ const controlDiscoverMovies = async function () {
 
 const controlNavBtns = async function (event) {
   try {
-    sideBarBtnsView.renderActive(event);
+    await sideBarBtnsView.renderActive(event);
     if (sideBarBtnsView.buttonPage === "home") {
       console.log("discover");
       await model.createDiscoverCards("home");
