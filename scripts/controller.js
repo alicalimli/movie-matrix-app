@@ -21,27 +21,31 @@ const controlDiscoverMovies = async function () {
 };
 
 const controlNavBtns = async function (event) {
-  if (sideBarBtnsView.buttonPage === "home") {
-    console.log("discover");
-    await model.createDiscoverCards("home");
-    discoverMoviesView.renderHTML(model.data.discoverMovies);
+  try {
+    if (sideBarBtnsView.buttonPage === "home") {
+      console.log("discover");
+      await model.createDiscoverCards("home");
+      discoverMoviesView.renderHTML(model.data.discoverMovies);
+    }
+    if (sideBarBtnsView.buttonPage === "movies-pop") {
+      console.log("Popular Movies");
+      await model.createDiscoverCards("movies-pop");
+      popularMoviesView.renderHTML(model.data.popularMovies);
+    }
+    if (sideBarBtnsView.buttonPage === "trending") {
+      console.log("Trending");
+      await model.createDiscoverCards("trending");
+      trendingView.renderHTML(model.data.trendingMovies);
+    }
+    if (sideBarBtnsView.buttonPage === "tvs-pop") {
+      console.log("Popular TV Shows");
+      await model.createDiscoverCards("tvs-pop");
+      popularTVsView.renderHTML(model.data.popularTVS);
+    }
+    sideBarBtnsView._renderActive(event);
+  } catch (error) {
+    console.log(error);
   }
-  if (sideBarBtnsView.buttonPage === "movies-pop") {
-    console.log("Popular Movies");
-    await model.createDiscoverCards("movies-pop");
-    popularMoviesView.renderHTML(model.data.popularMovies);
-  }
-  if (sideBarBtnsView.buttonPage === "trending") {
-    console.log("Trending");
-    await model.createDiscoverCards("trending");
-    trendingView.renderHTML(model.data.trendingMovies);
-  }
-  if (sideBarBtnsView.buttonPage === "tvs-pop") {
-    console.log("Popular TV Shows");
-    await model.createDiscoverCards("tvs-pop");
-    popularTVsView.renderHTML(model.data.popularTVS);
-  }
-  sideBarBtnsView._renderActive(event);
 };
 
 const controlSearchResults = async function () {
