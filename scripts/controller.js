@@ -13,7 +13,7 @@ import searchResultsView from "./views/searchResultsView.js";
 
 const controlDiscoverMovies = async function () {
   try {
-    await model.createDiscoverCards(DEFAULT_PAGE);
+    await model.createDiscoverCards();
     discoverMoviesView.renderHTML(model.data.discoverMovies);
   } catch (error) {
     console.log(error);
@@ -22,6 +22,7 @@ const controlDiscoverMovies = async function () {
 
 const controlNavBtns = async function (event) {
   try {
+    sideBarBtnsView.renderActive(event);
     if (sideBarBtnsView.buttonPage === "home") {
       console.log("discover");
       await model.createDiscoverCards("home");
@@ -42,7 +43,6 @@ const controlNavBtns = async function (event) {
       await model.createDiscoverCards("tvs-pop");
       popularTVsView.renderHTML(model.data.popularTVS);
     }
-    sideBarBtnsView._renderActive(event);
   } catch (error) {
     console.log(error);
   }

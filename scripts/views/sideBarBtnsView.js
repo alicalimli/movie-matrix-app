@@ -11,7 +11,7 @@ class SideBarBtnView {
     });
   }
 
-  _renderActive(event) {
+  renderActive(event) {
     const btn = event.target.closest(".nav-btn");
 
     if (!btn) return;
