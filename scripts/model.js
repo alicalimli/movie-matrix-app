@@ -6,6 +6,7 @@ import {
   TRENDING_API_URL,
   POPULAR_TVS_API_URL,
   SEARCH_API_URL,
+  SEARCH_TVS_API_URL,
 } from "./config";
 
 export const data = {
@@ -60,13 +61,17 @@ export const createSearchResults = async function (searchVal) {
   try {
     // Fetches Search API
     const resultData = await fetch(SEARCH_API_URL + searchVal);
+    const resultTVData = await fetch(SEARCH_TVS_API_URL + searchVal);
     const res = await resultData.json();
+    const resTv = await resultTVData.json();
+
+    const finalResults = res.results.concat(resTv.results);
+
+    console.log(finalResults);
 
     if (!resultData.ok) throw new Error();
 
-    console.log(res);
-
-    data.searchResults = res.results.map((data) => {
+    data.searchResults = finalResults.map((data) => {
       return {
         title: data.title || data.name,
         img: data.poster_path,
