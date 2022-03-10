@@ -25,21 +25,25 @@ const controlNavBtns = async function (event) {
     await sideBarBtnsView.renderActive(event);
     if (sideBarBtnsView.buttonPage === "home") {
       console.log("discover");
+      discoverMoviesView.renderLoading();
       await model.createDiscoverCards("home");
       discoverMoviesView.renderHTML(model.data.discoverMovies);
     }
     if (sideBarBtnsView.buttonPage === "movies-pop") {
       console.log("Popular Movies");
+      popularMoviesView.renderLoading();
       await model.createDiscoverCards("movies-pop");
       popularMoviesView.renderHTML(model.data.popularMovies);
     }
     if (sideBarBtnsView.buttonPage === "trending") {
       console.log("Trending");
+      trendingView.renderLoading();
       await model.createDiscoverCards("trending");
       trendingView.renderHTML(model.data.trendingMovies);
     }
     if (sideBarBtnsView.buttonPage === "tvs-pop") {
       console.log("Popular TV Shows");
+      popularTVsView.renderLoading();
       await model.createDiscoverCards("tvs-pop");
       popularTVsView.renderHTML(model.data.popularTVS);
     }

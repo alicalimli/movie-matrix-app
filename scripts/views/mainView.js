@@ -15,6 +15,15 @@ export default class mainView {
     this._scrollToTop();
   }
 
+  renderLoading() {
+    console.log("as");
+    const loadingHTML = `
+    <div class="loading-spinner"></div>
+     `;
+    this._clearHTML();
+    this._parentEl.insertAdjacentHTML("beforeend", loadingHTML);
+  }
+
   _scrollToTop() {
     window.scrollTo({
       top: 0,
