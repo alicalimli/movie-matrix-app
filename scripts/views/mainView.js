@@ -12,6 +12,13 @@ export default class mainView {
     this._clearHTML();
     this._generateHTML();
     this._updateTitle();
+    this._scrollToTop();
+  }
+
+  _scrollToTop() {
+    window.scrollTo({
+      top: 0,
+    });
   }
 
   _updateTitle() {

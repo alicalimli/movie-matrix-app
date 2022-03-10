@@ -43,19 +43,9 @@ class SideBarBtnView {
 
     this._parentEl.classList.add("unexpand");
 
-    // Scrolls window back to the top
-
-    this._scrollToTop();
-
     // Removes unexpand class after 500ms
 
     setTimeout(() => this._parentEl.classList.remove("unexpand"), 500);
-  }
-
-  _scrollToTop() {
-    window.scrollTo({
-      top: 0,
-    });
   }
 
   _renderRipple(parent, x, y) {

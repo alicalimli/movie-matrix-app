@@ -8,6 +8,7 @@ class discoverMoviesView extends mainView {
     this._clearHTML();
     this._generateHTML();
     this._updateTitle();
+    this._scrollToTop();
   }
 }
 
