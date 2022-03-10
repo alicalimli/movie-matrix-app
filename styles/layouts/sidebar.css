@@ -89,6 +89,24 @@
   margin-left: 1rem;
 }
 
+/* BUTTON HOVER EFFECT */
+
+.nav-btn::after {
+  background-color: #20c997;
+  content: "";
+  width: 100%;
+  height: 0.1rem;
+  transition: all 0.3s ease-in-out;
+  transform: scale(0, 1);
+  transform-origin: 0% 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.nav-btn:hover::after {
+  transform: scale(1, 1);
+}
+
 /* BUTTON RIPPLE EFFECT */
 
 .btn-ripple {
