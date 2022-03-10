@@ -16,6 +16,17 @@ class SideBarBtnView {
 
     if (!btn) return;
 
+    // Removes the active classes to all buttons
+    // except the btn that has been clicked
+
+    this._navBtns.forEach((el) => {
+      if (el !== btn) el.classList.remove("active");
+    });
+
+    // Toggles active class to the buttons
+
+    btn.classList.toggle("active");
+
     this.buttonPage = btn.dataset.page;
     console.log(this.buttonPage);
 
