@@ -3,7 +3,7 @@
   background: #111;
   border-radius: 100px;
   display: flex;
-  height: 2.5rem;
+  height: 3.5rem;
   margin: 1.5rem;
   gap: 0.5rem;
   position: fixed;
@@ -16,7 +16,7 @@
 /* Animates searchbar when form is hovered */
 
 .search-form:hover input {
-  width: 13rem;
+  width: 15rem;
   opacity: 1;
 }
 
