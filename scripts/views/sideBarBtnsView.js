@@ -16,16 +16,18 @@ class SideBarBtnView {
 
     if (!btn) return;
 
-    // Removes the active classes to all buttons
-    // except the btn that has been clicked
+    if (btn.dataset.page !== this.buttonPage) {
+      // Removes the active classes to all buttons
+      // except the btn that has been clicked
 
-    this._navBtns.forEach((el) => {
-      if (el !== btn) el.classList.remove("active");
-    });
+      this._navBtns.forEach((el) => {
+        if (el !== btn) el.classList.remove("active");
+      });
 
-    // Toggles active class to the buttons
+      // Toggles active class to the buttons
 
-    btn.classList.toggle("active");
+      btn.classList.toggle("active");
+    }
 
     this.buttonPage = btn.dataset.page;
     console.log(this.buttonPage);
