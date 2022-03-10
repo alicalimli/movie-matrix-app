@@ -103,29 +103,11 @@
   left: 0;
   bottom: 0;
 }
+
+.nav-btn:hover {
+  letter-spacing: 1px;
+}
+
 .nav-btn:hover::after {
   transform: scale(1, 1);
-}
-
-/* BUTTON RIPPLE EFFECT */
-
-.btn-ripple {
-  animation: ripple-effect 1s linear infinite;
-  border-radius: 100px;
-  background: #ffffff;
-  transform: translate(-50%, -50%);
-  position: absolute;
-}
-
-@keyframes ripple-effect {
-  0% {
-    width: 0px;
-    height: 0px;
-    opacity: 0.5;
-  }
-  100% {
-    width: 70rem;
-    height: 70rem;
-    opacity: 0;
-  }
 }

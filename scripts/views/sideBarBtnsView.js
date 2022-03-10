@@ -32,13 +32,6 @@ class SideBarBtnView {
     this.buttonPage = btn.dataset.page;
     console.log(this.buttonPage);
 
-    // Creates the ripple effect for the buttons
-
-    const x = event.clientX - btn.offsetLeft;
-    const y = event.clientY - btn.offsetTop;
-
-    this._renderRipple(btn, x, y);
-
     // Unexpand the sidebar navigation
 
     this._parentEl.classList.add("unexpand");
@@ -46,15 +39,6 @@ class SideBarBtnView {
     // Removes unexpand class after 500ms
 
     setTimeout(() => this._parentEl.classList.remove("unexpand"), 500);
-  }
-
-  _renderRipple(parent, x, y) {
-    const ripple = document.createElement("span");
-    ripple.classList.add("btn-ripple");
-    ripple.style.left = x + "px";
-    ripple.style.top = y + "px";
-    parent.appendChild(ripple);
-    setTimeout(() => ripple.remove(), 1000);
   }
 }
 
