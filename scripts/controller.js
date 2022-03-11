@@ -13,6 +13,7 @@ import searchResultsView from "./views/searchResultsView.js";
 
 const controlDiscoverMovies = async function () {
   try {
+    discoverMoviesView.renderLoading();
     await model.createDiscoverCards();
     discoverMoviesView.renderHTML(model.data.discoverMovies);
   } catch (error) {
@@ -55,6 +56,7 @@ const controlNavBtns = async function (event) {
 const controlSearchResults = async function () {
   try {
     const searchVal = searchResultsView.getInputValue();
+    searchResultsView.renderLoading();
     await model.createSearchResults(searchVal);
     searchResultsView.renderHTML(model.data.searchResults);
   } catch (error) {
