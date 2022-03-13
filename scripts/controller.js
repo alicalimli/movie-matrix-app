@@ -13,9 +13,9 @@ import searchResultsView from "./views/searchResultsView.js";
 
 const controlDiscoverMovies = async function () {
   try {
-    // discoverMoviesView.renderLoading();
-    // await model.createDiscoverCards();
-    // discoverMoviesView.renderHTML(model.data.discoverMovies);
+    discoverMoviesView.renderLoading();
+    await model.createDiscoverCards();
+    discoverMoviesView.renderHTML(model.data.discoverMovies);
   } catch (error) {
     console.log(error);
   }
