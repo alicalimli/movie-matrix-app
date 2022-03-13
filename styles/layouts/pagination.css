@@ -1,0 +1,19 @@
+.movie-pagination {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.btn-arrow {
+  color: #20c997;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border: 1px solid #20c997;
+  border-radius: 100px;
+  transition: all 0.3s ease;
+}
+
+.btn-arrow:hover {
+  color: white;
+  background-color: #20c997;
+}
