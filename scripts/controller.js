@@ -17,6 +17,7 @@ const controlDiscoverMovies = async function () {
     discoverMoviesView.renderLoading();
     await model.createDiscoverCards();
     discoverMoviesView.renderHTML(model.data.discoverMovies);
+    paginationView.renderPagination(model.data.pages.currentPageLast);
   } catch (error) {
     console.log(error);
   }
