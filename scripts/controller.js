@@ -29,21 +29,26 @@ const controlNavBtns = async function (event) {
       discoverMoviesView.renderLoading();
       await model.createDiscoverCards("home");
       discoverMoviesView.renderHTML(model.data.discoverMovies);
+      paginationView.renderPagination(model.data.pages.currentPageLast);
     }
     if (sideBarBtnsView.buttonPage === "movies-pop") {
       popularMoviesView.renderLoading();
       await model.createDiscoverCards("movies-pop");
       popularMoviesView.renderHTML(model.data.popularMovies);
+      // Renders the pagination
+      paginationView.renderPagination(model.data.pages.currentPageLast);
     }
     if (sideBarBtnsView.buttonPage === "trending") {
       trendingView.renderLoading();
       await model.createDiscoverCards("trending");
       trendingView.renderHTML(model.data.trendingMovies);
+      paginationView.renderPagination(model.data.pages.currentPageLast);
     }
     if (sideBarBtnsView.buttonPage === "tvs-pop") {
       popularTVsView.renderLoading();
       await model.createDiscoverCards("tvs-pop");
       popularTVsView.renderHTML(model.data.popularTVS);
+      paginationView.renderPagination(model.data.pages.currentPageLast);
     }
   } catch (error) {
     console.log(error);
@@ -67,6 +72,7 @@ const controlPagination = async function (event) {
     paginationView.renderLoading();
     await model.createPageResults(paginationView.btnType);
     paginationView.renderHTML(model.data.pages.pageResults);
+    paginationView.renderPagination(model.data.pages.currentPageLast);
   } catch (error) {
     console.log(error);
   }

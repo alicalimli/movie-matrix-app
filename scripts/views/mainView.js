@@ -3,6 +3,7 @@ import mainView from "./mainView";
 
 export default class mainView {
   _parentEl = document.querySelector(".movie-main");
+  _paginationSection = document.querySelector(".movie-pagination");
   _movieData;
   _headTitle = document.querySelector(".header-title");
   _title = "Discover Movies";
@@ -36,6 +37,7 @@ export default class mainView {
 
   _clearHTML() {
     this._parentEl.innerHTML = "";
+    this._paginationSection.innerHTML = "";
   }
 
   _generateHTML() {

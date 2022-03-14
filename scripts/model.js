@@ -16,7 +16,12 @@ export const data = {
   trendingMovies: [],
   popularTVS: [],
   searchResults: [],
-  pages: { currentUrl: "", pageResults: [], currentPage: 1 },
+  pages: {
+    currentUrl: "",
+    pageResults: [],
+    currentPage: 1,
+    currentPageLast: 1,
+  },
 };
 
 export const createDiscoverCards = async function (
@@ -58,6 +63,9 @@ export const createDiscoverCards = async function (
     //Always Sets the current page to 1
 
     data.pages.currentPage = res.page;
+
+    // Always sets the currentpagelast to lastpage
+    data.pages.currentPageLast = 500; // TMDB returns an error when page is above 500
 
     // Throws an error when the response fails
 
@@ -106,6 +114,8 @@ export const createPageResults = async function (btnType) {
     // Decrement and increment the currentPage number
     if (btnType === "next") data.pages.currentPage++;
     if (btnType === "back") data.pages.currentPage--;
+    if (btnType === "first") data.pages.currentPage = 1;
+    if (btnType === "last") data.pages.currentPage = data.pages.currentPageLast;
 
     console.log(data.pages.currentPage);
 
