@@ -10,7 +10,7 @@
   overflow: hidden;
   padding: 1.5rem 0rem;
   position: fixed;
-  z-index: 3;
+  z-index: 5;
 }
 
 .movie-sidebar-nav:hover {

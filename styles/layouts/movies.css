@@ -7,6 +7,7 @@
 
 .movie-card {
   width: 13rem;
+  height: 20rem;
   overflow: hidden;
   position: relative;
 }
@@ -22,6 +23,8 @@
 .movie-img {
   width: 100%;
   border-radius: 5px;
+  position: absolute;
+  z-index: -1;
 }
 
 .movie-info {
@@ -43,22 +46,64 @@
 }
 
 .movie-title {
-  font-size: 1.3rem;
+  font-size: 1rem;
+}
+
+.overlay-card {
+  background-color: black;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s ease;
+  opacity: 0;
+  position: absolute;
+}
+
+.movie-card:hover .overlay-card {
+  opacity: 0.8;
 }
 
 .expand-btn {
-  background-color: #20c997;
+  align-items: center;
+  background: none;
   border-radius: 5px;
-  color: #333;
+  color: #20c997;
   cursor: pointer;
-  font-size: 1rem;
-  text-transform: uppercase;
+  display: flex;
+  font-size: 1.3rem;
+  transition: all 0.3s ease;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
   padding: 0.5rem 1rem;
+  position: relative;
+  justify-content: center;
+  z-index: 2;
+}
+
+.expand-icon {
+  font-size: 1.5rem;
+  transform: translate(0%, -50%);
+  transition: all 0.3s ease;
+  position: absolute;
+  top: 50%;
+  left: 20%;
+}
+
+.movie-card:hover .expand-icon {
+  font-size: 1.6rem;
+}
+
+.movie-expand {
+  font-size: 1rem;
   transition: all 0.3s ease;
 }
 
-.expand-btn:hover {
-  background-color: #38d9a9;
+.movie-card:hover .movie-expand {
+  letter-spacing: 1px;
+}
+
+.movie-card:hover .expand-btn {
+  opacity: 1;
 }
 
 /* Cards */
@@ -79,29 +124,4 @@
   color: white;
   font-size: 1.2rem;
   transition: all 0.3s ease;
-}
-
-/* Show all Button */
-
-.showall-card-btn {
-  cursor: pointer;
-}
-
-/* Animates the right arrow and the showall text when card is hovered */
-
-.showall-card-btn:hover .right-arrow {
-  color: #20c997;
-  transform: translateX(10%);
-  left: 5%;
-}
-
-.showall-card-btn:hover .showall-btn {
-  color: #20c997;
-}
-
-.right-arrow {
-  transform: translate();
-  transition: all 0.3s ease;
-  position: relative;
-  left: 0%;
 }

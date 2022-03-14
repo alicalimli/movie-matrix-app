@@ -1,5 +1,5 @@
 export const API_KEY = "b51b535b2fa399a23d7dfdf78f4f91c3";
-export const IMG_PATH = `https://image.tmdb.org/t/p/w1280`;
+export const IMG_PATH = `https://image.tmdb.org/t/p/w500`;
 export const POPULAR_MOVIES_API_URL = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=`;
 export const POPULAR_TVS_API_URL = `https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}&language=en-US&page=`;
 export const DISCOVER_API_URL = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&with_watch_monetization_types=flatrate&page=`;
