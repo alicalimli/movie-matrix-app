@@ -105,7 +105,7 @@
 }
 
 .nav-btn:hover {
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
 }
 
 .nav-btn:hover::after {

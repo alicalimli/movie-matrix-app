@@ -30,7 +30,6 @@ class SideBarBtnView {
     }
 
     this.buttonPage = btn.dataset.page;
-    console.log(this.buttonPage);
 
     // Unexpand the sidebar navigation
 

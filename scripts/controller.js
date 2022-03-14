@@ -10,12 +10,13 @@ import popularMoviesView from "./views/popularMoviesView.js";
 import trendingView from "./views/trendingView.js";
 import popularTVsView from "./views/popularTVsView.js";
 import searchResultsView from "./views/searchResultsView.js";
+import paginationView from "./views/paginationView.js";
 
 const controlDiscoverMovies = async function () {
   try {
-    discoverMoviesView.renderLoading();
-    await model.createDiscoverCards();
-    discoverMoviesView.renderHTML(model.data.discoverMovies);
+    // discoverMoviesView.renderLoading();
+    // await model.createDiscoverCards();
+    // discoverMoviesView.renderHTML(model.data.discoverMovies);
   } catch (error) {
     console.log(error);
   }
@@ -25,25 +26,21 @@ const controlNavBtns = async function (event) {
   try {
     await sideBarBtnsView.renderActive(event);
     if (sideBarBtnsView.buttonPage === "home") {
-      console.log("discover");
       discoverMoviesView.renderLoading();
       await model.createDiscoverCards("home");
       discoverMoviesView.renderHTML(model.data.discoverMovies);
     }
     if (sideBarBtnsView.buttonPage === "movies-pop") {
-      console.log("Popular Movies");
       popularMoviesView.renderLoading();
       await model.createDiscoverCards("movies-pop");
       popularMoviesView.renderHTML(model.data.popularMovies);
     }
     if (sideBarBtnsView.buttonPage === "trending") {
-      console.log("Trending");
       trendingView.renderLoading();
       await model.createDiscoverCards("trending");
       trendingView.renderHTML(model.data.trendingMovies);
     }
     if (sideBarBtnsView.buttonPage === "tvs-pop") {
-      console.log("Popular TV Shows");
       popularTVsView.renderLoading();
       await model.createDiscoverCards("tvs-pop");
       popularTVsView.renderHTML(model.data.popularTVS);
@@ -64,12 +61,24 @@ const controlSearchResults = async function () {
   }
 };
 
+const controlPagination = async function (event) {
+  try {
+    paginationView.buttonClicked(event);
+    paginationView.renderLoading();
+    await model.createPageResults(paginationView.btnType);
+    paginationView.renderHTML(model.data.pages.pageResults);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const init = function () {
   controlDiscoverMovies();
 
   // Event Handlers
   sideBarBtnsView.addHandlerEvent(controlNavBtns);
   searchResultsView.addHandlerEvent(controlSearchResults);
+  paginationView.addHandlerEvent(controlPagination);
 };
 
 init();

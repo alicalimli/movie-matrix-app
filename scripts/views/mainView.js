@@ -16,7 +16,6 @@ export default class mainView {
   }
 
   renderLoading() {
-    console.log("as");
     const loadingHTML = `
     <div class="placeholder"></div>
     <div class="loading-spinner"></div>

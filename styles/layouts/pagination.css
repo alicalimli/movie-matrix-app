@@ -2,18 +2,28 @@
   display: flex;
   gap: 0.5rem;
   justify-content: center;
+  align-items: center;
 }
 
-.btn-arrow {
+.movie-pagination button {
   color: #20c997;
   cursor: pointer;
-  padding: 0.5rem 1rem;
-  border: 1px solid #20c997;
   border-radius: 100px;
   transition: all 0.3s ease;
 }
 
-.btn-arrow:hover {
+.btn-arrow {
+  padding: 0.5rem 1rem;
+  border: 1px solid #20c997;
+}
+
+.btn-arrow:hover,
+.btn-page-num:hover {
   color: white;
   background-color: #20c997;
+}
+
+.btn-page-num {
+  font-size: 1rem;
+  padding: 0.25rem 0.5rem;
 }
