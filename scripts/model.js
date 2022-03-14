@@ -9,6 +9,8 @@ import {
   SEARCH_TVS_API_URL,
 } from "./config";
 
+// This object is the overall data
+
 export const data = {
   movie: {},
   discoverMovies: [],
@@ -23,6 +25,8 @@ export const data = {
     currentPageLast: 1,
   },
 };
+
+// this function is for creating moviecards
 
 export const createDiscoverCards = async function (
   pageName = "home",
@@ -84,6 +88,8 @@ export const createDiscoverCards = async function (
   }
 };
 
+// this functions is for creating search results when user search something
+
 export const createSearchResults = async function (searchVal) {
   try {
     // Fetches Search API
@@ -109,15 +115,16 @@ export const createSearchResults = async function (searchVal) {
   }
 };
 
-export const createPageResults = async function (btnType) {
+// This function is for creating page results when pagination buttons is clicked
+
+export const createPageResults = async function (btnType, pageNum = 1) {
   try {
     // Decrement and increment the currentPage number
     if (btnType === "next") data.pages.currentPage++;
     if (btnType === "back") data.pages.currentPage--;
     if (btnType === "first") data.pages.currentPage = 1;
     if (btnType === "last") data.pages.currentPage = data.pages.currentPageLast;
-
-    console.log(data.pages.currentPage);
+    if (btnType === "page-num") data.pages.currentPage = pageNum;
 
     // Fetches the data
 

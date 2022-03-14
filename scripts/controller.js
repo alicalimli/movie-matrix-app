@@ -70,7 +70,10 @@ const controlPagination = async function (event) {
   try {
     paginationView.buttonClicked(event);
     paginationView.renderLoading();
-    await model.createPageResults(paginationView.btnType);
+    await model.createPageResults(
+      paginationView.btnType,
+      paginationView.pageNum
+    );
     paginationView.renderHTML(model.data.pages.pageResults);
     paginationView.renderPagination(model.data.pages.currentPageLast);
   } catch (error) {
