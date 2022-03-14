@@ -21,23 +21,55 @@ class paginationView extends mainView {
     const btn = event.target;
     if (!btn) return;
 
-    if (btn.dataset.pageBtn === "page-num") this.pageNum = btn.dataset.pageNum;
+    this.pageNum = +btn.dataset.pageNum;
     this.btnType = btn.dataset.pageBtn;
   }
 
   _generatePagination(lastPage) {
     const paginationHTML = `
-        <button data-page-btn="first" class="btn-arrow">< Page 1</button>
-        <button data-page-btn="back" class="btn-arrow">< Back</button>
-        <button data-page-btn="page-num" data-page-num="1" class="btn-page-num">1</button>
-        <button data-page-btn="page-num" data-page-num="2" class="btn-page-num">2</button>
-        <button data-page-btn="page-num" data-page-num="3" class="btn-page-num">3</button>
-        <button data-page-btn="page-num" data-page-num="4" class="btn-page-num">4</button>
-        <button data-page-btn="page-num" data-page-num="5" class="btn-page-num">5</button>
-        <button data-page-btn="next" class="btn-arrow">Next ></button>
-        <button data-page-btn="last" class="btn-arrow">Page ${lastPage} ></button>
+        <button data-page-btn="first" data-page-num="1" class="btn-arrow">< Page 1</button>
+        <button data-page-btn="back" data-page-num="${
+          this.pageNum - 1
+        }"class="btn-arrow">< Back</button>
+        ${this._generateNumPageBtnsBefore()}
+        <button data-page-btn="page-num" data-page-num="${
+          this.pageNum
+        }" class="btn-page-num active">${this.pageNum}</button>
+
+        ${this._generateNumPageBtnsAfter(lastPage)}
+
+        <button data-page-btn="next" data-page-num="${
+          this.pageNum + 1
+        }"class="btn-arrow">Next ></button>
+        <button data-page-btn="last" data-page-num="${lastPage}"class="btn-arrow">Page ${lastPage} ></button>
     `;
     this._paginationSection.insertAdjacentHTML("beforeend", paginationHTML);
+  }
+
+  _generateNumPageBtnsBefore() {
+    let pageNumBtnBeforeHTML = ``;
+
+    for (let i = +this.pageNum - 5; i < +this.pageNum; i++) {
+      // Only create HTML when i is greater than 0
+      if (i > 0) {
+        pageNumBtnBeforeHTML += `<button data-page-btn="page-num" data-page-num="${i}" class="btn-page-num">${i}</button>`;
+      }
+    }
+    return pageNumBtnBeforeHTML;
+  }
+
+  _generateNumPageBtnsAfter(lastPage) {
+    let pageNumBtnAfterHTML = ``;
+
+    for (let i = +this.pageNum; i < +this.pageNum + 5; i++) {
+      // Only creates HTML when i is not exceeding 500+
+      if (i <= lastPage - 1) {
+        pageNumBtnAfterHTML += `<button data-page-btn="page-num" data-page-num="${
+          i + 1
+        }" class="btn-page-num">${i + 1}</button>`;
+      }
+    }
+    return pageNumBtnAfterHTML;
   }
 }
 

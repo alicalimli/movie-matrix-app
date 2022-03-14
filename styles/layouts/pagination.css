@@ -18,7 +18,8 @@
 }
 
 .btn-arrow:hover,
-.btn-page-num:hover {
+.btn-page-num:hover,
+.btn-page-num.active {
   color: white;
   background-color: #20c997;
 }
