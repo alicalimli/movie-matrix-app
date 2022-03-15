@@ -58,7 +58,7 @@ export default class mainView {
           <div class="overlay-card"></div>
 
           <button class="expand-btn">
-            <span class="movie-expand"><ion-icon class="expand-icon" name="contract"></ion-icon>Expand</span>
+            <span class="movie-expand"><box-icon name='expand' class="expand-icon"></box-icon>Expand</span>
           </button>
           <div class="movie-info">
             <span class="movie-title">${movie.title}</span>

@@ -12,8 +12,8 @@
     "parcel": "^2.3.2"
   },
   "dependencies": {
+    "boxicons": "^2.1.2",
     "core-js": "^3.21.1",
-    "ionicons": "^6.0.1",
     "regenerator-runtime": "^0.13.9"
   }
 }

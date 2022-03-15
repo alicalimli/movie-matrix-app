@@ -87,11 +87,12 @@
 }
 
 .expand-icon {
+  fill: #20c997;
   font-size: 1.5rem;
-  transform: translate(0%, -50%);
+  transform: translate(0%, -65%);
+  top: 50%;
   transition: all 0.3s ease;
   position: absolute;
-  top: 50%;
   left: 20%;
 }
 

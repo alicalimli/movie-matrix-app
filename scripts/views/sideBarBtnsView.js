@@ -3,6 +3,7 @@ import DEFAULT_PAGE from "../config.js";
 class SideBarBtnView {
   _parentEl = document.querySelector(".movie-sidebar-nav");
   _navBtns = document.querySelectorAll(".nav-btn");
+  _icons = document.querySelectorAll(".nav-icon");
   buttonPage;
 
   addHandlerEvent(handle) {
@@ -40,12 +41,14 @@ class SideBarBtnView {
       // Removes the active classes to all buttons
       // except the btn that has been clicked
 
-      this._navBtns.forEach((el) => {
+      this._navBtns.forEach((el, i) => {
+        this._icons[i].classList.remove("active");
         if (el !== btn) el.classList.remove("active");
       });
 
       // Toggles active class to the buttons
 
+      btn.querySelector(".nav-icon").classList.toggle("active");
       btn.classList.toggle("active");
     }
 

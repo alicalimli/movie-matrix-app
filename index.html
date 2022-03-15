@@ -5,10 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Ion icons -->
-
-    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
-
     <!-- Scripts -->
     <script defer type="module" src="/scripts/controller.js"></script>
 
@@ -33,31 +29,31 @@
         <ul class="nav-lists">
           <li class="nav-list">
             <button data-page="home" class="nav-btn">
-              <ion-icon class="nav-icon" name="home"></ion-icon>
+              <box-icon class="nav-icon" name="home"></box-icon>
               <span class="nav-title">Home</span>
             </button>
           </li>
           <li class="nav-list">
             <button data-page="trending" class="nav-btn">
-              <ion-icon class="nav-icon" name="flame"></ion-icon>
+              <box-icon type="solid" class="nav-icon" name="hot"></box-icon>
               <span class="nav-title">Trending</span>
             </button>
           </li>
           <li class="nav-list">
             <button data-page="movies-pop" class="nav-btn">
-              <ion-icon class="nav-icon" name="film"></ion-icon>
+              <box-icon class="nav-icon" name="movie"></box-icon>
               <span class="nav-title">Popular Movies</span>
             </button>
           </li>
           <li class="nav-list">
             <button data-page="tvs-pop" class="nav-btn">
-              <ion-icon class="nav-icon" name="tv"></ion-icon>
+              <box-icon class="nav-icon" name="tv"></box-icon>
               <span class="nav-title">Popular TVs</span>
             </button>
           </li>
           <li class="nav-list">
             <button class="nav-btn">
-              <ion-icon class="nav-icon" name="star"></ion-icon>
+              <box-icon class="nav-icon" name="star"></box-icon>
               <span class="nav-title">Favorites</span>
             </button>
           </li>
@@ -70,7 +66,7 @@
       <div class="overlay-main"></div>
       <form action="#" class="search-form">
         <button class="search-btn">
-          <ion-icon class="search-icon" name="search"></ion-icon>
+          <box-icon class="search-icon" name="search-alt-2"></box-icon>
         </button>
         <input
           type="text"
@@ -96,8 +92,7 @@
 
           <button class="expand-btn">
             <span class="movie-expand"
-              ><ion-icon class="expand-icon" name="contract"></ion-icon
-              >Expand</span
+              ><box-icon name='expand' class="expand-icon"></box-icon>Expand</span
             >
           </button>
           <div class="movie-info">
