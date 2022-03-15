@@ -119,12 +119,20 @@ export const createSearchResults = async function (searchVal) {
 
 export const createPageResults = async function (btnType, pageNum = 1) {
   try {
+    // This copies currentPage so that we can compare it later
+    const currentPage = data.pages.currentPage;
+    if (!btnType) return;
     // Decrement and increment the currentPage number
     if (btnType === "next") data.pages.currentPage++;
-    if (btnType === "back") data.pages.currentPage--;
+    if (btnType === "back" && pageNum > 0) data.pages.currentPage--;
     if (btnType === "first") data.pages.currentPage = 1;
     if (btnType === "last") data.pages.currentPage = data.pages.currentPageLast;
     if (btnType === "page-num") data.pages.currentPage = pageNum;
+
+    // If currentpage didnt change the function Stops
+    if (currentPage === data.pages.currentPage) return;
+
+    console.log(pageNum, pageNum > 0);
 
     // Fetches the data
 

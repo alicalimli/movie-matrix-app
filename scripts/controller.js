@@ -3,7 +3,7 @@ import "regenerator-runtime/runtime";
 import { async } from "regenerator-runtime";
 
 import * as model from "./model.js";
-import { DEFAULT_PAGE } from "./config.js";
+import { DEFAULT_PAGE, MOVIES_FIRST_PAGE, MOVIES_MAX_PAGE } from "./config.js";
 import sideBarBtnsView from "./views/sideBarBtnsView.js";
 import discoverMoviesView from "./views/discoverView.js";
 import popularMoviesView from "./views/popularMoviesView.js";
@@ -70,11 +70,34 @@ const controlSearchResults = async function () {
 const controlPagination = async function (event) {
   try {
     paginationView.buttonClicked(event);
+
+    // Stops the function if btn Type is nothing
+    if (paginationView.btnType === "") return;
+
+    // Stops the function if user clicks back and the page is number 1
+    if (
+      paginationView.btnType === "back" &&
+      model.data.pages.currentPage === MOVIES_FIRST_PAGE
+    )
+      return;
+
+    // Stops the function if user clicks next and the page is the last page
+    if (
+      paginationView.btnType === "next" &&
+      model.data.pages.currentPage === MOVIES_MAX_PAGE
+    )
+      return;
+
+    // Renders Loading Spinner
     paginationView.renderLoading();
+
+    // Fetches PageResults Data
     await model.createPageResults(
       paginationView.btnType,
       paginationView.pageNum
     );
+
+    // HTML Rendering
     paginationView.renderHTML(model.data.pages.pageResults);
     paginationView.renderPagination(model.data.pages.currentPageLast);
   } catch (error) {
@@ -83,6 +106,7 @@ const controlPagination = async function (event) {
 };
 
 const init = function () {
+  // Loads Discover Movies when page is loaded
   controlDiscoverMovies();
 
   // Event Handlers
