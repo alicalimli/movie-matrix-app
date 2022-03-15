@@ -6,8 +6,28 @@ class SideBarBtnView {
   buttonPage;
 
   addHandlerEvent(handle) {
+    this.toggler();
     this._parentEl.addEventListener("click", function (event) {
       handle(event);
+    });
+  }
+
+  toggler() {
+    const overlay = document.querySelector(".overlay-main");
+    const mainMovieSection = document.querySelector(".movie-main");
+    const headerSection = document.querySelector(".section-header");
+    const paginationSection = document.querySelector(".movie-pagination");
+    this._parentEl.addEventListener("mouseover", function () {
+      overlay.classList.add("active");
+      mainMovieSection.classList.add("active");
+      headerSection.classList.add("active");
+      paginationSection.classList.add("active");
+    });
+    this._parentEl.addEventListener("mouseout", function () {
+      overlay.classList.remove("active");
+      mainMovieSection.classList.remove("active");
+      headerSection.classList.remove("active");
+      paginationSection.classList.remove("active");
     });
   }
 

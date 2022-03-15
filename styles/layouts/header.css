@@ -2,6 +2,11 @@
   align-items: center;
   color: white;
   padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.section-header.active {
+  transform: scale(0.95);
 }
 
 .header-title {

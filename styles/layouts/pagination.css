@@ -3,6 +3,11 @@
   gap: 0.5rem;
   justify-content: center;
   align-items: center;
+  transition: all 0.3s ease;
+}
+
+.movie-pagination.active {
+  transform: scale(0.95);
 }
 
 .movie-pagination button {
