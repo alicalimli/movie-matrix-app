@@ -1,9 +1,15 @@
 import mainView from "./mainView";
 
 class paginationView extends mainView {
-  _title = "Trending";
   btnType = "";
   pageNum = 1;
+
+  renderHTML(movieData) {
+    this._movieData = movieData;
+    this._clearHTML();
+    this._generateHTML();
+    this._scrollToTop();
+  }
 
   addHandlerEvent(handler) {
     this._paginationSection.addEventListener("click", function (e) {
@@ -13,7 +19,6 @@ class paginationView extends mainView {
 
   renderPagination(lastPage) {
     this._generatePagination(lastPage);
-    this._updateTitle();
     this._scrollToTop();
   }
 
