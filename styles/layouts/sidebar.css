@@ -2,51 +2,192 @@
 
 .movie-sidebar-nav {
   background-color: #111;
-  display: flex;
-  height: 100vh;
+  height: 100%;
   width: 5rem;
   transition: all 0.4s ease;
   text-align: center;
-  overflow: hidden;
-  padding: 1.5rem 0rem;
+  padding: 0.5rem 0.5rem;
+  padding-right: 1.5rem;
   position: fixed;
   z-index: 5;
 }
 
-.movie-sidebar-nav:hover {
+.movie-sidebar-nav.active {
   width: 15rem;
 }
 
-.movie-sidebar-nav.unexpand {
-  width: 5rem;
+/* Nav buttons */
+
+.nav-lists {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+  gap: 1rem;
 }
 
-/* Overlaymain */
+.movie-sidebar-nav.active .nav-lists {
+  transform: translateY(-15%);
+}
 
-.overlay-main {
+.nav-list {
+  border-radius: 8px;
+  height: 2.5rem;
   width: 100%;
+  margin: 0 0.5rem;
+  position: relative;
+}
+
+.nav-btn {
+  align-items: center;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  gap: 1rem;
+  padding: 0.3rem 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+  background-color: rgb(32, 32, 32);
+}
+
+.movie-sidebar-nav.active .nav-btn {
+  padding: 0.3rem 1rem;
+}
+
+.nav-btn .nav-title {
+  transition: all 0.3s ease;
+  transform: translateX(-10%);
+  position: relative;
+  left: 0.5rem;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.movie-sidebar-nav.active .nav-title {
+  opacity: 1;
+  position: relative;
+  left: 0rem;
+  pointer-events: auto;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.nav-list .bx {
+  border-radius: 8px;
+  font-size: 1.5rem;
+  height: 2.5rem;
+  max-width: 2.5rem;
+  line-height: 2.5rem;
+  text-align: center;
+}
+
+.nav-list .bx.active {
+  color: #20c997;
+  animation: 0.35s linear normal icon-anim;
+  animation-play-state: inherit;
+}
+
+/* Secondary Title */
+
+.nav-list .secondary-title {
+  color: white;
+  transform: translate(15%, -50%);
+  text-align: left;
+  font-weight: 600;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 3rem;
+  width: 10rem;
+  pointer-events: none;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.nav-list:hover .secondary-title {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(20%, -50%);
+  display: block;
+}
+
+.movie-sidebar-nav.active .secondary-title {
+  display: none;
+}
+
+/* SearchBar */
+
+.sidebar-form {
   height: 100%;
-  background-color: black;
+  width: 100%;
+  position: relative;
+}
+.sidebar-form:hover {
+  background-color: rgb(32, 32, 32);
+  border-radius: 8px;
+}
+
+.sidebar-search-input {
+  background-color: wheat;
+  border-radius: 8px;
+  height: 100%;
+  width: 100%;
+  font-size: 1.2rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 0.5rem;
+  padding-left: 2.5rem;
   position: absolute;
   top: 0;
   left: 0;
   opacity: 0;
-  transition: all 0.3s ease;
-  pointer-events: none;
   visibility: hidden;
-  z-index: 4;
+  pointer-events: none;
 }
 
-.overlay-main.active {
-  opacity: 0.7;
+.movie-sidebar-nav.active .sidebar-search-input {
+  opacity: 1;
   pointer-events: auto;
   visibility: visible;
 }
 
-/* makes fade animation to the nav titles when sidebar is hovered */
+.sidebar-search-btn {
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 0.7rem;
+  z-index: 3;
+}
 
-.movie-sidebar-nav:hover .nav-title {
-  opacity: 1;
+.movie-sidebar-nav.active .sidebar-search-btn {
+  color: black;
+}
+
+/* Sidebar expand button */
+
+.sidebar-expand-btn {
+  right: 0;
+  top: 0;
+  position: absolute;
+}
+
+.movie-sidebar-nav.active .sidebar-expand-btn {
+  border-radius: 100px;
+  transform: rotate(180deg);
+  padding: 0rem 0.5rem;
+}
+
+.movie-sidebar-nav.active .sidebar-expand-btn {
+  position: absolute;
+  right: -1rem;
 }
 
 /* Website Logo */
@@ -55,18 +196,67 @@
   align-items: center;
   color: white;
   display: flex;
-  gap: 1rem;
-  width: 15rem;
-  margin-top: auto;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  top: 0.5rem;
+  left: 0.5rem;
 }
 
 .logo-img {
-  width: 30%;
+  width: 3.5rem;
+}
+
+.logo-name {
+  pointer-events: none;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  transform: translateX(-10%);
+  opacity: 0;
+}
+
+.movie-sidebar-nav.active .logo-container {
+  left: 1rem;
+}
+
+.movie-sidebar-nav.active .logo-name {
+  pointer-events: auto;
+  visibility: visible;
+  transform: translateX(0%);
+  opacity: 1;
+}
+
+/* Overlaymain */
+
+.overlay-main {
+  background-color: black;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  z-index: 4;
+}
+
+.overlay-main.active {
+  opacity: 0.8;
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.movie-sidebar-nav.active .overlay-main.active {
+  opacity: 0.8;
+  pointer-events: auto;
+  visibility: visible;
 }
 
 /* Navigation Lists and Buttons */
 
-.nav-lists {
+/* .nav-lists {
   display: flex;
   flex-direction: column;
   list-style: none;
@@ -78,9 +268,9 @@
 
 .nav-list:hover {
   background-color: rgb(32, 32, 32);
-}
+} */
 
-.nav-btn {
+/* .nav-btn {
   align-items: center;
   cursor: pointer;
   color: white;
@@ -107,7 +297,7 @@
   fill: #20c997;
   animation: 0.35s linear normal icon-anim;
   animation-play-state: inherit;
-}
+} */
 
 @keyframes icon-anim {
   0% {
@@ -124,33 +314,10 @@
   }
 }
 
-.nav-title {
+/* .nav-title {
   position: relative;
   opacity: 0;
   transition: all 0.4s ease;
   top: 50%;
   margin-left: 1rem;
-}
-
-/* BUTTON HOVER EFFECT */
-
-.nav-btn::after {
-  background-color: #20c997;
-  content: "";
-  width: 100%;
-  height: 0.1rem;
-  transition: all 0.3s ease-in-out;
-  transform: scale(0, 1);
-  transform-origin: 0% 100%;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-}
-
-.nav-btn:hover {
-  letter-spacing: 0.5px;
-}
-
-.nav-btn:hover::after {
-  transform: scale(1, 1);
-}
+} */

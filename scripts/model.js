@@ -23,6 +23,7 @@ export const data = {
     pageResults: [],
     currentPage: 1,
     currentPageLast: 1,
+    currentPageType: "",
   },
 };
 
@@ -33,8 +34,10 @@ export const createDiscoverCards = async function (
   pageNum = 1
 ) {
   try {
+    console.log(data);
     let movieData;
     let obj;
+    const pageNameCopy = pageName;
     if (pageName === "home") {
       // Fetches the data
       movieData = await fetch(DISCOVER_API_URL + pageNum);
@@ -67,6 +70,9 @@ export const createDiscoverCards = async function (
     //Always Sets the current page to 1
 
     data.pages.currentPage = res.page;
+
+    // Sets the currentPageType to which button has been click(ex.Movies)
+    data.pages.currentPageType = pageName;
 
     // Always sets the currentpagelast to lastpage
     data.pages.currentPageLast = 500; // TMDB returns an error when page is above 500

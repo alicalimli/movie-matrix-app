@@ -1,7 +1,6 @@
 import "core-js/stable";
 import "regenerator-runtime/runtime";
 import { async } from "regenerator-runtime";
-import "boxicons";
 
 import * as model from "./model.js";
 import { DEFAULT_PAGE, MOVIES_FIRST_PAGE, MOVIES_MAX_PAGE } from "./config.js";
@@ -19,6 +18,7 @@ const controlDiscoverMovies = async function () {
     await model.createDiscoverCards();
     discoverMoviesView.renderHTML(model.data.discoverMovies);
     paginationView.renderPagination(model.data.pages.currentPageLast);
+    sideBarBtnsView.updateBtn();
   } catch (error) {
     console.log(error);
   }
@@ -27,8 +27,15 @@ const controlDiscoverMovies = async function () {
 const controlNavBtns = async function (event) {
   try {
     await sideBarBtnsView.renderActive(event);
+    // Prevents the data to be rendered again everytime user clicks the same button;
+    if (sideBarBtnsView.buttonPage === model.data.pages.currentPageType) return;
+    // Prevents HTML from rendering
+    if (sideBarBtnsView.buttonPage === "expand") return;
+
+    // Render HTML Movie cards and paginations buttons
     if (sideBarBtnsView.buttonPage === "home") {
       discoverMoviesView.renderLoading();
+      p;
       await model.createDiscoverCards("home");
       discoverMoviesView.renderHTML(model.data.discoverMovies);
       paginationView.renderPagination(model.data.pages.currentPageLast);

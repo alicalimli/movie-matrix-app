@@ -8,9 +8,12 @@
   outline: none;
   border: none;
   background: none;
+  list-style: none;
 }
 
 body {
   position: relative;
   background-color: #222;
+  min-height: 100vh;
+  width: 100%;
 }
