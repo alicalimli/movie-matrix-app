@@ -254,51 +254,6 @@
   visibility: visible;
 }
 
-/* Navigation Lists and Buttons */
-
-/* .nav-lists {
-  display: flex;
-  flex-direction: column;
-  list-style: none;
-}
-
-.nav-list {
-  transition: all 0.3s ease;
-}
-
-.nav-list:hover {
-  background-color: rgb(32, 32, 32);
-} */
-
-/* .nav-btn {
-  align-items: center;
-  cursor: pointer;
-  color: white;
-  display: flex;
-  width: 15rem;
-  gap: 1rem;
-  transition: all 0.3s ease;
-  font-size: 1rem;
-  font-weight: 500;
-  overflow: hidden;
-  padding: 1rem 1.3rem;
-  position: relative;
-}
-
-.nav-btn.active {
-  color: #20c997;
-}
-
-.nav-icon {
-  fill: white;
-}
-
-.nav-icon.active {
-  fill: #20c997;
-  animation: 0.35s linear normal icon-anim;
-  animation-play-state: inherit;
-} */
-
 @keyframes icon-anim {
   0% {
     transform: scale(1.05) rotate(20deg);
@@ -313,11 +268,3 @@
     transform: scale(1) rotate(0deg);
   }
 }
-
-/* .nav-title {
-  position: relative;
-  opacity: 0;
-  transition: all 0.4s ease;
-  top: 50%;
-  margin-left: 1rem;
-} */
