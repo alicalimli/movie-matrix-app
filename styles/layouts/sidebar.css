@@ -27,7 +27,7 @@
 }
 
 .movie-sidebar-nav.active .nav-lists {
-  transform: translateY(-15%);
+  transform: translateY(-13%);
 }
 
 .nav-list {
@@ -127,6 +127,11 @@
   height: 100%;
   width: 100%;
   position: relative;
+  cursor: pointer;
+}
+
+.movie-sidebar-nav.active .sidebar-form {
+  cursor: auto;
 }
 .sidebar-form:hover {
   background-color: rgb(32, 32, 32);
@@ -134,11 +139,11 @@
 }
 
 .sidebar-search-input {
-  background-color: wheat;
+  background-color: rgb(32, 32, 32);
   border-radius: 8px;
   height: 100%;
   width: 100%;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 500;
   transition: all 0.3s ease;
   padding: 0.5rem;
@@ -154,6 +159,7 @@
 .movie-sidebar-nav.active .sidebar-search-input {
   opacity: 1;
   pointer-events: auto;
+  color: white;
   visibility: visible;
 }
 
@@ -168,7 +174,7 @@
 }
 
 .movie-sidebar-nav.active .sidebar-search-btn {
-  color: black;
+  color: #20c997;
 }
 
 /* Sidebar expand button */

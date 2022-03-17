@@ -50,9 +50,13 @@
               </a>
               <span class="secondary-title expand-secondary">Expand</span>
             </li>
-            <!-- <li class="nav-list">
-              <form action="#" class="sidebar-form">
-                <button class="sidebar-search-btn">
+            <li class="nav-list">
+              <form
+                action="#"
+                data-type-btn="form-btn"
+                class="sidebar-form nav-form-btn"
+              >
+                <button class="sidebar-search-btn nav-search-btn">
                   <i class="bx bx-search-alt"></i>
                 </button>
                 <input
@@ -65,7 +69,7 @@
                 />
               </form>
               <span class="secondary-title">Search</span>
-            </li> -->
+            </li>
             <li class="nav-list">
               <a data-page="home" class="nav-btn">
                 <i class="bx bx-home"></i>
@@ -95,7 +99,7 @@
               <span class="secondary-title">TV Shows</span>
             </li>
             <li class="nav-list">
-              <a data-page="movies-pop" class="nav-btn">
+              <a data-page="favorites-pop" class="nav-btn">
                 <i class="bx bx-star"></i>
                 <span class="nav-title">Favorites</span>
               </a>
@@ -129,22 +133,22 @@
           </li> -->
       </nav>
       <div class="overlay-main"></div>
-      <form action="#" class="search-form">
-        <button class="search-btn">
-          <box-icon class="search-icon" name="search-alt-2"></box-icon>
-        </button>
-        <input
-          type="text"
-          required
-          class="input-search"
-          placeholder="Search Movies..."
-          name=""
-          id=""
-        />
-      </form>
       <div class="movie-section-container"></div>
       <header class="section section-header">
         <h1 class="header-title">Discover Movies</h1>
+        <form action="#" class="search-form">
+          <button class="search-btn">
+            <i class="bx bx-search"></i>
+          </button>
+          <input
+            type="text"
+            required
+            class="input-search"
+            placeholder="Search Movies..."
+            name=""
+            id=""
+          />
+        </form>
       </header>
       <main class="section movie-main">
         <!-- <div class="movie-card">

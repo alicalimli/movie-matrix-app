@@ -2,7 +2,6 @@
 @import url(/styles/components/reusables.css);
 @import url(/styles/layouts/header.css);
 @import url(/styles/layouts/movies.css);
-@import url(/styles/layouts/searchbar.css);
-@import url(/styles/layouts/sidebar.css);
 @import url(/styles/layouts/spinner.css);
 @import url(/styles/layouts/pagination.css);
+@import url(/styles/layouts/sidebar.css);
