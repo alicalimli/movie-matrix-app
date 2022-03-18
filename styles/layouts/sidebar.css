@@ -27,10 +27,11 @@
 }
 
 .movie-sidebar-nav.active .nav-lists {
-  transform: translateY(-13%);
+  transform: translateY(-20%);
 }
 
-.nav-list {
+.nav-list,
+.search-input-container {
   border-radius: 8px;
   height: 2.5rem;
   width: 100%;
@@ -38,7 +39,8 @@
   position: relative;
 }
 
-.nav-btn {
+.nav-btn,
+.nav-form-btn {
   align-items: center;
   border-radius: 8px;
   color: white;
@@ -76,7 +78,7 @@
   transform: translateX(0);
 }
 
-.nav-list .bx {
+.movie-sidebar-nav .bx {
   border-radius: 8px;
   font-size: 1.5rem;
   height: 2.5rem;
@@ -93,7 +95,7 @@
 
 /* Secondary Title */
 
-.nav-list .secondary-title {
+.movie-sidebar-nav .secondary-title {
   color: white;
   transform: translate(15%, -50%);
   text-align: left;
@@ -109,7 +111,8 @@
   z-index: 10;
 }
 
-.nav-list:hover .secondary-title {
+.nav-list:hover .secondary-title,
+.search-input-container:hover .secondary-title {
   visibility: visible;
   opacity: 1;
   pointer-events: auto;
@@ -124,10 +127,12 @@
 /* SearchBar */
 
 .sidebar-form {
+  margin-top: 1.5rem;
   height: 100%;
   width: 100%;
   position: relative;
   cursor: pointer;
+  z-index: 3;
 }
 
 .movie-sidebar-nav.active .sidebar-form {
@@ -193,7 +198,8 @@
 
 .movie-sidebar-nav.active .sidebar-expand-btn {
   position: absolute;
-  right: -1rem;
+  right: -3.5rem;
+  top: 10rem;
 }
 
 /* Website Logo */

@@ -39,7 +39,26 @@
           </div>
         </header>
         <div class="sidebar-buttons">
-          <ul class="nav-lists">
+          <div class="search-input-container">
+            <form
+              action="#"
+              data-type-btn="form-btn"
+              class="sidebar-form nav-form-btn"
+            >
+              <button class="sidebar-search-btn nav-search-btn">
+                <i class="bx bx-search-alt"></i>
+              </button>
+              <input
+                type="text"
+                class="sidebar-search-input"
+                placeholder="Search Movies..."
+                name=""
+                id=""
+              />
+            </form>
+            <span class="secondary-title">Search</span>
+          </div>
+          <ul class="nav-lists sidebar-lists-btn">
             <li class="nav-list">
               <a
                 data-page="expand"
@@ -49,26 +68,6 @@
                 <i class="bx bx-chevrons-right"></i>
               </a>
               <span class="secondary-title expand-secondary">Expand</span>
-            </li>
-            <li class="nav-list">
-              <form
-                action="#"
-                data-type-btn="form-btn"
-                class="sidebar-form nav-form-btn"
-              >
-                <button class="sidebar-search-btn nav-search-btn">
-                  <i class="bx bx-search-alt"></i>
-                </button>
-                <input
-                  type="text"
-                  required
-                  class="sidebar-search-input"
-                  placeholder="Search Movies..."
-                  name=""
-                  id=""
-                />
-              </form>
-              <span class="secondary-title">Search</span>
             </li>
             <li class="nav-list">
               <a data-page="home" class="nav-btn">
@@ -107,48 +106,11 @@
             </li>
           </ul>
         </div>
-        <!-- <li class="nav-list">
-            <button data-page="trending" class="nav-btn">
-              <box-icon type="solid" class="nav-icon" name="hot"></box-icon>
-              <span class="nav-title">Trending</span>
-            </button>
-          </li>
-          <li class="nav-list">
-            <button data-page="movies-pop" class="nav-btn">
-              <box-icon class="nav-icon" name="movie"></box-icon>
-              <span class="nav-title">Popular Movies</span>
-            </button>
-          </li>
-          <li class="nav-list">
-            <button data-page="tvs-pop" class="nav-btn">
-              <box-icon class="nav-icon" name="tv"></box-icon>
-              <span class="nav-title">Popular TVs</span>
-            </button>
-          </li>
-          <li class="nav-list">
-            <button class="nav-btn">
-              <box-icon class="nav-icon" name="star"></box-icon>
-              <span class="nav-title">Favorites</span>
-            </button>
-          </li> -->
       </nav>
       <div class="overlay-main"></div>
       <div class="movie-section-container"></div>
       <header class="section section-header">
         <h1 class="header-title">Discover Movies</h1>
-        <form action="#" class="search-form">
-          <button class="search-btn">
-            <i class="bx bx-search"></i>
-          </button>
-          <input
-            type="text"
-            required
-            class="input-search"
-            placeholder="Search Movies..."
-            name=""
-            id=""
-          />
-        </form>
       </header>
       <main class="section movie-main">
         <!-- <div class="movie-card">

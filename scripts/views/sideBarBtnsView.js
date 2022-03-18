@@ -1,7 +1,7 @@
 import DEFAULT_PAGE from "../config.js";
 
 class SideBarBtnView {
-  _parentEl = document.querySelector(".movie-sidebar-nav");
+  _parentEl = document.querySelector(".sidebar-lists-btn");
   _navBtns = document.querySelectorAll(".nav-btn");
   _icons = this._parentEl.querySelectorAll(".bx");
   buttonPage = "home";
@@ -16,7 +16,7 @@ class SideBarBtnView {
 
   updateBtn() {
     this._icons.forEach((el) => {
-      const elParent = el.closest(".nav-btn") || el.closest(".nav-form-btn");
+      const elParent = el.closest(".nav-btn");
       // Stops the function when pageType isnt home
       if (elParent.dataset.page !== "home" || !elParent) return;
 
@@ -32,13 +32,13 @@ class SideBarBtnView {
     const headerSection = document.querySelector(".section-header");
     const paginationSection = document.querySelector(".movie-pagination");
     const sidebar = document.querySelector(".movie-sidebar-nav");
-    this._parentEl.addEventListener("mouseover", function () {
+    sidebar.addEventListener("mouseover", function () {
       overlay.classList.add("active");
       mainMovieSection.classList.add("active");
       headerSection.classList.add("active");
       paginationSection.classList.add("active");
     });
-    this._parentEl.addEventListener("mouseleave", function () {
+    sidebar.addEventListener("mouseleave", function () {
       overlay.classList.remove("active");
       mainMovieSection.classList.remove("active");
       headerSection.classList.remove("active");
@@ -56,7 +56,6 @@ class SideBarBtnView {
     const mainMovieSection = document.querySelector(".movie-main");
     const headerSection = document.querySelector(".section-header");
     const paginationSection = document.querySelector(".movie-pagination");
-    const searchInput = document.querySelector(".sidebar-search-input");
 
     if (!btn) return;
 
@@ -65,26 +64,6 @@ class SideBarBtnView {
     if (btn.dataset.typeBtn === "expand") {
       sidebar.classList.toggle("active");
       this.buttonPage = btn.dataset.page;
-      return;
-    }
-
-    // Expands sidebar when search button is clicked
-    // and the button only works if sidebar is not expanded
-    if (
-      btn.dataset.typeBtn === "form-btn" &&
-      !sidebar.classList.contains("active")
-    ) {
-      sidebar.classList.toggle("active");
-
-      // Focus doesnt work without a little delay
-      setTimeout(() => searchInput.focus(), 100);
-
-      this.buttonPage = btn.dataset.page;
-      return;
-    }
-
-    // When the sidebar is expanded and search btn is clicked the function stops
-    if (btn.dataset.typeBtn === "form-btn") {
       return;
     }
 
