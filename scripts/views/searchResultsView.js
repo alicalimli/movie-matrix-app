@@ -10,11 +10,11 @@ class searchResultsView extends mainView {
     const searchInput = document.querySelector(".sidebar-search-input");
 
     this._inputForm.addEventListener("submit", function (event) {
+      event.preventDefault();
       // this function would only work if sidebar is expanded
       if (sidebar.classList.contains("active")) {
         if (searchInput.value === "") return;
         sidebar.classList.remove("active");
-        event.preventDefault();
         handle();
         return;
       }

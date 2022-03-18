@@ -174,8 +174,12 @@
   transition: all 0.3s ease;
   position: absolute;
   top: 0;
-  left: 0.7rem;
+  left: 0.2rem;
   z-index: 3;
+}
+
+.sidebar-search-btn .bx {
+  width: 3rem;
 }
 
 .movie-sidebar-nav.active .sidebar-search-btn {
