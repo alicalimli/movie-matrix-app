@@ -7,6 +7,7 @@ import {
   POPULAR_TVS_API_URL,
   SEARCH_API_URL,
   SEARCH_TVS_API_URL,
+  MOVIES_MAX_PAGE,
 } from "./config";
 
 // This object is the overall data
@@ -24,71 +25,92 @@ export const data = {
     currentPage: 1,
     currentPageLast: 1,
     currentPageType: "",
+    pageName: "",
   },
 };
 
 // this function is for creating moviecards
 
-export const createDiscoverCards = async function (
-  pageName = "home",
-  pageNum = 1
-) {
+const apiFetch = async function (url, pageNum, pageName = data.pages.pageName) {
   try {
-    console.log(data);
-    let movieData;
-    let obj;
-    const pageNameCopy = pageName;
-    if (pageName === "home") {
-      // Fetches the data
-      movieData = await fetch(DISCOVER_API_URL + pageNum);
-      // Sets the obj to which type of page has been clicked
-      obj = "discoverMovies";
-      // Sets the current URL to fetched URL
-      data.pages.currentUrl = DISCOVER_API_URL;
-    }
-    if (pageName === "movies-pop") {
-      movieData = await fetch(POPULAR_MOVIES_API_URL + pageNum);
-      obj = "popularMovies";
-      data.pages.currentUrl = POPULAR_MOVIES_API_URL;
-    }
-    if (pageName === "trending") {
-      movieData = await fetch(TRENDING_API_URL + pageNum);
-      obj = "trendingMovies";
-      data.pages.currentUrl = TRENDING_API_URL;
-    }
-    if (pageName === "tvs-pop") {
-      movieData = await fetch(POPULAR_TVS_API_URL + pageNum);
-      obj = "popularTVS";
-      data.pages.currentUrl = POPULAR_TVS_API_URL;
-    }
+    // Fetches the data
+    const movieData = await fetch(url + pageNum);
+
+    // Throws an error when the response fails
+    if (!movieData.ok) throw new Error();
 
     // Takes the response and convert it to JSON
+    const movieDataResults = await movieData.json();
 
-    const res = await movieData.json();
-    console.log(res);
+    // Sets the current URL to fetched URL
+    data.pages.currentUrl = url;
+
+    // Sets the obj to which type of page has been clicked
+    data.pages.pageName = pageName;
+
+    return movieDataResults;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const apiFetchSearch = async function (apiMovieUrl, apiTvUrl, searchValue) {
+  try {
+    // Fetches Search Data's and convert it to JSON
+    const resultMovieData = await fetch(apiMovieUrl + searchValue);
+    const resultTVData = await fetch(apiTvUrl + searchValue);
+
+    if (!resultMovieData.ok && !resultTVData.ok) throw new Error();
+
+    // Converts Data's to JSON
+    const moviesResultData = await resultMovieData.json();
+    const tvResultData = await resultTVData.json();
+
+    // Merges TvResults and Movie Results and returns the data
+    return moviesResultData.results.concat(tvResultData.results);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const createMovieObj = function (movieData) {
+  // Returns an Object that contains only Image and Title
+  return movieData.map((data) => {
+    return {
+      title: data.title || data.name,
+      img: data.poster_path,
+    };
+  });
+};
+
+// prettier-ignore
+export const createDiscoverCards = async function (pageName = "home",pageNum = 1) {
+  try {
+    let movieData;
+    if (pageName === "home") {
+      movieData = await apiFetch(DISCOVER_API_URL, pageNum, "discoverMovies");
+    }
+    if (pageName === "movies-pop") {
+      movieData = await apiFetch(POPULAR_MOVIES_API_URL,pageNum,"popularMovies");
+    }
+    if (pageName === "trending") {
+      movieData = await apiFetch(TRENDING_API_URL, pageNum, "trendingMovies");
+    }
+    if (pageName === "tvs-pop") {
+      movieData = await apiFetch(POPULAR_TVS_API_URL, pageNum, "popularTVS");
+    }
 
     //Always Sets the current page to 1
-
-    data.pages.currentPage = res.page;
+    data.pages.currentPage = movieData.page;
 
     // Sets the currentPageType to which button has been click(ex.Movies)
     data.pages.currentPageType = pageName;
 
     // Always sets the currentpagelast to lastpage
-    data.pages.currentPageLast = 500; // TMDB returns an error when page is above 500
+    data.pages.currentPageLast = MOVIES_MAX_PAGE; // TMDB returns an error when page is above 500
 
-    // Throws an error when the response fails
-
-    if (!movieData.ok) throw new Error();
-
-    // Returns an Object that contains only Image and Title
-
-    data[obj] = res.results.map((data) => {
-      return {
-        title: data.title || data.name,
-        img: data.poster_path,
-      };
-    });
+    // Creates Movie Object
+    data[data.pages.pageName] = createMovieObj(movieData.results);
   } catch (error) {
     console.error(error);
   }
@@ -99,35 +121,27 @@ export const createDiscoverCards = async function (
 export const createSearchResults = async function (searchVal) {
   try {
     // Fetches Search API
-    const resultData = await fetch(SEARCH_API_URL + searchVal);
-    const resultTVData = await fetch(SEARCH_TVS_API_URL + searchVal);
-    const res = await resultData.json();
-    const resTv = await resultTVData.json();
+    const searchResultsData = await apiFetchSearch(
+      SEARCH_API_URL,
+      SEARCH_TVS_API_URL,
+      searchVal
+    );
 
-    const finalResults = res.results.concat(resTv.results);
-
-    console.log(finalResults);
-
-    if (!resultData.ok) throw new Error();
-
-    data.searchResults = finalResults.map((data) => {
-      return {
-        title: data.title || data.name,
-        img: data.poster_path,
-      };
-    });
+    // Create's Movie Object
+    data.searchResults = createMovieObj(searchResultsData);
   } catch (error) {
     console.log(error);
   }
 };
 
 // This function is for creating page results when pagination buttons is clicked
-
+// prettier-ignore
 export const createPageResults = async function (btnType, pageNum = 1) {
   try {
-    // This copies currentPage so that we can compare it later
+    // Copie's currentPage to be able to compare it later
     const currentPage = data.pages.currentPage;
     if (!btnType) return;
+
     // Decrement and increment the currentPage number
     if (btnType === "next") data.pages.currentPage++;
     if (btnType === "back" && pageNum > 0) data.pages.currentPage--;
@@ -138,25 +152,11 @@ export const createPageResults = async function (btnType, pageNum = 1) {
     // If currentpage didnt change the function Stops
     if (currentPage === data.pages.currentPage) return;
 
-    console.log(pageNum, pageNum > 0);
-
     // Fetches the data
+    const pageData = await apiFetch(data.pages.currentUrl,data.pages.currentPage)
 
-    const pageData = await fetch(
-      data.pages.currentUrl + data.pages.currentPage
-    );
-    const res = await pageData.json();
-
-    // Returns when the response fails
-
-    if (!pageData.ok) return;
-
-    data.pages.pageResults = res.results.map((data) => {
-      return {
-        title: data.title || data.name,
-        img: data.poster_path,
-      };
-    });
+    // Create's Movie
+    data.pages.pageResults = createMovieObj(pageData.results);
   } catch (error) {
     console.log(error);
   }

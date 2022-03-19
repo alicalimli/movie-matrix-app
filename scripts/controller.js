@@ -12,12 +12,34 @@ import popularTVsView from "./views/popularTVsView.js";
 import searchResultsView from "./views/searchResultsView.js";
 import paginationView from "./views/paginationView.js";
 
+// prettier-ignore
+const controlMovieCards = async function (viewType, viewName, pageType = "home") {
+  try {
+    // Render's Loading Spinner
+    viewType.renderLoading();
+    
+    // Create's Movie Data
+    await model.createDiscoverCards(pageType);
+
+    // Render's HTML Cards
+    viewType.renderHTML(model.data[viewName]);
+
+    // Render's pagination
+    paginationView.renderPagination(model.data.pages.currentPageLast);
+
+    // Reset's the pageNum back to 1
+    paginationView.pageNum = 1;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const controlDiscoverMovies = async function () {
   try {
-    discoverMoviesView.renderLoading();
-    await model.createDiscoverCards();
-    discoverMoviesView.renderHTML(model.data.discoverMovies);
-    paginationView.renderPagination(model.data.pages.currentPageLast);
+    // Movie Card's Controller
+    controlMovieCards(discoverMoviesView, "discoverMovies");
+
+    // Update's Sidebar Buttons
     sideBarBtnsView.updateBtn();
   } catch (error) {
     console.log(error);
@@ -29,35 +51,22 @@ const controlNavBtns = async function (event) {
     await sideBarBtnsView.renderActive(event);
     // Prevents the data to be rendered again everytime user clicks the same button;
     if (sideBarBtnsView.buttonPage === model.data.pages.currentPageType) return;
-    // Prevents HTML from rendering
+
+    // Prevents HTML from rendering when expand button has been clicked
     if (sideBarBtnsView.buttonPage === "expand") return;
 
-    // Render HTML Movie cards and paginations buttons
+    // Render HTML cards and paginations buttons
     if (sideBarBtnsView.buttonPage === "home") {
-      discoverMoviesView.renderLoading();
-      p;
-      await model.createDiscoverCards("home");
-      discoverMoviesView.renderHTML(model.data.discoverMovies);
-      paginationView.renderPagination(model.data.pages.currentPageLast);
+      controlMovieCards(discoverMoviesView, "discoverMovies", "home");
     }
     if (sideBarBtnsView.buttonPage === "movies-pop") {
-      popularMoviesView.renderLoading();
-      await model.createDiscoverCards("movies-pop");
-      popularMoviesView.renderHTML(model.data.popularMovies);
-      // Renders the pagination
-      paginationView.renderPagination(model.data.pages.currentPageLast);
+      controlMovieCards(popularMoviesView, "popularMovies", "movies-pop");
     }
     if (sideBarBtnsView.buttonPage === "trending") {
-      trendingView.renderLoading();
-      await model.createDiscoverCards("trending");
-      trendingView.renderHTML(model.data.trendingMovies);
-      paginationView.renderPagination(model.data.pages.currentPageLast);
+      controlMovieCards(trendingView, "trendingMovies", "trending");
     }
     if (sideBarBtnsView.buttonPage === "tvs-pop") {
-      popularTVsView.renderLoading();
-      await model.createDiscoverCards("tvs-pop");
-      popularTVsView.renderHTML(model.data.popularTVS);
-      paginationView.renderPagination(model.data.pages.currentPageLast);
+      controlMovieCards(popularTVsView, "popularTVS", "tvs-pop");
     }
   } catch (error) {
     console.log(error);
@@ -66,46 +75,41 @@ const controlNavBtns = async function (event) {
 
 const controlSearchResults = async function () {
   try {
+    // Takes Search Input Value
     const searchVal = searchResultsView.getInputValue();
+    // Render's Loading Spinner
     searchResultsView.renderLoading();
+    // Creates Result's Data
     await model.createSearchResults(searchVal);
+    // Renders HTML Card's
     searchResultsView.renderHTML(model.data.searchResults);
   } catch (error) {
     console.log(error);
   }
 };
 
+// prettier-ignore
 const controlPagination = async function (event) {
   try {
+    // Starts the function when one of the buttons has been clicked
     paginationView.buttonClicked(event);
 
     // Stops the function if btn Type is nothing
     if (paginationView.btnType === "") return;
 
     // Stops the function if user clicks back and the page is number 1
-    if (
-      paginationView.btnType === "back" &&
-      model.data.pages.currentPage === MOVIES_FIRST_PAGE
-    )
-      return;
+    if (paginationView.btnType === "back" && model.data.pages.currentPage === MOVIES_FIRST_PAGE) return;
 
     // Stops the function if user clicks next and the page is the last page
-    if (
-      paginationView.btnType === "next" &&
-      model.data.pages.currentPage === MOVIES_MAX_PAGE
-    )
-      return;
+    if (paginationView.btnType === "next" && model.data.pages.currentPage === MOVIES_MAX_PAGE) return;
 
     // Renders Loading Spinner
     paginationView.renderLoading();
 
     // Fetches PageResults Data
-    await model.createPageResults(
-      paginationView.btnType,
-      paginationView.pageNum
-    );
+    await model.createPageResults(paginationView.btnType, paginationView.pageNum);
 
-    // HTML Rendering
+    // Render's Pagination buttons and HTML Card's
     paginationView.renderHTML(model.data.pages.pageResults);
     paginationView.renderPagination(model.data.pages.currentPageLast);
   } catch (error) {
@@ -114,10 +118,10 @@ const controlPagination = async function (event) {
 };
 
 const init = function () {
-  // Loads Discover Movies when page is loaded
+  // Loads Discover Movie Card's when page is loaded
   controlDiscoverMovies();
 
-  // Event Handlers
+  // Attach Event Handlers
   sideBarBtnsView.addHandlerEvent(controlNavBtns);
   searchResultsView.addHandlerEvent(controlSearchResults);
   paginationView.addHandlerEvent(controlPagination);
