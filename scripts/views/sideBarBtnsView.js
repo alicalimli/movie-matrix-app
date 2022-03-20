@@ -1,13 +1,20 @@
 import DEFAULT_PAGE from "../config.js";
+import mainView from "./mainView.js";
 
-class SideBarBtnView {
+class SideBarBtnView extends mainView {
   _parentEl = document.querySelector(".sidebar-lists-btn");
   _navBtns = document.querySelectorAll(".nav-btn");
   _icons = this._parentEl.querySelectorAll(".bx");
+  _sidebar = document.querySelector(".movie-sidebar-nav");
   buttonPage = "home";
 
+  // prettier-ignore
   addHandlerEvent(handle) {
-    this.toggler();
+    // Attach Hover event listener in sidebar
+    this._sidebar.addEventListener("mouseover", this.toggleOverlay.bind(this,"add"));
+    this._sidebar.addEventListener("mouseleave", this.toggleOverlay.bind(this,"remove"));
+
+    // Attach click event listener
     this._parentEl.addEventListener("click", function (event) {
       event.preventDefault();
       handle(event);
@@ -26,44 +33,25 @@ class SideBarBtnView {
     });
   }
 
-  toggler() {
-    const overlay = document.querySelector(".overlay-main");
-    const mainMovieSection = document.querySelector(".movie-main");
-    const headerSection = document.querySelector(".section-header");
-    const paginationSection = document.querySelector(".movie-pagination");
-    const sidebar = document.querySelector(".movie-sidebar-nav");
-    sidebar.addEventListener("mouseover", function () {
-      overlay.classList.add("active");
-      mainMovieSection.classList.add("active");
-      headerSection.classList.add("active");
-      paginationSection.classList.add("active");
-    });
-    sidebar.addEventListener("mouseleave", function () {
-      overlay.classList.remove("active");
-      mainMovieSection.classList.remove("active");
-      headerSection.classList.remove("active");
-      paginationSection.classList.remove("active");
-      sidebar.classList.remove("active");
-    });
-  }
-
   renderActive(event) {
-    const btn =
-      event.target.closest(".nav-btn") || event.target.closest(".nav-form-btn");
-    const sidebar = document.querySelector(".movie-sidebar-nav");
-    const expandSideBtn = document.querySelector(".sidebar-expand-btn");
-    const overlay = document.querySelector(".overlay-main");
-    const mainMovieSection = document.querySelector(".movie-main");
-    const headerSection = document.querySelector(".section-header");
-    const paginationSection = document.querySelector(".movie-pagination");
+    const btn = event.target.closest(".nav-btn");
 
     if (!btn) return;
 
     // Toggles active class to sidebar if expand button is clicked and stops the function
 
     if (btn.dataset.typeBtn === "expand") {
-      sidebar.classList.toggle("active");
       this.buttonPage = btn.dataset.page;
+      // Only works when sidebar does'nt contain active class
+      if (!this._sidebar.classList.contains("active")) {
+        this.toggleOverlay("add", "expand");
+        return;
+      }
+      // Only works when sidebar contains active class
+      if (this._sidebar.classList.contains("active")) {
+        this.toggleOverlay("remove", "expand");
+        return;
+      }
       return;
     }
 

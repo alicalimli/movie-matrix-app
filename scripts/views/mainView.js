@@ -5,8 +5,15 @@ export default class mainView {
   _parentEl = document.querySelector(".movie-main");
   _paginationSection = document.querySelector(".movie-pagination");
   _movieData;
+
   _headTitle = document.querySelector(".header-title");
   _title = "Discover Movies";
+
+  _overlay = document.querySelector(".overlay-main");
+  _mainMovieSection = document.querySelector(".movie-main");
+  _headerSection = document.querySelector(".section-header");
+  _paginationSection = document.querySelector(".movie-pagination");
+  _sidebar = document.querySelector(".movie-sidebar-nav");
 
   renderHTML(movieData) {
     this._movieData = movieData;
@@ -25,6 +32,18 @@ export default class mainView {
     this._parentEl.insertAdjacentHTML("beforeend", loadingHTML);
   }
 
+  // Toggles Overlay
+  toggleOverlay(type, btnType = "none") {
+    this._overlay.classList[type]("active");
+    this._mainMovieSection.classList[type]("active");
+    this._headerSection.classList[type]("active");
+    this._paginationSection.classList[type]("active");
+    if (type === "remove") this._sidebar.classList[type]("active");
+
+    if (btnType !== "expand") return;
+    this._sidebar.classList[type]("active");
+  }
+
   _scrollToTop() {
     window.scrollTo({
       top: 0,
@@ -39,6 +58,7 @@ export default class mainView {
     this._parentEl.innerHTML = "";
     this._paginationSection.innerHTML = "";
   }
+
   // prettier-ignore
   _generateHTML() {
     this._movieData.forEach((movie) => {
