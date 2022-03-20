@@ -31,10 +31,10 @@ export const data = {
 
 // this function is for creating moviecards
 
-const apiFetch = async function (url, pageNum, pageName = data.pages.pageName) {
+const apiFetch = async function (url, pageName = data.pages.pageName) {
   try {
     // Fetches the data
-    const movieData = await fetch(url + pageNum);
+    const movieData = await fetch(url);
 
     // Throws an error when the response fails
     if (!movieData.ok) throw new Error();
@@ -49,25 +49,6 @@ const apiFetch = async function (url, pageNum, pageName = data.pages.pageName) {
     data.pages.pageName = pageName;
 
     return movieDataResults;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-const apiFetchSearch = async function (apiMovieUrl, apiTvUrl, searchValue) {
-  try {
-    // Fetches Search Data's and convert it to JSON
-    const resultMovieData = await fetch(apiMovieUrl + searchValue);
-    const resultTVData = await fetch(apiTvUrl + searchValue);
-
-    if (!resultMovieData.ok && !resultTVData.ok) throw new Error();
-
-    // Converts Data's to JSON
-    const moviesResultData = await resultMovieData.json();
-    const tvResultData = await resultTVData.json();
-
-    // Merges TvResults and Movie Results and returns the data
-    return moviesResultData.results.concat(tvResultData.results);
   } catch (error) {
     console.log(error);
   }
@@ -88,18 +69,19 @@ export const createDiscoverCards = async function (pageName = "home",pageNum = 1
   try {
     let movieData;
     if (pageName === "home") {
-      movieData = await apiFetch(DISCOVER_API_URL, pageNum, "discoverMovies");
+      movieData = await apiFetch(`${DISCOVER_API_URL}&page=${pageNum}`, "discoverMovies");
     }
     if (pageName === "movies-pop") {
-      movieData = await apiFetch(POPULAR_MOVIES_API_URL,pageNum,"popularMovies");
+      movieData = await apiFetch(`${POPULAR_MOVIES_API_URL}&page=${pageNum}`,"popularMovies");
     }
     if (pageName === "trending") {
-      movieData = await apiFetch(TRENDING_API_URL, pageNum, "trendingMovies");
+      movieData = await apiFetch(`${TRENDING_API_URL}&page=${pageNum}`, "trendingMovies");
     }
     if (pageName === "tvs-pop") {
-      movieData = await apiFetch(POPULAR_TVS_API_URL, pageNum, "popularTVS");
+      movieData = await apiFetch(`${POPULAR_TVS_API_URL}&page=${pageNum}`, "popularTVS");
     }
 
+    console.log(movieData)
     //Always Sets the current page to 1
     data.pages.currentPage = movieData.page;
 
@@ -116,19 +98,19 @@ export const createDiscoverCards = async function (pageName = "home",pageNum = 1
   }
 };
 
-// this functions is for creating search results when user search something
-
+// This function is for creating search results when user search something
+// prettier-ignore
 export const createSearchResults = async function (searchVal) {
   try {
-    // Fetches Search API
-    const searchResultsData = await apiFetchSearch(
-      SEARCH_API_URL,
-      SEARCH_TVS_API_URL,
-      searchVal
-    );
+    // Fetches Search Data's and convert it to JSON
+    const resultMovieData = await apiFetch(`${SEARCH_API_URL}&query=` + searchVal);
+    const resultTVData = await apiFetch(`${SEARCH_TVS_API_URL}&query=` + searchVal);
+
+    // Merges TvResults and Movie Results and returns the data
+    const finalRes = resultMovieData.results.concat(resultTVData.results);
 
     // Create's Movie Object
-    data.searchResults = createMovieObj(searchResultsData);
+    data.searchResults = createMovieObj(finalRes);
   } catch (error) {
     console.log(error);
   }
@@ -153,7 +135,7 @@ export const createPageResults = async function (btnType, pageNum = 1) {
     if (currentPage === data.pages.currentPage) return;
 
     // Fetches the data
-    const pageData = await apiFetch(data.pages.currentUrl,data.pages.currentPage)
+    const pageData = await apiFetch(`${data.pages.currentUrl}&page=${data.pages.currentPage}`)
 
     // Create's Movie
     data.pages.pageResults = createMovieObj(pageData.results);
