@@ -11,7 +11,7 @@
 }
 
 .movie-pagination button {
-  color: #0ca678;
+  color: var(--secondary-accent-color);
   cursor: pointer;
   border-radius: 100px;
   transition: all 0.3s ease;
@@ -19,14 +19,14 @@
 
 .btn-arrow {
   padding: 0.5rem 1rem;
-  border: 1px solid #0ca678;
+  border: 1px solid var(--secondary-accent-color);
 }
 
 .btn-arrow:hover,
 .btn-page-num:hover,
 .btn-page-num.active {
   color: white;
-  background-color: #0ca678;
+  background-color: var(--secondary-accent-color);
 }
 
 .btn-page-num {

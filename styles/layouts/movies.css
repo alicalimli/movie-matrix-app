@@ -33,9 +33,9 @@
 }
 
 .movie-info {
-  background-color: #222;
+  background-color: var(--background-dark-third);
   border-radius: 5px;
-  color: white;
+  color: var(--background-light);
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -72,7 +72,7 @@
   align-items: center;
   background: none;
   border-radius: 5px;
-  color: #20c997;
+  color: var(--primary-accent-color);
   cursor: pointer;
   display: flex;
   font-size: 1.3rem;
@@ -87,7 +87,7 @@
 }
 
 .expand-icon {
-  fill: #20c997;
+  fill: var(--primary-accent-color);
   font-size: 1.5rem;
   transform: translate(0%, -65%);
   transition: all 0.3s ease;
@@ -117,7 +117,7 @@
 
 .card {
   align-self: center;
-  background-color: #111;
+  background-color: var(--background-dark-secondary);
   border-radius: 5px;
   display: flex;
   justify-content: center;
@@ -128,7 +128,7 @@
 }
 
 .card-text {
-  color: white;
+  color: var(--background-light);
   font-size: 1.2rem;
   transition: all 0.3s ease;
 }

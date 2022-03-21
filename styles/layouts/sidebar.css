@@ -1,12 +1,14 @@
 /* Sidebar navigation */
 
 .movie-sidebar-nav {
-  background-color: #111;
-  height: 100%;
+  background-color: var(--background-dark-secondary);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   width: 5rem;
   transition: all 0.4s ease;
   text-align: center;
-  padding: 0.5rem 0.5rem;
+  padding: 1rem 0.5rem;
   padding-right: 1.5rem;
   position: fixed;
   z-index: 5;
@@ -17,6 +19,10 @@
 }
 
 /* Nav buttons */
+
+.sidebar-buttons {
+  height: 100%;
+}
 
 .nav-lists {
   display: flex;
@@ -43,7 +49,7 @@
 .nav-form-btn {
   align-items: center;
   border-radius: 8px;
-  color: white;
+  color: var(--background-light);
   cursor: pointer;
   display: flex;
   gap: 1rem;
@@ -52,7 +58,7 @@
 }
 
 .nav-btn:hover {
-  background-color: rgb(32, 32, 32);
+  background-color: var(--background-dark-third);
 }
 
 .movie-sidebar-nav.active .nav-btn {
@@ -88,7 +94,7 @@
 }
 
 .nav-list .bx.active {
-  color: #20c997;
+  color: var(--primary-accent-color);
   animation: 0.35s linear normal icon-anim;
   animation-play-state: inherit;
 }
@@ -96,7 +102,7 @@
 /* Secondary Title */
 
 .movie-sidebar-nav .secondary-title {
-  color: white;
+  color: var(--background-light);
   transform: translate(15%, -50%);
   text-align: left;
   font-weight: 600;
@@ -139,12 +145,12 @@
   cursor: auto;
 }
 .sidebar-form:hover {
-  background-color: rgb(32, 32, 32);
+  background-color: var(--background-dark-third);
   border-radius: 8px;
 }
 
 .sidebar-search-input {
-  background-color: rgb(32, 32, 32);
+  background-color: var(--background-dark-third);
   border-radius: 8px;
   height: 100%;
   width: 100%;
@@ -164,12 +170,12 @@
 .movie-sidebar-nav.active .sidebar-search-input {
   opacity: 1;
   pointer-events: auto;
-  color: white;
+  color: var(--background-light);
   visibility: visible;
 }
 
 .sidebar-search-btn {
-  color: white;
+  color: var(--background-light);
   cursor: pointer;
   transition: all 0.3s ease;
   position: absolute;
@@ -183,7 +189,7 @@
 }
 
 .movie-sidebar-nav.active .sidebar-search-btn {
-  color: #20c997;
+  color: var(--primary-accent-color);
 }
 
 /* Sidebar expand button */
@@ -210,7 +216,7 @@
 
 .logo-container {
   align-items: center;
-  color: white;
+  color: var(--background-light);
   display: flex;
   gap: 0.5rem;
   transition: all 0.3s ease;
@@ -245,7 +251,7 @@
 /* Overlaymain */
 
 .overlay-main {
-  background-color: black;
+  background-color: var(--background-dark);
   width: 100%;
   height: 100%;
   transition: all 0.3s ease;
@@ -268,6 +274,92 @@
   opacity: 0.8;
   pointer-events: auto;
   visibility: visible;
+}
+
+/*  Mode Toggler */
+
+.dark-list {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.dark-mode-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #adb5bd;
+  border-radius: 2.5rem;
+  position: relative;
+  height: 2.5rem;
+  width: 1.5rem;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.movie-sidebar-nav.active .dark-mode-btn {
+  transform: rotate(-90deg);
+}
+.dark-mode-text {
+  color: var(--background-light);
+  text-transform: uppercase;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  position: absolute;
+  transition: all 0.3s ease;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.dark-mode-text.light {
+  left: 10%;
+}
+.dark-mode-text.dark {
+  right: 10%;
+}
+.movie-sidebar-nav.active .dark-mode-text {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.dark-list.active .dark-mode-btn {
+  background-color: var(--primary-accent-color);
+}
+.toggle-circle {
+  animation: 0.3s linear normal dark-toggle-off-anim;
+  animation-play-state: inherit;
+  border-radius: 100px;
+  width: 75%;
+  height: 45%;
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%, 10%);
+  background-color: white;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dark-list.active .toggle-circle {
+  transform: translate(-50%, 95%);
+}
+
+.toggle-circle::after {
+  content: "";
+  display: inline-block;
+  border-radius: 100px;
+  background-color: #555;
+  width: 10px;
+  height: 10px;
+  transition: all 0.3s ease;
+}
+
+.dark-list.active .toggle-circle::after {
+  background-color: white;
 }
 
 @keyframes icon-anim {

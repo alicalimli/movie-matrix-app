@@ -1,5 +1,4 @@
 import { IMG_PATH } from "../config";
-import mainView from "./mainView";
 
 export default class mainView {
   _parentEl = document.querySelector(".movie-main");

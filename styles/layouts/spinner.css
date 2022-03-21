@@ -7,7 +7,7 @@
   animation: 0.8s linear infinite loading-anim;
   animation-play-state: inherit;
   border: solid 0.3rem rgba(0, 0, 0, 0);
-  border-bottom-color: #20c997;
+  border-bottom-color: var(--primary-accent-color);
   border-radius: 50%;
   content: "";
   height: 3rem;
@@ -21,7 +21,7 @@
   animation: 0.8s linear infinite loading-anim;
   animation-play-state: inherit;
   border: solid 0.3rem rgba(0, 0, 0, 0);
-  border-bottom-color: #20c997;
+  border-bottom-color: var(--primary-accent-color);
   border-radius: 50%;
   content: "";
   height: 2rem;

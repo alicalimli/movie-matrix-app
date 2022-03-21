@@ -1,6 +1,6 @@
 .section-header {
   align-items: center;
-  color: white;
+  color: var(--background-light);
   padding: 1rem;
   padding-bottom: 0;
   transition: all 0.3s ease;
