@@ -37,7 +37,6 @@ const controlDiscoverMovies = async function () {
   try {
     // Movie Card's Controller
     controlMovieCards(discoverMoviesView, "discoverMovies");
-
     // Update's Sidebar Buttons
     sideBarBtnsView.updateBtn();
   } catch (error) {

@@ -77,7 +77,8 @@ export default class mainView {
           <div class="overlay-card"></div>
 
           <button class="expand-btn">
-            <span class="movie-expand"><box-icon name='expand' class="expand-icon"></box-icon>Expand</span>
+          <span class="movie-expand"></span>
+          <i class="bx bx-expand expand-icon"></i>Expand</span>
           </button>
           <div class="movie-info">
             <span class="movie-title">${movie.title}</span>
