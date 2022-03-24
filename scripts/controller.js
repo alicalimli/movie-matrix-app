@@ -126,9 +126,3 @@ const init = function () {
 };
 
 init();
-const darkBtn = document.querySelector(".dark-list");
-
-darkBtn.addEventListener("click", function (e) {
-  darkBtn.classList.toggle("active");
-  document.body.classList.toggle("darkmode");
-});
