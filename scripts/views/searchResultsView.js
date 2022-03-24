@@ -1,9 +1,16 @@
 import mainView from "./mainView";
 
 class searchResultsView extends mainView {
-  _inputForm = document.querySelector(".sidebar-form");
-  _inputSearch = this._inputForm.querySelector(".sidebar-search-input");
+  _inputForm;
+  _inputSearch;
   _title = "";
+
+  constructor() {
+    super();
+    if (window.location.pathname !== "/index.html") return;
+    this._inputForm = document.querySelector(".sidebar-form");
+    this._inputSearch = this._inputForm.querySelector(".sidebar-search-input");
+  }
 
   addHandlerEvent(handle) {
     const sidebar = document.querySelector(".movie-sidebar-nav");

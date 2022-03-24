@@ -8,6 +8,11 @@ import {
   SEARCH_API_URL,
   SEARCH_TVS_API_URL,
   MOVIES_MAX_PAGE,
+  TVS_VIDEOS_URL,
+  MOVIE_VIDEOS_URL,
+  API_KEY,
+  GET_TV_DETAIL,
+  GET_MOVIE_DETAIL,
 } from "./config";
 
 // This object is the overall data
@@ -26,6 +31,10 @@ export const data = {
     currentPageLast: 1,
     currentPageType: "",
     pageName: "",
+  },
+  expansion: {
+    videoData: "",
+    videoDetails: {},
   },
 };
 
@@ -60,6 +69,7 @@ const createMovieObj = function (movieData) {
     return {
       title: data.title || data.name,
       img: data.poster_path,
+      id: data.id,
     };
   });
 };
@@ -139,6 +149,64 @@ export const createPageResults = async function (btnType, pageNum = 1) {
 
     // Create's Movie
     data.pages.pageResults = createMovieObj(pageData.results);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const createExpandPage = async function (videoId) {
+  try {
+    const movieVideoData = await fetch(
+      `${MOVIE_VIDEOS_URL}${videoId}/videos?api_key=${API_KEY}&language=en-US`
+    );
+    const tvVideoData = await fetch(
+      `${TVS_VIDEOS_URL}${videoId}/videos?api_key=${API_KEY}&language=en-US`
+    );
+
+    if (!movieVideoData.ok && !tvVideoData.ok) throw new Error("eeeee");
+    const movieVideoDataRes = await movieVideoData.json();
+    const tvVideoDataRes = await tvVideoData.json();
+
+    if (tvVideoDataRes.success === false) {
+      const getMovieDetail = await fetch(
+        `${GET_MOVIE_DETAIL}${videoId}?api_key=${API_KEY}&language=en-US`
+      );
+      if (!getMovieDetail.ok) return;
+
+      const movieDetailsRes = await getMovieDetail.json();
+      data.expansion.videoDetails = movieDetailsRes;
+
+      console.log(movieVideoDataRes);
+
+      data.expansion.videoData = await movieVideoDataRes.results
+        .filter((val) => val.type === "Trailer")
+        .map((data) => {
+          return {
+            key: data.key,
+          };
+        });
+      console.log(data.expansion.videoDetails);
+      console.log(data.expansion.videoData);
+    }
+
+    if (movieVideoDataRes.success === false) {
+      const getTVDetail = await fetch(
+        `${GET_TV_DETAIL}${videoId}?api_key=${API_KEY}&language=en-US`
+      );
+      if (!getTVDetail.ok) return;
+
+      const tvDetailsRes = await getMovieDetail.json();
+      data.expansion.videoDetails = tvDetailsRes;
+
+      data.expansion.videoData = await tvDetailsRes.results
+        .filter((val) => val.type === "Trailer")
+        .map((data) => {
+          return {
+            key: data.key,
+          };
+        });
+      console.log(data.expansion.videoDetails);
+    }
   } catch (error) {
     console.log(error);
   }

@@ -10,6 +10,7 @@ import trendingView from "./views/trendingView.js";
 import popularTVsView from "./views/popularTVsView.js";
 import searchResultsView from "./views/searchResultsView.js";
 import paginationView from "./views/paginationView.js";
+import expansionView from "./views/expansionView.js";
 
 // prettier-ignore
 const controlMovieCards = async function (viewType, viewName, pageType = "home") {
@@ -115,14 +116,44 @@ const controlPagination = async function (event) {
   }
 };
 
+const controlMovieSection = function () {
+  document.querySelector(".movie-main").addEventListener("click", function (e) {
+    const btn = e.target.closest(".expand-btn");
+    if (!btn) return;
+    window.location.href = `/expand.html#${btn.dataset.cardId}`;
+    console.log(window.location.href);
+  });
+};
+
+const controlExpansionSection = async function () {
+  if (window.location.pathname === "/expand.html") {
+    console.log("expa");
+    const movieCard = document.querySelector(".movie-card");
+    const videoId = window.location.hash.slice(1);
+
+    expansionView.renderLoading();
+    await model.createExpandPage(videoId);
+
+    if (!model.data.expansion.videoData) return;
+    await expansionView.renderHTML(
+      model.data.expansion.videoData,
+      model.data.expansion.videoDetails
+    );
+    console.log(model.data.expansion.videoDetails);
+  }
+};
+
 const init = function () {
+  controlExpansionSection();
+  if (window.location.pathname !== "/index.html") return;
   // Loads Discover Movie Card's when page is loaded
   controlDiscoverMovies();
+  controlMovieSection();
 
   // Attach Event Handlers
   sideBarBtnsView.addHandlerEvent(controlNavBtns);
-  searchResultsView.addHandlerEvent(controlSearchResults);
   paginationView.addHandlerEvent(controlPagination);
+  searchResultsView.addHandlerEvent(controlSearchResults);
 };
 
 init();

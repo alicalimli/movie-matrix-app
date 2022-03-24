@@ -1,0 +1,86 @@
+.expansion-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--background-dark);
+  width: 100%;
+  min-height: 100vh;
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+  transition: all 0.4s ease;
+  transform: scale(1);
+  z-index: 5;
+}
+
+.back-btn {
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  width: 6rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 50px;
+  border: 1px solid var(--primary-accent-color);
+  color: var(--primary-accent-color);
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  color: white;
+  background-color: var(--primary-accent-color);
+}
+
+.trailer-container {
+  padding-bottom: 55%;
+  position: relative;
+  height: 0;
+  width: 95%;
+}
+
+.trailer-video {
+  border-radius: 5px;
+  width: 100%;
+  height: 80%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.trailer-overview {
+  margin-top: -6rem;
+  display: flex;
+  gap: 1rem;
+  padding-right: 0.5rem;
+  width: 95%;
+}
+
+.trailer-card {
+  background-color: red;
+  min-width: 14rem;
+  height: 19.5rem;
+  overflow: hidden;
+  position: relative;
+  border-radius: 5px;
+}
+
+.trailer-poster {
+  border-radius: 5px;
+  max-width: 100%;
+  position: absolute;
+}
+
+.trailer-desc-container {
+  width: 70%;
+  height: 100%;
+}
+.trailer-title {
+  color: var(--background-light);
+  font-size: 2rem;
+  font-weight: 500;
+}
+.trailer-desc {
+  color: var(--background-light);
+  font-size: 1rem;
+  line-height: 1.5;
+}

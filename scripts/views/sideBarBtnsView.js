@@ -2,11 +2,20 @@ import DEFAULT_PAGE from "../config.js";
 import mainView from "./mainView.js";
 
 class SideBarBtnView extends mainView {
-  _parentEl = document.querySelector(".sidebar-lists-btn");
-  _navBtns = document.querySelectorAll(".nav-btn");
-  _icons = this._parentEl.querySelectorAll(".bx");
-  _sidebar = document.querySelector(".movie-sidebar-nav");
+  _parentEl;
+  _navBtns;
+  _icons;
+  _sidebar;
   buttonPage = "home";
+
+  constructor() {
+    super();
+    if (window.location.pathname !== "/index.html") return;
+    this._parentEl = document.querySelector(".sidebar-lists-btn");
+    this._navBtns = document.querySelectorAll(".nav-btn");
+    this._icons = this._parentEl.querySelectorAll(".bx");
+    this._sidebar = document.querySelector(".movie-sidebar-nav");
+  }
 
   // prettier-ignore
   addHandlerEvent(handle) {

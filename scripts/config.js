@@ -8,3 +8,10 @@ export const SEARCH_API_URL = `https://api.themoviedb.org/3/search/movie?api_key
 export const SEARCH_TVS_API_URL = `https://api.themoviedb.org/3/search/tv?api_key=${API_KEY}&language=en-US&page=1`;
 export const MOVIES_MAX_PAGE = 500; // DONT CHANGE TMDP API DOESNT RETURN A RESPONSE WHEN PAGE IS ABOVE 500
 export const MOVIES_FIRST_PAGE = 1; // ALWAYS 1
+
+// Expansion Page URL's
+
+export const MOVIE_VIDEOS_URL = `https://api.themoviedb.org/3/movie/`;
+export const TVS_VIDEOS_URL = `https://api.themoviedb.org/3/tv/`;
+export const GET_MOVIE_DETAIL = `https://api.themoviedb.org/3/movie/`;
+export const GET_TV_DETAIL = `https://api.themoviedb.org/3/tv/`;
