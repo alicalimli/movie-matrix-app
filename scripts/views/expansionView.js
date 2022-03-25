@@ -9,13 +9,14 @@ class paginationView {
 
   addEventHandler() {
     const backBtn = document.querySelector(".back-btn");
-    const expandView = document.querySelector(".expansion-section");
-
-    const mainMovieSection = document.querySelector(".movie-main");
-    const headerSection = document.querySelector(".section-header");
-    backBtn.addEventListener("click", function () {
-      expandView.classList.remove("active");
-      window.location.hash = "";
+    backBtn.addEventListener("click", function (e) {
+      console.log("dadad");
+      const btn = e.target.closest(".back-btn");
+      if (!btn) return;
+      document.body.classList.remove("active");
+      setTimeout(() => {
+        window.location.href = `/index.html`;
+      }, 400);
     });
   }
   renderHTML(movieData) {
@@ -77,9 +78,7 @@ class paginationView {
           />
         </div>
         <div class="trailer-desc-container">
-          <h1 class="trailer-title">${
-            this._expandVideoDetails.original_title
-          }</h1>
+          <h1 class="trailer-title">${this._expandVideoDetails.title}</h1>
           <p class="trailer-desc">
             ${this._expandVideoDetails.overview}
           </p>

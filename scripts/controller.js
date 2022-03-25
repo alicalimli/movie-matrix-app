@@ -116,20 +116,25 @@ const controlPagination = async function (event) {
   }
 };
 
+console.log("sdadadada  ");
+
 const controlMovieSection = function () {
   document.querySelector(".movie-main").addEventListener("click", function (e) {
     const btn = e.target.closest(".expand-btn");
     if (!btn) return;
-    window.location.href = `/expand.html#${btn.dataset.cardId}`;
-    console.log(window.location.href);
+    document.body.classList.remove("active");
+    setTimeout(() => {
+      window.location.href = `/expand-page.html#${btn.dataset.cardId}`;
+    }, 400);
   });
 };
 
 const controlExpansionSection = async function () {
-  if (window.location.pathname === "/expand.html") {
+  if (window.location.pathname === "/expand-page.html") {
     console.log("expa");
     const movieCard = document.querySelector(".movie-card");
     const videoId = window.location.hash.slice(1);
+    expansionView.addEventHandler();
 
     expansionView.renderLoading();
     await model.createExpandPage(videoId);
@@ -157,3 +162,12 @@ const init = function () {
 };
 
 init();
+
+window.addEventListener("load", function () {
+  const darkMode = JSON.parse(localStorage.getItem("darkmode"));
+  setTimeout(() => document.body.classList.add("active"), 400);
+  if (!darkMode) return;
+  const darkModeBtn = document?.querySelector(".dark-list");
+  darkModeBtn?.classList.toggle("active");
+  document.body.classList.toggle("darkmode");
+});

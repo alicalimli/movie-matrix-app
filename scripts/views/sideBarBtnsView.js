@@ -20,6 +20,11 @@ class SideBarBtnView extends mainView {
   // prettier-ignore
   addHandlerEvent(handle) {
     const darkModeBtn = document.querySelector(".dark-list");
+    let darkMode = false;
+    if(localStorage.getItem("darkmode")){
+      darkMode = JSON.parse(localStorage.getItem("darkmode"))
+      console.log(darkMode)
+    }
     // Attach Hover event listener in sidebar
     this._sidebar.addEventListener("mouseover", this.toggleOverlay.bind(this,"add"));
     this._sidebar.addEventListener("mouseleave", this.toggleOverlay.bind(this,"remove"));
@@ -31,8 +36,11 @@ class SideBarBtnView extends mainView {
     });
 
     darkModeBtn.addEventListener('click',function(){
+      darkMode = !darkMode;
       darkModeBtn.classList.toggle("active");
       document.body.classList.toggle("darkmode");
+      localStorage.setItem("darkmode", JSON.stringify(darkMode))
+      console.log(darkMode)
     })
   }
 
