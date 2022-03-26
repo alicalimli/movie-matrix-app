@@ -34,9 +34,9 @@ const controlMovieCards = async function (viewType, viewName, pageType = "home")
        top: scrollY,
        behavior: "smooth"
      });
-
-    //  Reset's the movieScrollY data back to 0
-    localStorage.setItem("movieScrollY", JSON.stringify(0))
+     
+    //  Deletes the movieScrollY data in the localStorage
+    localStorage.removeItem('movieScrollY')
   
 
     // Reset's the pageNum back to 1
