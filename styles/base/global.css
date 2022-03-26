@@ -16,10 +16,12 @@ body {
   background-color: var(--background-dark-third);
   min-height: 100vh;
   opacity: 0;
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
+  transform: translateY(5%) scale(0.98);
   width: 100%;
 }
 
 body.active {
+  transform: unset;
   opacity: 1;
 }
