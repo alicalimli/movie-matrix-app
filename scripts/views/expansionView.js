@@ -10,10 +10,12 @@ class paginationView {
   addEventHandler() {
     const backBtn = document.querySelector(".back-btn");
     backBtn.addEventListener("click", function (e) {
-      console.log("dadad");
       const btn = e.target.closest(".back-btn");
       if (!btn) return;
-      document.body.classList.remove("active");
+      // Shrinks the body and fade's When back button is clicked
+      document.body.style.transform = "scale(0)";
+      document.body.style.opacity = "0";
+      // Take's the user to index.html after 400ms
       setTimeout(() => {
         window.location.href = `/index.html`;
       }, 400);

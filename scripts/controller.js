@@ -118,11 +118,54 @@ const controlPagination = async function (event) {
 
 console.log("sdadadada  ");
 
-const controlMovieSection = function () {
+const controlMovieSection = async function () {
   document.querySelector(".movie-main").addEventListener("click", function (e) {
+    const sidebar = document.querySelector(".movie-sidebar-nav");
     const btn = e.target.closest(".expand-btn");
+    const movieCard = e.target.closest(".movie-card");
+    const cardOverlay = movieCard.querySelector(".overlay-card");
     if (!btn) return;
-    document.body.classList.remove("active");
+    const movieCardClone = movieCard.cloneNode(true);
+
+    // Takes the position of movieCard
+    const { top, left, width, height } = movieCard.getBoundingClientRect();
+    // Sets the position of movieCardClone in the movieCards position
+    movieCardClone.style.position = "fixed";
+    movieCardClone.style.top = `${top}px`;
+    movieCardClone.style.left = `${left}px`;
+    movieCardClone.style.width = `${width}px`;
+    movieCardClone.style.height = `${height}px`;
+
+    // Some styling in movieCardClone
+    movieCardClone.style.backgroundColor = "var(--background-dark)";
+    movieCardClone.style.zIndex = "99";
+    movieCardClone.innerHTML = "";
+
+    // Shrink's every sections in the html
+    document.querySelector(".movie-main").style.transform = "scale(0.9)";
+    document.querySelector(".movie-sidebar-nav").style.transform = "scale(0.9)";
+    document.querySelector(".section-header").style.transform = "scale(0.9)";
+    document.querySelector(".movie-pagination").style.transform = "scale(0.9)";
+    document.querySelector(".overlay-main").classList.add("active");
+    // hide the original card with opacity
+    // add card to the same container
+    movieCardClone.innerHTML = "";
+    document.body.appendChild(movieCardClone);
+
+    // Animates the movieCardClone and delay's abit because without delay animation wont work
+    setTimeout(() => {
+      requestAnimationFrame(() => {
+        movieCardClone.style.transition = `all 0.3s ease-in-out`;
+        movieCardClone.style.borderRadius = "24px";
+        movieCardClone.style.top = "50%";
+        movieCardClone.style.left = "50%";
+        movieCardClone.style.transform = "translate(-50%,-50%)";
+        movieCardClone.style.height = "105vh";
+        movieCardClone.style.width = "105vw";
+      });
+    }, 5);
+
+    // Take's the user to expand-page after 400ms
     setTimeout(() => {
       window.location.href = `/expand-page.html#${btn.dataset.cardId}`;
     }, 400);
@@ -130,12 +173,11 @@ const controlMovieSection = function () {
 };
 
 const controlExpansionSection = async function () {
+  // Only runs the function when page is expand-page.html
   if (window.location.pathname === "/expand-page.html") {
-    console.log("expa");
     const movieCard = document.querySelector(".movie-card");
     const videoId = window.location.hash.slice(1);
     expansionView.addEventHandler();
-
     expansionView.renderLoading();
     await model.createExpandPage(videoId);
 
@@ -150,6 +192,7 @@ const controlExpansionSection = async function () {
 
 const init = function () {
   controlExpansionSection();
+  // Stops the function when the pathname is not the index.html
   if (window.location.pathname !== "/index.html") return;
   // Loads Discover Movie Card's when page is loaded
   controlDiscoverMovies();
@@ -164,9 +207,12 @@ const init = function () {
 init();
 
 window.addEventListener("load", function () {
+  // Takes the darkmode data in the local storage
   const darkMode = JSON.parse(localStorage.getItem("darkmode"));
+  // Makes a fade transition when user enters the page
   setTimeout(() => document.body.classList.add("active"), 400);
   if (!darkMode) return;
+  // Toggles the darkMode button if DarkMode in localStorage is true and when page is in index.html
   const darkModeBtn = document?.querySelector(".dark-list");
   darkModeBtn?.classList.toggle("active");
   document.body.classList.toggle("darkmode");
