@@ -27,6 +27,18 @@ const controlMovieCards = async function (viewType, viewName, pageType = "home")
     // Render's pagination
     paginationView.renderPagination(model.data.pages.currentPageLast);
 
+    // Takes movieScrollY Data in the local storage and scroll to it when movie's is loaded
+    const scrollY = JSON.parse(localStorage.getItem("movieScrollY")) || 0;
+
+    window.scrollTo({
+       top: scrollY,
+       behavior: "smooth"
+     });
+
+    //  Reset's the movieScrollY data back to 0
+    localStorage.setItem("movieScrollY", JSON.stringify(0))
+  
+
     // Reset's the pageNum back to 1
     paginationView.pageNum = 1;
   } catch (error) {
@@ -164,6 +176,9 @@ const controlMovieSection = async function () {
         movieCardClone.style.width = "105vw";
       });
     }, 5);
+
+    // Sets window scroll Y to the local storage
+    localStorage.setItem("movieScrollY", JSON.stringify(window.scrollY));
 
     // Take's the user to expand-page after 400ms
     setTimeout(() => {
