@@ -22,16 +22,19 @@ const controlMovieCards = async function (viewType, viewName, pageType = "home",
     
     // Create's Movie Data
     await model.createDiscoverCards(pageType,pageNum);
-    paginationView.pageNum = pageNum;
 
     // Render's HTML Cards
-    viewType.renderHTML(model.data[viewName]);
+    await viewType.renderHTML(model.data[viewName]);
+
+    // Sets Pagination View Pagenumber to pageNum
+    paginationView.pageNum = pageNum;
 
     // Render's pagination
     paginationView.renderPagination(model.data.pages.currentPageLast);
 
     // Takes movieScrollY Data in the local storage and scroll to it when movie's is loaded
     const scrollY = JSON.parse(localStorage.getItem("movieScrollY")) || 0;
+    console.log(scrollY)
 
     window.scrollTo({
        top: scrollY,
@@ -40,9 +43,16 @@ const controlMovieCards = async function (viewType, viewName, pageType = "home",
 
     //  Sets pageTypeCopy value
     pageTypeCopy = pageType;
-  
-    // Reset's the pageNum back to 1
-    paginationView.pageNum = 1;
+
+    // Delete's data's from local Storage after its used
+    localStorage.removeItem("pageViewNum");
+    localStorage.removeItem("pageViewType");
+    localStorage.removeItem("pageSearchResTitle")
+    localStorage.removeItem('movieScrollY')
+     
+    console.log(paginationView.pageNum)
+    setTimeout(()=> console.log(paginationView.pageNum),3000)
+
   } catch (error) {
     console.log(error);
   }
@@ -88,12 +98,7 @@ const controlDiscoverMovies = async function () {
          behavior: "smooth"
        });
     }
-    
-    // Delete's data's from local Storage after its used
-    localStorage.removeItem("pageViewNum");
-    localStorage.removeItem("pageViewType");
-    localStorage.removeItem("pageSearchResTitle")
-    localStorage.removeItem('movieScrollY')
+  
     // Update's Sidebar Buttons
     sideBarBtnsView.updateBtn(pageViewType);
   } catch (error) {
@@ -180,9 +185,9 @@ const controlMovieSection = async function () {
   document.querySelector(".movie-main").addEventListener("click", function (e) {
     const sidebar = document.querySelector(".movie-sidebar-nav");
     const btn = e.target.closest(".expand-btn");
+    if (!btn) return;
     const movieCard = e.target.closest(".movie-card");
     const cardOverlay = movieCard.querySelector(".overlay-card");
-    if (!btn) return;
     const movieCardClone = movieCard.cloneNode(true);
 
     // Takes the position of movieCard
@@ -223,11 +228,9 @@ const controlMovieSection = async function () {
       });
     }, 5);
 
+    // Sets Data's to the local storage
     localStorage.setItem("pageViewType", JSON.stringify(pageTypeCopy));
-
-    // Sets window scroll Y to the local storage
     localStorage.setItem("movieScrollY", JSON.stringify(window.scrollY));
-
     localStorage.setItem("pageViewNum", JSON.stringify(paginationView.pageNum));
 
     // prettier-ignore
