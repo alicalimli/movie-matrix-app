@@ -15,6 +15,7 @@ import expansionView from "./views/expansionView.js";
 // prettier-ignore
 const controlMovieCards = async function (viewType, viewName, pageType = "home") {
   try {
+    console.log(model.data)
     // Render's Loading Spinner
     viewType.renderLoading();
     

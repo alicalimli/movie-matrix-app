@@ -168,6 +168,7 @@ export const createExpandPage = async function (videoId) {
     const tvVideoDataRes = await tvVideoData.json();
 
     if (tvVideoDataRes.success === false) {
+      console.log("movie");
       const getMovieDetail = await fetch(
         `${GET_MOVIE_DETAIL}${videoId}?api_key=${API_KEY}&language=en-US`
       );
@@ -185,27 +186,26 @@ export const createExpandPage = async function (videoId) {
             key: data.key,
           };
         });
-      console.log(data.expansion.videoDetails);
-      console.log(data.expansion.videoData);
     }
 
     if (movieVideoDataRes.success === false) {
+      console.log("tv");
       const getTVDetail = await fetch(
         `${GET_TV_DETAIL}${videoId}?api_key=${API_KEY}&language=en-US`
       );
       if (!getTVDetail.ok) return;
 
-      const tvDetailsRes = await getMovieDetail.json();
+      const tvDetailsRes = await getTVDetail.json();
+      console.log(tvDetailsRes);
       data.expansion.videoDetails = tvDetailsRes;
 
-      data.expansion.videoData = await tvDetailsRes.results
+      data.expansion.videoData = await tvVideoDataRes.results
         .filter((val) => val.type === "Trailer")
         .map((data) => {
           return {
             key: data.key,
           };
         });
-      console.log(data.expansion.videoDetails);
     }
   } catch (error) {
     console.log(error);

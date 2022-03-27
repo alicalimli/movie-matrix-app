@@ -76,11 +76,15 @@ class paginationView {
           <img
             class="trailer-poster"
             src="${IMG_PATH + this._expandVideoDetails.poster_path}"
-            alt="${this._expandVideoDetails.title}"
+            alt="${
+              this._expandVideoDetails.title || this._expandVideoDetails.name
+            }"
           />
         </div>
         <div class="trailer-desc-container">
-          <h1 class="trailer-title">${this._expandVideoDetails.title}</h1>
+          <h1 class="trailer-title">${
+            this._expandVideoDetails.title || this._expandVideoDetails.name
+          }</h1>
           <p class="trailer-desc">
             ${this._expandVideoDetails.overview}
           </p>
