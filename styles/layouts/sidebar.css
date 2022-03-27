@@ -265,7 +265,7 @@
 }
 
 .overlay-main.active {
-  opacity: 0.8;
+  opacity: 0.85;
   pointer-events: auto;
   visibility: visible;
 }

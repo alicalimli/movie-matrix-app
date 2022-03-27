@@ -201,14 +201,16 @@ const controlMovieSection = async function () {
 
     // Some styling in movieCardClone
     movieCardClone.style.backgroundColor = "var(--background-dark)";
+    movieCardClone.style.borderRadius = "18px";
     movieCardClone.style.zIndex = "99";
     movieCardClone.innerHTML = "";
 
     // Shrink's every sections in the html
-    document.querySelector(".movie-main").style.transform = "scale(0.9)";
-    document.querySelector(".movie-sidebar-nav").style.transform = "scale(0.9)";
-    document.querySelector(".section-header").style.transform = "scale(0.9)";
-    document.querySelector(".movie-pagination").style.transform = "scale(0.9)";
+    document.querySelector(".movie-main").style.transform = "scale(0.95)";
+    document.querySelector(".movie-sidebar-nav").style.transform =
+      "scale(0.95)";
+    document.querySelector(".section-header").style.transform = "scale(0.95)";
+    document.querySelector(".movie-pagination").style.transform = "scale(0.95)";
     document.querySelector(".overlay-main").classList.add("active");
     // hide the original card with opacity
     // add card to the same container
