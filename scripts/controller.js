@@ -12,15 +12,17 @@ import searchResultsView from "./views/searchResultsView.js";
 import paginationView from "./views/paginationView.js";
 import expansionView from "./views/expansionView.js";
 
+let pageTypeCopy = "";
+
 // prettier-ignore
-const controlMovieCards = async function (viewType, viewName, pageType = "home") {
+const controlMovieCards = async function (viewType, viewName, pageType = "home",pageNum = 1) {
   try {
-    console.log(model.data)
     // Render's Loading Spinner
     viewType.renderLoading();
     
     // Create's Movie Data
-    await model.createDiscoverCards(pageType);
+    await model.createDiscoverCards(pageType,pageNum);
+    paginationView.pageNum = pageNum;
 
     // Render's HTML Cards
     viewType.renderHTML(model.data[viewName]);
@@ -35,11 +37,10 @@ const controlMovieCards = async function (viewType, viewName, pageType = "home")
        top: scrollY,
        behavior: "smooth"
      });
-     
-    //  Deletes the movieScrollY data in the localStorage
-    localStorage.removeItem('movieScrollY')
-  
 
+    //  Sets pageTypeCopy value
+    pageTypeCopy = pageType;
+  
     // Reset's the pageNum back to 1
     paginationView.pageNum = 1;
   } catch (error) {
@@ -47,12 +48,54 @@ const controlMovieCards = async function (viewType, viewName, pageType = "home")
   }
 };
 
+// prettier-ignore
 const controlDiscoverMovies = async function () {
   try {
+    const pageViewNum = JSON.parse(localStorage.getItem('pageViewNum')) || 1;
+    const pageViewType =
+      JSON.parse(localStorage.getItem("pageViewType")) || "home";
+
     // Movie Card's Controller
-    controlMovieCards(discoverMoviesView, "discoverMovies");
+    if (pageViewType === "home") {
+      controlMovieCards(discoverMoviesView, "discoverMovies", "home",pageViewNum);
+    }
+    if (pageViewType === "movies-pop") {
+      controlMovieCards(popularMoviesView, "popularMovies", "movies-pop",pageViewNum);
+    }
+    if (pageViewType === "trending") {
+      controlMovieCards(trendingView, "trendingMovies", "trending",pageViewNum);
+    }
+    if (pageViewType === "tvs-pop") {
+      controlMovieCards(popularTVsView, "popularTVS", "tvs-pop",pageViewNum);
+    }
+    if(pageViewType === "search-res"){
+      const pageSearchResTitle = JSON.parse(localStorage.getItem('pageSearchResTitle'))
+      console.log(pageSearchResTitle)
+      searchResultsView._title = pageSearchResTitle;
+      // Render's Loading Spinner
+      searchResultsView.renderLoading();
+      // Creates Result's Data
+      await model.createSearchResults(pageSearchResTitle);
+      console.log(model.data.searchResults)
+      // Renders HTML Card's
+      searchResultsView.renderHTML(model.data.searchResults);
+
+      // Takes movieScrollY Data in the local storage and scroll to it when movie's is loaded
+      const scrollY = JSON.parse(localStorage.getItem("movieScrollY")) || 0;
+
+       window.scrollTo({
+         top: scrollY,
+         behavior: "smooth"
+       });
+    }
+    
+    // Delete's data's from local Storage after its used
+    localStorage.removeItem("pageViewNum");
+    localStorage.removeItem("pageViewType");
+    localStorage.removeItem("pageSearchResTitle")
+    localStorage.removeItem('movieScrollY')
     // Update's Sidebar Buttons
-    sideBarBtnsView.updateBtn();
+    sideBarBtnsView.updateBtn(pageViewType);
   } catch (error) {
     console.log(error);
   }
@@ -87,6 +130,8 @@ const controlNavBtns = async function (event) {
 
 const controlSearchResults = async function () {
   try {
+    pageTypeCopy = "search-res";
+    sideBarBtnsView.updateBtn(pageTypeCopy);
     // Takes Search Input Value
     const searchVal = searchResultsView.getInputValue();
     // Render's Loading Spinner
@@ -178,8 +223,17 @@ const controlMovieSection = async function () {
       });
     }, 5);
 
+    localStorage.setItem("pageViewType", JSON.stringify(pageTypeCopy));
+
     // Sets window scroll Y to the local storage
     localStorage.setItem("movieScrollY", JSON.stringify(window.scrollY));
+
+    localStorage.setItem("pageViewNum", JSON.stringify(paginationView.pageNum));
+
+    // prettier-ignore
+    if(pageTypeCopy === "search-res"){
+      localStorage.setItem('pageSearchResTitle', JSON.stringify(document.querySelector('.header-title').textContent))
+    }
 
     // Take's the user to expand-page after 400ms
     setTimeout(() => {

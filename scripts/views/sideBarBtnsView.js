@@ -44,13 +44,16 @@ class SideBarBtnView extends mainView {
     })
   }
 
-  updateBtn() {
+  updateBtn(btnType) {
     this._icons.forEach((el) => {
       const elParent = el.closest(".nav-btn");
-      // Stops the function when pageType isnt home
-      if (elParent.dataset.page !== "home" || !elParent) return;
-
-      // sets active class to home button
+      if (btnType === "search-res") {
+        elParent.classList.remove("active");
+        elParent.querySelector(".bx").classList.remove("active");
+      }
+      // Stops the function when pageType isnt btnType
+      if (elParent.dataset.page !== btnType || !elParent) return;
+      // sets active class to buttons
       elParent.classList.toggle("active");
       elParent.querySelector(".bx").classList.toggle("active");
     });

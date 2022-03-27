@@ -7,6 +7,7 @@ export default class mainView {
 
   _headTitle = document.querySelector(".header-title");
   _title = "Discover Movies";
+  viewName = "discoverMoviesView";
 
   _overlay = document.querySelector(".overlay-main");
   _mainMovieSection = document.querySelector(".movie-main");
