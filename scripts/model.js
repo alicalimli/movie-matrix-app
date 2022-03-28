@@ -8,11 +8,8 @@ import {
   SEARCH_API_URL,
   SEARCH_TVS_API_URL,
   MOVIES_MAX_PAGE,
-  TVS_VIDEOS_URL,
-  MOVIE_VIDEOS_URL,
   API_KEY,
-  GET_TV_DETAIL,
-  GET_MOVIE_DETAIL,
+  MOVIES_API_URL,
 } from "./config";
 
 // This object is the overall data
@@ -154,59 +151,54 @@ export const createPageResults = async function (btnType, pageNum = 1) {
   }
 };
 
+// This function is for createExpandPage function below
+const getMovieTvData = async function (videoId, detailType = "") {
+  try {
+    const movieData = await fetch(
+      `${MOVIES_API_URL}movie/${videoId}${detailType}?api_key=${API_KEY}&language=en-US`
+    );
+    const tvData = await fetch(
+      `${MOVIES_API_URL}tv/${videoId}${detailType}?api_key=${API_KEY}&language=en-US`
+    );
+    if (!movieData.ok && !tvData.ok) throw new Error("eeeee");
+    const movieDataRes = await movieData.json();
+    const tvDataRes = await tvData.json();
+
+    // prettier-ignore
+    if(movieDataRes.results || tvDataRes.results){   
+      // Merges the 2 results array and filters only the values that isnt undefined
+      const finalRes = [tvDataRes.results || movieDataRes.results]
+      .concat(tvDataRes.results || movieDataRes.results)
+      .filter(val => val !== undefined);
+      return finalRes;
+    }
+
+    // prettier-ignore
+    // Merges the two objects
+    const finalRes = Object.assign(movieDataRes,tvDataRes)
+
+    return finalRes;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const createExpandPage = async function (videoId) {
   try {
-    const movieVideoData = await fetch(
-      `${MOVIE_VIDEOS_URL}${videoId}/videos?api_key=${API_KEY}&language=en-US`
-    );
-    const tvVideoData = await fetch(
-      `${TVS_VIDEOS_URL}${videoId}/videos?api_key=${API_KEY}&language=en-US`
-    );
+    const videoData = await getMovieTvData(videoId, "/videos");
+    const videoDetails = await getMovieTvData(videoId);
 
-    if (!movieVideoData.ok && !tvVideoData.ok) throw new Error("eeeee");
-    const movieVideoDataRes = await movieVideoData.json();
-    const tvVideoDataRes = await tvVideoData.json();
+    // console.log(videoData);
+    // console.log(videoDetails);
 
-    if (tvVideoDataRes.success === false) {
-      console.log("movie");
-      const getMovieDetail = await fetch(
-        `${GET_MOVIE_DETAIL}${videoId}?api_key=${API_KEY}&language=en-US`
-      );
-      if (!getMovieDetail.ok) return;
-
-      const movieDetailsRes = await getMovieDetail.json();
-      data.expansion.videoDetails = movieDetailsRes;
-
-      console.log(movieVideoDataRes);
-
-      data.expansion.videoData = await movieVideoDataRes.results
-        .filter((val) => val.type === "Trailer")
-        .map((data) => {
-          return {
-            key: data.key,
-          };
-        });
-    }
-
-    if (movieVideoDataRes.success === false) {
-      console.log("tv");
-      const getTVDetail = await fetch(
-        `${GET_TV_DETAIL}${videoId}?api_key=${API_KEY}&language=en-US`
-      );
-      if (!getTVDetail.ok) return;
-
-      const tvDetailsRes = await getTVDetail.json();
-      console.log(tvDetailsRes);
-      data.expansion.videoDetails = tvDetailsRes;
-
-      data.expansion.videoData = await tvVideoDataRes.results
-        .filter((val) => val.type === "Trailer")
-        .map((data) => {
-          return {
-            key: data.key,
-          };
-        });
-    }
+    data.expansion.videoDetails = videoDetails;
+    data.expansion.videoData = await videoData
+      .filter((val) => val.type === "Trailer")
+      .map((data) => {
+        return {
+          key: data.key,
+        };
+      });
   } catch (error) {
     console.log(error);
   }

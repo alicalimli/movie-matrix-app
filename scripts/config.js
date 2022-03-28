@@ -11,7 +11,4 @@ export const MOVIES_FIRST_PAGE = 1; // ALWAYS 1
 
 // Expansion Page URL's
 
-export const MOVIE_VIDEOS_URL = `https://api.themoviedb.org/3/movie/`;
-export const TVS_VIDEOS_URL = `https://api.themoviedb.org/3/tv/`;
-export const GET_MOVIE_DETAIL = `https://api.themoviedb.org/3/movie/`;
-export const GET_TV_DETAIL = `https://api.themoviedb.org/3/tv/`;
+export const MOVIES_API_URL = `https://api.themoviedb.org/3/`;

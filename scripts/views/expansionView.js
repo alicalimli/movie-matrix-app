@@ -1,7 +1,7 @@
 import { IMG_PATH } from "../config";
 
 class paginationView {
-  _parentEl = document.querySelector(".video-section");
+  _parentEl = document.querySelector(".video-overview-container");
   _expandVideoDetails;
   _expandVideoData;
   btnType = "";
@@ -58,29 +58,24 @@ class paginationView {
 
   _generateHTML() {
     const expandHTML = `
-      <div class="trailer-container">
-        <iframe
-          class="trailer-video"
-          width="560"
-          height="315"
-          src="https://www.youtube.com/embed/${
-            this._expandVideoData[0].key
-          }?rel=0"
-          title="YouTube video player"
-          frameborder="0"
-          allowfullscreen
-        ></iframe>
+    <div class="video-section"> 
+      <div class="video-trailer-container">
+          <div class="trailer-container">
+            <iframe
+              class="trailer-video"
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/${
+                this._expandVideoData[0].key
+              }?rel=0"
+              title="YouTube video player"
+              frameborder="0"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
       </div>
       <div class="trailer-overview">
-        <div class="trailer-card">
-          <img
-            class="trailer-poster"
-            src="${IMG_PATH + this._expandVideoDetails.poster_path}"
-            alt="${
-              this._expandVideoDetails.title || this._expandVideoDetails.name
-            }"
-          />
-        </div>
         <div class="trailer-desc-container">
           <h1 class="trailer-title">${
             this._expandVideoDetails.title || this._expandVideoDetails.name

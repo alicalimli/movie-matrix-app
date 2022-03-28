@@ -220,7 +220,7 @@ const controlMovieSection = async function () {
     // Animates the movieCardClone and delay's abit because without delay animation wont work
     setTimeout(() => {
       requestAnimationFrame(() => {
-        movieCardClone.style.transition = `all 0.3s ease-in-out`;
+        movieCardClone.style.transition = `all 0.2s ease-in-out`;
         movieCardClone.style.borderRadius = "24px";
         movieCardClone.style.top = "50%";
         movieCardClone.style.left = "50%";

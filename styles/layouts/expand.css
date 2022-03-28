@@ -14,12 +14,19 @@
   z-index: 5;
 }
 
+.video-overview-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .back-btn {
   font-size: 1rem;
   cursor: pointer;
   text-decoration: none;
   width: 6rem;
   padding: 0.25rem 0.5rem;
+  margin-left: 5%;
   border-radius: 50px;
   border: 1px solid var(--primary-accent-color);
   color: var(--primary-accent-color);
@@ -31,17 +38,21 @@
   background-color: var(--primary-accent-color);
 }
 
+.video-trailer-container {
+  max-width: 90%;
+  margin: auto;
+}
+
 .trailer-container {
-  padding-bottom: 55%;
+  padding-bottom: 50%;
   position: relative;
   height: 0;
-  width: 95%;
 }
 
 .trailer-video {
   border-radius: 5px;
   width: 100%;
-  height: 80%;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
@@ -49,29 +60,18 @@
 
 .trailer-overview {
   display: flex;
+  margin: auto;
   gap: 1rem;
   padding-right: 0.5rem;
-  width: 95%;
-}
-
-.trailer-card {
-  background-color: red;
-  min-width: 14rem;
-  height: 19.5rem;
-  overflow: hidden;
-  position: relative;
-  border-radius: 5px;
-}
-
-.trailer-poster {
-  border-radius: 5px;
-  max-width: 100%;
-  position: absolute;
+  width: 90%;
 }
 
 .trailer-desc-container {
-  width: 70%;
+  width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 .trailer-title {
   color: var(--background-light);
