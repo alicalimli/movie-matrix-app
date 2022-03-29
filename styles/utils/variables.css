@@ -1,17 +1,60 @@
 :root {
+  /* Transitions */
+  --transition-three-ms: all 0.3s ease;
+  --transition-four-ms: all 0.4s ease;
+  /* Background Colors */
+  --primary-bg-color: white;
+  --secondary-bg-color: #f1f3f5;
+  --tertiary-bg-color: #dee2e6;
+  --quartenary-bg-color: #495057;
+
+  /* Text Colors */
+  --primary-text-color: white;
+  --primary-text-color-inverted: #111;
+
+  /* Sidebar Colors */
+  --sidebar-bg-color: #f1f3f5;
+
+  /* Expand Section Colors */
+  --expand-sec-bg-color: #f1f3f5;
+
+  /* Accent Colors */
+  --primary-accent-color: #099268;
+  --secondary-accent-color: #087f5b;
+
   --background-dark: white;
   --background-dark-secondary: #f1f3f5;
   --background-dark-third: #dee2e6;
   --background-light: #111;
-  --primary-accent-color: #20c997;
-  --secondary-accent-color: #087f5b;
+  /* --primary-accent-color: #20c997; */
+  /* --secondary-accent-color: #087f5b; */
 }
 
 .darkmode {
+  /* Background Colors */
+  --primary-bg-color: black;
+  --secondary-bg-color: #111;
+  --tertiary-bg-color: #222;
+  --quartenary-bg-color: #adb5bd;
+
+  /* Text Colors */
+  --primary-text-color: #111;
+  --primary-text-color-inverted: white;
+
+  /* Sidebar Colors */
+  --sidebar-bg-color: black;
+
+  /* Expand Section Colors */
+  --expand-sec-bg-color: black;
+
+  /* Accent Colors */
+  --primary-accent-color: #20c997;
+  --secondary-accent-color: #087f5b;
+
   --background-dark: black;
   --background-dark-secondary: #111;
   --background-dark-third: #222;
   --background-light: white;
-  --primary-accent-color: #20c997;
-  --secondary-accent-color: #0ca678;
+  /* --primary-accent-color: #0ca678;
+  --secondary-accent-color: #0ca678; */
 }

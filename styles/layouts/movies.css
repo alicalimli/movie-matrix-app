@@ -3,7 +3,7 @@
   flex-wrap: wrap;
   gap: 1rem;
   position: relative;
-  transition: all 0.3s ease;
+  transition: var(--transition-three-ms);
 }
 
 .movie-main.active {
@@ -21,7 +21,6 @@
 
 .movie-card:hover .movie-info {
   opacity: 1;
-  transform: translate();
   transform: translate(-50%, -110%);
 }
 
@@ -33,13 +32,13 @@
 }
 
 .movie-info {
-  background-color: var(--background-dark-third);
+  background-color: var(--tertiary-bg-color);
   border-radius: 5px;
-  color: var(--background-light);
+  color: var(--primary-text-color-inverted);
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  transition: all 0.3s ease;
+  transition: var(--transition-three-ms);
   transform: translate(-50%, -90%);
   text-align: center;
   top: 100%;
@@ -59,7 +58,7 @@
   border-radius: 5px;
   width: 100%;
   height: 100%;
-  transition: all 0.3s ease;
+  transition: var(--transition-three-ms);
   opacity: 0;
   position: absolute;
 }
@@ -77,7 +76,7 @@
   cursor: pointer;
   gap: 0.3rem;
   font-size: 1rem;
-  transition: all 0.3s ease;
+  transition: var(--transition-three-ms);
   width: 100%;
   height: 100%;
   opacity: 0;
@@ -90,7 +89,7 @@
 .expand-icon {
   fill: var(--primary-accent-color);
   font-size: 1.5rem;
-  transition: all 0.3s ease;
+  transition: var(--transition-three-ms);
 }
 
 .movie-card:hover .expand-icon {
@@ -99,7 +98,7 @@
 
 .movie-expand {
   font-size: 1rem;
-  transition: all 0.3s ease;
+  transition: var(--transition-three-ms);
 }
 
 .movie-card:hover .movie-expand {
@@ -114,7 +113,7 @@
 
 .card {
   align-self: center;
-  background-color: var(--background-dark-secondary);
+  background-color: var(--secondary-bg-color);
   border-radius: 5px;
   display: flex;
   justify-content: center;
@@ -125,7 +124,7 @@
 }
 
 .card-text {
-  color: var(--background-light);
+  color: var(--primary-text-color-inverted);
   font-size: 1.2rem;
-  transition: all 0.3s ease;
+  transition: var(--transition-three-ms);
 }

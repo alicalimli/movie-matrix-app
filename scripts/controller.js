@@ -292,3 +292,30 @@ window.addEventListener("load", function () {
   darkModeBtn?.classList.toggle("active");
   document.body.classList.toggle("darkmode");
 });
+
+setTimeout(() => {
+  const poster = document.querySelector(".poster-container");
+  const vidTrailer = document.querySelector(".trailer-video");
+
+  const watchBtn = document.querySelector(".watch-poster-btn");
+  const bmBtn = document.querySelector(".bookmark-btn");
+  const bmTxt = document.querySelector(".bookmark-text");
+
+  watchBtn.addEventListener("click", function () {
+    poster.style.display = "none";
+    vidTrailer.style.display = "block";
+  });
+
+  let act = false;
+  bmBtn.addEventListener("click", function () {
+    if (!act) {
+      act = !act;
+      bmTxt.textContent = "bookmarked";
+      bmBtn.classList.toggle("active");
+    } else {
+      act = !act;
+      bmTxt.textContent = "bookmark";
+      bmBtn.classList.toggle("active");
+    }
+  });
+}, 3000);

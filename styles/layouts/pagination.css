@@ -3,7 +3,7 @@
   gap: 0.5rem;
   justify-content: center;
   align-items: center;
-  transition: all 0.3s ease;
+  transition: var(--transition-three-ms);
 }
 
 .movie-pagination.active {
@@ -11,22 +11,22 @@
 }
 
 .movie-pagination button {
-  color: var(--secondary-accent-color);
+  color: var(--primary-accent-color);
   cursor: pointer;
   border-radius: 100px;
-  transition: all 0.3s ease;
+  transition: var(--transition-three-ms);
 }
 
 .btn-arrow {
   padding: 0.5rem 1rem;
-  border: 1px solid var(--secondary-accent-color);
+  border: 1px solid var(--primary-accent-color);
 }
 
 .btn-arrow:hover,
 .btn-page-num:hover,
 .btn-page-num.active {
   color: white;
-  background-color: var(--secondary-accent-color);
+  background-color: var(--primary-accent-color);
 }
 
 .btn-page-num {

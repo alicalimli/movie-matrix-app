@@ -1,15 +1,20 @@
+.expand-sec {
+  margin-left: 5rem;
+  padding: 0.3rem;
+}
+
 .expansion-section {
   display: flex;
   flex-direction: column;
   gap: 1rem;
   padding: 1rem;
-  background-color: var(--background-dark);
+  background-color: var(--expand-sec-bg-color);
   width: 100%;
   min-height: 100vh;
   opacity: 1;
   pointer-events: auto;
   visibility: visible;
-  transition: all 0.4s ease;
+  transition: var(--transition-four-ms);
   transform: scale(1);
   z-index: 5;
 }
@@ -19,6 +24,137 @@
   flex-direction: column;
   gap: 1rem;
 }
+
+.video-trailer-container {
+  max-width: 85%;
+}
+
+.poster-container {
+  border-radius: 5px;
+  padding-bottom: 52%;
+  position: relative;
+  height: 0;
+}
+
+.video-poster-path {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.overlay-poster {
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.15));
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Video Trailer Youtube Embed */
+
+.trailer-container {
+  padding-bottom: 52%;
+  border-radius: 5px;
+  position: relative;
+  height: 0;
+}
+
+.trailer-video {
+  display: none;
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Big Poster Layput */
+
+.poster-overview {
+  display: flex;
+  margin: auto;
+  gap: 1rem;
+  padding-right: 0.5rem;
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  width: 70%;
+  z-index: 3;
+}
+
+.poster-desc-container {
+  width: 80%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.poster-title {
+  color: #20c997;
+  font-size: 2.4rem;
+  font-weight: 600;
+}
+
+.poster-btn-container {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.poster-btn {
+  padding: 0.5rem 1rem;
+  color: white;
+  border: 2px solid #20c997;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: var(--transition-three-ms);
+}
+
+.poster-btn:hover {
+  background-color: #20c997;
+}
+
+.poster-btn i {
+  font-size: 1.5rem;
+  color: white;
+}
+
+.watch-trailer-btn i {
+  font-size: 1.8rem;
+}
+
+/* Movie/Tv Description */
+
+.trailer-overview {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-right: 0.5rem;
+  width: 85%;
+}
+.trailer-desc-container {
+  width: 85%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.trailer-desc {
+  color: var(--primary-text-color-inverted);
+
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Back button */
 
 .back-btn {
   font-size: 1rem;
@@ -30,7 +166,7 @@
   border-radius: 50px;
   border: 1px solid var(--primary-accent-color);
   color: var(--primary-accent-color);
-  transition: all 0.3s ease;
+  transition: var(--transition-three-ms);
 }
 
 .back-btn:hover {
@@ -38,48 +174,91 @@
   background-color: var(--primary-accent-color);
 }
 
-.video-trailer-container {
-  max-width: 90%;
-  margin: auto;
-}
+/* Movie Stats */
 
-.trailer-container {
-  padding-bottom: 50%;
-  position: relative;
-  height: 0;
-}
-
-.trailer-video {
-  border-radius: 5px;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.trailer-overview {
+.movie-stats {
   display: flex;
-  margin: auto;
   gap: 1rem;
-  padding-right: 0.5rem;
-  width: 90%;
+  width: 85%;
+  justify-content: start;
+  align-items: center;
+  position: relative;
 }
-
-.trailer-desc-container {
-  width: 100%;
-  height: 100%;
+.rating-container {
+  border: 2px solid var(--primary-accent-color);
+  width: 7rem;
+  height: 7rem;
+  border-radius: 100px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.rating-text {
+  font-size: 1.7rem;
+  color: var(--primary-accent-color);
+}
+.rating-count {
+  font-size: 0.6rem;
+  color: var(--quartenary-bg-color);
+}
+
+.other-details {
+  color: var(--primary-text-color-inverted);
+  display: flex;
   gap: 0.5rem;
+  flex-direction: column;
 }
-.trailer-title {
-  color: var(--background-light);
-  font-size: 2rem;
-  font-weight: 500;
+
+.other-details span {
+  color: var(--primary-accent-color);
 }
-.trailer-desc {
-  color: var(--background-light);
+
+.other-detail {
+  font-size: 0.9rem;
+}
+
+.bookmark-btn {
+  padding: 0.5rem 1rem;
+  color: var(--primary-text-color-inverted);
+  border: 2px solid var(--primary-accent-color);
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 1rem;
-  line-height: 1.5;
+  align-items: center;
+  gap: 0.5rem;
+  transition: var(--transition-three-ms);
+  padding: 0.7rem 1rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.bookmark-btn:active {
+  transform: scale(0.95);
+}
+
+.bookmark-btn.active {
+  background-color: var(--primary-accent-color);
+  color: white;
+}
+
+.container-bookmark {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+
+  animation: bounce 1s linear infinite;
+}
+
+.icon-bm {
+  font-size: 1.2rem;
+}
+.bookmark-text {
+  font-size: 0.9rem;
+  text-transform: uppercase;
 }

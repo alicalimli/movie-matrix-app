@@ -1,12 +1,12 @@
 /* Sidebar navigation */
 
 .movie-sidebar-nav {
-  background-color: var(--background-dark-secondary);
+  background-color: var(--sidebar-bg-color);
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   width: 5rem;
-  transition: all 0.4s ease;
+  transition: var(--transition-four-ms);
   text-align: center;
   padding: 1rem 0.5rem;
   padding-right: 1.5rem;
@@ -28,7 +28,7 @@
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
-  transition: all 0.3s ease;
+  transition: var(--transition-three-ms);
   gap: 1rem;
 }
 
@@ -49,16 +49,16 @@
 .nav-form-btn {
   align-items: center;
   border-radius: 8px;
-  color: var(--background-light);
+  color: var(--primary-text-color-inverted);
   cursor: pointer;
   display: flex;
   gap: 1rem;
   padding: 0.3rem 0.8rem;
-  transition: all 0.3s ease;
+  transition: var(--transition-three-ms);
 }
 
 .nav-btn:hover {
-  background-color: var(--background-dark-third);
+  background-color: var(--tertiary-bg-color);
 }
 
 .movie-sidebar-nav.active .nav-btn {
@@ -66,7 +66,7 @@
 }
 
 .nav-btn .nav-title {
-  transition: all 0.3s ease;
+  transition: var(--transition-three-ms);
   transform: translateX(-10%);
   position: relative;
   left: 0.5rem;
@@ -102,7 +102,7 @@
 /* Secondary Title */
 
 .movie-sidebar-nav .secondary-title {
-  color: var(--background-light);
+  color: var(--primary-text-color-inverted);
   transform: translate(15%, -50%);
   text-align: left;
   font-weight: 600;
@@ -113,7 +113,7 @@
   width: 10rem;
   pointer-events: none;
   visibility: hidden;
-  transition: all 0.3s ease;
+  transition: var(--transition-three-ms);
   z-index: 10;
 }
 
@@ -145,18 +145,18 @@
   cursor: auto;
 }
 .sidebar-form:hover {
-  background-color: var(--background-dark-third);
+  background-color: var(--tertiary-bg-color);
   border-radius: 8px;
 }
 
 .sidebar-search-input {
-  background-color: var(--background-dark-third);
+  background-color: var(--tertiary-bg-color);
   border-radius: 8px;
   height: 100%;
   width: 100%;
   font-size: 1rem;
   font-weight: 500;
-  transition: all 0.3s ease;
+  transition: var(--transition-three-ms);
   padding: 0.5rem;
   padding-left: 2.5rem;
   position: absolute;
@@ -170,14 +170,14 @@
 .movie-sidebar-nav.active .sidebar-search-input {
   opacity: 1;
   pointer-events: auto;
-  color: var(--background-light);
+  color: var(--primary-text-color-inverted);
   visibility: visible;
 }
 
 .sidebar-search-btn {
-  color: var(--background-light);
+  color: var(--primary-text-color-inverted);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: var(--transition-three-ms);
   position: absolute;
   top: 0;
   left: 0.2rem;
@@ -216,10 +216,10 @@
 
 .logo-container {
   align-items: center;
-  color: var(--background-light);
+  color: var(--primary-text-color-inverted);
   display: flex;
   gap: 0.5rem;
-  transition: all 0.3s ease;
+  transition: var(--transition-three-ms);
   position: relative;
   top: 0.5rem;
   left: 0.5rem;
@@ -232,7 +232,7 @@
 .logo-name {
   pointer-events: none;
   visibility: hidden;
-  transition: all 0.3s ease;
+  transition: var(--transition-three-ms);
   transform: translateX(-10%);
   opacity: 0;
 }
@@ -251,10 +251,10 @@
 /* Overlaymain */
 
 .overlay-main {
-  background-color: var(--background-dark);
+  background-color: var(--primary-bg-color);
   width: 100%;
   height: 100%;
-  transition: all 0.3s ease;
+  transition: var(--transition-three-ms);
   position: absolute;
   top: 0;
   left: 0;
@@ -276,7 +276,7 @@
   visibility: visible;
 }
 
-/*  Mode Toggler */
+/*  DarkMode Toggler */
 
 .dark-list {
   margin-top: auto;
@@ -295,7 +295,7 @@
   position: relative;
   height: 2.5rem;
   width: 1.5rem;
-  transition: all 0.3s ease;
+  transition: var(--transition-three-ms);
   z-index: 10;
 }
 
@@ -303,13 +303,13 @@
   transform: rotate(-90deg);
 }
 .dark-mode-text {
-  color: var(--background-light);
+  color: var(--primary-text-color-inverted);
   text-transform: uppercase;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
   position: absolute;
-  transition: all 0.3s ease;
+  transition: var(--transition-three-ms);
   top: 50%;
   transform: translateY(-50%);
 }
@@ -339,7 +339,7 @@
   left: 50%;
   transform: translate(-50%, 10%);
   background-color: white;
-  transition: all 0.3s ease;
+  transition: var(--transition-three-ms);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -355,7 +355,7 @@
   background-color: #555;
   width: 10px;
   height: 10px;
-  transition: all 0.3s ease;
+  transition: var(--transition-three-ms);
 }
 
 .dark-list.active .toggle-circle::after {

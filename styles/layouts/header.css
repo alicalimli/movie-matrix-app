@@ -1,9 +1,9 @@
 .section-header {
   align-items: center;
-  color: var(--background-light);
+  color: var(--primary-text-color-inverted);
   padding: 1rem;
   padding-bottom: 0;
-  transition: all 0.3s ease;
+  transition: var(--transition-three-ms);
   display: flex;
 }
 
