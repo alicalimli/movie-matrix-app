@@ -21,13 +21,6 @@
   /* Accent Colors */
   --primary-accent-color: #099268;
   --secondary-accent-color: #087f5b;
-
-  --background-dark: white;
-  --background-dark-secondary: #f1f3f5;
-  --background-dark-third: #dee2e6;
-  --background-light: #111;
-  /* --primary-accent-color: #20c997; */
-  /* --secondary-accent-color: #087f5b; */
 }
 
 .darkmode {
@@ -50,11 +43,4 @@
   /* Accent Colors */
   --primary-accent-color: #20c997;
   --secondary-accent-color: #087f5b;
-
-  --background-dark: black;
-  --background-dark-secondary: #111;
-  --background-dark-third: #222;
-  --background-light: white;
-  /* --primary-accent-color: #0ca678;
-  --secondary-accent-color: #0ca678; */
 }
