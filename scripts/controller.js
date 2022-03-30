@@ -200,7 +200,7 @@ const controlMovieSection = async function () {
     movieCardClone.style.height = `${height}px`;
 
     // Some styling in movieCardClone
-    movieCardClone.style.backgroundColor = "var(--background-dark)";
+    movieCardClone.style.backgroundColor = "var(--primary-bg-color)";
     movieCardClone.style.borderRadius = "18px";
     movieCardClone.style.zIndex = "99";
     movieCardClone.innerHTML = "";
