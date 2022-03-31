@@ -151,8 +151,6 @@ const controlMovieSection = async function () {
     const cardOverlay = movieCard.querySelector(".overlay-card");
     const movieCardClone = movieCard.cloneNode(true);
 
-    console.log("asdasdasdass");
-
     cardClone = movieCardClone;
     window.location.hash = btnId;
 
@@ -188,7 +186,7 @@ const controlMovieSection = async function () {
     // Animates the movieCardClone and delay's abit because without delay animation wont work
     setTimeout(() => {
       requestAnimationFrame(() => {
-        movieCardClone.style.transition = `all 0.25s ease-in-out`;
+        movieCardClone.style.transition = `all 0.3s ease-in-out`;
         movieCardClone.style.borderRadius = "24px";
         movieCardClone.style.top = "50%";
         movieCardClone.style.left = "50%";
@@ -231,6 +229,7 @@ const controlMovieSection = async function () {
     setTimeout(() => {
       if (cardClone) {
         cardClone.remove();
+        document.querySelector(".video-section").remove();
       }
       expandSecIsActive = !expandSecIsActive;
     }, 600);
