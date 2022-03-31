@@ -179,8 +179,6 @@ const controlPagination = async function (event) {
   }
 };
 
-console.log("sdadadada  ");
-
 const controlMovieSection = async function () {
   document.querySelector(".movie-main").addEventListener("click", function (e) {
     const sidebar = document.querySelector(".movie-sidebar-nav");
@@ -252,7 +250,6 @@ const controlExpansionSection = async function () {
   if (window.location.pathname === "/expand-page.html") {
     const movieCard = document.querySelector(".movie-card");
     const videoId = window.location.hash.slice(1);
-    expansionView.addEventHandler();
     expansionView.renderLoading();
     await model.createExpandPage(videoId);
 
@@ -261,6 +258,7 @@ const controlExpansionSection = async function () {
       model.data.expansion.videoData,
       model.data.expansion.videoDetails
     );
+    expansionView.addEventHandler();
     console.log(model.data.expansion.videoDetails);
   }
 };
@@ -282,6 +280,7 @@ const init = function () {
 init();
 
 window.addEventListener("load", function () {
+  console.log("da");
   // Takes the darkmode data in the local storage
   const darkMode = JSON.parse(localStorage.getItem("darkmode"));
   // Makes a fade transition when user enters the page
@@ -292,30 +291,3 @@ window.addEventListener("load", function () {
   darkModeBtn?.classList.toggle("active");
   document.body.classList.toggle("darkmode");
 });
-
-setTimeout(() => {
-  const poster = document.querySelector(".poster-container");
-  const vidTrailer = document.querySelector(".trailer-video");
-
-  const watchBtn = document.querySelector(".watch-poster-btn");
-  const bmBtn = document.querySelector(".bookmark-btn");
-  const bmTxt = document.querySelector(".bookmark-text");
-
-  watchBtn.addEventListener("click", function () {
-    poster.style.display = "none";
-    vidTrailer.style.display = "block";
-  });
-
-  let act = false;
-  bmBtn.addEventListener("click", function () {
-    if (!act) {
-      act = !act;
-      bmTxt.textContent = "bookmarked";
-      bmBtn.classList.toggle("active");
-    } else {
-      act = !act;
-      bmTxt.textContent = "bookmark";
-      bmBtn.classList.toggle("active");
-    }
-  });
-}, 3000);

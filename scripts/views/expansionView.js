@@ -7,8 +7,10 @@ class paginationView {
   btnType = "";
   pageNum = 1;
 
-  addEventHandler() {
+  constructor() {
+    if (window.location.pathname === "/index.html") return;
     const backBtn = document.querySelector(".back-btn");
+
     backBtn.addEventListener("click", function (e) {
       const btn = e.target.closest(".back-btn");
       if (!btn) return;
@@ -19,6 +21,40 @@ class paginationView {
       setTimeout(() => {
         window.location.href = `/index.html`;
       }, 400);
+    });
+  }
+
+  addEventHandler() {
+    const poster = document.querySelector(".poster-container");
+    const vidTrailer = document.querySelector(".trailer-video");
+
+    const bmBtn = document.querySelector(".bookmark-btn");
+    const bmTxt = document.querySelector(".bookmark-text");
+
+    let act = false;
+    const trailerContainer = document.querySelector(".trailer-container");
+    const closeVideoBtn = document.querySelector(".close-video");
+
+    const watchBtn = document.querySelector(".watch-poster-btn");
+    watchBtn.addEventListener("click", function () {
+      trailerContainer.classList.toggle("active");
+      closeVideoBtn.classList.add("active");
+    });
+    closeVideoBtn.addEventListener("click", function () {
+      trailerContainer.classList.remove("active");
+      closeVideoBtn.classList.remove("active");
+    });
+
+    bmBtn.addEventListener("click", function () {
+      if (!act) {
+        act = !act;
+        bmTxt.textContent = "bookmarked";
+        bmBtn.classList.toggle("active");
+      } else {
+        act = !act;
+        bmTxt.textContent = "bookmark";
+        bmBtn.classList.toggle("active");
+      }
     });
   }
   renderHTML(movieData) {
@@ -60,6 +96,7 @@ class paginationView {
     const expandHTML = `
     <div class="video-section">
             <div class="expand-sec video-trailer-container">
+            <button class="close-video">X</button>
               <div class="trailer-container">
                 <div class="poster-container">
                   <img
@@ -112,10 +149,12 @@ class paginationView {
             </div>
             <div class="other-details">
               <p class="other-detail date-detail"><span>Release Date:</span> ${
-                this._expandVideoDetails.release_date
+                this._expandVideoDetails.release_date ??
+                this._expandVideoDetails.first_air_date
               }</p>
               <p class="other-detail duration-detail"><span>Duration:</span> ${
-                this._expandVideoDetails.runtime
+                this._expandVideoDetails.runtime ??
+                this._expandVideoDetails.episode_run_time
               }min</p>
               <p class="other-detail status-detail"><span>Status:</span> ${
                 this._expandVideoDetails.status

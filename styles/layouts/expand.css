@@ -1,6 +1,7 @@
 .expand-sec {
   margin-left: 5rem;
   padding: 0.3rem;
+  position: relative;
 }
 
 .expansion-section {
@@ -34,6 +35,14 @@
   padding-bottom: 52%;
   position: relative;
   height: 0;
+  transition: var(--transition-four-ms);
+}
+
+.trailer-container.active .poster-container {
+  transform: scale(0.6);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .video-poster-path {
@@ -56,21 +65,54 @@
 
 /* Video Trailer Youtube Embed */
 
+.close-video {
+  color: white;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 50px;
+  background-color: var(--primary-accent-color);
+  transition: var(--transition-three-ms);
+  position: absolute;
+  right: -2%;
+  top: -2%;
+  z-index: 44;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.close-video:hover {
+  background-color: var(--secondary-accent-color);
+}
+
+.close-video.active {
+  pointer-events: auto;
+  opacity: 1;
+  visibility: visible;
+}
+
 .trailer-container {
   padding-bottom: 52%;
   border-radius: 5px;
+  overflow: hidden;
   position: relative;
   height: 0;
 }
 
 .trailer-video {
-  display: none;
   border-radius: 5px;
   width: 100%;
   height: 100%;
   position: absolute;
   top: 0;
   left: 0;
+  transition: var(--transition-four-ms);
+  transform: translateY(100%);
+}
+
+.trailer-container.active .trailer-video {
+  transform: translateY(0);
 }
 
 /* Big Poster Layput */
