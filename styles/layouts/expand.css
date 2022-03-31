@@ -232,7 +232,7 @@
   border: 2px solid var(--primary-accent-color);
   width: 7rem;
   height: 7rem;
-  border-radius: 100px;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -337,10 +337,10 @@
   text-align: center;
 }
 .picture-cicle {
-  border-radius: 100px;
+  border-radius: 5px;
   border: 3px solid var(--primary-accent-color);
-  width: 8rem;
-  height: 8rem;
+  width: 10rem;
+  height: 13rem;
   overflow: hidden;
 }
 .cast-picture {

@@ -65,6 +65,7 @@ class paginationView {
     const loadingHTML = `
     <div class="placeholder"></div>
     <div class="loading-spinner"></div>
+    <div class="loading-spinner2"></div>
      `;
     this._clearHTML();
     this._parentEl.insertAdjacentHTML("beforeend", loadingHTML);
