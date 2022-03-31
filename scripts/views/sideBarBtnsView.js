@@ -10,7 +10,6 @@ class SideBarBtnView extends mainView {
 
   constructor() {
     super();
-    if (window.location.pathname !== "/index.html") return;
     this._parentEl = document.querySelector(".sidebar-lists-btn");
     this._navBtns = document.querySelectorAll(".nav-btn");
     this._icons = this._parentEl.querySelectorAll(".bx");
@@ -50,9 +49,10 @@ class SideBarBtnView extends mainView {
       if (btnType === "search-res") {
         elParent.classList.remove("active");
         elParent.querySelector(".bx").classList.remove("active");
+        return;
       }
       // Stops the function when pageType isnt btnType
-      if (elParent.dataset.page !== btnType || !elParent) return;
+      if (elParent.dataset.page !== "home" || !elParent) return;
       // sets active class to buttons
       elParent.classList.toggle("active");
       elParent.querySelector(".bx").classList.toggle("active");

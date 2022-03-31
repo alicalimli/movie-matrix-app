@@ -32,6 +32,7 @@ export const data = {
   expansion: {
     videoData: "",
     videoDetails: {},
+    videoCasts: [],
   },
 };
 
@@ -187,11 +188,8 @@ export const createExpandPage = async function (videoId) {
   try {
     const videoData = await getMovieTvData(videoId, "/videos");
     const videoDetails = await getMovieTvData(videoId);
-
-    // console.log(videoData);
-    // console.log(videoDetails);
-
-    data.expansion.videoDetails = videoDetails;
+    const videoCasts = await getMovieTvData(videoId, "/credits");
+    data.expansion.videoDetails = await videoDetails;
     data.expansion.videoData = await videoData
       .filter((val) => val.type === "Trailer")
       .map((data) => {
@@ -199,6 +197,7 @@ export const createExpandPage = async function (videoId) {
           key: data.key,
         };
       });
+    data.expansion.videoCasts = await videoCasts.cast;
   } catch (error) {
     console.log(error);
   }

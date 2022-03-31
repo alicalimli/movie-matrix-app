@@ -4,37 +4,34 @@ class paginationView {
   _parentEl = document.querySelector(".video-overview-container");
   _expandVideoDetails;
   _expandVideoData;
+  _expandVideoCasts;
   btnType = "";
   pageNum = 1;
 
   constructor() {
-    if (window.location.pathname === "/index.html") return;
-    const backBtn = document.querySelector(".back-btn");
-
-    backBtn.addEventListener("click", function (e) {
-      const btn = e.target.closest(".back-btn");
-      if (!btn) return;
-      // Shrinks the body and fade's When back button is clicked
-      document.body.style.transform = "scale(0)";
-      document.body.style.opacity = "0";
-      // Take's the user to index.html after 400ms
-      setTimeout(() => {
-        window.location.href = `/index.html`;
-      }, 400);
-    });
+    // if (window.location.pathname !== "/expand-page.html") return;
+    // const backBtn = document.querySelector(".back-btn");
+    // backBtn.addEventListener("click", function (e) {
+    //   const btn = e.target.closest(".back-btn");
+    //   if (!btn) return;
+    //   // Shrinks the body and fade's When back button is clicked
+    //   document.body.style.transform = "scale(0)";
+    //   document.body.style.opacity = "0";
+    //   // Take's the user to index.html after 400ms
+    //   setTimeout(() => {
+    //     window.location.href = `/index.html`;
+    //   }, 400);
+    // });
   }
 
   addEventHandler() {
     const poster = document.querySelector(".poster-container");
     const vidTrailer = document.querySelector(".trailer-video");
-
     const bmBtn = document.querySelector(".bookmark-btn");
     const bmTxt = document.querySelector(".bookmark-text");
-
     let act = false;
     const trailerContainer = document.querySelector(".trailer-container");
     const closeVideoBtn = document.querySelector(".close-video");
-
     const watchBtn = document.querySelector(".watch-poster-btn");
     watchBtn.addEventListener("click", function () {
       trailerContainer.classList.toggle("active");
@@ -44,7 +41,6 @@ class paginationView {
       trailerContainer.classList.remove("active");
       closeVideoBtn.classList.remove("active");
     });
-
     bmBtn.addEventListener("click", function () {
       if (!act) {
         act = !act;
@@ -78,9 +74,10 @@ class paginationView {
     this._parentEl.innerHTML = "";
   }
 
-  renderHTML(videoData, videoDetails) {
+  renderHTML(videoData, videoDetails, videoCasts) {
     this._expandVideoData = videoData;
     this._expandVideoDetails = videoDetails;
+    this._expandVideoCasts = videoCasts;
     this._clearHTML();
     this._generateHTML();
   }
@@ -173,8 +170,32 @@ class paginationView {
               <p class="trailer-desc">
               ${this._expandVideoDetails.overview}
               </p>
-          </div>`;
+          </div>
+          <section class="casts-section">
+            <h2 class="cast-sec-title">Casts</h2>
+            <div class="casts-container">
+            ${this._createCastCircle(this._expandVideoCasts)}
+            </div>
+          </section>
+          `;
     this._parentEl.insertAdjacentHTML("beforeend", expandHTML);
+  }
+
+  _createCastCircle(castData) {
+    let castsMarkUp = ``;
+    castData.forEach((cast, i) => {
+      // Returns after hitting index 10 in the array
+      if (i > 20) return;
+      return (castsMarkUp += `
+        <div class="cast-container">
+          <div class="picture-cicle">
+            <img class="cast-picture" src="${IMG_PATH}${cast.profile_path}" alt="">
+          </div>
+          <span class="cast-name">${cast.name}</span>
+        </div>
+        `);
+    });
+    return castsMarkUp;
   }
 }
 

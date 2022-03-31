@@ -1,25 +1,30 @@
 .expand-sec {
-  margin-left: 5rem;
-  padding: 0.3rem;
   position: relative;
 }
 
 .expansion-section {
+  height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding: 1rem;
-  background-color: var(--expand-sec-bg-color);
-  width: 100%;
-  min-height: 100vh;
-  opacity: 1;
-  pointer-events: auto;
-  visibility: visible;
-  transition: var(--transition-four-ms);
-  transform: scale(1);
-  z-index: 5;
+  background-color: var(--tertiary-bg-color);
+  top: 0;
+  left: 0;
+  overflow-y: scroll;
+  position: absolute;
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: var(--transition-three-ms);
 }
 
+.expansion-section.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
 .video-overview-container {
   display: flex;
   flex-direction: column;
@@ -183,15 +188,13 @@
   width: 85%;
 }
 .trailer-desc-container {
-  width: 85%;
-  height: 100%;
+  width: 95%;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 .trailer-desc {
   color: var(--primary-text-color-inverted);
-
   font-size: 1rem;
   line-height: 1.5;
 }
@@ -204,7 +207,6 @@
   text-decoration: none;
   width: 6rem;
   padding: 0.25rem 0.5rem;
-  margin-left: 5%;
   border-radius: 50px;
   border: 1px solid var(--primary-accent-color);
   color: var(--primary-accent-color);
@@ -292,7 +294,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
 
   animation: bounce 1s linear infinite;
 }
@@ -303,4 +305,50 @@
 .bookmark-text {
   font-size: 0.9rem;
   text-transform: uppercase;
+}
+
+/* Casts Section */
+
+.casts-section {
+  margin: 1rem 0 1rem 0;
+  width: 100%;
+  padding: 0.5rem;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.cast-sec-title {
+  color: var(--primary-text-color-inverted);
+  font-weight: 500;
+  font-size: 2rem;
+}
+
+.casts-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.cast-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: center;
+}
+.picture-cicle {
+  border-radius: 100px;
+  border: 3px solid var(--primary-accent-color);
+  width: 8rem;
+  height: 8rem;
+  overflow: hidden;
+}
+.cast-picture {
+  border-radius: 5px;
+  width: 100%;
+}
+
+.cast-name {
+  color: var(--primary-text-color-inverted);
+  font-size: 1rem;
 }

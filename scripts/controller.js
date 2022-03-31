@@ -12,7 +12,7 @@ import searchResultsView from "./views/searchResultsView.js";
 import paginationView from "./views/paginationView.js";
 import expansionView from "./views/expansionView.js";
 
-let pageTypeCopy = "";
+let expandSecIsActive = false;
 
 // prettier-ignore
 const controlMovieCards = async function (viewType, viewName, pageType = "home",pageNum = 1) {
@@ -41,17 +41,11 @@ const controlMovieCards = async function (viewType, viewName, pageType = "home",
        behavior: "smooth"
      });
 
-    //  Sets pageTypeCopy value
-    pageTypeCopy = pageType;
-
     // Delete's data's from local Storage after its used
     localStorage.removeItem("pageViewNum");
     localStorage.removeItem("pageViewType");
     localStorage.removeItem("pageSearchResTitle")
     localStorage.removeItem('movieScrollY')
-     
-    console.log(paginationView.pageNum)
-    setTimeout(()=> console.log(paginationView.pageNum),3000)
 
   } catch (error) {
     console.log(error);
@@ -61,46 +55,10 @@ const controlMovieCards = async function (viewType, viewName, pageType = "home",
 // prettier-ignore
 const controlDiscoverMovies = async function () {
   try {
-    const pageViewNum = JSON.parse(localStorage.getItem('pageViewNum')) || 1;
-    const pageViewType =
-      JSON.parse(localStorage.getItem("pageViewType")) || "home";
-
     // Movie Card's Controller
-    if (pageViewType === "home") {
-      controlMovieCards(discoverMoviesView, "discoverMovies", "home",pageViewNum);
-    }
-    if (pageViewType === "movies-pop") {
-      controlMovieCards(popularMoviesView, "popularMovies", "movies-pop",pageViewNum);
-    }
-    if (pageViewType === "trending") {
-      controlMovieCards(trendingView, "trendingMovies", "trending",pageViewNum);
-    }
-    if (pageViewType === "tvs-pop") {
-      controlMovieCards(popularTVsView, "popularTVS", "tvs-pop",pageViewNum);
-    }
-    if(pageViewType === "search-res"){
-      const pageSearchResTitle = JSON.parse(localStorage.getItem('pageSearchResTitle'))
-      console.log(pageSearchResTitle)
-      searchResultsView._title = pageSearchResTitle;
-      // Render's Loading Spinner
-      searchResultsView.renderLoading();
-      // Creates Result's Data
-      await model.createSearchResults(pageSearchResTitle);
-      console.log(model.data.searchResults)
-      // Renders HTML Card's
-      searchResultsView.renderHTML(model.data.searchResults);
-
-      // Takes movieScrollY Data in the local storage and scroll to it when movie's is loaded
-      const scrollY = JSON.parse(localStorage.getItem("movieScrollY")) || 0;
-
-       window.scrollTo({
-         top: scrollY,
-         behavior: "smooth"
-       });
-    }
-  
+    controlMovieCards(discoverMoviesView, "discoverMovies", "home");
     // Update's Sidebar Buttons
-    sideBarBtnsView.updateBtn(pageViewType);
+    sideBarBtnsView.updateBtn();
   } catch (error) {
     console.log(error);
   }
@@ -135,8 +93,7 @@ const controlNavBtns = async function (event) {
 
 const controlSearchResults = async function () {
   try {
-    pageTypeCopy = "search-res";
-    sideBarBtnsView.updateBtn(pageTypeCopy);
+    sideBarBtnsView.updateBtn("search-res");
     // Takes Search Input Value
     const searchVal = searchResultsView.getInputValue();
     // Render's Loading Spinner
@@ -180,16 +137,31 @@ const controlPagination = async function (event) {
 };
 
 const controlMovieSection = async function () {
+  let topCopy, leftCopy, widthCopy, heightCopy;
+  let cardClone;
   document.querySelector(".movie-main").addEventListener("click", function (e) {
+    // This function wont work if expand section is already active
+    if (expandSecIsActive) return;
+    expandSecIsActive = !expandSecIsActive;
     const sidebar = document.querySelector(".movie-sidebar-nav");
     const btn = e.target.closest(".expand-btn");
     if (!btn) return;
+    const btnId = btn.dataset.cardId;
     const movieCard = e.target.closest(".movie-card");
     const cardOverlay = movieCard.querySelector(".overlay-card");
     const movieCardClone = movieCard.cloneNode(true);
 
+    console.log("asdasdasdass");
+
+    cardClone = movieCardClone;
+    window.location.hash = btnId;
+
     // Takes the position of movieCard
     const { top, left, width, height } = movieCard.getBoundingClientRect();
+    topCopy = top;
+    leftCopy = left;
+    widthCopy = width;
+    heightCopy = height;
     // Sets the position of movieCardClone in the movieCards position
     movieCardClone.style.position = "fixed";
     movieCardClone.style.top = `${top}px`;
@@ -198,17 +170,15 @@ const controlMovieSection = async function () {
     movieCardClone.style.height = `${height}px`;
 
     // Some styling in movieCardClone
-    movieCardClone.style.backgroundColor = "var(--primary-bg-color)";
+    movieCardClone.style.backgroundColor = "var(--tertiary-bg-color)";
     movieCardClone.style.borderRadius = "18px";
     movieCardClone.style.zIndex = "99";
     movieCardClone.innerHTML = "";
 
     // Shrink's every sections in the html
-    document.querySelector(".movie-main").style.transform = "scale(0.95)";
-    document.querySelector(".movie-sidebar-nav").style.transform =
-      "scale(0.95)";
-    document.querySelector(".section-header").style.transform = "scale(0.95)";
-    document.querySelector(".movie-pagination").style.transform = "scale(0.95)";
+    document.querySelector(".movie-main").style.transform = "scale(0.9)";
+    document.querySelector(".section-header").style.transform = "scale(0.9)";
+    document.querySelector(".movie-pagination").style.transform = "scale(0.9)";
     document.querySelector(".overlay-main").classList.add("active");
     // hide the original card with opacity
     // add card to the same container
@@ -218,7 +188,7 @@ const controlMovieSection = async function () {
     // Animates the movieCardClone and delay's abit because without delay animation wont work
     setTimeout(() => {
       requestAnimationFrame(() => {
-        movieCardClone.style.transition = `all 0.2s ease-in-out`;
+        movieCardClone.style.transition = `all 0.25s ease-in-out`;
         movieCardClone.style.borderRadius = "24px";
         movieCardClone.style.top = "50%";
         movieCardClone.style.left = "50%";
@@ -228,47 +198,64 @@ const controlMovieSection = async function () {
       });
     }, 5);
 
-    // Sets Data's to the local storage
-    localStorage.setItem("pageViewType", JSON.stringify(pageTypeCopy));
-    localStorage.setItem("movieScrollY", JSON.stringify(window.scrollY));
-    localStorage.setItem("pageViewNum", JSON.stringify(paginationView.pageNum));
-
-    // prettier-ignore
-    if(pageTypeCopy === "search-res"){
-      localStorage.setItem('pageSearchResTitle', JSON.stringify(document.querySelector('.header-title').textContent))
-    }
-
     // Take's the user to expand-page after 400ms
     setTimeout(() => {
-      window.location.href = `/expand-page.html#${btn.dataset.cardId}`;
+      controlExpansionSection();
+      document.querySelector(".expansion-section").classList.add("active");
     }, 400);
+  });
+
+  // Click Listener for the back-button in the expand page
+  document.querySelector(".back-btn").addEventListener("click", function (e) {
+    window.location.hash = "";
+    document.querySelector(".expansion-section").classList.remove("active");
+
+    if (cardClone) {
+      cardClone.style.transition = `all 0.5s ease`;
+      cardClone.style.top = `${topCopy}px`;
+      cardClone.style.left = `${leftCopy}px`;
+      cardClone.style.width = `${widthCopy}px`;
+      cardClone.style.height = `${heightCopy}px`;
+      cardClone.style.borderRadius = "5px";
+      cardClone.style.transform = "unset";
+    }
+    setTimeout(() => {
+      if (cardClone) {
+        cardClone.style.opacity = "0";
+      }
+      document.querySelector(".movie-main").style.transform = "scale(1)";
+      document.querySelector(".section-header").style.transform = "scale(1)";
+      document.querySelector(".movie-pagination").style.transform = "scale(1)";
+      document.querySelector(".overlay-main").classList.remove("active");
+    }, 300);
+    setTimeout(() => {
+      if (cardClone) {
+        cardClone.remove();
+      }
+      expandSecIsActive = !expandSecIsActive;
+    }, 600);
   });
 };
 
 const controlExpansionSection = async function () {
-  // Only runs the function when page is expand-page.html
-  if (window.location.pathname === "/expand-page.html") {
-    const movieCard = document.querySelector(".movie-card");
-    const videoId = window.location.hash.slice(1);
-    expansionView.renderLoading();
-    await model.createExpandPage(videoId);
+  const movieCard = document.querySelector(".movie-card");
+  const videoId = window.location.hash.slice(1);
+  expansionView.renderLoading();
+  await model.createExpandPage(videoId);
 
-    if (!model.data.expansion.videoData) return;
-    await expansionView.renderHTML(
-      model.data.expansion.videoData,
-      model.data.expansion.videoDetails
-    );
-    expansionView.addEventHandler();
-    console.log(model.data.expansion.videoDetails);
-  }
+  if (!model.data.expansion.videoData) return;
+  await expansionView.renderHTML(
+    model.data.expansion.videoData,
+    model.data.expansion.videoDetails,
+    model.data.expansion.videoCasts
+  );
+  expansionView.addEventHandler();
+  console.log(model.data.expansion.videoDetails);
 };
 
 const init = function () {
-  controlExpansionSection();
-  // Stops the function when the pathname is not the index.html
-  if (window.location.pathname !== "/index.html") return;
   // Loads Discover Movie Card's when page is loaded
-  controlDiscoverMovies();
+  // controlDiscoverMovies();
   controlMovieSection();
 
   // Attach Event Handlers
@@ -280,11 +267,17 @@ const init = function () {
 init();
 
 window.addEventListener("load", function () {
-  console.log("da");
+  if (this.window.location.hash) {
+    expandSecIsActive = !expandSecIsActive;
+    document.querySelector(".movie-main").style.transform = "scale(0.9)";
+    document.querySelector(".section-header").style.transform = "scale(0.9)";
+    document.querySelector(".movie-pagination").style.transform = "scale(0.9)";
+    document.querySelector(".overlay-main").classList.add("active");
+    document.querySelector(".expansion-section").classList.add("active");
+    controlExpansionSection();
+  }
   // Takes the darkmode data in the local storage
   const darkMode = JSON.parse(localStorage.getItem("darkmode"));
-  // Makes a fade transition when user enters the page
-  setTimeout(() => document.body.classList.add("active"), 400);
   if (!darkMode) return;
   // Toggles the darkMode button if DarkMode in localStorage is true and when page is in index.html
   const darkModeBtn = document?.querySelector(".dark-list");

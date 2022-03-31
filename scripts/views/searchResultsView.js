@@ -7,7 +7,6 @@ class searchResultsView extends mainView {
 
   constructor() {
     super();
-    if (window.location.pathname !== "/index.html") return;
     this._inputForm = document.querySelector(".sidebar-form");
     this._inputSearch = this._inputForm.querySelector(".sidebar-search-input");
   }
