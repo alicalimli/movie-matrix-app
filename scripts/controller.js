@@ -94,6 +94,7 @@ const controlNavBtns = async function (event) {
 const controlSearchResults = async function () {
   try {
     sideBarBtnsView.updateBtn("search-res");
+    sideBarBtnsView.buttonPage = "search";
     // Takes Search Input Value
     const searchVal = searchResultsView.getInputValue();
     // Render's Loading Spinner
