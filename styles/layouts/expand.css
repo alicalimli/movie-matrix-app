@@ -346,6 +346,11 @@
 .cast-picture {
   border-radius: 5px;
   width: 100%;
+  transition: var(--transition-four-ms);
+}
+
+.cast-picture:hover {
+  transform: scale(1.1);
 }
 
 .cast-name {

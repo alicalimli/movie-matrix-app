@@ -255,7 +255,7 @@ const controlExpansionSection = async function () {
 
 const init = function () {
   // Loads Discover Movie Card's when page is loaded
-  // controlDiscoverMovies();
+  controlDiscoverMovies();
   controlMovieSection();
 
   // Attach Event Handlers
