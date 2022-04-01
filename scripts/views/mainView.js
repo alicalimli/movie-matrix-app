@@ -72,7 +72,8 @@ export default class mainView {
             alt="${movie.title}"/>
             ` : `
             <div class="card img-card">
-            <span class="card-text text-unavailable">Image <br/>unavailable</span>
+              <i class="ph-icon ph-warning"></i>
+              <span class="img-unavailable-text">Image <br> Unavailable</span>
             </div>
             `
           }

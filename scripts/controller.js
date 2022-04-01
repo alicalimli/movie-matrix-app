@@ -143,7 +143,7 @@ const controlMovieSection = async function () {
   document.querySelector(".movie-main").addEventListener("click", function (e) {
     // This function wont work if expand section is already active
     if (expandSecIsActive) return;
-    expandSecIsActive = !expandSecIsActive;
+    expandSecIsActive = true;
     const sidebar = document.querySelector(".movie-sidebar-nav");
     const btn = e.target.closest(".expand-btn");
     if (!btn) return;
@@ -175,9 +175,9 @@ const controlMovieSection = async function () {
     movieCardClone.style.pointerEvents = "none";
 
     // Shrink's every sections in the html
-    document.querySelector(".movie-main").style.transform = "scale(0.9)";
-    document.querySelector(".section-header").style.transform = "scale(0.9)";
-    document.querySelector(".movie-pagination").style.transform = "scale(0.9)";
+    document.querySelector(".movie-main").classList.add("active");
+    document.querySelector(".section-header").classList.add("active");
+    document.querySelector(".movie-pagination").classList.add("active");
     document.querySelector(".overlay-main").classList.add("active");
     // hide the original card with opacity
     // add card to the same container
@@ -208,6 +208,7 @@ const controlMovieSection = async function () {
     window.location.hash = "";
     document.querySelector(".expansion-section").classList.remove("active");
 
+    console.log(expandSecIsActive);
     if (cardClone) {
       cardClone.style.transition = `all 0.5s ease`;
       cardClone.style.top = `${topCopy}px`;
@@ -221,17 +222,18 @@ const controlMovieSection = async function () {
       if (cardClone) {
         cardClone.style.opacity = "0";
       }
-      document.querySelector(".movie-main").style.transform = "scale(1)";
-      document.querySelector(".section-header").style.transform = "scale(1)";
-      document.querySelector(".movie-pagination").style.transform = "scale(1)";
+      document.querySelector(".movie-main").classList.remove("active");
+      document.querySelector(".section-header").classList.remove("active");
+      document.querySelector(".movie-pagination").classList.remove("active");
       document.querySelector(".overlay-main").classList.remove("active");
     }, 300);
     setTimeout(() => {
       if (cardClone) {
         cardClone.remove();
-        document.querySelector(".video-section").remove();
+        document.querySelector(".video-section")?.remove();
       }
-      expandSecIsActive = !expandSecIsActive;
+      expandSecIsActive = false;
+      console.log(expandSecIsActive);
     }, 600);
   });
 };

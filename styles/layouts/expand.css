@@ -229,7 +229,7 @@
   position: relative;
 }
 .rating-container {
-  border: 2px solid var(--primary-accent-color);
+  border: 3px solid var(--primary-accent-color);
   width: 7rem;
   height: 7rem;
   border-radius: 5px;
@@ -342,9 +342,12 @@
   width: 10rem;
   height: 13rem;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .cast-picture {
-  border-radius: 5px;
   width: 100%;
   transition: var(--transition-four-ms);
 }
@@ -356,4 +359,15 @@
 .cast-name {
   color: var(--primary-text-color-inverted);
   font-size: 1rem;
+}
+
+/* Image Unavailable Casts */
+
+.ph-icon {
+  font-size: 3rem;
+  color: var(--primary-accent-color);
+}
+
+.img-unavailable-text {
+  color: var(--primary-accent-color);
 }

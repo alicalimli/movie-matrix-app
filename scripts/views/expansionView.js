@@ -190,7 +190,16 @@ class paginationView {
       return (castsMarkUp += `
         <div class="cast-container">
           <div class="picture-cicle">
+          ${
+            cast.profile_path
+              ? `
             <img class="cast-picture" src="${IMG_PATH}${cast.profile_path}" alt="">
+            `
+              : `
+            <i class="ph-icon ph-warning"></i>
+            <span class="img-unavailable-text">Image <br> Unavailable</span>
+            `
+          }
           </div>
           <span class="cast-name">${cast.name}</span>
         </div>

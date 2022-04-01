@@ -125,6 +125,7 @@
   width: 13rem;
   height: 19.5rem;
   text-align: center;
+  flex-direction: column;
 }
 
 .card-text {

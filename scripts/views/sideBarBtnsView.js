@@ -39,7 +39,6 @@ class SideBarBtnView extends mainView {
       darkModeBtn.classList.toggle("active");
       document.body.classList.toggle("darkmode");
       localStorage.setItem("darkmode", JSON.stringify(darkMode))
-      console.log(darkMode)
     })
   }
 
