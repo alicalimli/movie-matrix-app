@@ -94,7 +94,7 @@ class paginationView {
     const expandHTML = `
     <div class="video-section">
             <div class="expand-sec video-trailer-container">
-            <button class="close-video">X</button>
+            <button class="close-video">Close &dArr;</button>
               <div class="trailer-container">
                 <div class="poster-container">
                   <img
