@@ -119,6 +119,7 @@ export const createSearchResults = async function (searchVal) {
 
     // Create's Movie Object
     data.searchResults = createMovieObj(finalRes);
+    data.pages.currentPageType = "search";
   } catch (error) {
     console.log(error);
   }
