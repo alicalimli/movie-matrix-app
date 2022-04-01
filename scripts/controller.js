@@ -278,9 +278,9 @@ init();
 window.addEventListener("load", function () {
   if (this.window.location.hash) {
     expandSecIsActive = true;
-    document.querySelector(".movie-main").style.transform = "scale(0.9)";
-    document.querySelector(".section-header").style.transform = "scale(0.9)";
-    document.querySelector(".movie-pagination").style.transform = "scale(0.9)";
+    document.querySelector(".movie-main").classList.add("active");
+    document.querySelector(".section-header").classList.add("active");
+    document.querySelector(".movie-pagination").classList.add("active");
     document.querySelector(".overlay-main").classList.add("active");
     document.querySelector(".expansion-section").classList.add("active");
     controlExpansionSection();
