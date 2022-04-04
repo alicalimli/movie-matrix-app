@@ -21,6 +21,7 @@ export const data = {
   trendingMovies: [],
   popularTVS: [],
   searchResults: [],
+  bookMarks: [],
   pages: {
     currentUrl: "",
     pageResults: [],

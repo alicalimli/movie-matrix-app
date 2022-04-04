@@ -24,23 +24,25 @@ class paginationView {
     // });
   }
 
-  addEventHandler() {
-    const poster = document.querySelector(".poster-container");
-    const vidTrailer = document.querySelector(".trailer-video");
-    const bmBtn = document.querySelector(".bookmark-btn");
-    const bmTxt = document.querySelector(".bookmark-text");
-    let act = false;
+  addEventHandler(handle) {
     const trailerContainer = document.querySelector(".trailer-container");
     const closeVideoBtn = document.querySelector(".close-video");
     const watchBtn = document.querySelector(".watch-poster-btn");
+
     watchBtn.addEventListener("click", function () {
       trailerContainer.classList.toggle("active");
       closeVideoBtn.classList.add("active");
     });
+
     closeVideoBtn.addEventListener("click", function () {
       trailerContainer.classList.remove("active");
       closeVideoBtn.classList.remove("active");
     });
+
+    const bmBtn = document.querySelector(".bookmark-btn");
+    const bmTxt = document.querySelector(".bookmark-text");
+    let act = false;
+
     bmBtn.addEventListener("click", function () {
       if (!act) {
         act = !act;
@@ -51,16 +53,9 @@ class paginationView {
         bmTxt.textContent = "bookmark";
         bmBtn.classList.toggle("active");
       }
+      handle(act);
     });
   }
-  renderHTML(movieData) {
-    this._movieData = movieData;
-    this._clearHTML();
-    this._generateHTML();
-    this._updateTitle();
-    this._scrollToTop();
-  }
-
   renderLoading() {
     const loadingHTML = `
     <div class="placeholder"></div>
@@ -75,12 +70,12 @@ class paginationView {
     this._parentEl.innerHTML = "";
   }
 
-  renderHTML(videoData, videoDetails, videoCasts) {
+  renderHTML(videoData, videoDetails, videoCasts, bookmarked) {
     this._expandVideoData = videoData;
     this._expandVideoDetails = videoDetails;
     this._expandVideoCasts = videoCasts;
     this._clearHTML();
-    this._generateHTML();
+    this._generateHTML(bookmarked);
   }
 
   scrollToTop() {
@@ -90,11 +85,11 @@ class paginationView {
     });
   }
 
-  _generateHTML() {
+  _generateHTML(bookmarked) {
     const expandHTML = `
     <div class="video-section">
             <div class="expand-sec video-trailer-container">
-            <button class="close-video">Close &dArr;</button>
+            <button class="close-video">x</button>
               <div class="trailer-container">
                 <div class="poster-container">
                   <img
@@ -158,13 +153,25 @@ class paginationView {
                 this._expandVideoDetails.status
               }</p>
             </div>
-
+            ${
+              bookmarked
+                ? `
+             <button class="bookmark-btn active">
+              <div class="container-bookmark">
+                  <i class="icon-bm bx bx-book-bookmark"></i>
+                  <span class="bookmark-text">bookmarked</span>
+              </div>
+            </button>
+             `
+                : `
             <button class="bookmark-btn">
               <div class="container-bookmark">
                   <i class="icon-bm bx bx-book-bookmark"></i>
                   <span class="bookmark-text">bookmark</span>
               </div>
             </button>
+            `
+            }
           </div>
           <div class="expand-sec trailer-overview">
             <div class="trailer-desc-container">

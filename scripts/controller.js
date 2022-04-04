@@ -242,23 +242,55 @@ const controlMovieSection = async function () {
   });
 };
 
-const controlExpansionSection = async function () {
-  const movieCard = document.querySelector(".movie-card");
-  const videoId = window.location.hash.slice(1);
-  expansionView.renderLoading();
-  await model.createExpandPage(videoId);
+const controlBookmarkBtn = async function (isActive) {
+  try {
+    const id = window.location.hash.slice(1);
 
-  if (!model.data.expansion.videoData) return;
-  await expansionView.renderHTML(
-    model.data.expansion.videoData,
-    model.data.expansion.videoDetails,
-    model.data.expansion.videoCasts
-  );
-  expansionView.addEventHandler();
-  console.log(model.data.expansion.videoDetails);
+    if (!id) return;
+
+    if (isActive) {
+      model.data.bookMarks.push(id);
+      console.log(model.data.bookMarks);
+    }
+
+    if (!isActive) {
+      if (!model.data.bookMarks.indexOf(id)) return;
+      model.data.bookMarks.pop(id);
+      console.log(model.data.bookMarks);
+    }
+
+    console.log(isActive);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const controlExpansionSection = async function () {
+  try {
+    const movieCard = document.querySelector(".movie-card");
+    const videoId = window.location.hash.slice(1);
+    expansionView.renderLoading();
+    await model.createExpandPage(videoId);
+
+    const isBookMarked = model.data.bookMarks.includes(videoId);
+    console.log(isBookMarked);
+
+    if (!model.data.expansion.videoData) return;
+    await expansionView.renderHTML(
+      model.data.expansion.videoData,
+      model.data.expansion.videoDetails,
+      model.data.expansion.videoCasts,
+      isBookMarked
+    );
+    expansionView.addEventHandler(controlBookmarkBtn);
+    console.log(model.data.expansion.videoDetails);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const init = function () {
+  model.data.bookMarks = JSON.parse(localStorage.getItem("bookmarksData"));
   // Loads Discover Movie Card's when page is loaded
   controlDiscoverMovies();
   controlMovieSection();
@@ -291,3 +323,7 @@ window.addEventListener("load", function () {
     controlExpansionSection();
   }
 });
+
+window.onbeforeunload = function () {
+  localStorage.setItem("bookmarksData", JSON.stringify(model.data.bookMarks));
+};

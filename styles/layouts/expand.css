@@ -73,14 +73,14 @@
 .close-video {
   color: white;
   cursor: pointer;
-  padding: 0.3rem 0.6rem;
+  padding: 0.3rem 0.8rem;
   font-size: 1rem;
   border-radius: 5px;
   background-color: var(--secondary-accent-color);
   transition: var(--transition-three-ms);
   position: absolute;
-  right: -6%;
-  top: -1%;
+  right: -2%;
+  top: -5%;
   z-index: 44;
   pointer-events: none;
   opacity: 0;
