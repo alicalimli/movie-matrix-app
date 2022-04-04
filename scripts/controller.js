@@ -155,6 +155,8 @@ const controlMovieSection = async function () {
     cardClone = movieCardClone;
     window.location.hash = btnId;
 
+    document.querySelector(".sidebar-buttons").style.pointerEvents = "none";
+
     // Takes the position of movieCard
     const { top, left, width, height } = movieCard.getBoundingClientRect();
     topCopy = top;
@@ -218,10 +220,12 @@ const controlMovieSection = async function () {
       cardClone.style.borderRadius = "5px";
       cardClone.style.transform = "unset";
     }
+
     setTimeout(() => {
       if (cardClone) {
         cardClone.style.opacity = "0";
       }
+      document.querySelector(".sidebar-buttons").style.pointerEvents = "auto";
       document.querySelector(".movie-main").classList.remove("active");
       document.querySelector(".section-header").classList.remove("active");
       document.querySelector(".movie-pagination").classList.remove("active");
@@ -278,6 +282,7 @@ init();
 window.addEventListener("load", function () {
   if (this.window.location.hash) {
     expandSecIsActive = true;
+    document.querySelector(".sidebar-buttons").style.pointerEvents = "none";
     document.querySelector(".movie-main").classList.add("active");
     document.querySelector(".section-header").classList.add("active");
     document.querySelector(".movie-pagination").classList.add("active");
