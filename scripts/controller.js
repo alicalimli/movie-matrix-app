@@ -41,12 +41,6 @@ const controlMovieCards = async function (viewType, viewName, pageType = "home",
        behavior: "smooth"
      });
 
-    // Delete's data's from local Storage after its used
-    localStorage.removeItem("pageViewNum");
-    localStorage.removeItem("pageViewType");
-    localStorage.removeItem("pageSearchResTitle")
-    localStorage.removeItem('movieScrollY')
-
   } catch (error) {
     console.log(error);
   }
@@ -254,7 +248,6 @@ const controlBookmarkBtn = async function (isActive) {
     }
 
     if (!isActive) {
-      if (!model.data.bookMarks.indexOf(id)) return;
       model.data.bookMarks.pop(id);
       console.log(model.data.bookMarks);
     }
@@ -272,7 +265,7 @@ const controlExpansionSection = async function () {
     expansionView.renderLoading();
     await model.createExpandPage(videoId);
 
-    const isBookMarked = model.data.bookMarks.includes(videoId);
+    const isBookMarked = model.data.bookMarks.includes(videoId) ? true : false;
     console.log(isBookMarked);
 
     if (!model.data.expansion.videoData) return;
@@ -290,7 +283,9 @@ const controlExpansionSection = async function () {
 };
 
 const init = function () {
-  model.data.bookMarks = JSON.parse(localStorage.getItem("bookmarksData"));
+  const bookMarksData = JSON.parse(localStorage.getItem("bookmarksData"));
+  model.data.bookMarks = [...new Set(bookMarksData)];
+  console.log(model.data.bookMarks);
   // Loads Discover Movie Card's when page is loaded
   controlDiscoverMovies();
   controlMovieSection();

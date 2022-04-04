@@ -5,6 +5,7 @@ class paginationView {
   _expandVideoDetails;
   _expandVideoData;
   _expandVideoCasts;
+  _bookmarked;
   btnType = "";
   pageNum = 1;
 
@@ -41,19 +42,26 @@ class paginationView {
 
     const bmBtn = document.querySelector(".bookmark-btn");
     const bmTxt = document.querySelector(".bookmark-text");
-    let act = false;
+    let act = this._bookmarked;
 
     bmBtn.addEventListener("click", function () {
+      console.log(act);
       if (!act) {
-        act = !act;
+        act = true;
         bmTxt.textContent = "bookmarked";
         bmBtn.classList.toggle("active");
-      } else {
-        act = !act;
+
+        handle(act);
+        return;
+      }
+      if (act) {
+        act = false;
         bmTxt.textContent = "bookmark";
         bmBtn.classList.toggle("active");
+
+        handle(act);
+        return;
       }
-      handle(act);
     });
   }
   renderLoading() {
@@ -74,6 +82,7 @@ class paginationView {
     this._expandVideoData = videoData;
     this._expandVideoDetails = videoDetails;
     this._expandVideoCasts = videoCasts;
+    this._bookmarked = bookmarked;
     this._clearHTML();
     this._generateHTML(bookmarked);
   }
