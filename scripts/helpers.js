@@ -1,5 +1,31 @@
 import { API_KEY, MOVIES_API_URL } from "./config";
 import * as model from "./model.js";
+import paginationView from "./views/paginationView";
+
+// prettier-ignore
+export const controlMovieCards = async function (viewType, viewName, pageType = "home",pageNum = 1) {
+  try {
+    // Render's Loading Spinner
+    viewType.renderLoading();
+    
+    // Create's Movie Data
+    await model.createDiscoverCards(pageType,pageNum);
+
+    // Render's HTML Cards
+    await viewType.renderHTML(model.data[viewName]);
+
+    if(pageType === "bookmarks") return;
+
+    // Sets Pagination View Pagenumber to pageNum
+    paginationView.pageNum = pageNum;
+
+    // Render's pagination
+    paginationView.renderPagination(model.data.pages.currentPageLast);
+
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 // This function is for fetching data's from TMDB Api
 export const apiFetch = async function (
@@ -43,13 +69,17 @@ export const createMovieObj = function (movieData) {
 // This function is for getting data's in the api both for TV's and Movies.
 export const getMovieTvData = async function (videoId, detailType = "") {
   try {
+    // Fetching Movie's and TV's Data's from TMDB API
     const movieData = await fetch(
       `${MOVIES_API_URL}movie/${videoId}${detailType}?api_key=${API_KEY}&language=en-US`
     );
     const tvData = await fetch(
       `${MOVIES_API_URL}tv/${videoId}${detailType}?api_key=${API_KEY}&language=en-US`
     );
+
+    // Throw's and error if Movie's and TV's data doesn't exist
     if (!movieData.ok && !tvData.ok) throw new Error("eeeee");
+
     const movieDataRes = await movieData.json();
     const tvDataRes = await tvData.json();
 

@@ -12,33 +12,9 @@ import searchResultsView from "./views/searchResultsView.js";
 import paginationView from "./views/paginationView.js";
 import expansionView from "./views/expansionView.js";
 import bookmarksView from "./views/bookmarksView.js";
+import { controlMovieCards } from "./helpers.js";
 
 let expandSecIsActive = false;
-
-// prettier-ignore
-const controlMovieCards = async function (viewType, viewName, pageType = "home",pageNum = 1) {
-  try {
-    // Render's Loading Spinner
-    viewType.renderLoading();
-    
-    // Create's Movie Data
-    await model.createDiscoverCards(pageType,pageNum);
-
-    // Render's HTML Cards
-    await viewType.renderHTML(model.data[viewName]);
-
-    if(pageType === "bookmarks") return;
-
-    // Sets Pagination View Pagenumber to pageNum
-    paginationView.pageNum = pageNum;
-
-    // Render's pagination
-    paginationView.renderPagination(model.data.pages.currentPageLast);
-
-  } catch (error) {
-    console.log(error);
-  }
-};
 
 // prettier-ignore
 const controlDiscoverMovies = async function () {
@@ -240,16 +216,18 @@ const controlBookmarkBtn = async function (isActive) {
     if (!id) return;
 
     if (isActive) {
+      // Inserts the bookmarked id in the data
       model.data.bookMarksData.push(id);
       console.log(model.data.bookMarksData);
     }
 
     if (!isActive) {
-      model.data.bookMarksData.pop(id);
+      // Removes the bookmarked id in the data
+      // prettier-ignore
+      const newBookmarkData = model.data.bookMarksData.filter((val) => val !== id);
+      model.data.bookMarksData = newBookmarkData;
       console.log(model.data.bookMarksData);
     }
-
-    console.log(isActive);
   } catch (error) {
     console.log(error);
   }
