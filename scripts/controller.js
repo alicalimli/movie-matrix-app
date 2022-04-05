@@ -114,10 +114,14 @@ const controlMovieSection = async function () {
   document.querySelector(".movie-main").addEventListener("click", function (e) {
     // This function wont work if expand section is already active
     if (expandSecIsActive) return;
+
     expandSecIsActive = true;
+
     const sidebar = document.querySelector(".movie-sidebar-nav");
     const btn = e.target.closest(".expand-btn");
+
     if (!btn) return;
+
     const btnId = btn.dataset.cardId;
     const movieCard = e.target.closest(".movie-card");
     const cardOverlay = movieCard.querySelector(".overlay-card");
@@ -128,18 +132,17 @@ const controlMovieSection = async function () {
 
     // Takes the position of movieCard
     const { top, left, width, height } = movieCard.getBoundingClientRect();
-    topCopy = top;
-    leftCopy = left;
-    widthCopy = width;
     heightCopy = height;
+    widthCopy = width;
+    leftCopy = left;
+    topCopy = top;
+
     // Sets the position of movieCardClone in the movieCards position
-    movieCardClone.style.position = "fixed";
-    movieCardClone.style.top = `${top}px`;
-    movieCardClone.style.left = `${left}px`;
-    movieCardClone.style.width = `${width}px`;
-    movieCardClone.style.height = `${height}px`;
+    // prettier-ignore
+    cardSizePos(movieCardClone,`${width}px`,`${height}px`,`${top}px`,`${left}px`)
 
     // Some styling in movieCardClone
+    movieCardClone.style.position = "fixed";
     movieCardClone.style.backgroundColor = "var(--tertiary-bg-color)";
     movieCardClone.style.borderRadius = "18px";
     movieCardClone.style.zIndex = "99";
