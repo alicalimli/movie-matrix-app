@@ -12,7 +12,11 @@ import searchResultsView from "./views/searchResultsView.js";
 import paginationView from "./views/paginationView.js";
 import expansionView from "./views/expansionView.js";
 import bookmarksView from "./views/bookmarksView.js";
-import { controlMovieCards } from "./helpers.js";
+import {
+  cardSizePos,
+  controlMovieCards,
+  showExpandOverlay,
+} from "./helpers.js";
 
 let expandSecIsActive = false;
 
@@ -122,8 +126,6 @@ const controlMovieSection = async function () {
     cardClone = movieCardClone;
     window.location.hash = btnId;
 
-    document.querySelector(".sidebar-buttons").style.pointerEvents = "none";
-
     // Takes the position of movieCard
     const { top, left, width, height } = movieCard.getBoundingClientRect();
     topCopy = top;
@@ -143,25 +145,21 @@ const controlMovieSection = async function () {
     movieCardClone.style.zIndex = "99";
     movieCardClone.style.pointerEvents = "none";
 
-    // Shrink's every sections in the html
-    document.querySelector(".movie-main").classList.add("active");
-    document.querySelector(".section-header").classList.add("active");
-    document.querySelector(".movie-pagination").classList.add("active");
-    document.querySelector(".overlay-main").classList.add("active");
-    // hide the original card with opacity
+    // Shrink's sections in the html and disable sidebar buttons pointer event
+    showExpandOverlay("add", "none");
+
     // add card to the same container
     document.body.appendChild(movieCardClone);
 
     // Animates the movieCardClone and delay's abit because without delay animation wont work
+    // prettier-ignore
     setTimeout(() => {
       requestAnimationFrame(() => {
         movieCardClone.style.transition = `all 0.3s ease-in-out`;
         movieCardClone.style.borderRadius = "24px";
-        movieCardClone.style.top = "50%";
-        movieCardClone.style.left = "50%";
         movieCardClone.style.transform = "translate(-50%,-50%)";
-        movieCardClone.style.height = "105vh";
-        movieCardClone.style.width = "105vw";
+        // Position and Size of the card
+        cardSizePos(movieCardClone,"105vw","105vh","50%","50%")
       });
     }, 5);
 
@@ -180,69 +178,64 @@ const controlMovieSection = async function () {
     console.log(expandSecIsActive);
     if (cardClone) {
       cardClone.style.transition = `all 0.5s ease`;
-      cardClone.style.top = `${topCopy}px`;
-      cardClone.style.left = `${leftCopy}px`;
-      cardClone.style.width = `${widthCopy}px`;
-      cardClone.style.height = `${heightCopy}px`;
       cardClone.style.borderRadius = "5px";
       cardClone.style.transform = "unset";
+      // Position and Size of the card
+      // prettier-ignore
+      cardSizePos(cardClone,`${widthCopy}px`,`${heightCopy}px`,`${topCopy}px`,`${leftCopy}px`)
     }
 
     setTimeout(() => {
-      if (cardClone) {
-        cardClone.style.opacity = "0";
-      }
-      document.querySelector(".sidebar-buttons").style.pointerEvents = "auto";
-      document.querySelector(".movie-main").classList.remove("active");
-      document.querySelector(".section-header").classList.remove("active");
-      document.querySelector(".movie-pagination").classList.remove("active");
-      document.querySelector(".overlay-main").classList.remove("active");
+      if (cardClone) cardClone.style.opacity = "0";
+
+      // Scale's sections in the html back to normal and enable sidebar buttons pointer event
+      showExpandOverlay("remove", "auto");
     }, 300);
+
     setTimeout(() => {
       if (cardClone) {
         cardClone.remove();
         document.querySelector(".video-section")?.remove();
       }
+
       expandSecIsActive = false;
       console.log(expandSecIsActive);
     }, 600);
   });
 };
 
+// prettier-ignore
 const controlBookmarkBtn = async function (isActive) {
   try {
     const id = window.location.hash.slice(1);
-
+    
     if (!id) return;
 
-    if (isActive) {
-      // Inserts the bookmarked id in the data
-      model.data.bookMarksData.push(id);
-      console.log(model.data.bookMarksData);
-    }
+    // Inserts the bookmarked id in the data.
+    if (isActive) model.data.bookMarksData.push(id);
 
+     // Removes the bookmarked id in the data.
     if (!isActive) {
-      // Removes the bookmarked id in the data
-      // prettier-ignore
       const newBookmarkData = model.data.bookMarksData.filter((val) => val !== id);
       model.data.bookMarksData = newBookmarkData;
-      console.log(model.data.bookMarksData);
     }
+    console.log(model.data.bookMarksData);
   } catch (error) {
     console.log(error);
   }
 };
 
+// prettier-ignore
 const controlExpansionSection = async function () {
   try {
     const movieCard = document.querySelector(".movie-card");
     const videoId = window.location.hash.slice(1);
+
     expansionView.renderLoading();
+
     await model.createExpandPage(videoId);
 
-    const isBookMarked = model.data.bookMarksData.includes(videoId)
-      ? true
-      : false;
+    const isBookMarked = model.data.bookMarksData.includes(videoId) ? true : false;
     console.log(isBookMarked);
 
     if (!model.data.expansion.videoData) return;
@@ -252,6 +245,7 @@ const controlExpansionSection = async function () {
       model.data.expansion.videoCasts,
       isBookMarked
     );
+
     expansionView.addEventHandler(controlBookmarkBtn);
     console.log(model.data.expansion.videoDetails);
   } catch (error) {
@@ -260,10 +254,11 @@ const controlExpansionSection = async function () {
 };
 
 const init = function () {
+  // Take's bookmark data in the localstorage.
   const bookMarksData = JSON.parse(localStorage.getItem("bookmarksData"));
   model.data.bookMarksData = [...new Set(bookMarksData)];
   console.log(model.data.bookMarksData);
-  // Loads Discover Movie Card's when page is loaded
+  // Loads Discover Movie Card's when page is loaded.
   controlDiscoverMovies();
   controlMovieSection();
 
@@ -274,6 +269,7 @@ const init = function () {
 
   // Takes the darkmode data in the local storage
   const darkMode = JSON.parse(localStorage.getItem("darkmode"));
+
   if (!darkMode) return;
   // Toggles the darkMode button if DarkMode in localStorage is true and when page is in index.html
   const darkModeBtn = document?.querySelector(".dark-list");
@@ -286,19 +282,14 @@ init();
 window.addEventListener("load", function () {
   if (this.window.location.hash) {
     expandSecIsActive = true;
-    document.querySelector(".sidebar-buttons").style.pointerEvents = "none";
-    document.querySelector(".movie-main").classList.add("active");
-    document.querySelector(".section-header").classList.add("active");
-    document.querySelector(".movie-pagination").classList.add("active");
-    document.querySelector(".overlay-main").classList.add("active");
+    // Shrink's sections in the html and disable sidebar buttons pointer event
+    showExpandOverlay("add", "none");
+
     document.querySelector(".expansion-section").classList.add("active");
     controlExpansionSection();
   }
 });
 
-window.onbeforeunload = function () {
-  localStorage.setItem(
-    "bookmarksData",
-    JSON.stringify(model.data.bookMarksData)
-  );
-};
+// prettier-ignore
+// Saves Bookmarks Data to the localstorage.
+window.onbeforeunload = () => localStorage.setItem("bookmarksData",JSON.stringify(model.data.bookMarksData));
