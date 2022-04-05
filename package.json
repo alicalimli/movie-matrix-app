@@ -12,6 +12,7 @@
   "dependencies": {
     "boxicons": "^2.1.2",
     "core-js": "^3.21.1",
+    "model.js": "0.0.1",
     "regenerator-runtime": "^0.13.9"
   },
   "devDependencies": {

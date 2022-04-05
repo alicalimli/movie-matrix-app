@@ -11,6 +11,7 @@ import popularTVsView from "./views/popularTVsView.js";
 import searchResultsView from "./views/searchResultsView.js";
 import paginationView from "./views/paginationView.js";
 import expansionView from "./views/expansionView.js";
+import bookmarksView from "./views/bookmarksView.js";
 
 let expandSecIsActive = false;
 
@@ -26,20 +27,13 @@ const controlMovieCards = async function (viewType, viewName, pageType = "home",
     // Render's HTML Cards
     await viewType.renderHTML(model.data[viewName]);
 
+    if(pageType === "bookmarks") return;
+
     // Sets Pagination View Pagenumber to pageNum
     paginationView.pageNum = pageNum;
 
     // Render's pagination
     paginationView.renderPagination(model.data.pages.currentPageLast);
-
-    // Takes movieScrollY Data in the local storage and scroll to it when movie's is loaded
-    const scrollY = JSON.parse(localStorage.getItem("movieScrollY")) || 0;
-    console.log(scrollY)
-
-    window.scrollTo({
-       top: scrollY,
-       behavior: "smooth"
-     });
 
   } catch (error) {
     console.log(error);
@@ -79,6 +73,9 @@ const controlNavBtns = async function (event) {
     }
     if (sideBarBtnsView.buttonPage === "tvs-pop") {
       controlMovieCards(popularTVsView, "popularTVS", "tvs-pop");
+    }
+    if (sideBarBtnsView.buttonPage === "bookmarks") {
+      controlMovieCards(bookmarksView, "userBookMarks", "bookmarks");
     }
   } catch (error) {
     console.log(error);
@@ -243,13 +240,13 @@ const controlBookmarkBtn = async function (isActive) {
     if (!id) return;
 
     if (isActive) {
-      model.data.bookMarks.push(id);
-      console.log(model.data.bookMarks);
+      model.data.bookMarksData.push(id);
+      console.log(model.data.bookMarksData);
     }
 
     if (!isActive) {
-      model.data.bookMarks.pop(id);
-      console.log(model.data.bookMarks);
+      model.data.bookMarksData.pop(id);
+      console.log(model.data.bookMarksData);
     }
 
     console.log(isActive);
@@ -265,7 +262,9 @@ const controlExpansionSection = async function () {
     expansionView.renderLoading();
     await model.createExpandPage(videoId);
 
-    const isBookMarked = model.data.bookMarks.includes(videoId) ? true : false;
+    const isBookMarked = model.data.bookMarksData.includes(videoId)
+      ? true
+      : false;
     console.log(isBookMarked);
 
     if (!model.data.expansion.videoData) return;
@@ -284,8 +283,8 @@ const controlExpansionSection = async function () {
 
 const init = function () {
   const bookMarksData = JSON.parse(localStorage.getItem("bookmarksData"));
-  model.data.bookMarks = [...new Set(bookMarksData)];
-  console.log(model.data.bookMarks);
+  model.data.bookMarksData = [...new Set(bookMarksData)];
+  console.log(model.data.bookMarksData);
   // Loads Discover Movie Card's when page is loaded
   controlDiscoverMovies();
   controlMovieSection();
@@ -320,5 +319,8 @@ window.addEventListener("load", function () {
 });
 
 window.onbeforeunload = function () {
-  localStorage.setItem("bookmarksData", JSON.stringify(model.data.bookMarks));
+  localStorage.setItem(
+    "bookmarksData",
+    JSON.stringify(model.data.bookMarksData)
+  );
 };

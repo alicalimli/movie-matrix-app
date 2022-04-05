@@ -11,6 +11,7 @@ import {
   API_KEY,
   MOVIES_API_URL,
 } from "./config";
+import { apiFetch, createMovieObj, getMovieTvData } from "./helpers";
 
 // This object is the overall data
 
@@ -21,7 +22,8 @@ export const data = {
   trendingMovies: [],
   popularTVS: [],
   searchResults: [],
-  bookMarks: [],
+  userBookMarks: [],
+  bookMarksData: [],
   pages: {
     currentUrl: "",
     pageResults: [],
@@ -35,42 +37,6 @@ export const data = {
     videoDetails: {},
     videoCasts: [],
   },
-};
-
-// this function is for creating moviecards
-
-const apiFetch = async function (url, pageName = data.pages.pageName) {
-  try {
-    // Fetches the data
-    const movieData = await fetch(url);
-
-    // Throws an error when the response fails
-    if (!movieData.ok) throw new Error();
-
-    // Takes the response and convert it to JSON
-    const movieDataResults = await movieData.json();
-
-    // Sets the current URL to fetched URL
-    data.pages.currentUrl = url;
-
-    // Sets the obj to which type of page has been clicked
-    data.pages.pageName = pageName;
-
-    return movieDataResults;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-const createMovieObj = function (movieData) {
-  // Returns an Object that contains only Image and Title
-  return movieData.map((data) => {
-    return {
-      title: data.title || data.name,
-      img: data.poster_path,
-      id: data.id,
-    };
-  });
 };
 
 // prettier-ignore
@@ -88,6 +54,15 @@ export const createDiscoverCards = async function (pageName = "home",pageNum = 1
     }
     if (pageName === "tvs-pop") {
       movieData = await apiFetch(`${POPULAR_TVS_API_URL}&page=${pageNum}`, "popularTVS");
+    }
+    if (pageName === "bookmarks") {
+      for(let i = 0; i < data.bookMarksData.length; i++){
+        const id = data.bookMarksData[i]
+        const cardDetails = await getMovieTvData(id);
+        data.userBookMarks.push(cardDetails);
+      }    
+      data.pages.currentPageType = pageName;
+      return;
     }
 
     console.log(movieData)
@@ -149,38 +124,6 @@ export const createPageResults = async function (btnType, pageNum = 1) {
 
     // Create's Movie
     data.pages.pageResults = createMovieObj(pageData.results);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-// This function is for createExpandPage function below
-const getMovieTvData = async function (videoId, detailType = "") {
-  try {
-    const movieData = await fetch(
-      `${MOVIES_API_URL}movie/${videoId}${detailType}?api_key=${API_KEY}&language=en-US`
-    );
-    const tvData = await fetch(
-      `${MOVIES_API_URL}tv/${videoId}${detailType}?api_key=${API_KEY}&language=en-US`
-    );
-    if (!movieData.ok && !tvData.ok) throw new Error("eeeee");
-    const movieDataRes = await movieData.json();
-    const tvDataRes = await tvData.json();
-
-    // prettier-ignore
-    if(movieDataRes.results || tvDataRes.results){   
-      // Merges the 2 results array and filters only the values that isnt undefined
-      const finalRes = [tvDataRes.results || movieDataRes.results]
-      .concat(tvDataRes.results || movieDataRes.results)
-      .filter(val => val !== undefined);
-      return finalRes;
-    }
-
-    // prettier-ignore
-    // Merges the two objects
-    const finalRes = Object.assign(movieDataRes,tvDataRes)
-
-    return finalRes;
   } catch (error) {
     console.log(error);
   }
