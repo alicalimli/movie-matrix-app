@@ -15,6 +15,7 @@ import bookmarksView from "./views/bookmarksView.js";
 import {
   cardSizePos,
   controlMovieCards,
+  createMovieObj,
   showExpandOverlay,
 } from "./helpers.js";
 
@@ -55,7 +56,11 @@ const controlNavBtns = async function (event) {
       controlMovieCards(popularTVsView, "popularTVS", "tvs-pop");
     }
     if (sideBarBtnsView.buttonPage === "bookmarks") {
-      controlMovieCards(bookmarksView, "userBookMarks", "bookmarks");
+      // Render's Loading Spinner
+      bookmarksView.renderLoading();
+      console.log(model.data.bookMarksData);
+      // Render's HTML Cards
+      await bookmarksView.renderHTML(model.data.bookMarksData);
     }
   } catch (error) {
     console.log(error);
@@ -210,16 +215,22 @@ const controlMovieSection = async function () {
 // prettier-ignore
 const controlBookmarkBtn = async function (isActive) {
   try {
-    const id = window.location.hash.slice(1);
+    const id = +window.location.hash.slice(1);
     
     if (!id) return;
 
     // Inserts the bookmarked id in the data.
-    if (isActive) model.data.bookMarksData.push(id);
+    if (isActive) {
+      const dataHolder = [];
+      dataHolder.push(model.data.expansion.videoDetails)
+      const bookMarkData = createMovieObj(dataHolder)
+      model.data.bookMarksData.push(...bookMarkData);
+      // model.data.bookMarksData.push(id);
+    }
 
      // Removes the bookmarked id in the data.
     if (!isActive) {
-      const newBookmarkData = model.data.bookMarksData.filter((val) => val !== id);
+      const newBookmarkData = model.data.bookMarksData.filter((val) => val.id !== id);
       model.data.bookMarksData = newBookmarkData;
     }
     console.log(model.data.bookMarksData);
@@ -232,16 +243,18 @@ const controlBookmarkBtn = async function (isActive) {
 const controlExpansionSection = async function () {
   try {
     const movieCard = document.querySelector(".movie-card");
-    const videoId = window.location.hash.slice(1);
+    const videoId = +window.location.hash.slice(1);
 
     expansionView.renderLoading();
 
     await model.createExpandPage(videoId);
 
-    const isBookMarked = model.data.bookMarksData.includes(videoId) ? true : false;
-    console.log(isBookMarked);
+    // Check if the exoanded movie/tvs is already bookmarked by the user
+    const isBookMarked = model.data.bookMarksData.some(data => data.id === videoId);
 
     if (!model.data.expansion.videoData) return;
+    
+    // Rendering HTML
     await expansionView.renderHTML(
       model.data.expansion.videoData,
       model.data.expansion.videoDetails,

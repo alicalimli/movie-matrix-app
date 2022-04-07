@@ -16,8 +16,6 @@ export const controlMovieCards = async function (viewType, viewName, pageType = 
     // Render's HTML Cards
     await viewType.renderHTML(model.data[viewName]);
 
-    if(pageType === "bookmarks") return;
-
     // Sets Pagination View Pagenumber to pageNum
     paginationView.pageNum = pageNum;
 
@@ -81,7 +79,8 @@ export const createMovieObj = function (movieData) {
   // Returns an Object that contains only Image and Title
   return movieData.map((data) => {
     return {
-      title: data.title || data.name,
+      title:
+        data.title ?? data.name ?? data.original_title ?? data.original_name,
       img: data.poster_path,
       id: data.id,
     };

@@ -22,7 +22,6 @@ export const data = {
   trendingMovies: [],
   popularTVS: [],
   searchResults: [],
-  userBookMarks: [],
   bookMarksData: [],
   pages: {
     currentUrl: "",
@@ -54,18 +53,6 @@ export const createDiscoverCards = async function (pageName = "home",pageNum = 1
     }
     if (pageName === "tvs-pop") {
       movieData = await apiFetch(`${POPULAR_TVS_API_URL}&page=${pageNum}`, "popularTVS");
-    }
-    if (pageName === "bookmarks") {
-      const arrPlaceHolder = [];
-      for(let i = 0; i < data.bookMarksData.length; i++){
-        const id = data.bookMarksData[i]
-        const cardDetails = await getMovieTvData(id);
-        arrPlaceHolder.push(cardDetails);
-      }    
-
-      data.userBookMarks = arrPlaceHolder;
-      data.pages.currentPageType = pageName;
-      return;
     }
 
     console.log(movieData)
