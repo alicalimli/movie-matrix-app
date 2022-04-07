@@ -34,6 +34,7 @@
   </head>
   <body>
     <section class="section-1">
+      <!-- *********** SIDEBAR NAVIGATION *********** -->
       <nav class="movie-sidebar-nav">
         <header class="sidebar-web-logo">
           <div class="logo-container">
@@ -118,12 +119,34 @@
           <span class="secondary-title">Dark Mode</span>
         </footer>
       </nav>
+
       <div class="overlay-main"></div>
       <div class="movie-section-container"></div>
-      <header class="section section-header">
-        <h1 class="header-title">Discover Movies</h1>
-        <a href="/expand-page.html"></a>
-      </header>
+
+       <!-- *********** MOVIES SECTION HEADER *********** -->
+
+      <section class="section section-header">
+        <header class="header-filter">
+          <h1 class="header-title">Discover Movies</h1>
+          <button class="header-filter-btn">genre</button>
+          <button class="header-filter-btn">year</button>
+        </header>
+        <div class="filter-btn-container">
+          <ul class="filters-btns">
+            <li class="filters-btn">all</li>
+            <li class="filters-btn">Romance</li>
+            <li class="filters-btn">Action</li>
+            <li class="filters-btn">Horror</li>
+            <li class="filters-btn">Comedy</li>
+            <li class="filters-btn">Adventure</li>
+            <li class="filters-btn">Animation</li>
+            <li class="filters-btn">Sci-fi</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- *********** MOVIES SECTION *********** -->
+
       <main class="section movie-main">
         <div class="movie-card">
           <img
@@ -147,6 +170,9 @@
           <span class="img-unavailable-text">Image <br> Unavailable</span>
         </div>
       </main>
+
+      <!-- *********** PAGINATION SECTION *********** -->
+
       <footer class="section movie-pagination">
        <!-- <div class="placeholder"></div>
         <div class="loading-spinner"></div>
@@ -175,6 +201,9 @@
         </button> -->
       </footer>
     </section>
+
+    <!-- *********** EXPANSION SECTION *********** -->
+
     <section class="section expansion-section">
       <button class="back-btn">< Back</button>
       <div class="video-overview-container">

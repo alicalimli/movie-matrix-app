@@ -4,7 +4,11 @@
   padding: 1rem;
   padding-bottom: 0;
   transition: var(--transition-three-ms);
+  position: relative;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .section-header.active {
@@ -13,4 +17,65 @@
 
 .header-title {
   font-size: 2rem;
+}
+
+.header-filter {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-filter-btn {
+  padding: 0.2rem 0.4rem;
+  font-size: 0.9rem;
+  color: #111;
+  cursor: pointer;
+  background-color: var(--primary-accent-color);
+  border-radius: 5px;
+}
+
+.filter-btn-container {
+  background-color: var(--secondary-bg-color);
+  position: absolute;
+  top: 100%;
+  margin: 1rem;
+  border-radius: 5px;
+  padding: 1.5rem;
+  left: 0;
+  display: flex;
+  gap: 0.5rem;
+  pointer-events: none;
+  transform: translateY(-5%);
+  transition: var(--transition-three-ms);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.filter-btn-container.active {
+  pointer-events: auto;
+  opacity: 1;
+  visibility: visible;
+  transform: unset;
+  z-index: 999;
+}
+
+.filters-btns {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.filters-btn {
+  padding: 0.2rem 0.4rem;
+  border-radius: 5px;
+  border: 1px solid var(--primary-accent-color);
+  color: var(--primary-accent-color);
+  cursor: pointer;
+  transition: var(--transition-three-ms);
+}
+
+.filters-btn:hover {
+  background-color: var(--primary-accent-color);
+  color: white;
 }
