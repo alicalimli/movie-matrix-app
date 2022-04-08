@@ -1,0 +1,19 @@
+@media screen and (max-width: 700px) {
+  html {
+    font-size: 70%;
+  }
+  .section {
+    margin: auto;
+    margin-left: 0;
+    padding: 1rem;
+  }
+
+  .movie-sidebar-nav {
+    display: none;
+  }
+
+  .movie-card:hover .movie-info {
+    opacity: 0;
+    transform: unset;
+  }
+}

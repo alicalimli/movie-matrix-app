@@ -5,22 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Scripts -->
+    <!-- *********** SCRIPTS *********** -->
+
     <script defer type="module" src="/scripts/controller.js"></script>
 
-    <!-- Box-icons -->
+    <!-- *********** BOX-ICONS *********** -->
+
     <link
       href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css"
       rel="stylesheet"
     />
 
-    <!-- Phosphor Icons -->
+    <!-- *********** PHOSPHOR ICONS *********** -->
+
     <script src="https://unpkg.com/phosphor-icons"></script>
 
-    <!-- Styles -->
+    <!-- *********** STYLE SHEETS *********** -->
+
     <link rel="stylesheet" href="/styles/styles.css" />
 
-    <!-- Google Fonts -->
+      <!-- *********** GOOGLE FONTS *********** -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -28,13 +33,15 @@
       rel="stylesheet"
     />
 
-    <!-- Website Title -->
+      <!-- *********** WEBSITE TITLE *********** -->
 
     <title>Moviematrix</title>
   </head>
   <body>
     <section class="section-1">
+
       <!-- *********** SIDEBAR NAVIGATION *********** -->
+
       <nav class="movie-sidebar-nav">
         <header class="sidebar-web-logo">
           <div class="logo-container">
@@ -148,58 +155,59 @@
       <!-- *********** MOVIES SECTION *********** -->
 
       <main class="section movie-main">
-        <div class="movie-card">
-          <img
-            class="movie-img"
-            src="https://image.tmdb.org/t/p/w1280/5P8SmMzSNYikXpxil6BYzJ16611.jpg"
-            alt=""
-          />
-          <div class="overlay-card"></div>
-
-          <button data-card-id="333"class="expand-btn">
-            <span class="movie-expand"></span>
-              <i class="bx bx-expand expand-icon"></i>Expand</span
-            >
-          </button>
-          <div class="movie-info">
-            <span class="movie-title">No Way home bro</span>
+        <div class="movie-cards">
+          <div class="movie-card">
+            <img
+              class="movie-img"
+              src="https://image.tmdb.org/t/p/w1280/5P8SmMzSNYikXpxil6BYzJ16611.jpg"
+              alt=""
+            />
+            <div class="overlay-card"></div>
+  
+            <button data-card-id="333"class="expand-btn">
+              <span class="movie-expand"></span>
+                <i class="bx bx-expand expand-icon"></i>Expand</span
+              >
+            </button>
+            <div class="movie-info">
+              <span class="movie-title">No Way home bro</span>
+            </div>
+          </div>
+          <div class="card img-card">
+            <i class="ph-icon ph-warning"></i>
+            <span class="img-unavailable-text">Image <br> Unavailable</span>
           </div>
         </div>
-        <div class="card img-card">
-          <i class="ph-icon ph-warning"></i>
-          <span class="img-unavailable-text">Image <br> Unavailable</span>
-        </div>
+               <!-- *********** PAGINATION SECTION *********** -->
+
+               <footer class="movie-pagination">
+                <!-- <div class="placeholder"></div>
+                 <div class="loading-spinner"></div>
+                 <div class="loading-spinner2"></div> -->
+                 <!--<button data-page-btn="first" class="pag-btns btn-arrow">
+                   < Page 1
+                 </button>
+                 <button data-page-btn="back" class="pag-btns btn-arrow">< Back</button>
+                 <button
+                   data-page-btn="page-num"
+                   data-page-num="3"
+                   class="pag-btns btn-page-num active"
+                 >
+                   3
+                 </button>
+                 <button
+                   data-page-btn="page-num"
+                   data-page-num="3"
+                   class="pag-btns btn-page-num active"
+                 >
+                   3
+                 </button>
+                 <button data-page-btn="next" class="pag-btns btn-arrow">Next ></button>
+                 <button data-page-btn="last" class="pag-btns btn-arrow">
+                   Page 1000 >
+                 </button> -->
+               </footer>
       </main>
-
-      <!-- *********** PAGINATION SECTION *********** -->
-
-      <footer class="section movie-pagination">
-       <!-- <div class="placeholder"></div>
-        <div class="loading-spinner"></div>
-        <div class="loading-spinner2"></div> -->
-        <!--<button data-page-btn="first" class="pag-btns btn-arrow">
-          < Page 1
-        </button>
-        <button data-page-btn="back" class="pag-btns btn-arrow">< Back</button>
-        <button
-          data-page-btn="page-num"
-          data-page-num="3"
-          class="pag-btns btn-page-num active"
-        >
-          3
-        </button>
-        <button
-          data-page-btn="page-num"
-          data-page-num="3"
-          class="pag-btns btn-page-num active"
-        >
-          3
-        </button>
-        <button data-page-btn="next" class="pag-btns btn-arrow">Next ></button>
-        <button data-page-btn="last" class="pag-btns btn-arrow">
-          Page 1000 >
-        </button> -->
-      </footer>
     </section>
 
     <!-- *********** EXPANSION SECTION *********** -->

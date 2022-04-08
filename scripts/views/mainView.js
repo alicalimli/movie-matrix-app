@@ -1,7 +1,7 @@
 import { IMG_PATH } from "../config";
 
 export default class mainView {
-  _parentEl = document.querySelector(".movie-main");
+  _parentEl = document.querySelector(".movie-cards");
   _paginationSection = document.querySelector(".movie-pagination");
   _movieData;
 

@@ -14,7 +14,7 @@
 body {
   position: relative;
   background-color: var(--tertiary-bg-color);
-  min-height: 100vh;
+  min-height: 100%;
   opacity: 1;
   overflow: hidden;
   transition: var(--transition-three-ms);
