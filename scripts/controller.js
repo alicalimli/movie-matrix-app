@@ -130,9 +130,10 @@ const controlMovieSection = async function () {
     const btnId = btn.dataset.cardId;
     const movieCard = e.target.closest(".movie-card");
     const cardOverlay = movieCard.querySelector(".overlay-card");
-    const movieCardClone = movieCard.cloneNode(true);
+    const movieCardClone = movieCard.querySelector("img").cloneNode(true);
 
     cardClone = movieCardClone;
+    cardClone.classList.remove("movie-card");
     window.location.hash = btnId;
 
     // Takes the position of movieCard
@@ -319,3 +320,9 @@ headerFilterBtn.forEach((el) => {
     filterBtnContainer.classList.toggle("active");
   });
 });
+
+const menuBtn = document
+  .querySelector(".menu-btn")
+  .addEventListener("click", function () {
+    document.querySelector(".movie-sidebar-nav").classList.add("active");
+  });

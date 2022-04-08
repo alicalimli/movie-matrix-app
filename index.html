@@ -38,101 +38,101 @@
     <title>Moviematrix</title>
   </head>
   <body>
+    <nav class="movie-sidebar-nav">
+      <header class="sidebar-web-logo">
+        <div class="logo-container">
+          <img src="/images/web-logo.png" class="logo-img" alt="" />
+          <span class="logo-name">MOVIEMATRIX</span>
+        </div>
+      </header>
+      <div class="sidebar-buttons">
+        <div class="search-input-container">
+          <form
+            action="#"
+            data-type-btn="form-btn"
+            class="sidebar-form nav-form-btn"
+          >
+            <button class="sidebar-search-btn nav-search-btn">
+              <i class="bx bx-search-alt"></i>
+            </button>
+            <input
+              type="text"
+              class="sidebar-search-input"
+              placeholder="Search Movies..."
+              name=""
+              id=""
+            />
+          </form>
+          <span class="secondary-title">Search</span>
+        </div>
+        <ul class="nav-lists sidebar-lists-btn">
+          <li class="nav-list sidebar-expansion-btn">
+            <a
+              data-page="expand"
+              data-type-btn="expand"
+              class="nav-btn sidebar-expand-btn"
+            >
+              <i class="bx bx-chevrons-right"></i>
+            </a>
+            <span class="secondary-title expand-secondary">Expand</span>
+          </li>
+          <li class="nav-list">
+            <a data-page="home" class="nav-btn">
+              <i class="bx bx-home"></i>
+              <span class="nav-title">Home</span>
+            </a>
+            <span class="secondary-title">Home</span>
+          </li>
+          <li class="nav-list">
+            <a data-page="trending" class="nav-btn">
+              <i class="bx bxs-hot"></i>
+              <span class="nav-title">Trending</span>
+            </a>
+            <span class="secondary-title">Trending</span>
+          </li>
+          <li class="nav-list">
+            <a data-page="movies-pop" class="nav-btn">
+              <i class="bx bx-movie"></i>
+              <span class="nav-title">Movies</span>
+            </a>
+            <span class="secondary-title">Movies</span>
+          </li>
+          <li class="nav-list">
+            <a data-page="tvs-pop" class="nav-btn">
+              <i class="bx bx-tv"></i>
+              <span class="nav-title">TV's</span>
+            </a>
+            <span class="secondary-title">TV Shows</span>
+          </li>
+          <li class="nav-list">
+            <a data-page="bookmarks" class="nav-btn">
+              <i class="icon-bm bx bx-book-bookmark"></i>
+              <span class="nav-title">Bookmarks</span>
+            </a>
+            <span class="secondary-title">Bookmarks</span>
+          </li>
+        </ul>
+      </div>
+      <footer class="nav-list dark-list">
+        <span class="dark-mode-text light">Light</span>
+        <a data-page="dark-mode" class="dark-mode-btn">
+          <div class="toggle-circle"></div>
+        </a>
+        <span class="dark-mode-text dark">Dark</span>
+        <span class="secondary-title">Dark Mode</span>
+      </footer>
+    </nav>
+
     <section class="section-1">
 
       <!-- *********** SIDEBAR NAVIGATION *********** -->
-
-      <nav class="movie-sidebar-nav">
-        <header class="sidebar-web-logo">
-          <div class="logo-container">
-            <img src="/images/web-logo.png" class="logo-img" alt="" />
-            <span class="logo-name">MOVIEMATRIX</span>
-          </div>
-        </header>
-        <div class="sidebar-buttons">
-          <div class="search-input-container">
-            <form
-              action="#"
-              data-type-btn="form-btn"
-              class="sidebar-form nav-form-btn"
-            >
-              <button class="sidebar-search-btn nav-search-btn">
-                <i class="bx bx-search-alt"></i>
-              </button>
-              <input
-                type="text"
-                class="sidebar-search-input"
-                placeholder="Search Movies..."
-                name=""
-                id=""
-              />
-            </form>
-            <span class="secondary-title">Search</span>
-          </div>
-          <ul class="nav-lists sidebar-lists-btn">
-            <li class="nav-list">
-              <a
-                data-page="expand"
-                data-type-btn="expand"
-                class="nav-btn sidebar-expand-btn"
-              >
-                <i class="bx bx-chevrons-right"></i>
-              </a>
-              <span class="secondary-title expand-secondary">Expand</span>
-            </li>
-            <li class="nav-list">
-              <a data-page="home" class="nav-btn">
-                <i class="bx bx-home"></i>
-                <span class="nav-title">Home</span>
-              </a>
-              <span class="secondary-title">Home</span>
-            </li>
-            <li class="nav-list">
-              <a data-page="trending" class="nav-btn">
-                <i class="bx bxs-hot"></i>
-                <span class="nav-title">Trending</span>
-              </a>
-              <span class="secondary-title">Trending</span>
-            </li>
-            <li class="nav-list">
-              <a data-page="movies-pop" class="nav-btn">
-                <i class="bx bx-movie"></i>
-                <span class="nav-title">Movies</span>
-              </a>
-              <span class="secondary-title">Movies</span>
-            </li>
-            <li class="nav-list">
-              <a data-page="tvs-pop" class="nav-btn">
-                <i class="bx bx-tv"></i>
-                <span class="nav-title">TV's</span>
-              </a>
-              <span class="secondary-title">TV Shows</span>
-            </li>
-            <li class="nav-list">
-              <a data-page="bookmarks" class="nav-btn">
-                <i class="icon-bm bx bx-book-bookmark"></i>
-                <span class="nav-title">Bookmarks</span>
-              </a>
-              <span class="secondary-title">Bookmarks</span>
-            </li>
-          </ul>
-        </div>
-        <footer class="nav-list dark-list">
-          <span class="dark-mode-text light">Light</span>
-          <a data-page="dark-mode" class="dark-mode-btn">
-            <div class="toggle-circle"></div>
-          </a>
-          <span class="dark-mode-text dark">Dark</span>
-          <span class="secondary-title">Dark Mode</span>
-        </footer>
-      </nav>
-
       <div class="overlay-main"></div>
       <div class="movie-section-container"></div>
 
        <!-- *********** MOVIES SECTION HEADER *********** -->
 
-      <section class="section section-header">
+      <section class="section-header">
+        <i class='bx bx-menu menu-btn'></i>
         <header class="header-filter">
           <h1 class="header-title">Discover Movies</h1>
           <button class="header-filter-btn">genre</button>
@@ -154,7 +154,7 @@
 
       <!-- *********** MOVIES SECTION *********** -->
 
-      <main class="section movie-main">
+      <main class="movie-main">
         <div class="movie-cards">
           <div class="movie-card">
             <img
