@@ -3,6 +3,7 @@
 .movie-sidebar-nav {
   background-color: var(--sidebar-bg-color);
   display: flex;
+  gap: 1rem;
   flex-direction: column;
   height: 100vh;
   overflow-y: scroll;
@@ -22,20 +23,15 @@
 
 /* Nav buttons */
 
-.sidebar-buttons {
-  height: 100%;
-}
-
 .nav-lists {
   display: flex;
   flex-direction: column;
-  margin-top: 1rem;
   transition: var(--transition-three-ms);
   gap: 1rem;
 }
 
 .movie-sidebar-nav.active .nav-lists {
-  transform: translateY(-20%);
+  transform: translateY(-15%);
 }
 
 .nav-list,
