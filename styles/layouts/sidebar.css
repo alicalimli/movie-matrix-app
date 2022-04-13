@@ -6,8 +6,6 @@
   gap: 1rem;
   flex-direction: column;
   height: 100vh;
-  overflow-y: scroll;
-  overflow-x: hidden;
   width: 5rem;
   transition: var(--transition-four-ms);
   text-align: center;

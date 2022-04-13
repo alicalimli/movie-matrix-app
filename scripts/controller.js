@@ -38,6 +38,7 @@ const controlDiscoverMovies = async function () {
 const controlNavBtns = async function (event) {
   try {
     const sidebar = document.querySelector(".movie-sidebar-nav");
+    const toolTip = document.querySelectorAll(".secondary-title");
     await sideBarBtnsView.renderActive(event);
     // Prevents the data to be rendered again everytime user clicks the same button;
     if (sideBarBtnsView.buttonPage === model.data.pages.currentPageType) return;
@@ -69,6 +70,10 @@ const controlNavBtns = async function (event) {
     if (sidebar.classList.contains("active")) {
       showExpandOverlay("remove", "auto");
       sidebar.classList.remove("active");
+      toolTip.forEach((el) => (el.style.visibility = "hidden"));
+      console.log("asdasd");
+      // prettier-ignore
+      setTimeout(()=> toolTip.forEach((el) => (el.style.visibility = "visible")),500)
     }
   } catch (error) {
     console.log(error);

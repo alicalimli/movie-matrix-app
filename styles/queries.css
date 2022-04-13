@@ -80,3 +80,10 @@
     align-self: start;
   }
 }
+
+@media screen and (max-height: 550px) {
+  .movie-sidebar-nav {
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+}
