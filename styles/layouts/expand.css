@@ -134,6 +134,10 @@
   z-index: 3;
 }
 
+.secondary-poster-overview {
+  display: none;
+}
+
 .poster-desc-container {
   width: 80%;
   height: 80%;

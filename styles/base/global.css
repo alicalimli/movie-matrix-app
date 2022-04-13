@@ -9,6 +9,7 @@
   border: none;
   background: none;
   list-style: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 body {

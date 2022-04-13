@@ -106,13 +106,15 @@ class paginationView {
                     src="${IMG_PATH}${this._expandVideoDetails.backdrop_path}"
                     alt="${
                       this._expandVideoDetails.name ??
+                      this._expandVideoDetails.title ??
                       this._expandVideoDetails.original_title
                     }"
                   />
                   <div class="poster-overview">
                     <div class="poster-desc-container">
-                      <h1 class="poster-title">${
+                      <h1 id="main-poster-title" class="poster-title">${
                         this._expandVideoDetails.name ??
+                        this._expandVideoDetails.title ??
                         this._expandVideoDetails.original_title
                       }</h1>
                       <div class="poster-btn-container">
@@ -139,7 +141,15 @@ class paginationView {
               </div>
             </div>
           </div>
-
+          <div class="secondary-poster-overview">
+            <div class="poster-desc-container">
+              <h1 class="poster-title">${
+                this._expandVideoDetails.name ??
+                this._expandVideoDetails.title ??
+                this._expandVideoDetails.original_title
+              }</h1>
+            </div>
+          </div>
           <div class="expand-sec movie-stats">
             <div class="rating-container">
               <span class="rating-text">${

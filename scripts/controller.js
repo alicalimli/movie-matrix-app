@@ -13,6 +13,7 @@ import paginationView from "./views/paginationView.js";
 import expansionView from "./views/expansionView.js";
 import bookmarksView from "./views/bookmarksView.js";
 import {
+  cardExpand,
   cardSizePos,
   controlMovieCards,
   createMovieObj,
@@ -20,6 +21,7 @@ import {
 } from "./helpers.js";
 
 let expandSecIsActive = false;
+let cardZooming = false;
 
 // prettier-ignore
 const controlDiscoverMovies = async function () {
@@ -114,9 +116,8 @@ const controlPagination = async function (event) {
 };
 
 const controlMovieSection = async function () {
-  let topCopy, leftCopy, widthCopy, heightCopy;
-  let cardClone;
   document.querySelector(".movie-main").addEventListener("click", function (e) {
+    let expandDuration = 0;
     // This function wont work if expand section is already active
     if (expandSecIsActive) return;
 
@@ -129,87 +130,42 @@ const controlMovieSection = async function () {
 
     const btnId = btn.dataset.cardId;
     const movieCard = e.target.closest(".movie-card");
-    const cardOverlay = movieCard.querySelector(".overlay-card");
-    const movieCardClone = movieCard.querySelector("img").cloneNode(true);
 
-    cardClone = movieCardClone;
-    cardClone.classList.remove("movie-card");
     window.location.hash = btnId;
 
-    // Takes the position of movieCard
-    const { top, left, width, height } = movieCard.getBoundingClientRect();
-    heightCopy = height;
-    widthCopy = width;
-    leftCopy = left;
-    topCopy = top;
-
-    // Sets the position of movieCardClone in the movieCards position
-    // prettier-ignore
-    cardSizePos(movieCardClone,`${width}px`,`${height}px`,`${top}px`,`${left}px`)
-
-    // Some styling in movieCardClone
-    movieCardClone.style.position = "fixed";
-    movieCardClone.style.backgroundColor = "var(--tertiary-bg-color)";
-    movieCardClone.style.borderRadius = "18px";
-    movieCardClone.style.zIndex = "99";
-    movieCardClone.style.pointerEvents = "none";
+    if (cardZooming) {
+      expandDuration = 400;
+      cardExpand(movieCard, true);
+    }
 
     // Shrink's sections in the html and disable sidebar buttons pointer event
     showExpandOverlay("add", "none");
 
-    // add card to the same container
-    document.body.appendChild(movieCardClone);
-
-    // Animates the movieCardClone and delay's abit because without delay animation wont work
-    // prettier-ignore
-    setTimeout(() => {
-      requestAnimationFrame(() => {
-        movieCardClone.style.transition = `all 0.3s ease-in-out`;
-        movieCardClone.style.borderRadius = "24px";
-        movieCardClone.style.transform = "translate(-50%,-50%)";
-        // Position and Size of the card
-        cardSizePos(movieCardClone,"105vw","105vh","50%","50%")
-      });
-    }, 5);
-
-    // Take's the user to expand-page after 400ms
+    // Shows the expansion section after 400ms
     setTimeout(() => {
       controlExpansionSection();
       document.querySelector(".expansion-section").classList.add("active");
-    }, 400);
+    }, expandDuration);
   });
 
   // Click Listener for the back-button in the expand page
   document.querySelector(".back-btn").addEventListener("click", function (e) {
+    let expandDuration = 0;
     window.location.hash = "";
     document.querySelector(".expansion-section").classList.remove("active");
 
-    console.log(expandSecIsActive);
-    if (cardClone) {
-      cardClone.style.transition = `all 0.5s ease`;
-      cardClone.style.borderRadius = "5px";
-      cardClone.style.transform = "unset";
-      // Position and Size of the card
-      // prettier-ignore
-      cardSizePos(cardClone,`${widthCopy}px`,`${heightCopy}px`,`${topCopy}px`,`${leftCopy}px`)
+    if (cardZooming) {
+      const cardClone = document?.querySelector(".movie-card-clone");
+      cardExpand(cardClone, false);
+      expandDuration = 600;
     }
 
-    setTimeout(() => {
-      if (cardClone) cardClone.style.opacity = "0";
+    setTimeout(() => (expandSecIsActive = false), expandDuration);
 
-      // Scale's sections in the html back to normal and enable sidebar buttons pointer event
-      showExpandOverlay("remove", "auto");
-    }, 300);
+    if (cardZooming) return;
 
-    setTimeout(() => {
-      if (cardClone) {
-        cardClone.remove();
-        document.querySelector(".video-section")?.remove();
-      }
-
-      expandSecIsActive = false;
-      console.log(expandSecIsActive);
-    }, 600);
+    // Scale's sections in the html back to normal and enable sidebar buttons pointer event
+    showExpandOverlay("remove", "auto");
   });
 };
 
@@ -324,5 +280,6 @@ headerFilterBtn.forEach((el) => {
 const menuBtn = document
   .querySelector(".menu-btn")
   .addEventListener("click", function () {
+    showExpandOverlay("add", "auto");
     document.querySelector(".movie-sidebar-nav").classList.add("active");
   });

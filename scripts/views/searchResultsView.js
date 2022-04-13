@@ -1,3 +1,4 @@
+import { showExpandOverlay } from "../helpers";
 import mainView from "./mainView";
 
 class searchResultsView extends mainView {
@@ -17,6 +18,8 @@ class searchResultsView extends mainView {
 
     this._inputForm.addEventListener("submit", function (event) {
       event.preventDefault();
+
+      showExpandOverlay("remove", "auto");
       // this function would only work if sidebar is expanded
       if (sidebar.classList.contains("active")) {
         if (searchInput.value === "") return;

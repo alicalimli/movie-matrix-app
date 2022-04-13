@@ -1,10 +1,10 @@
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 580px) {
   html {
     font-size: 80%;
   }
 
   .section-1 {
-    padding-left: 1rem;
+    padding-left: 0rem;
   }
 
   .section {
@@ -30,5 +30,42 @@
   .movie-sidebar-nav.active {
     transform: unset;
     width: 15rem;
+  }
+
+  /* expand section */
+
+  .expand-sec {
+    flex-wrap: wrap;
+  }
+
+  .video-trailer-container {
+    max-width: 100%;
+  }
+
+  .trailer-overview {
+    width: 100%;
+  }
+  .trailer-desc-container {
+    width: 100%;
+  }
+
+  .movie-stats {
+    width: 100%;
+  }
+
+  .btn-title,
+  #main-poster-title {
+    display: none;
+  }
+
+  .secondary-poster-overview {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 410px) {
+  .bookmark-btn {
+    position: relative;
+    align-self: start;
   }
 }
