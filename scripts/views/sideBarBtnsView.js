@@ -6,6 +6,7 @@ class SideBarBtnView extends mainView {
   _navBtns;
   _icons;
   _sidebar;
+  _overlay;
   buttonPage = "home";
 
   constructor() {
@@ -14,6 +15,7 @@ class SideBarBtnView extends mainView {
     this._navBtns = document.querySelectorAll(".nav-btn");
     this._icons = this._parentEl.querySelectorAll(".bx");
     this._sidebar = document.querySelector(".movie-sidebar-nav");
+    this._overlay = document.querySelector(".overlay-main");
   }
 
   // prettier-ignore
@@ -27,6 +29,7 @@ class SideBarBtnView extends mainView {
     // Attach Hover event listener in sidebar
     this._sidebar.addEventListener("mouseover", this.toggleOverlay.bind(this,"add"));
     this._sidebar.addEventListener("mouseleave", this.toggleOverlay.bind(this,"remove"));
+    this._overlay.addEventListener('click', this.toggleOverlay.bind(this,"remove"))
 
     // Attach click event listener
     this._parentEl.addEventListener("click", function (event) {

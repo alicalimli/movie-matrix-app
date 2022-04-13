@@ -32,6 +32,10 @@
     width: 15rem;
   }
 
+  .sidebar-expand-btn {
+    opacity: 0;
+  }
+
   /* expand section */
 
   .expand-sec {

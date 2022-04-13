@@ -195,19 +195,12 @@
 .sidebar-expand-btn {
   right: 0;
   top: 0;
-  position: absolute;
-}
-
-.movie-sidebar-nav.active .sidebar-expand-btn {
-  border-radius: 100px;
-  transform: rotate(180deg);
-  padding: 0rem 0.5rem;
+  position: relative;
 }
 
 .movie-sidebar-nav.active .sidebar-expand-btn {
   position: absolute;
-  right: -3.5rem;
-  top: 10rem;
+  opacity: 1;
 }
 
 /* Website Logo */
