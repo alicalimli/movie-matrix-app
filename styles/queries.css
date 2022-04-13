@@ -53,6 +53,10 @@
     width: 100%;
   }
 
+  .poster-title {
+    font-size: 2rem;
+  }
+
   .btn-title,
   #main-poster-title {
     display: none;

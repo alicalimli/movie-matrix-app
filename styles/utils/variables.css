@@ -1,7 +1,7 @@
 :root {
   /* Transitions */
-  --transition-three-ms: all 0.3s ease;
-  --transition-four-ms: all 0.4s ease;
+  /* --transition-three-ms: all 0.3s ease;
+  --transition-four-ms: all 0.4s ease; */
   /* Background Colors */
   --primary-bg-color: white;
   --secondary-bg-color: #f1f3f5;
