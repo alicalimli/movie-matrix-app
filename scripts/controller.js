@@ -62,7 +62,8 @@ const controlNavBtns = async function (event) {
     if (sideBarBtnsView.buttonPage === "bookmarks") {
       // Render's Loading Spinner
       bookmarksView.renderLoading();
-      console.log(model.data.bookMarksData);
+
+      model.data.pages.currentPageType = "bookmark";
       // Render's HTML Cards
       await bookmarksView.renderHTML(model.data.bookMarksData);
     }
