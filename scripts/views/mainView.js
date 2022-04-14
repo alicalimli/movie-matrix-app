@@ -17,6 +17,7 @@ export default class mainView {
   _sidebar = document.querySelector(".movie-sidebar-nav");
 
   renderHTML(movieData) {
+    console.log(movieData);
     this._movieData = movieData;
     this._clearHTML();
     this._generateHTML();

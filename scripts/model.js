@@ -10,6 +10,8 @@ import {
   MOVIES_MAX_PAGE,
   API_KEY,
   MOVIES_API_URL,
+  DISCOVER_URL_FIRST,
+  DISCOVER_URL_SECOND,
 } from "./config";
 import { apiFetch, createMovieObj, getMovieTvData } from "./helpers";
 
@@ -21,6 +23,8 @@ export const data = {
   popularMovies: [],
   trendingMovies: [],
   genresData: [],
+  genresResult: [],
+  genreArr: [],
   popularTVS: [],
   searchResults: [],
   bookMarksData: [],
@@ -67,7 +71,6 @@ export const createDiscoverCards = async function (pageName = "home",pageNum = 1
     console.log(movieData)
 
     data.genresData = genreRes.genres;
-    console.log(data.genresData)
     //Always Sets the current page to 1
     data.pages.currentPage = movieData.page;
 
@@ -124,6 +127,8 @@ export const createPageResults = async function (btnType, pageNum = 1) {
     // Fetches the data
     const pageData = await apiFetch(`${data.pages.currentUrl}&page=${data.pages.currentPage}`)
 
+    console.log(data.pages.currentUrl)
+
     // Create's Movie
     data.pages.pageResults = createMovieObj(pageData.results);
   } catch (error) {
@@ -148,4 +153,20 @@ export const createExpandPage = async function (videoId) {
   } catch (error) {
     console.log(error);
   }
+};
+
+export const createGenreCards = async function () {
+  const genreData = await fetch(
+    `${data.pages.currentUrl}/&with_genres=${data.genreArr}`
+  );
+  data.pages.currentUrl = `${data.pages.currentUrl}/&with_genres=${data.genreArr}`;
+
+  console.log(genreData);
+  if (!genreData) return;
+  const genreRes = await genreData.json();
+  data.genresResult = await createMovieObj(genreRes.results);
+  console.log(genreRes.results);
+
+  //Always Sets the current page to 1
+  data.pages.currentPage = genreRes.page;
 };

@@ -19,6 +19,7 @@ import {
   createMovieObj,
   showExpandOverlay,
 } from "./helpers.js";
+import genreCardsView from "./views/genreCardsView.js";
 
 let expandSecIsActive = false;
 let cardZooming = false;
@@ -238,6 +239,34 @@ const controlExpansionSection = async function () {
   }
 };
 
+const controlGenreCards = async function (btn) {
+  const genreArr = model.data.genreArr;
+
+  // Sets Pagination View Pagenumber to pageNum
+  paginationView.pageNum = 1;
+
+  if (!btn.classList.contains("active")) {
+    genreArr.push(btn.dataset.genreId);
+    console.log(model.data.genreArr);
+    btn.classList.add("active");
+    await model.createGenreCards();
+    genreCardsView.renderHTML(model.data.genresResult);
+    paginationView.renderPagination(model.data.pages.currentPageLast);
+    return;
+  }
+
+  // if btn is already active then this condition happens
+  if (btn.classList.contains("active")) {
+    genreArr.pop(btn.dataset.genreId);
+    console.log(model.data.genreArr);
+    btn.classList.remove("active");
+    await model.createGenreCards();
+    genreCardsView.renderHTML(model.data.genresResult);
+    paginationView.renderPagination(model.data.pages.currentPageLast);
+    return;
+  }
+};
+
 const init = function () {
   // Take's bookmark data in the localstorage.
   const bookMarksData = JSON.parse(localStorage.getItem("bookmarksData"));
@@ -248,6 +277,7 @@ const init = function () {
   controlMovieSection();
 
   // Attach Event Handlers
+  genreCardsView.addHandlerEvent(controlGenreCards);
   sideBarBtnsView.addHandlerEvent(controlNavBtns);
   paginationView.addHandlerEvent(controlPagination);
   searchResultsView.addHandlerEvent(controlSearchResults);
@@ -295,22 +325,3 @@ const menuBtn = document
     showExpandOverlay("add", "auto");
     document.querySelector(".movie-sidebar-nav").classList.add("active");
   });
-
-const genreArr = [];
-
-document.querySelector(".filters-btns").addEventListener("click", function (e) {
-  const btn = e.target.closest(".filters-btn");
-
-  if (!btn) return;
-
-  if (btn.classList.contains("active")) {
-    genreArr.pop(btn.dataset.genreId);
-    console.log(genreArr);
-    btn.classList.remove("active");
-    return;
-  }
-
-  genreArr.push(btn.dataset.genreId);
-  console.log(genreArr);
-  btn.classList.add("active");
-});
