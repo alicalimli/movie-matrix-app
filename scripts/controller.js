@@ -249,6 +249,8 @@ const controlGenreCards = async function (btn) {
     genreArr.push(btn.dataset.genreId);
     console.log(model.data.genreArr);
     btn.classList.add("active");
+    // Renders Loading Spinner
+    paginationView.renderLoading();
     await model.createGenreCards();
     genreCardsView.renderHTML(model.data.genresResult);
     paginationView.renderPagination(model.data.pages.currentPageLast);
@@ -260,6 +262,8 @@ const controlGenreCards = async function (btn) {
     genreArr.pop(btn.dataset.genreId);
     console.log(model.data.genreArr);
     btn.classList.remove("active");
+    // Renders Loading Spinner
+    paginationView.renderLoading();
     await model.createGenreCards();
     genreCardsView.renderHTML(model.data.genresResult);
     paginationView.renderPagination(model.data.pages.currentPageLast);
