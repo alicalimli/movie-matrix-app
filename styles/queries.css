@@ -81,6 +81,18 @@
   }
 }
 
+@media screen and (max-width: 500px) {
+  .movie-cards {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+}
+
+@media screen and (max-width: 275px) {
+  .movie-cards {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+}
+
 @media screen and (max-height: 550px) {
   .movie-sidebar-nav {
     overflow-y: scroll;

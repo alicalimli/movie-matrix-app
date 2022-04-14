@@ -16,13 +16,13 @@
 
 .movie-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 1rem;
 }
 
 .movie-card {
-  /* max-width: 13rem;
-  min-height: 19.5rem; */
+  max-width: 13rem;
+  max-height: 19.5rem;
   overflow: hidden;
   position: relative;
 }
