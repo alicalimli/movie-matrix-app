@@ -20,6 +20,7 @@ export const data = {
   discoverMovies: [],
   popularMovies: [],
   trendingMovies: [],
+  genresData: [],
   popularTVS: [],
   searchResults: [],
   bookMarksData: [],
@@ -42,20 +43,31 @@ export const data = {
 export const createDiscoverCards = async function (pageName = "home",pageNum = 1) {
   try {
     let movieData;
+    let tvOrMovie;
     if (pageName === "home") {
       movieData = await apiFetch(`${DISCOVER_API_URL}&page=${pageNum}`, "discoverMovies");
+      tvOrMovie = "movie";
     }
     if (pageName === "movies-pop") {
       movieData = await apiFetch(`${POPULAR_MOVIES_API_URL}&page=${pageNum}`,"popularMovies");
+      tvOrMovie = "movie";
     }
     if (pageName === "trending") {
       movieData = await apiFetch(`${TRENDING_API_URL}&page=${pageNum}`, "trendingMovies");
+      tvOrMovie = "movie";
     }
     if (pageName === "tvs-pop") {
       movieData = await apiFetch(`${POPULAR_TVS_API_URL}&page=${pageNum}`, "popularTVS");
+      tvOrMovie = "tv";
     }
 
+    const genreData = await fetch(`${MOVIES_API_URL}/genre/${tvOrMovie}/list?api_key=${API_KEY}&language=en-US`);
+    const genreRes = await genreData.json();
+
     console.log(movieData)
+
+    data.genresData = genreRes.genres;
+    console.log(data.genresData)
     //Always Sets the current page to 1
     data.pages.currentPage = movieData.page;
 

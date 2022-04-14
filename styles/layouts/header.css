@@ -85,7 +85,7 @@
   transition: var(--transition-three-ms);
 }
 
-.filters-btn:hover {
+.filters-btn.active {
   background-color: var(--primary-accent-color);
   color: white;
 }

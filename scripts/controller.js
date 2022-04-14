@@ -295,3 +295,22 @@ const menuBtn = document
     showExpandOverlay("add", "auto");
     document.querySelector(".movie-sidebar-nav").classList.add("active");
   });
+
+const genreArr = [];
+
+document.querySelector(".filters-btns").addEventListener("click", function (e) {
+  const btn = e.target.closest(".filters-btn");
+
+  if (!btn) return;
+
+  if (btn.classList.contains("active")) {
+    genreArr.pop(btn.dataset.genreId);
+    console.log(genreArr);
+    btn.classList.remove("active");
+    return;
+  }
+
+  genreArr.push(btn.dataset.genreId);
+  console.log(genreArr);
+  btn.classList.add("active");
+});
