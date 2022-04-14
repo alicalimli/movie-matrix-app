@@ -313,16 +313,6 @@ window.addEventListener("load", function () {
 // Saves Bookmarks Data to the localstorage.
 window.onbeforeunload = () => localStorage.setItem("bookmarksData",JSON.stringify(model.data.bookMarksData));
 
-const headerFilterBtn = document.querySelectorAll(".header-filter-btn");
-const headerSection = document.querySelector(".section-header");
-const filterBtnContainer = document.querySelector(".filter-btn-container");
-
-headerFilterBtn.forEach((el) => {
-  el.addEventListener("click", function () {
-    filterBtnContainer.classList.toggle("active");
-  });
-});
-
 const menuBtn = document
   .querySelector(".menu-btn")
   .addEventListener("click", function () {
