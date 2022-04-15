@@ -20,6 +20,7 @@ class popularMoviesView extends mainView {
         filterBtnContainer.classList.add("active");
         document.querySelector(".movie-sidebar-nav").style.pointerEvents =
           "none";
+        document.querySelector(".sidebar-buttons").style.pointerEvents = "none";
         movieSection.style.pointerEvents = "none";
         return;
       }
@@ -29,6 +30,7 @@ class popularMoviesView extends mainView {
         filterBtnContainer.classList.remove("active");
         document.querySelector(".movie-sidebar-nav").style.pointerEvents =
           "auto";
+        document.querySelector(".sidebar-buttons").style.pointerEvents = "auto";
         movieSection.style.pointerEvents = "auto";
         return;
       }
