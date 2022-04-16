@@ -24,7 +24,6 @@ import mainView from "./views/mainView.js";
 import cardZoomingView from "./views/cardZoomingView.js";
 
 let expandSecIsActive = false;
-let cardZooming = true;
 
 // prettier-ignore
 const controlDiscoverMovies = async function () {
@@ -148,7 +147,7 @@ const controlMovieSection = async function () {
 
     window.location.hash = btnId;
 
-    if (cardZooming) {
+    if (model.data.cardZooming) {
       expandDuration = 400;
       cardZoomingView.renderCardZoom(movieCard);
     }
@@ -169,7 +168,7 @@ const controlMovieSection = async function () {
     window.location.hash = "";
     document.querySelector(".expansion-section").classList.remove("active");
 
-    if (cardZooming) {
+    if (model.data.cardZooming) {
       const cardClone = document?.querySelector(".movie-card-clone");
 
       cardZoomingView.renderCardShrink();
@@ -178,7 +177,7 @@ const controlMovieSection = async function () {
 
     setTimeout(() => (expandSecIsActive = false), expandDuration);
 
-    if (cardZooming) return;
+    if (model.data.cardZooming) return;
 
     // Scale's sections in the html back to normal and enable sidebar buttons pointer event
     showExpandOverlay("remove", "auto");
@@ -243,19 +242,19 @@ const controlExpansionSection = async function () {
 };
 
 const controlGenreCards = async function (btn) {
-  const genreArr = model.data.genreArr;
+  const genreArr = model.data.genre.genreArr;
 
   // Sets Pagination View Pagenumber to pageNum
   paginationView.pageNum = 1;
 
   if (!btn.classList.contains("active")) {
     genreArr.push(btn.dataset.genreId);
-    console.log(model.data.genreArr);
+    console.log(model.data.genre.genreArr);
     btn.classList.add("active");
     // Renders Loading Spinner
     paginationView.renderLoading();
     await model.createGenreCards();
-    genreCardsView.renderHTML(model.data.genresResult);
+    genreCardsView.renderHTML(model.data.genre.genresResult);
     paginationView.renderPagination(model.data.pages.currentPageLast);
     return;
   }
@@ -263,12 +262,12 @@ const controlGenreCards = async function (btn) {
   // if btn is already active then this condition happens
   if (btn.classList.contains("active")) {
     genreArr.pop(btn.dataset.genreId);
-    console.log(model.data.genreArr);
+    console.log(model.data.genre.genreArr);
     btn.classList.remove("active");
     // Renders Loading Spinner
     paginationView.renderLoading();
     await model.createGenreCards();
-    genreCardsView.renderHTML(model.data.genresResult);
+    genreCardsView.renderHTML(model.data.genre.genresResult);
     paginationView.renderPagination(model.data.pages.currentPageLast);
     return;
   }

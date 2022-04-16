@@ -64,6 +64,7 @@ class cardZoomingView {
     cardElement.style.transition = `all 0.5s ease`;
     cardElement.style.borderRadius = "5px";
     cardElement.style.transform = "unset";
+
     // Position and Size of the card
     // prettier-ignore
     this._cardSizePos(cardElement,`${this._widthCopy}px`,`${this._heightCopy}px`,`${this._topCopy}px`,`${this._leftCopy}px`)

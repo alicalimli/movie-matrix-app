@@ -19,12 +19,10 @@ import { apiFetch, createMovieObj, getMovieTvData } from "./helpers";
 
 export const data = {
   movie: {},
+  cardZooming: true,
   discoverMovies: [],
   popularMovies: [],
   trendingMovies: [],
-  genresData: [],
-  genresResult: [],
-  genreArr: [],
   popularTVS: [],
   searchResults: [],
   bookMarksData: [],
@@ -40,6 +38,11 @@ export const data = {
     videoData: "",
     videoDetails: {},
     videoCasts: [],
+  },
+  genre: {
+    genresData: [],
+    genresResult: [],
+    genreArr: [],
   },
 };
 
@@ -70,7 +73,7 @@ export const createDiscoverCards = async function (pageName = "home",pageNum = 1
 
     console.log(movieData)
 
-    data.genresData = genreRes.genres;
+    data.genre.genresData = genreRes.genres;
     //Always Sets the current page to 1
     data.pages.currentPage = movieData.page;
 
@@ -159,14 +162,14 @@ export const createExpandPage = async function (videoId) {
 
 export const createGenreCards = async function () {
   const genreData = await fetch(
-    `${data.pages.currentUrl}/&with_genres=${data.genreArr}`
+    `${data.pages.currentUrl}/&with_genres=${data.genre.genreArr}`
   );
-  data.pages.currentUrl = `${data.pages.currentUrl}/&with_genres=${data.genreArr}`;
+  data.pages.currentUrl = `${data.pages.currentUrl}/&with_genres=${data.genre.genreArr}`;
 
   console.log(genreData);
   if (!genreData) return;
   const genreRes = await genreData.json();
-  data.genresResult = await createMovieObj(genreRes.results);
+  data.genre.genresResult = await createMovieObj(genreRes.results);
   console.log(genreRes.results);
 
   //Always Sets the current page to 1

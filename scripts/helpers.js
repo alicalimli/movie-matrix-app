@@ -16,7 +16,7 @@ export const controlMovieCards = async function (viewType, viewName, pageType = 
     await viewType.renderHTML(model.data[viewName]);
 
     // Render's Genre tags
-    await viewType.renderGenreTags(model.data.genresData);
+    await viewType.renderGenreTags(model.data.genre.genresData);
 
     // Sets Pagination View Pagenumber to pageNum
     paginationView.pageNum = pageNum;
