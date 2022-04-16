@@ -21,9 +21,10 @@ import {
 } from "./helpers.js";
 import genreCardsView from "./views/genreCardsView.js";
 import mainView from "./views/mainView.js";
+import cardZoomingView from "./views/cardZoomingView.js";
 
 let expandSecIsActive = false;
-let cardZooming = false;
+let cardZooming = true;
 
 // prettier-ignore
 const controlDiscoverMovies = async function () {
@@ -149,7 +150,7 @@ const controlMovieSection = async function () {
 
     if (cardZooming) {
       expandDuration = 400;
-      cardExpand(movieCard, true);
+      cardZoomingView.renderCardZoom(movieCard);
     }
 
     // Shrink's sections in the html and disable sidebar buttons pointer event
@@ -170,7 +171,8 @@ const controlMovieSection = async function () {
 
     if (cardZooming) {
       const cardClone = document?.querySelector(".movie-card-clone");
-      cardExpand(cardClone, false);
+
+      cardZoomingView.renderCardShrink();
       expandDuration = 600;
     }
 
