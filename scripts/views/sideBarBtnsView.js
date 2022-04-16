@@ -6,8 +6,20 @@ class SideBarBtnView extends mainView {
   _sidebar = document.querySelector(".movie-sidebar-nav");
   _navBtns = document.querySelectorAll(".nav-btn");
   _icons = this._parentEl.querySelectorAll(".bx");
+  _menuBtn = document.querySelector(".menu-btn");
 
   buttonPage = "home";
+
+  _shrinkSections(type) {
+    othersView.shrinkSections("add");
+    othersView.showOverlay("add");
+  }
+
+  _unShrinkSections() {
+    othersView.shrinkSections("remove");
+    othersView.showOverlay("remove");
+    othersView.expandSidebar("remove");
+  }
 
   // prettier-ignore
   addHandlerEvent(handle) {
@@ -34,6 +46,12 @@ class SideBarBtnView extends mainView {
       document.body.classList.toggle("darkmode");
       localStorage.setItem("darkmode", JSON.stringify(darkMode))
     })
+
+    this._menuBtn.addEventListener("click", function () {
+      othersView.shrinkSections("add")
+      othersView.showOverlay('add')
+      othersView.expandSidebar("add")
+    });
   }
 
   updateBtn(btnType) {
@@ -81,17 +99,6 @@ class SideBarBtnView extends mainView {
     }
 
     this.buttonPage = btn.dataset.page;
-  }
-
-  _shrinkSections(type) {
-    othersView.shrinkSections("add");
-    othersView.showOverlay("add");
-  }
-
-  _unShrinkSections() {
-    othersView.shrinkSections("remove");
-    othersView.showOverlay("remove");
-    othersView.expandSidebar("remove");
   }
 }
 

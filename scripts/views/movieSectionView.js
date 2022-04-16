@@ -2,11 +2,21 @@ import { showExpandOverlay } from "../helpers";
 import othersView from "./othersView";
 
 class cardZoomingView {
+  _mainSection = document.querySelector(".movie-main");
+  _backButton = document.querySelector(".back-btn");
   _cardElementClone;
   _topCopy;
   _leftCopy;
   _widthCopy;
   _heightCopy;
+
+  addEventHandler(handle) {
+    this._mainSection.addEventListener("click", handle);
+  }
+
+  addBackEventHandler(handle) {
+    this._backButton.addEventListener("click", handle);
+  }
 
   _cardSizePos(cardElement, width, height, top, left) {
     cardElement.style.top = top;
@@ -15,9 +25,24 @@ class cardZoomingView {
     cardElement.style.width = width;
   }
 
+  shrinkSections() {
+    othersView.sidebarBtnPointerEvent("none");
+    othersView.shrinkSections("add");
+    othersView.hideToolTip("hidden");
+    othersView.showOverlay("add");
+  }
+
+  unShrinkSections() {
+    // Unshrink's sections in the html and enable sidebar buttons pointer event
+    othersView.sidebarBtnPointerEvent("auto");
+    othersView.shrinkSections("remove");
+    othersView.hideToolTip("visible");
+    othersView.showOverlay("remove");
+  }
+
   renderCardZoom(cardElement) {
+    // Takes the position of movieCard and
     // Sets the position of movieCardClone in the movieCards position
-    // Takes the position of movieCard
     const { top, left, width, height } = cardElement.getBoundingClientRect();
     this._heightCopy = height;
     this._widthCopy = width;
@@ -61,30 +86,19 @@ class cardZoomingView {
     }, 100);
   }
 
+  // prettier-ignore
   renderCardShrink(cardElement = this._cardElementClone) {
     cardElement.style.transition = `all 0.5s ease`;
     cardElement.style.borderRadius = "5px";
     cardElement.style.transform = "unset";
 
     // Position and Size of the card
-    // prettier-ignore
     this._cardSizePos(cardElement,`${this._widthCopy}px`,`${this._heightCopy}px`,`${this._topCopy}px`,`${this._leftCopy}px`)
 
     setTimeout(() => {
-      if (cardElement) cardElement.style.opacity = "0";
-
-      // Unshrink's sections in the html and enable sidebar buttons pointer event
-      othersView.sidebarBtnPointerEvent("auto");
-      othersView.shrinkSections("remove");
-      othersView.hideToolTip("visible");
-      othersView.showOverlay("remove");
-    }, 300);
-
-    setTimeout(() => {
-      if (cardElement) {
-        cardElement.remove();
-        document.querySelector(".video-section")?.remove();
-      }
+      cardElement.style.opacity = "0";
+      cardElement.remove();
+      document.querySelector(".video-section")?.remove();
     }, 600);
   }
 }

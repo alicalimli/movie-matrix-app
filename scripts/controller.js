@@ -2,7 +2,7 @@ import "core-js/stable";
 import "regenerator-runtime/runtime";
 
 import * as model from "./model.js";
-import { DEFAULT_PAGE, MOVIES_FIRST_PAGE, MOVIES_MAX_PAGE } from "./config.js";
+import { MOVIES_FIRST_PAGE, MOVIES_MAX_PAGE } from "./config.js";
 import sideBarBtnsView from "./views/sideBarBtnsView.js";
 import discoverMoviesView from "./views/discoverView.js";
 import popularMoviesView from "./views/popularMoviesView.js";
@@ -18,8 +18,9 @@ import {
   showExpandOverlay,
 } from "./helpers.js";
 import genreCardsView from "./views/genreCardsView.js";
-import cardZoomingView from "./views/cardZoomingView.js";
+import cardZoomingView from "./views/movieSectionView.js";
 import othersView from "./views/othersView.js";
+import movieSectionView from "./views/movieSectionView.js";
 
 let expandSecIsActive = false;
 
@@ -126,65 +127,59 @@ const controlPagination = async function (event) {
   }
 };
 
-const controlMovieSection = async function () {
-  document.querySelector(".movie-main").addEventListener("click", function (e) {
-    let expandDuration = 0;
-    // This function wont work if expand section is already active
-    if (expandSecIsActive) return;
+const controlMovieSection = async function (e) {
+  let expandDuration;
+  // This function wont work if expand section is already active
+  if (expandSecIsActive) return;
 
-    expandSecIsActive = true;
+  expandSecIsActive = true;
 
-    const sidebar = document.querySelector(".movie-sidebar-nav");
-    const btn = e.target.closest(".expand-btn");
+  const sidebar = document.querySelector(".movie-sidebar-nav");
+  const btn = e.target.closest(".expand-btn");
 
-    if (!btn) return;
+  if (!btn) return;
 
-    const btnId = btn.dataset.cardId;
-    const movieCard = e.target.closest(".movie-card");
+  const expandSection = document.querySelector(".expansion-section");
+  const movieCard = e.target.closest(".movie-card");
+  const btnId = btn.dataset.cardId;
 
-    window.location.hash = btnId;
+  window.location.hash = btnId;
 
-    if (model.data.cardZooming) {
-      expandDuration = 400;
-      cardZoomingView.renderCardZoom(movieCard);
-    }
+  if (model.data.cardZooming) {
+    expandDuration = 400;
+    cardZoomingView.renderCardZoom(movieCard);
+  }
 
-    // Shrink's sections in the html and disable sidebar buttons pointer event
-    othersView.sidebarBtnPointerEvent("none");
-    othersView.shrinkSections("add");
-    othersView.hideToolTip("hidden");
-    othersView.showOverlay("add");
+  // Shrink's sections in the html and disable sidebar buttons pointer event
+  movieSectionView.shrinkSections();
 
-    // Shows the expansion section after 400ms
-    setTimeout(() => {
-      controlExpansionSection();
-      document.querySelector(".expansion-section").classList.add("active");
-    }, expandDuration);
-  });
+  // Shows the expansion section after 400ms
+  setTimeout(() => {
+    controlExpansionSection();
+    expandSection.classList.add("active");
+  }, expandDuration);
+};
 
-  // Click Listener for the back-button in the expand page
-  document.querySelector(".back-btn").addEventListener("click", function (e) {
-    let expandDuration = 0;
-    window.location.hash = "";
-    document.querySelector(".expansion-section").classList.remove("active");
+const controlExpandBackButton = function (e) {
+  const expandSection = document.querySelector(".expansion-section");
+  const cardClone = document?.querySelector(".movie-card-clone");
 
-    if (model.data.cardZooming) {
-      const cardClone = document?.querySelector(".movie-card-clone");
+  let expandDuration;
 
-      cardZoomingView.renderCardShrink();
-      expandDuration = 600;
-    }
+  window.location.hash = "";
 
-    setTimeout(() => (expandSecIsActive = false), expandDuration);
+  expandSection.classList.remove("active");
 
-    if (model.data.cardZooming) return;
+  if (model.data.cardZooming && cardClone) {
+    cardZoomingView.renderCardShrink();
+    expandDuration = 600;
+  }
 
-    // Unshrink's sections in the html and enable sidebar buttons pointer event
-    othersView.sidebarBtnPointerEvent("auto");
-    othersView.shrinkSections("remove");
-    othersView.hideToolTip("visible");
-    othersView.showOverlay("remove");
-  });
+  setTimeout(() => (expandSecIsActive = false), expandDuration);
+
+  setTimeout(() => movieSectionView.unShrinkSections(), expandDuration / 2);
+
+  if (model.data.cardZooming) return;
 };
 
 // prettier-ignore
@@ -283,13 +278,14 @@ const init = function () {
   console.log(model.data.bookMarksData);
   // Loads Discover Movie Card's when page is loaded.
   controlDiscoverMovies();
-  controlMovieSection();
 
   // Attach Event Handlers
-  genreCardsView.addHandlerEvent(controlGenreCards);
-  sideBarBtnsView.addHandlerEvent(controlNavBtns);
-  paginationView.addHandlerEvent(controlPagination);
+  movieSectionView.addBackEventHandler(controlExpandBackButton);
   searchResultsView.addHandlerEvent(controlSearchResults);
+  movieSectionView.addEventHandler(controlMovieSection);
+  genreCardsView.addHandlerEvent(controlGenreCards);
+  paginationView.addHandlerEvent(controlPagination);
+  sideBarBtnsView.addHandlerEvent(controlNavBtns);
 
   // Takes the darkmode data in the local storage
   const darkMode = JSON.parse(localStorage.getItem("darkmode"));
@@ -307,10 +303,7 @@ window.addEventListener("load", function () {
   if (this.window.location.hash) {
     expandSecIsActive = true;
     // Shrink's sections in the html and disable sidebar buttons pointer event
-    othersView.sidebarBtnPointerEvent("none");
-    othersView.shrinkSections("add");
-    othersView.showOverlay("add");
-    othersView.hideToolTip("hidden");
+    movieSectionView.shrinkSections();
 
     document.querySelector(".expansion-section").classList.add("active");
     controlExpansionSection();
@@ -320,10 +313,3 @@ window.addEventListener("load", function () {
 // prettier-ignore
 // Saves Bookmarks Data to the localstorage.
 window.onbeforeunload = () => localStorage.setItem("bookmarksData",JSON.stringify(model.data.bookMarksData));
-
-// prettier-ignore
-const menuBtn = document.querySelector(".menu-btn").addEventListener("click", function () {
-    othersView.shrinkSections("add")
-    othersView.showOverlay('add')
-    othersView.expandSidebar("add")
-  });

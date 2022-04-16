@@ -19,7 +19,7 @@ import { apiFetch, createMovieObj, getMovieTvData } from "./helpers";
 
 export const data = {
   movie: {},
-  cardZooming: true,
+  cardZooming: false,
   discoverMovies: [],
   popularMovies: [],
   trendingMovies: [],
