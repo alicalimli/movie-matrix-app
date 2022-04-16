@@ -83,7 +83,7 @@ export const createDiscoverCards = async function (pageName = "home",pageNum = 1
     // Creates Movie Object
     data[data.pages.pageName] = createMovieObj(movieData.results);
   } catch (error) {
-    console.error(error);
+    throw error;
   }
 };
 
@@ -98,11 +98,13 @@ export const createSearchResults = async function (searchVal) {
     // Merges TvResults and Movie Results and returns the data
     const finalRes = resultMovieData.results.concat(resultTVData.results);
 
+    if(finalRes.length === 0) throw new Error("Sorry, We can't find what you're looking for.")
+
     // Create's Movie Object
     data.searchResults = createMovieObj(finalRes);
     data.pages.currentPageType = "search";
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 

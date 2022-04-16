@@ -20,6 +20,7 @@ import {
   showExpandOverlay,
 } from "./helpers.js";
 import genreCardsView from "./views/genreCardsView.js";
+import mainView from "./views/mainView.js";
 
 let expandSecIsActive = false;
 let cardZooming = false;
@@ -78,7 +79,7 @@ const controlNavBtns = async function (event) {
       setTimeout(()=> toolTip.forEach((el) => (el.style.visibility = "visible")),500)
     }
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };
 
@@ -95,7 +96,7 @@ const controlSearchResults = async function () {
     // Renders HTML Card's
     searchResultsView.renderHTML(model.data.searchResults);
   } catch (error) {
-    console.log(error);
+    searchResultsView.renderErrorMsg(error.message);
   }
 };
 

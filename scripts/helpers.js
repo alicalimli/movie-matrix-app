@@ -25,7 +25,7 @@ export const controlMovieCards = async function (viewType, viewName, pageType = 
     paginationView.renderPagination(model.data.pages.currentPageLast);
 
   } catch (error) {
-    console.log(error);
+    viewType.renderErrorMsg(error.message)
   }
 };
 
@@ -124,7 +124,7 @@ export const apiFetch = async function (
     const movieData = await fetch(url);
 
     // Throws an error when the response fails
-    if (!movieData.ok) throw new Error();
+    if (!movieData.ok) throw new Error(movieData.statusText);
 
     // Takes the response and convert it to JSON
     const movieDataResults = await movieData.json();
@@ -138,6 +138,7 @@ export const apiFetch = async function (
     return movieDataResults;
   } catch (error) {
     console.log(error);
+    throw error;
   }
 };
 
@@ -186,6 +187,6 @@ export const getMovieTvData = async function (videoId, detailType = "") {
 
     return finalRes;
   } catch (error) {
-    console.log(error);
+    throw error;
   }
 };

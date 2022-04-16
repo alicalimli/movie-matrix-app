@@ -25,6 +25,18 @@ export default class mainView {
     this._scrollToTop();
   }
 
+  renderErrorMsg(errorMsg) {
+    const errorMarkup = `
+    <div class="error-msg">
+      <i class="ph-icon ph-warning"></i>
+      <span class="img-unavailable-text">${errorMsg}</span>
+    </div>
+    `;
+
+    this._clearHTML();
+    this._parentEl.insertAdjacentHTML("beforeend", errorMarkup);
+  }
+
   renderGenreTags(genreData) {
     this._genreParentEl.innerHTML = "";
     genreData.forEach((genre) => {

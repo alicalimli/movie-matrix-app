@@ -13,23 +13,21 @@ class popularMoviesView extends mainView {
     const overlay = document.querySelector(".overlay-main");
 
     let isGenresHidden = true;
+
+    // prettier-ignore
     headerFilterBtn.addEventListener("click", function () {
       if (isGenresHidden) {
         isGenresHidden = false;
-        console.log("lala");
         filterBtnContainer.classList.add("active");
-        document.querySelector(".movie-sidebar-nav").style.pointerEvents =
-          "none";
+        document.querySelector(".movie-sidebar-nav").style.pointerEvents = "none";
         document.querySelector(".sidebar-buttons").style.pointerEvents = "none";
         movieSection.style.pointerEvents = "none";
         return;
       }
       if (!isGenresHidden) {
         isGenresHidden = true;
-        console.log("lele");
         filterBtnContainer.classList.remove("active");
-        document.querySelector(".movie-sidebar-nav").style.pointerEvents =
-          "auto";
+        document.querySelector(".movie-sidebar-nav").style.pointerEvents = "auto";
         document.querySelector(".sidebar-buttons").style.pointerEvents = "auto";
         movieSection.style.pointerEvents = "auto";
         return;
