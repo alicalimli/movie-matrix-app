@@ -7,10 +7,6 @@
   transition: var(--transition-three-ms);
 }
 
-.movie-pagination.active {
-  transform: scale(0.95);
-}
-
 .movie-pagination button {
   color: var(--primary-accent-color);
   cursor: pointer;

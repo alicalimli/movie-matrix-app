@@ -19,6 +19,7 @@ import {
 } from "./helpers.js";
 import genreCardsView from "./views/genreCardsView.js";
 import cardZoomingView from "./views/cardZoomingView.js";
+import othersView from "./views/othersView.js";
 
 let expandSecIsActive = false;
 
@@ -149,7 +150,10 @@ const controlMovieSection = async function () {
     }
 
     // Shrink's sections in the html and disable sidebar buttons pointer event
-    showExpandOverlay("add", "none");
+    othersView.sidebarBtnPointerEvent("none");
+    othersView.shrinkSections("add");
+    othersView.hideToolTip("hidden");
+    othersView.showOverlay("add");
 
     // Shows the expansion section after 400ms
     setTimeout(() => {
@@ -175,8 +179,11 @@ const controlMovieSection = async function () {
 
     if (model.data.cardZooming) return;
 
-    // Scale's sections in the html back to normal and enable sidebar buttons pointer event
-    showExpandOverlay("remove", "auto");
+    // Unshrink's sections in the html and enable sidebar buttons pointer event
+    othersView.sidebarBtnPointerEvent("auto");
+    othersView.shrinkSections("remove");
+    othersView.hideToolTip("visible");
+    othersView.showOverlay("remove");
   });
 };
 
@@ -300,7 +307,10 @@ window.addEventListener("load", function () {
   if (this.window.location.hash) {
     expandSecIsActive = true;
     // Shrink's sections in the html and disable sidebar buttons pointer event
-    showExpandOverlay("add", "none");
+    othersView.sidebarBtnPointerEvent("none");
+    othersView.shrinkSections("add");
+    othersView.showOverlay("add");
+    othersView.hideToolTip("hidden");
 
     document.querySelector(".expansion-section").classList.add("active");
     controlExpansionSection();
@@ -311,9 +321,9 @@ window.addEventListener("load", function () {
 // Saves Bookmarks Data to the localstorage.
 window.onbeforeunload = () => localStorage.setItem("bookmarksData",JSON.stringify(model.data.bookMarksData));
 
-const menuBtn = document
-  .querySelector(".menu-btn")
-  .addEventListener("click", function () {
-    showExpandOverlay("add", "auto");
-    document.querySelector(".movie-sidebar-nav").classList.add("active");
+// prettier-ignore
+const menuBtn = document.querySelector(".menu-btn").addEventListener("click", function () {
+    othersView.shrinkSections("add")
+    othersView.showOverlay('add')
+    othersView.expandSidebar("add")
   });

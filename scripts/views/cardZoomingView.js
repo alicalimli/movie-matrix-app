@@ -1,4 +1,5 @@
 import { showExpandOverlay } from "../helpers";
+import othersView from "./othersView";
 
 class cardZoomingView {
   _cardElementClone;
@@ -72,8 +73,11 @@ class cardZoomingView {
     setTimeout(() => {
       if (cardElement) cardElement.style.opacity = "0";
 
-      // Scale's sections in the html back to normal and enable sidebar buttons pointer event
-      showExpandOverlay("remove", "auto");
+      // Unshrink's sections in the html and enable sidebar buttons pointer event
+      othersView.sidebarBtnPointerEvent("auto");
+      othersView.shrinkSections("remove");
+      othersView.hideToolTip("visible");
+      othersView.showOverlay("remove");
     }, 300);
 
     setTimeout(() => {

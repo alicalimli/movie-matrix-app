@@ -14,14 +14,8 @@
   z-index: 4;
 }
 
-.overlay-main.active {
+.overlay-main.show {
   opacity: 0.85;
-  pointer-events: auto;
-  visibility: visible;
-}
-
-.movie-sidebar-nav.active .overlay-main.active {
-  opacity: 0.8;
   pointer-events: auto;
   visibility: visible;
 }
@@ -39,4 +33,24 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+/**************** EXPAND SIDEBAR ***************/
+
+.movie-sidebar-nav.active {
+  width: 15rem;
+}
+
+/**************** SECTION SHRINKING ***************/
+
+.movie-main.shrink {
+  transform: scale(0.95);
+}
+
+.section-header.shrink {
+  transform: scale(0.95);
+}
+
+.movie-pagination.shrink {
+  transform: scale(0.95);
 }

@@ -10,10 +10,6 @@
   transition: var(--transition-three-ms);
 }
 
-.movie-main.active {
-  transform: scale(0.95);
-}
-
 .movie-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));

@@ -9,8 +9,6 @@ export default class mainView {
   _headTitle = document.querySelector(".header-title");
   _title = "Discover Movies";
   viewName = "discoverMoviesView";
-
-  _overlay = document.querySelector(".overlay-main");
   _mainMovieSection = document.querySelector(".movie-main");
   _headerSection = document.querySelector(".section-header");
   _paginationSection = document.querySelector(".movie-pagination");
@@ -55,18 +53,6 @@ export default class mainView {
      `;
     this._clearHTML();
     this._parentEl.insertAdjacentHTML("beforeend", loadingHTML);
-  }
-
-  // Toggles Overlay
-  toggleOverlay(type, btnType = "none") {
-    this._overlay.classList[type]("active");
-    this._mainMovieSection.classList[type]("active");
-    this._headerSection.classList[type]("active");
-    this._paginationSection.classList[type]("active");
-    if (type === "remove") this._sidebar.classList[type]("active");
-
-    if (btnType !== "expand") return;
-    this._sidebar.classList[type]("active");
   }
 
   _scrollToTop() {
