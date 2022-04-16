@@ -13,14 +13,11 @@ import paginationView from "./views/paginationView.js";
 import expansionView from "./views/expansionView.js";
 import bookmarksView from "./views/bookmarksView.js";
 import {
-  cardExpand,
-  cardSizePos,
   controlMovieCards,
   createMovieObj,
   showExpandOverlay,
 } from "./helpers.js";
 import genreCardsView from "./views/genreCardsView.js";
-import mainView from "./views/mainView.js";
 import cardZoomingView from "./views/cardZoomingView.js";
 
 let expandSecIsActive = false;
@@ -30,7 +27,6 @@ const controlDiscoverMovies = async function () {
   try {
     // Movie Card's Controller
     controlMovieCards(discoverMoviesView, "discoverMovies", "home");
-    // Update's Sidebar Buttons
     sideBarBtnsView.updateBtn();
   } catch (error) {
     console.log(error);

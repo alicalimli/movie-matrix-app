@@ -237,34 +237,6 @@
   opacity: 1;
 }
 
-/* Overlaymain */
-
-.overlay-main {
-  background-color: var(--primary-bg-color);
-  width: 100%;
-  height: 100%;
-  transition: var(--transition-three-ms);
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-  z-index: 4;
-}
-
-.overlay-main.active {
-  opacity: 0.85;
-  pointer-events: auto;
-  visibility: visible;
-}
-
-.movie-sidebar-nav.active .overlay-main.active {
-  opacity: 0.8;
-  pointer-events: auto;
-  visibility: visible;
-}
-
 /*  DarkMode Toggler */
 
 .dark-list {

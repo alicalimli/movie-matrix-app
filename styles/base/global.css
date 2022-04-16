@@ -30,16 +30,3 @@ body {
   height: 100vh;
   gap: 0.5rem;
 }
-
-.error-msg {
-  display: flex;
-  margin: auto;
-  gap: 0.5rem;
-  text-align: center;
-  height: 50vh;
-  width: 30vw;
-  font-size: 1.3rem;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}

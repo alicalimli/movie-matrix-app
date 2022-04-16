@@ -76,10 +76,8 @@ export const createDiscoverCards = async function (pageName = "home",pageNum = 1
     data.genre.genresData = genreRes.genres;
     //Always Sets the current page to 1
     data.pages.currentPage = movieData.page;
-
     // Sets the currentPageType to which button has been click(ex.Movies)
     data.pages.currentPageType = pageName;
-
     // Always sets the currentpagelast to lastpage
     data.pages.currentPageLast = MOVIES_MAX_PAGE; // TMDB returns an error when page is above 500
 
