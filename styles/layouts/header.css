@@ -62,6 +62,7 @@
 }
 
 .filters-btns {
+  width: 100%;
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
