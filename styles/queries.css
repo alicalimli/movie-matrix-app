@@ -72,9 +72,6 @@
 }
 
 @media screen and (max-width: 410px) {
-  html {
-    font-size: 70%;
-  }
   .bookmark-btn {
     position: relative;
     align-self: start;
@@ -87,7 +84,7 @@
   }
 }
 
-@media screen and (max-width: 275px) {
+@media screen and (max-width: 300px) {
   .movie-cards {
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   }

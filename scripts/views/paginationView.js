@@ -55,7 +55,6 @@ class paginationView extends mainView {
   }
 
   _generateNumPageBtnsBefore() {
-    console.log("assaasas");
     let pageNumBtnBeforeHTML = ``;
 
     for (let i = +this.pageNum - 2; i < +this.pageNum; i++) {

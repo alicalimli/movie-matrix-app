@@ -60,6 +60,7 @@ const controlNavBtns = async function (event) {
       controlMovieCards(popularTVsView, "popularTVS", "tvs-pop");
     }
     if (sideBarBtnsView.buttonPage === "bookmarks") {
+      genreCardsView.renderGenreErrorMsg();
       // Render's Loading Spinner
       bookmarksView.renderLoading();
 
@@ -72,7 +73,6 @@ const controlNavBtns = async function (event) {
       showExpandOverlay("remove", "auto");
       sidebar.classList.remove("active");
       toolTip.forEach((el) => (el.style.visibility = "hidden"));
-      console.log("asdasd");
       // prettier-ignore
       setTimeout(()=> toolTip.forEach((el) => (el.style.visibility = "visible")),500)
     }
@@ -83,6 +83,9 @@ const controlNavBtns = async function (event) {
 
 const controlSearchResults = async function () {
   try {
+    // Render error message in genre container
+    genreCardsView.renderGenreErrorMsg();
+    // Remove's active icons in sidebar
     sideBarBtnsView.updateBtn("search-res");
     sideBarBtnsView.buttonPage = "search";
     // Takes Search Input Value
@@ -239,35 +242,49 @@ const controlExpansionSection = async function () {
   }
 };
 
-const controlGenreCards = async function (btn) {
-  const genreArr = model.data.genre.genreArr;
-
-  // Sets Pagination View Pagenumber to pageNum
-  paginationView.pageNum = 1;
-
-  if (!btn.classList.contains("active")) {
-    genreArr.push(btn.dataset.genreId);
-    console.log(model.data.genre.genreArr);
-    btn.classList.add("active");
+const renderGenreCards = async function () {
+  try {
     // Renders Loading Spinner
     paginationView.renderLoading();
+    // Create's Genre Cards
     await model.createGenreCards();
+    // Render's the result to the DOM
     genreCardsView.renderHTML(model.data.genre.genresResult);
+    // Render's Pagination in the DOM
     paginationView.renderPagination(model.data.pages.currentPageLast);
-    return;
+  } catch (error) {
+    console.error(error);
+    genreCardsView.renderErrorMsg(error.message);
   }
+};
 
-  // if btn is already active then this condition happens
-  if (btn.classList.contains("active")) {
-    genreArr.pop(btn.dataset.genreId);
-    console.log(model.data.genre.genreArr);
-    btn.classList.remove("active");
-    // Renders Loading Spinner
-    paginationView.renderLoading();
-    await model.createGenreCards();
-    genreCardsView.renderHTML(model.data.genre.genresResult);
-    paginationView.renderPagination(model.data.pages.currentPageLast);
-    return;
+const controlGenreCards = async function (event) {
+  try {
+    const btn = event.target.closest(".filters-btn");
+    const genreArr = model.data.genre.genreArr;
+
+    if (!btn) return;
+
+    // Sets Pagination View Pagenumber to pageNum
+    paginationView.pageNum = 1;
+
+    if (!btn.classList.contains("active")) {
+      genreArr.push(btn.dataset.genreId);
+      btn.classList.add("active");
+      renderGenreCards();
+      return;
+    }
+
+    // if btn is already active then this condition happens
+    if (btn.classList.contains("active")) {
+      genreArr.pop(btn.dataset.genreId);
+      btn.classList.remove("active");
+      renderGenreCards();
+      return;
+    }
+  } catch (error) {
+    console.error(error);
+    throw error;
   }
 };
 
@@ -283,7 +300,7 @@ const init = function () {
   movieSectionView.addBackEventHandler(controlExpandBackButton);
   searchResultsView.addHandlerEvent(controlSearchResults);
   movieSectionView.addEventHandler(controlMovieSection);
-  genreCardsView.addHandlerEvent(controlGenreCards);
+  genreCardsView.addEventHandler(controlGenreCards);
   paginationView.addHandlerEvent(controlPagination);
   sideBarBtnsView.addHandlerEvent(controlNavBtns);
 

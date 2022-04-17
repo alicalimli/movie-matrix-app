@@ -1,9 +1,8 @@
 import { IMG_PATH } from "../config";
 
 export default class mainView {
-  _parentEl = document.querySelector(".movie-cards");
-  _genreParentEl = document.querySelector(".filters-btns");
   _paginationSection = document.querySelector(".movie-pagination");
+  _parentEl = document.querySelector(".movie-cards");
   _movieData;
 
   _headTitle = document.querySelector(".header-title");
@@ -33,16 +32,6 @@ export default class mainView {
 
     this._clearHTML();
     this._parentEl.insertAdjacentHTML("beforeend", errorMarkup);
-  }
-
-  renderGenreTags(genreData) {
-    this._genreParentEl.innerHTML = "";
-    genreData.forEach((genre) => {
-      const genreMarkup = `
-      <li data-genre-id="${genre.id}" class="filters-btn">${genre.name}</li>
-      `;
-      this._genreParentEl.insertAdjacentHTML("beforeend", genreMarkup);
-    });
   }
 
   renderLoading() {

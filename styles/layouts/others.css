@@ -28,11 +28,21 @@
   gap: 0.5rem;
   text-align: center;
   height: 50vh;
-  width: 30vw;
+  width: 70%;
   font-size: 1.3rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+/**************** SHOW GENRE BUTTONS***************/
+
+.filter-btn-container.show {
+  pointer-events: auto;
+  opacity: 1;
+  visibility: visible;
+  transform: unset;
+  z-index: 999;
 }
 
 /**************** EXPAND SIDEBAR ***************/

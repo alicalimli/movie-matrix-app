@@ -34,16 +34,19 @@
 
 .header-filter-btn {
   padding: 0.2rem 0.4rem;
+  transition: var(--transition-three-ms);
   font-size: 0.9rem;
   color: #111;
   cursor: pointer;
   background-color: var(--primary-accent-color);
   border-radius: 5px;
+  z-index: 99;
 }
 
 .filter-btn-container {
   background-color: var(--secondary-bg-color);
   position: absolute;
+  width: 90%;
   top: 100%;
   margin: 1rem;
   border-radius: 5px;
@@ -56,14 +59,6 @@
   transition: var(--transition-three-ms);
   opacity: 0;
   visibility: hidden;
-}
-
-.filter-btn-container.active {
-  pointer-events: auto;
-  opacity: 1;
-  visibility: visible;
-  transform: unset;
-  z-index: 999;
 }
 
 .filters-btns {

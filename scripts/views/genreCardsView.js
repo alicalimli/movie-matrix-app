@@ -1,38 +1,21 @@
 import mainView from "./mainView";
+import othersView from "./othersView";
 
-class popularMoviesView extends mainView {
-  _title = "Popular Movies";
-  _filterBtnsParent = document.querySelector(".filters-btns");
+class genreCardsView extends mainView {
+  _filterButtonsParent = document.querySelector(".filters-btns");
+  _genreParentEl = document.querySelector(".filters-btns");
 
-  constructor() {
-    super();
-    const headerFilterBtn = document.querySelector(".header-filter-btn");
-    const headerSection = document.querySelector(".section-header");
-    const filterBtnContainer = document.querySelector(".filter-btn-container");
-    const movieSection = document.querySelector(".movie-main");
-    const overlay = document.querySelector(".overlay-main");
+  _headerFilterBtn = document.querySelector(".header-filter-btn");
 
-    let isGenresHidden = true;
+  _isGenresHidden = true;
 
-    // prettier-ignore
-    headerFilterBtn.addEventListener("click", function () {
-      if (isGenresHidden) {
-        isGenresHidden = false;
-        filterBtnContainer.classList.add("active");
-        document.querySelector(".movie-sidebar-nav").style.pointerEvents = "none";
-        document.querySelector(".sidebar-buttons").style.pointerEvents = "none";
-        movieSection.style.pointerEvents = "none";
-        return;
-      }
-      if (!isGenresHidden) {
-        isGenresHidden = true;
-        filterBtnContainer.classList.remove("active");
-        document.querySelector(".movie-sidebar-nav").style.pointerEvents = "auto";
-        document.querySelector(".sidebar-buttons").style.pointerEvents = "auto";
-        movieSection.style.pointerEvents = "auto";
-        return;
-      }
-    });
+  _errorMsg =
+    "Unfortunately, this feature is not available yet in this section.";
+
+  // prettier-ignore
+  addEventHandler(handle) {
+    this._filterButtonsParent.addEventListener("click", handle);
+    this._headerFilterBtn.addEventListener("click",this._showGenres.bind(this));
   }
 
   renderHTML(movieData) {
@@ -42,17 +25,47 @@ class popularMoviesView extends mainView {
     this._scrollToTop();
   }
 
-  addHandlerEvent(handle) {
-    const genreArr = [];
-
-    this._filterBtnsParent.addEventListener("click", function (e) {
-      const btn = e.target.closest(".filters-btn");
-
-      if (!btn) return;
-
-      handle(btn);
+  renderGenreTags(genreData) {
+    this._genreParentEl.innerHTML = "";
+    genreData.forEach((genre) => {
+      const genreMarkup = `
+      <li data-genre-id="${genre.id}" class="filters-btn">${genre.name}</li>
+      `;
+      this._genreParentEl.insertAdjacentHTML("beforeend", genreMarkup);
     });
+  }
+
+  renderGenreErrorMsg(errorMsg = this._errorMsg) {
+    const errorMarkup = `
+    <div class="error-msg">
+      <i class="ph-icon ph-warning"></i>
+      <span class="img-unavailable-text">${errorMsg}</span>
+    </div>
+    `;
+
+    this._genreParentEl.innerHTML = "";
+    this._genreParentEl.insertAdjacentHTML("beforeend", errorMarkup);
+  }
+
+  _showGenres() {
+    if (this._isGenresHidden === true) {
+      this._isGenresHidden = false;
+      othersView.sidebarBtnPointerEvent("none");
+      othersView.sidebarPointerEvent("none");
+      othersView.showGenreButtons("add");
+      othersView.showOverlay("add");
+      return;
+    }
+
+    if (this._isGenresHidden === false) {
+      this._isGenresHidden = true;
+      othersView.sidebarBtnPointerEvent("auto");
+      othersView.sidebarPointerEvent("auto");
+      othersView.showGenreButtons("remove");
+      othersView.showOverlay("remove");
+      return;
+    }
   }
 }
 
-export default new popularMoviesView();
+export default new genreCardsView();

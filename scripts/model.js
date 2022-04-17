@@ -10,8 +10,6 @@ import {
   MOVIES_MAX_PAGE,
   API_KEY,
   MOVIES_API_URL,
-  DISCOVER_URL_FIRST,
-  DISCOVER_URL_SECOND,
 } from "./config";
 import { apiFetch, createMovieObj, getMovieTvData } from "./helpers";
 
@@ -158,18 +156,28 @@ export const createExpandPage = async function (videoId) {
   }
 };
 
+// prettier-ignore
 export const createGenreCards = async function () {
-  const genreData = await fetch(
-    `${data.pages.currentUrl}/&with_genres=${data.genre.genreArr}`
-  );
-  data.pages.currentUrl = `${data.pages.currentUrl}/&with_genres=${data.genre.genreArr}`;
+  try{
+    const genreData = await fetch( `${data.pages.currentUrl}/&with_genres=${data.genre.genreArr}`);
+    data.pages.currentUrl = `${data.pages.currentUrl}/&with_genres=${data.genre.genreArr}`;
+  
+    if (!genreData) return;
+  
+    const genreRes = await genreData.json();
 
-  console.log(genreData);
-  if (!genreData) return;
-  const genreRes = await genreData.json();
-  data.genre.genresResult = await createMovieObj(genreRes.results);
-  console.log(genreRes.results);
+    console.log(genreRes)
 
-  //Always Sets the current page to 1
-  data.pages.currentPage = genreRes.page;
+    if(genreRes.results.length === 0) throw new Error("Sorry, We can't find any results with the given genre.")
+
+    data.genre.genresResult = await createMovieObj(genreRes.results);
+  
+    console.log(genreRes.results);
+  
+    //Always Sets the current page to 1
+    data.pages.currentPage = genreRes.page;
+  }catch(error){
+    console.error(error);
+    throw error;
+  }
 };

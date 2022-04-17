@@ -1,11 +1,15 @@
 import { API_KEY, MOVIES_API_URL } from "./config";
 import * as model from "./model.js";
+import genreCardsView from "./views/genreCardsView";
 import paginationView from "./views/paginationView";
 // ****************** Below functions is mostly used in Controller.js **************************
 
 // prettier-ignore
 export const controlMovieCards = async function (viewType, viewName, pageType = "home",pageNum = 1) {
   try {
+    // Empty's genre's array
+    model.data.genre.genreArr = [];
+
     // Render's Loading Spinner
     viewType.renderLoading();
     
@@ -15,15 +19,18 @@ export const controlMovieCards = async function (viewType, viewName, pageType = 
     // Render's HTML Cards
     await viewType.renderHTML(model.data[viewName]);
 
-    // Render's Genre tags
-    await viewType.renderGenreTags(model.data.genre.genresData);
-
-    // Sets Pagination View Pagenumber to pageNum
+    // Sets Pagination View Page number to pageNum
     paginationView.pageNum = pageNum;
 
     // Render's pagination
     paginationView.renderPagination(model.data.pages.currentPageLast);
 
+    // Render's Genre tags
+    if(pageType === "trending"){
+      genreCardsView.renderGenreErrorMsg();
+    }else{
+      await genreCardsView.renderGenreTags(model.data.genre.genresData);
+    }
   } catch (error) {
     viewType.renderErrorMsg(error.message)
   }

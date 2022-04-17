@@ -1,4 +1,5 @@
 class othersView {
+  _filterButtonContainer = document.querySelector(".filter-btn-container");
   _paginationSection = document.querySelector(".movie-pagination");
   _sidebarButtons = document.querySelector(".sidebar-buttons");
   _toolTips = document.querySelectorAll(".secondary-title");
@@ -16,9 +17,12 @@ class othersView {
   }
 
   _addOverlayEventHandler() {
+    this.sidebarBtnPointerEvent("auto");
+    this.sidebarPointerEvent("auto");
+    this.showGenreButtons("remove");
+    this.shrinkSections("remove");
     this.expandSidebar("remove");
     this.showOverlay("remove");
-    this.shrinkSections("remove");
   }
 
   hideToolTip(type) {
@@ -31,6 +35,10 @@ class othersView {
 
   sidebarBtnPointerEvent(type) {
     this._sidebarButtons.style.pointerEvents = type;
+  }
+
+  showGenreButtons(type) {
+    this._filterButtonContainer.classList[type]("show");
   }
 
   expandSidebar(type) {
