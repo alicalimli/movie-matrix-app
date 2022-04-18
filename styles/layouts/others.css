@@ -45,6 +45,14 @@
   z-index: 999;
 }
 
+/**************** SHOW SETTINGS ***************/
+
+.settings-container.show {
+  visibility: visible;
+  pointer-events: auto;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
 /**************** EXPAND SIDEBAR ***************/
 
 .movie-sidebar-nav.active {

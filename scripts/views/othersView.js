@@ -1,5 +1,6 @@
 class othersView {
   _filterButtonContainer = document.querySelector(".filter-btn-container");
+  _settingsContainer = document.querySelector(".settings-container");
   _paginationSection = document.querySelector(".movie-pagination");
   _sidebarButtons = document.querySelector(".sidebar-buttons");
   _toolTips = document.querySelectorAll(".secondary-title");
@@ -22,7 +23,12 @@ class othersView {
     this.showGenreButtons("remove");
     this.shrinkSections("remove");
     this.expandSidebar("remove");
+    this.showSettings("remove");
     this.showOverlay("remove");
+  }
+
+  showSettings(type) {
+    this._settingsContainer.classList[type]("show");
   }
 
   hideToolTip(type) {

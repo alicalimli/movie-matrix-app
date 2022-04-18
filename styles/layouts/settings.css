@@ -1,0 +1,116 @@
+.settings-container {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--sidebar-bg-color);
+  box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  width: 20rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transition: var(--transition-three-ms);
+  transform: translate(-50%, -50%) scale(0.98);
+  padding: 1rem;
+  z-index: 999;
+}
+
+.settings-header {
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--quartenary-bg-color);
+}
+
+.settings-header-title {
+  color: var(--primary-text-color-inverted);
+  font-weight: 500;
+  display: flex;
+}
+
+.settings-lists {
+  padding: 0.5rem 1rem;
+  color: var(--primary-text-color-inverted);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.settings-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/**************** SETTINGS FOOTER ****************/
+
+.settings-footer {
+  margin-top: auto;
+  padding: 0.5rem 1rem;
+}
+
+.close-settings-btn {
+  border: 1px solid var(--primary-accent-color);
+  transition: var(--transition-three-ms);
+  cursor: pointer;
+  border-radius: 50px;
+  padding: 0.3rem 0.8rem;
+  color: var(--primary-accent-color);
+}
+
+.close-settings-btn:hover {
+  background-color: var(--primary-accent-color);
+  color: white;
+}
+
+/**************** DARK MODE TOGGLER ****************/
+
+.dark-list {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.dark-mode-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #adb5bd;
+  border-radius: 2.5rem;
+  position: relative;
+  height: 2.5rem;
+  width: 1.5rem;
+  transition: var(--transition-three-ms);
+  z-index: 10;
+
+  transform: rotate(-90deg);
+}
+
+.dark-list.active .dark-mode-btn {
+  background-color: var(--primary-accent-color);
+}
+.toggle-circle {
+  animation: 0.3s linear normal dark-toggle-off-anim;
+  animation-play-state: inherit;
+  border-radius: 100px;
+  width: 75%;
+  height: 45%;
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%, 10%);
+  border: 3px solid white;
+  background-color: #555;
+  transition: var(--transition-three-ms);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dark-list.active .toggle-circle {
+  transform: translate(-50%, 95%);
+  background-color: white;
+}

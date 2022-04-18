@@ -2,6 +2,7 @@ import mainView from "./mainView.js";
 import othersView from "./othersView.js";
 
 class SideBarBtnView extends mainView {
+  _settingsContainer = document.querySelector(".settings-container");
   _parentEl = document.querySelector(".sidebar-lists-btn");
   _sidebar = document.querySelector(".movie-sidebar-nav");
   _navBtns = document.querySelectorAll(".nav-btn");
@@ -16,6 +17,8 @@ class SideBarBtnView extends mainView {
   }
 
   _unShrinkSections() {
+    if (this._settingsContainer.classList.contains("show")) return;
+
     othersView.shrinkSections("remove");
     othersView.showOverlay("remove");
     othersView.expandSidebar("remove");
@@ -23,7 +26,10 @@ class SideBarBtnView extends mainView {
 
   // prettier-ignore
   addHandlerEvent(handle) {
+    const closeSettingsBtn = document.querySelector('.close-settings-btn')
+    const settingsBtn = document.querySelector('.sidebar-footer')
     const darkModeBtn = document.querySelector(".dark-list");
+
     let darkMode = false;
 
     if(localStorage.getItem("darkmode")){
@@ -32,13 +38,28 @@ class SideBarBtnView extends mainView {
 
     // Attach Hover event listener in sidebar
     this._sidebar.addEventListener("mouseover", this._shrinkSections);
-    this._sidebar.addEventListener("mouseleave", this._unShrinkSections);
+
+    this._sidebar.addEventListener("mouseleave", this._unShrinkSections.bind(this));
 
     // Attach click event listener
     this._parentEl.addEventListener("click", function (event) {
       event.preventDefault();
       handle(event);
     });
+
+    settingsBtn.addEventListener('click',function(){
+      othersView.expandSidebar('remove')
+      othersView.shrinkSections('add')
+      othersView.hideToolTip('hidden')
+      othersView.showSettings('add')
+      othersView.showOverlay('add')
+    })
+    closeSettingsBtn.addEventListener('click',function(){
+      othersView.shrinkSections('remove')
+      othersView.hideToolTip('visible')
+      othersView.showSettings('remove')
+      othersView.showOverlay('remove')
+    })
 
     darkModeBtn.addEventListener('click',function(){
       darkMode = !darkMode;

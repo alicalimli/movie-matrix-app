@@ -116,13 +116,12 @@
           </li>
         </ul>
       </div>
-      <footer class="nav-list dark-list">
-        <span class="dark-mode-text light">Light</span>
-        <a data-page="dark-mode" class="dark-mode-btn">
-          <div class="toggle-circle"></div>
+      <footer class="sidebar-footer nav-list">
+        <a data-page="settings" class="nav-btn">
+          <i class="ph-gear settings-icon"></i>
+          <span class="nav-title">Settings</span>
         </a>
-        <span class="dark-mode-text dark">Dark</span>
-        <span class="secondary-title">Dark Mode</span>
+        <span class="secondary-title">Settings</span>
       </footer>
     </nav>
 
@@ -210,6 +209,45 @@
                </footer>
       </main>
     </section>
+
+    <!-- *********** SETTINGS *********** -->
+
+    <div class="settings-container">
+      <header class="settings-header">
+          <h2 class="settings-header-title">Settings</h2>
+      </header>
+      <main>
+        <ul class="settings-lists">
+          <li class="settings-list">
+            <p class="settings-title">Dark mode</p>
+            <div class="toggle-container dark-list">
+              <a data-page="dark-mode" class="dark-mode-btn">
+                <div class="toggle-circle"></div>
+              </a>
+            </div>
+          </li>          
+          <li class="settings-list">
+            <p class="settings-title">Card zooming</p>
+            <div class="toggle-container dark-list">
+              <a data-page="dark-mode" class="dark-mode-btn">
+                <div class="toggle-circle"></div>
+              </a>
+            </div>
+          </li>
+          <li class="settings-list">
+            <p class="settings-title">Disable transitions</p>
+            <div class="toggle-container dark-list">
+              <a data-page="dark-mode" class="dark-mode-btn">
+                <div class="toggle-circle"></div>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </main>
+      <footer class="settings-footer">
+        <button class="close-settings-btn">< close</button>
+      </footer>
+    </div>
 
     <!-- *********** EXPANSION SECTION *********** -->
 

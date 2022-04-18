@@ -69,6 +69,10 @@
   .secondary-poster-overview {
     display: block;
   }
+
+  .sidebar-footer {
+    margin-top: auto;
+  }
 }
 
 @media screen and (max-width: 410px) {
@@ -85,6 +89,10 @@
 }
 
 @media screen and (max-width: 300px) {
+  .settings-container {
+    width: 95vw;
+  }
+
   .movie-cards {
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   }
