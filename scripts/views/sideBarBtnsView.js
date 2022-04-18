@@ -26,16 +26,6 @@ class SideBarBtnView extends mainView {
 
   // prettier-ignore
   addHandlerEvent(handle) {
-    const closeSettingsBtn = document.querySelector('.close-settings-btn')
-    const settingsBtn = document.querySelector('.sidebar-footer')
-    const darkModeBtn = document.querySelector(".dark-list");
-
-    let darkMode = false;
-
-    if(localStorage.getItem("darkmode")){
-      darkMode = JSON.parse(localStorage.getItem("darkmode"))
-    }
-
     // Attach Hover event listener in sidebar
     this._sidebar.addEventListener("mouseover", this._shrinkSections);
 
@@ -47,26 +37,6 @@ class SideBarBtnView extends mainView {
       handle(event);
     });
 
-    settingsBtn.addEventListener('click',function(){
-      othersView.expandSidebar('remove')
-      othersView.shrinkSections('add')
-      othersView.hideToolTip('hidden')
-      othersView.showSettings('add')
-      othersView.showOverlay('add')
-    })
-    closeSettingsBtn.addEventListener('click',function(){
-      othersView.shrinkSections('remove')
-      othersView.hideToolTip('visible')
-      othersView.showSettings('remove')
-      othersView.showOverlay('remove')
-    })
-
-    darkModeBtn.addEventListener('click',function(){
-      darkMode = !darkMode;
-      darkModeBtn.classList.toggle("active");
-      document.body.classList.toggle("darkmode");
-      localStorage.setItem("darkmode", JSON.stringify(darkMode))
-    })
 
     this._menuBtn.addEventListener("click", function () {
       othersView.shrinkSections("add")
@@ -108,10 +78,12 @@ class SideBarBtnView extends mainView {
     if (btn.dataset.page !== this.buttonPage) {
       // Removes the active classes to all buttons
       // except the btn that has been clicked
-
-      this._navBtns.forEach((el, i) => {
-        this._icons[i].classList.remove("active");
+      this._navBtns.forEach((el) => {
         if (el !== btn) el.classList.remove("active");
+      });
+
+      this._icons.forEach((el) => {
+        el.classList.remove("active");
       });
 
       // Toggles active class to the buttons

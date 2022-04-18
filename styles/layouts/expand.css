@@ -211,7 +211,7 @@
   text-decoration: none;
   width: 6rem;
   padding: 0.25rem 0.5rem;
-  border-radius: 50px;
+  border-radius: 5px;
   border: 1px solid var(--primary-accent-color);
   color: var(--primary-accent-color);
   transition: var(--transition-three-ms);

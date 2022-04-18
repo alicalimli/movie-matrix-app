@@ -55,7 +55,7 @@
   border: 1px solid var(--primary-accent-color);
   transition: var(--transition-three-ms);
   cursor: pointer;
-  border-radius: 50px;
+  border-radius: 5px;
   padding: 0.3rem 0.8rem;
   color: var(--primary-accent-color);
 }
@@ -67,7 +67,19 @@
 
 /**************** DARK MODE TOGGLER ****************/
 
-.dark-list {
+.settings-list {
+  position: relative;
+}
+
+.experimental-txt {
+  font-size: 0.8rem;
+  position: absolute;
+  top: -20%;
+  left: 0;
+  color: var(--primary-accent-color);
+}
+
+.toggler-list {
   margin-top: auto;
   display: flex;
   align-items: center;
@@ -75,7 +87,7 @@
   cursor: pointer;
 }
 
-.dark-mode-btn {
+.toggler-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -86,13 +98,13 @@
   width: 1.5rem;
   transition: var(--transition-three-ms);
   z-index: 10;
-
   transform: rotate(-90deg);
 }
 
-.dark-list.active .dark-mode-btn {
+.toggler-list.active .toggler-btn {
   background-color: var(--primary-accent-color);
 }
+
 .toggle-circle {
   animation: 0.3s linear normal dark-toggle-off-anim;
   animation-play-state: inherit;
@@ -110,7 +122,8 @@
   align-items: center;
   justify-content: center;
 }
-.dark-list.active .toggle-circle {
+
+.toggler-list.active .toggle-circle {
   transform: translate(-50%, 95%);
   background-color: white;
 }

@@ -242,6 +242,11 @@
 .settings-icon {
   color: var(--primary-text-color-inverted);
   font-size: 1.5rem;
+  transition: var(--transition-four-ms);
+}
+
+.settings-icon.spin {
+  transform: rotate(360deg);
 }
 
 @keyframes icon-anim {

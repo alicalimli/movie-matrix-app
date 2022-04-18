@@ -17,7 +17,6 @@ import { apiFetch, createMovieObj, getMovieTvData } from "./helpers";
 
 export const data = {
   movie: {},
-  cardZooming: false,
   discoverMovies: [],
   popularMovies: [],
   trendingMovies: [],
@@ -41,6 +40,12 @@ export const data = {
     genresData: [],
     genresResult: [],
     genreArr: [],
+  },
+  settings: {
+    cardZooming: true,
+    darkMode: false,
+    cardZooming: false,
+    disableTransitions: false,
   },
 };
 

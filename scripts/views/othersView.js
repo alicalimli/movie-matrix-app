@@ -7,6 +7,7 @@ class othersView {
 
   _headerSection = document.querySelector(".section-header");
   _mainMovieSection = document.querySelector(".movie-main");
+  _settingsIcon = document.querySelector(".settings-icon");
 
   _sidebar = document.querySelector(".movie-sidebar-nav");
   _overlay = document.querySelector(".overlay-main");
@@ -29,6 +30,10 @@ class othersView {
 
   showSettings(type) {
     this._settingsContainer.classList[type]("show");
+  }
+
+  spinSettingsIcon(type) {
+    this._settingsIcon.classList[type]("spin");
   }
 
   hideToolTip(type) {

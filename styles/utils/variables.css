@@ -44,3 +44,9 @@
   --primary-accent-color: #20c997;
   --secondary-accent-color: #087f5b;
 }
+
+.disable-transitions {
+  /* Transitions */
+  --transition-three-ms: all 0 ease;
+  --transition-four-ms: all 0 ease;
+}

@@ -1,4 +1,3 @@
-import { showExpandOverlay } from "../helpers";
 import othersView from "./othersView";
 
 class cardZoomingView {
@@ -49,7 +48,8 @@ class cardZoomingView {
     this._leftCopy = left;
     this._topCopy = top;
 
-    const movieCardClone = cardElement.querySelector("img").cloneNode(true);
+    // prettier-ignore
+    const movieCardClone = cardElement.querySelector("img")?.cloneNode(true) ?? document.createElement('div');
     movieCardClone.classList.remove("movie-img");
 
     this._cardElementClone = movieCardClone;

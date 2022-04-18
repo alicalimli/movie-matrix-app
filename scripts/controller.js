@@ -12,6 +12,7 @@ import searchResultsView from "./views/searchResultsView.js";
 import paginationView from "./views/paginationView.js";
 import expansionView from "./views/expansionView.js";
 import bookmarksView from "./views/bookmarksView.js";
+import settingsView from "./views/settingsView.js";
 import {
   controlMovieCards,
   createMovieObj,
@@ -148,8 +149,9 @@ const controlMovieSection = async function (e) {
   const btnId = btn.dataset.cardId;
 
   window.location.hash = btnId;
+  console.log(model.data.settings.cardZooming);
 
-  if (model.data.cardZooming) {
+  if (model.data.settings.cardZooming) {
     expandDuration = 400;
     cardZoomingView.renderCardZoom(movieCard);
   }
@@ -174,7 +176,7 @@ const controlExpandBackButton = function (e) {
 
   expandSection.classList.remove("active");
 
-  if (model.data.cardZooming && cardClone) {
+  if (model.data.settings.cardZooming && cardClone) {
     cardZoomingView.renderCardShrink();
     expandDuration = 600;
   }
@@ -182,8 +184,6 @@ const controlExpandBackButton = function (e) {
   setTimeout(() => (expandSecIsActive = false), expandDuration);
 
   setTimeout(() => movieSectionView.unShrinkSections(), expandDuration / 2);
-
-  if (model.data.cardZooming) return;
 };
 
 // prettier-ignore
@@ -288,36 +288,34 @@ const controlGenreCards = async function (event) {
   }
 };
 
-const init = function () {
-  // Take's bookmark data in the localstorage.
-  const bookMarksData = JSON.parse(localStorage.getItem("bookmarksData"));
-  model.data.bookMarksData = [...new Set(bookMarksData)];
-  console.log(model.data.bookMarksData);
-  // Loads Discover Movie Card's when page is loaded.
-  controlDiscoverMovies();
+// prettier-ignore
+const controlSettings = function (e) {
+  const btn = e.target.closest(".toggler-list");
 
-  // Attach Event Handlers
-  movieSectionView.addBackEventHandler(controlExpandBackButton);
-  searchResultsView.addHandlerEvent(controlSearchResults);
-  movieSectionView.addEventHandler(controlMovieSection);
-  genreCardsView.addEventHandler(controlGenreCards);
-  paginationView.addHandlerEvent(controlPagination);
-  sideBarBtnsView.addHandlerEvent(controlNavBtns);
+  if (!btn) return;
 
-  // Takes the darkmode data in the local storage
-  const darkMode = JSON.parse(localStorage.getItem("darkmode"));
+  const settingType = btn.dataset.setting;
 
-  if (!darkMode) return;
-  // Toggles the darkMode button if DarkMode in localStorage is true and when page is in index.html
-  const darkModeBtn = document?.querySelector(".dark-list");
-  darkModeBtn?.classList.toggle("active");
-  document.body.classList.toggle("darkmode");
+  btn.classList.toggle("active");
+
+  if (settingType === "dark-mode") {
+    model.data.settings.darkMode = !model.data.settings.darkMode;
+    document.body.classList.toggle("darkmode");
+  }
+
+  if (settingType === "card-zooming") {
+    model.data.settings.cardZooming = !model.data.settings.cardZooming;
+  }  
+  
+  if (settingType === "disable-transition") {
+    model.data.settings.disableTransitions = !model.data.settings.disableTransitions;
+    document.body.classList.toggle("disable-transitions");
+  }
 };
 
-init();
-
-window.addEventListener("load", function () {
-  if (this.window.location.hash) {
+const showExpandSection = function () {
+  // Show's expand section immediately when there's an id in the url
+  if (window.location.hash) {
     expandSecIsActive = true;
     // Shrink's sections in the html and disable sidebar buttons pointer event
     movieSectionView.shrinkSections();
@@ -325,8 +323,43 @@ window.addEventListener("load", function () {
     document.querySelector(".expansion-section").classList.add("active");
     controlExpansionSection();
   }
-});
+};
+
+const loadDatas = function () {
+  // Take's data in the local storage
+  const bookMarksData = JSON.parse(localStorage.getItem("bookmarksData"));
+  const settingsData = JSON.parse(localStorage.getItem("settingsData"));
+  // sets data's in the model.data
+  model.data.bookMarksData = [...new Set(bookMarksData)];
+  console.log(settingsData);
+  model.data.settings = settingsData;
+
+  settingsView.updateSettings(model.data.settings);
+};
+
+const init = function () {
+  // Show expand section when page is loaded and there's an id in the url.
+  showExpandSection();
+  // Load data's when page has been loaded.
+  loadDatas();
+  // Loads Discover Movie Card's when page is loaded.
+  controlDiscoverMovies();
+  // Attach Event Handlers
+  movieSectionView.addBackEventHandler(controlExpandBackButton);
+  movieSectionView.addEventHandler(controlMovieSection);
+
+  genreCardsView.addEventHandler(controlGenreCards);
+  paginationView.addHandlerEvent(controlPagination);
+
+  searchResultsView.addHandlerEvent(controlSearchResults);
+  sideBarBtnsView.addHandlerEvent(controlNavBtns);
+  settingsView.addEventHandler(controlSettings);
+};
+
+init();
 
 // prettier-ignore
-// Saves Bookmarks Data to the localstorage.
-window.onbeforeunload = () => localStorage.setItem("bookmarksData",JSON.stringify(model.data.bookMarksData));
+window.onbeforeunload = () => {
+  localStorage.setItem("bookmarksData",JSON.stringify(model.data.bookMarksData))
+  localStorage.setItem('settingsData', JSON.stringify(model.data.settings))
+}
