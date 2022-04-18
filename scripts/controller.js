@@ -38,7 +38,16 @@ const controlDiscoverMovies = async function () {
 const controlNavBtns = async function (event) {
   try {
     const sidebar = document.querySelector(".movie-sidebar-nav");
-    const toolTip = document.querySelectorAll(".secondary-title");
+
+    if (sidebar.classList.contains("active")) {
+      othersView.shrinkSections("remove");
+      othersView.expandSidebar("remove");
+      othersView.showOverlay("remove");
+      othersView.hideToolTip("hidden");
+      // Make's the tooltip visible again after 500ms
+      setTimeout(() => othersView.hideToolTip("visible"), 2000);
+    }
+
     await sideBarBtnsView.renderActive(event);
     // Prevents the data to be rendered again everytime user clicks the same button;
     if (sideBarBtnsView.buttonPage === model.data.pages.currentPageType) return;
@@ -67,14 +76,6 @@ const controlNavBtns = async function (event) {
       model.data.pages.currentPageType = "bookmark";
       // Render's HTML Cards
       await bookmarksView.renderHTML(model.data.bookMarksData);
-    }
-
-    if (sidebar.classList.contains("active")) {
-      showExpandOverlay("remove", "auto");
-      sidebar.classList.remove("active");
-      toolTip.forEach((el) => (el.style.visibility = "hidden"));
-      // prettier-ignore
-      setTimeout(()=> toolTip.forEach((el) => (el.style.visibility = "visible")),500)
     }
   } catch (error) {
     throw error;
@@ -215,7 +216,6 @@ const controlBookmarkBtn = async function (isActive) {
 // prettier-ignore
 const controlExpansionSection = async function () {
   try {
-    const movieCard = document.querySelector(".movie-card");
     const videoId = +window.location.hash.slice(1);
 
     expansionView.renderLoading();
