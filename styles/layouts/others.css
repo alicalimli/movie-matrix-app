@@ -28,11 +28,15 @@
   gap: 0.5rem;
   text-align: center;
   height: 50vh;
-  width: 50%;
+  width: 100%;
   font-size: 1.3rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.error-msg span {
+  width: 50%;
 }
 
 /**************** SHOW GENRE BUTTONS***************/

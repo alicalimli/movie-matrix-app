@@ -127,17 +127,31 @@ class paginationView {
                   </div>
                   <div class="overlay-poster"></div>
                 </div>
-                <iframe
-                  class="trailer-video"
-                  width="560"
-                  height="315"
-                  src="https://www.youtube.com/embed/${
-                    this._expandVideoData[0].key
-                  }"
-                  title="YouTube video player"
-                  frameborder="0"
-                  allowfullscreen
-                ></iframe>
+                ${
+                  this._expandVideoData[0]
+                    ? `
+                    <iframe
+                    class="trailer-video"
+                    width="560"
+                    height="315"
+                    src="https://www.youtube.com/embed/${this._expandVideoData[0].key}"
+                    title="YouTube video player"
+                    frameborder="0"
+                    allowfullscreen>
+                    </iframe>
+                  `
+                    : `
+                    <div class="trailer-video error-msg">
+                      <i class="ph-icon ph-warning"></i>
+                      <span class="img-unavailable-text">Unfortunately, we cant find the video trailer of this one.</span>
+                      <a class="watch-yt" target="_blank" href="https://www.youtube.com/results?search_query=${
+                        this._expandVideoDetails.name ??
+                        this._expandVideoDetails.title ??
+                        this._expandVideoDetails.original_title
+                      }">Watch in youtube <span>&#8594;</span></a>
+                    </div>
+                    `
+                }
               </div>
             </div>
           </div>
@@ -219,7 +233,9 @@ class paginationView {
           ${
             cast.profile_path
               ? `
-            <img class="cast-picture" src="${IMG_PATH}${cast.profile_path}" alt="">
+            <a target="_blank" href="https://www.google.com/search?q=${cast.name}">
+              <img class="cast-picture" src="${IMG_PATH}${cast.profile_path}" alt="${cast.name}">
+            </a>
             `
               : `
             <i class="ph-icon ph-warning"></i>

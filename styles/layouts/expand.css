@@ -375,3 +375,19 @@
 .img-unavailable-text {
   color: var(--primary-accent-color);
 }
+
+/* Watch in youtube btn */
+
+.watch-yt {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: var(--transition-three-ms);
+  color: var(--primary-accent-color);
+  border: 1px solid var(--primary-accent-color);
+}
+.watch-yt:hover {
+  background-color: var(--primary-accent-color);
+  color: white;
+}
