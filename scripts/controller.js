@@ -49,7 +49,7 @@ const controlNavBtns = async function (event) {
       setTimeout(() => othersView.hideToolTip("visible"), 2000);
     }
 
-    await sideBarBtnsView.renderActive(event);
+    sideBarBtnsView.renderActive(event);
     // Prevents the data to be rendered again everytime user clicks the same button;
     if (sideBarBtnsView.buttonPage === model.data.pages.currentPageType) return;
 
@@ -70,16 +70,19 @@ const controlNavBtns = async function (event) {
       controlMovieCards(popularTVsView, "popularTVS", "tvs-pop");
     }
     if (sideBarBtnsView.buttonPage === "bookmarks") {
+      // prettier-ignore
+      if(model.data.bookMarksData.length === 0) throw new Error('You dont have any bookmarks yet.')
+      console.log(model.data.bookMarksData);
       genreCardsView.renderGenreErrorMsg();
       // Render's Loading Spinner
       bookmarksView.renderLoading();
 
       model.data.pages.currentPageType = "bookmark";
       // Render's HTML Cards
-      await bookmarksView.renderHTML(model.data.bookMarksData);
+      bookmarksView.renderHTML(model.data.bookMarksData);
     }
   } catch (error) {
-    throw error;
+    bookmarksView.renderErrorMsg(error.message);
   }
 };
 
@@ -199,7 +202,6 @@ const controlBookmarkBtn = async function (isActive) {
       dataHolder.push(model.data.expansion.videoDetails)
       const bookMarkData = createMovieObj(dataHolder)
       model.data.bookMarksData.push(...bookMarkData);
-      // model.data.bookMarksData.push(id);
     }
 
      // Removes the bookmarked id in the data.
@@ -328,7 +330,8 @@ const showExpandSection = function () {
 const loadDatas = function () {
   // Take's data in the local storage
   const bookMarksData = JSON.parse(localStorage.getItem("bookmarksData"));
-  const settingsData = JSON.parse(localStorage.getItem("settingsData"));
+  const settingsData =
+    JSON.parse(localStorage.getItem("settingsData")) ?? model.data.settings;
   // sets data's in the model.data
   model.data.bookMarksData = [...new Set(bookMarksData)];
   console.log(settingsData);
