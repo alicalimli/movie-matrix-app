@@ -1,9 +1,9 @@
 import othersView from "./othersView";
 
 class settingsView {
-  _disableTransitionSetting = document.querySelector(
-    ".disable-transition-setting"
-  );
+  //prettier-ignore
+  _disableTransitionSetting = document.querySelector(".disable-transition-setting");
+  _disableZoomSetting = document.querySelector(".disable-zoom-setting");
   _closeSettingsBtn = document.querySelector(".close-settings-btn");
   _darkModeSetting = document.querySelector(".dark-mode-setting");
   _cardZoomSetting = document.querySelector(".card-zoom-setting");
@@ -31,6 +31,10 @@ class settingsView {
     if (data.disableTransitions) {
       this._disableTransitionSetting.classList.toggle("active");
       document.body.classList.toggle("disable-transitions");
+    }
+    if (data.disableTransitions) {
+      this._disableZoomSetting.classList.toggle("active");
+      othersView.zooms = false;
     }
   }
 

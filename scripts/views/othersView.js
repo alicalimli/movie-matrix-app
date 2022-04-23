@@ -13,6 +13,8 @@ class othersView {
   _overlay = document.querySelector(".overlay-main");
   _parent = document.body;
 
+  zooms = true;
+
   // prettier-ignore
   constructor(){
     this._overlay.addEventListener('click', this._addOverlayEventHandler.bind(this))
@@ -61,6 +63,7 @@ class othersView {
   }
 
   shrinkSections(type) {
+    if (!this.zooms) return;
     this._mainMovieSection.classList[type]("shrink");
     this._headerSection.classList[type]("shrink");
     this._paginationSection.classList[type]("shrink");

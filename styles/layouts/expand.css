@@ -110,14 +110,13 @@
   width: 100%;
   height: 100%;
   position: absolute;
-  top: 0;
+  top: 100%;
   left: 0;
   transition: var(--transition-four-ms);
-  transform: translateY(100%);
 }
 
 .trailer-container.active .trailer-video {
-  transform: translateY(0);
+  top: 0;
 }
 
 /* Big Poster Layput */

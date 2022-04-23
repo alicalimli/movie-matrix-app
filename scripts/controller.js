@@ -70,14 +70,15 @@ const controlNavBtns = async function (event) {
       controlMovieCards(popularTVsView, "popularTVS", "tvs-pop");
     }
     if (sideBarBtnsView.buttonPage === "bookmarks") {
+      model.data.pages.currentPageType = "bookmark";
+
       // prettier-ignore
       if(model.data.bookMarksData.length === 0) throw new Error('You dont have any bookmarks yet.')
-      console.log(model.data.bookMarksData);
+
       genreCardsView.renderGenreErrorMsg();
       // Render's Loading Spinner
       bookmarksView.renderLoading();
 
-      model.data.pages.currentPageType = "bookmark";
       // Render's HTML Cards
       bookmarksView.renderHTML(model.data.bookMarksData);
     }
@@ -312,6 +313,11 @@ const controlSettings = function (e) {
   if (settingType === "disable-transition") {
     model.data.settings.disableTransitions = !model.data.settings.disableTransitions;
     document.body.classList.toggle("disable-transitions");
+  }
+  if (settingType === "disable-zooms") {
+    othersView.shrinkSections('toggle')
+    model.data.settings.disableZooms = !model.data.settings.disableZooms;
+    othersView.zooms = !othersView.zooms;
   }
 };
 
