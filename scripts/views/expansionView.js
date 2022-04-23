@@ -9,22 +9,6 @@ class paginationView {
   btnType = "";
   pageNum = 1;
 
-  constructor() {
-    // if (window.location.pathname !== "/expand-page.html") return;
-    // const backBtn = document.querySelector(".back-btn");
-    // backBtn.addEventListener("click", function (e) {
-    //   const btn = e.target.closest(".back-btn");
-    //   if (!btn) return;
-    //   // Shrinks the body and fade's When back button is clicked
-    //   document.body.style.transform = "scale(0)";
-    //   document.body.style.opacity = "0";
-    //   // Take's the user to index.html after 400ms
-    //   setTimeout(() => {
-    //     window.location.href = `/index.html`;
-    //   }, 400);
-    // });
-  }
-
   addEventHandler(handle) {
     const trailerContainer = document.querySelector(".trailer-container");
     const closeVideoBtn = document.querySelector(".close-video");
@@ -155,6 +139,9 @@ class paginationView {
               </div>
             </div>
           </div>
+          <ul class="poster-genre-tags">
+              ${this._createGenreTags(this._expandVideoDetails.genres)}
+          </ul>
           <div class="secondary-poster-overview">
             <div class="poster-desc-container">
               <h1 class="poster-title">${
@@ -220,6 +207,16 @@ class paginationView {
           </section>
           `;
     this._parentEl.insertAdjacentHTML("beforeend", expandHTML);
+  }
+
+  _createGenreTags(genreData) {
+    let genreMarkup = ``;
+    genreData.forEach((data) => {
+      return (genreMarkup += `
+      <li class="poster-genre-tag">${data.name}</li>    
+      `);
+    });
+    return genreMarkup;
   }
 
   _createCastCircle(castData) {

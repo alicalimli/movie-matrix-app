@@ -390,3 +390,21 @@
   background-color: var(--primary-accent-color);
   color: white;
 }
+
+/* GEnre tags */
+
+.poster-genre-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.poster-genre-tag {
+  color: white;
+  font-size: 1rem;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.2);
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  background-color: var(--primary-accent-color);
+  border-radius: 5px;
+}
