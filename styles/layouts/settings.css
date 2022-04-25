@@ -51,20 +51,6 @@
   padding: 0.5rem 1rem;
 }
 
-.close-settings-btn {
-  border: 1px solid var(--primary-accent-color);
-  transition: var(--transition-three-ms);
-  cursor: pointer;
-  border-radius: 5px;
-  padding: 0.3rem 0.8rem;
-  color: var(--primary-accent-color);
-}
-
-.close-settings-btn:hover {
-  background-color: var(--primary-accent-color);
-  color: white;
-}
-
 /**************** DARK MODE TOGGLER ****************/
 
 .settings-list {

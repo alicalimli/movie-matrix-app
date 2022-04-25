@@ -32,7 +32,7 @@ class paginationView {
       console.log(act);
       if (!act) {
         act = true;
-        bmTxt.textContent = "bookmarked";
+        bmTxt.textContent = "Bookmarked";
         bmBtn.classList.toggle("active");
 
         handle(act);
@@ -40,7 +40,7 @@ class paginationView {
       }
       if (act) {
         act = false;
-        bmTxt.textContent = "bookmark";
+        bmTxt.textContent = "Bookmark";
         bmBtn.classList.toggle("active");
 
         handle(act);
@@ -102,7 +102,7 @@ class paginationView {
                         this._expandVideoDetails.original_title
                       }</h1>
                       <div class="poster-btn-container">
-                        <button class="poster-btn watch-poster-btn">
+                        <button class="btn btn-hv poster-btn watch-poster-btn">
                           <i class="bx bx-play"></i>
                           <span class="btn-title">Watch Trailer</span>
                         </button>
@@ -128,7 +128,7 @@ class paginationView {
                     <div class="trailer-video error-msg">
                       <i class="ph-icon ph-warning"></i>
                       <span class="img-unavailable-text">Unfortunately, we cant find the video trailer of this one.</span>
-                      <a class="watch-yt" target="_blank" href="https://www.youtube.com/results?search_query=${
+                      <a class="btn watch-yt" target="_blank" href="https://www.youtube.com/results?search_query=${
                         this._expandVideoDetails.name ??
                         this._expandVideoDetails.title ??
                         this._expandVideoDetails.original_title
@@ -152,7 +152,8 @@ class paginationView {
             </div>
           </div>
           <div class="expand-sec movie-stats">
-            <div class="rating-container">
+            <div class="rating-container 
+            flx flx-clmn flx-cntr">
               <span class="rating-text">${
                 this._expandVideoDetails.vote_average
               }</span>
@@ -176,18 +177,18 @@ class paginationView {
             ${
               bookmarked
                 ? `
-             <button class="bookmark-btn active">
-              <div class="container-bookmark">
+             <button class="btn btn-md flx flx-cntr bookmark-btn active">
+              <div class="container-bookmark flx flx-cntr flx-gap-md">
                   <i class="icon-bm bx bx-book-bookmark"></i>
-                  <span class="bookmark-text">bookmarked</span>
+                  <span class="bookmark-text">Bookmarked</span>
               </div>
             </button>
              `
                 : `
-            <button class="bookmark-btn">
-              <div class="container-bookmark">
+            <button class="btn btn-md flx flx-cntr bookmark-btn">
+              <div class="container-bookmark flx flx-cntr flx-gap-md">
                   <i class="icon-bm bx bx-book-bookmark"></i>
-                  <span class="bookmark-text">bookmark</span>
+                  <span class="bookmark-text">Bookmark</span>
               </div>
             </button>
             `
@@ -213,7 +214,7 @@ class paginationView {
     let genreMarkup = ``;
     genreData.forEach((data) => {
       return (genreMarkup += `
-      <li class="poster-genre-tag">${data.name}</li>    
+      <li class="btn cursor-def active poster-genre-tag">${data.name}</li>    
       `);
     });
     return genreMarkup;
@@ -226,7 +227,7 @@ class paginationView {
       if (i > 20) return;
       return (castsMarkUp += `
         <div class="cast-container">
-          <div class="picture-cicle">
+          <div class="flx flx-cntr flx-clmn picture-cicle">
           ${
             cast.profile_path
               ? `

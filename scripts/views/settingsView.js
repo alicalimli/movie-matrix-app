@@ -32,9 +32,9 @@ class settingsView {
       this._disableTransitionSetting.classList.toggle("active");
       document.body.classList.toggle("disable-transitions");
     }
-    if (data.disableTransitions) {
+    if (data.disableZooms) {
       this._disableZoomSetting.classList.toggle("active");
-      othersView.zooms = false;
+      othersView.zoomDisabled = true;
     }
   }
 

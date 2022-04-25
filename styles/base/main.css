@@ -1,0 +1,32 @@
+/* Resets every elements */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  outline: none;
+  border: none;
+  background: none;
+  list-style: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+  position: relative;
+  background-color: var(--tertiary-bg-color);
+  min-height: 100vh;
+  opacity: 1;
+  overflow: hidden;
+  transition: var(--transition-three-ms);
+  width: 100%;
+}
+
+.section-1 {
+  padding-left: 5rem;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  gap: 0.5rem;
+}

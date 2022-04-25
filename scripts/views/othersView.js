@@ -13,7 +13,7 @@ class othersView {
   _overlay = document.querySelector(".overlay-main");
   _parent = document.body;
 
-  zooms = true;
+  zoomDisabled = false;
 
   // prettier-ignore
   constructor(){
@@ -28,6 +28,7 @@ class othersView {
     this.expandSidebar("remove");
     this.showSettings("remove");
     this.showOverlay("remove");
+    this.hideToolTip("visible");
   }
 
   showSettings(type) {
@@ -63,7 +64,13 @@ class othersView {
   }
 
   shrinkSections(type) {
-    if (!this.zooms) return;
+    if (!this.zoomDisabled) return;
+    this._mainMovieSection.classList[type]("shrink");
+    this._headerSection.classList[type]("shrink");
+    this._paginationSection.classList[type]("shrink");
+  }
+
+  shrinkSectionsCopy(type) {
     this._mainMovieSection.classList[type]("shrink");
     this._headerSection.classList[type]("shrink");
     this._paginationSection.classList[type]("shrink");

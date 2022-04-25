@@ -172,6 +172,7 @@ const controlMovieSection = async function (e) {
 
 const controlExpandBackButton = function (e) {
   const expandSection = document.querySelector(".expansion-section");
+  const trailerVideo = document?.querySelector(".trailer-video");
   const cardClone = document?.querySelector(".movie-card-clone");
 
   let expandDuration;
@@ -187,7 +188,10 @@ const controlExpandBackButton = function (e) {
 
   setTimeout(() => (expandSecIsActive = false), expandDuration);
 
-  setTimeout(() => movieSectionView.unShrinkSections(), expandDuration / 2);
+  setTimeout(() => {
+    movieSectionView.unShrinkSections();
+    trailerVideo?.remove();
+  }, expandDuration / 2);
 };
 
 // prettier-ignore
@@ -315,9 +319,9 @@ const controlSettings = function (e) {
     document.body.classList.toggle("disable-transitions");
   }
   if (settingType === "disable-zooms") {
-    othersView.shrinkSections('toggle')
+    othersView.shrinkSectionsCopy('toggle')
     model.data.settings.disableZooms = !model.data.settings.disableZooms;
-    othersView.zooms = !othersView.zooms;
+    othersView.zoomDisabled = model.data.settings.disableZooms;
   }
 };
 

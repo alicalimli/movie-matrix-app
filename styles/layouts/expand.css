@@ -160,16 +160,10 @@
 }
 
 .poster-btn {
-  padding: 0.5rem 1rem;
-  color: white;
-  border: 2px solid #20c997;
-  font-size: 1rem;
-  border-radius: 5px;
-  cursor: pointer;
   display: flex;
+  color: white;
   align-items: center;
   gap: 0.5rem;
-  transition: var(--transition-three-ms);
 }
 
 .poster-btn:hover {
@@ -209,20 +203,7 @@
 /* Back button */
 
 .back-btn {
-  font-size: 1rem;
-  cursor: pointer;
-  text-decoration: none;
   width: 6rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 5px;
-  border: 1px solid var(--primary-accent-color);
-  color: var(--primary-accent-color);
-  transition: var(--transition-three-ms);
-}
-
-.back-btn:hover {
-  color: white;
-  background-color: var(--primary-accent-color);
 }
 
 /* Movie Stats */
@@ -235,15 +216,12 @@
   align-items: center;
   position: relative;
 }
+
 .rating-container {
   border: 2px solid var(--primary-accent-color);
   width: 7rem;
   height: 7rem;
   border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 .rating-text {
   font-size: 1.7rem;
@@ -270,19 +248,6 @@
 }
 
 .bookmark-btn {
-  padding: 0.5rem 1rem;
-  color: var(--primary-text-color-inverted);
-  border: 2px solid var(--primary-accent-color);
-  border-radius: 5px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  align-items: center;
-  gap: 0.5rem;
-  transition: var(--transition-three-ms);
-  padding: 0.7rem 1rem;
   position: absolute;
   right: 0;
   top: 0;
@@ -292,26 +257,8 @@
   transform: scale(0.95);
 }
 
-.bookmark-btn.active {
-  background-color: var(--primary-accent-color);
-  color: white;
-}
-
-.container-bookmark {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-
-  animation: bounce 1s linear infinite;
-}
-
 .icon-bm {
   font-size: 1.2rem;
-}
-.bookmark-text {
-  font-size: 0.9rem;
-  text-transform: uppercase;
 }
 
 /* Casts Section */
@@ -343,6 +290,7 @@
   gap: 0.5rem;
   text-align: center;
 }
+
 .picture-cicle {
   border-radius: 5px;
   border: 3px solid var(--primary-accent-color);
@@ -379,22 +327,6 @@
   color: var(--primary-accent-color);
 }
 
-/* Watch in youtube btn */
-
-.watch-yt {
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: var(--transition-three-ms);
-  color: var(--primary-accent-color);
-  border: 1px solid var(--primary-accent-color);
-}
-.watch-yt:hover {
-  background-color: var(--primary-accent-color);
-  color: white;
-}
-
 /* GEnre tags */
 
 .poster-genre-tags {
@@ -404,11 +336,5 @@
 }
 
 .poster-genre-tag {
-  color: white;
-  font-size: 1rem;
-  text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
   display: inline-block;
-  padding: 0.4rem 1rem;
-  background-color: var(--primary-accent-color);
-  border-radius: 5px;
 }

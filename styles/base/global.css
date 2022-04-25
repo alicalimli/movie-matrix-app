@@ -1,32 +1,54 @@
-/* Resets every elements */
+/**************** BUTTONS STYLING ***************/
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-  outline: none;
-  border: none;
-  background: none;
-  list-style: none;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
-body {
-  position: relative;
-  background-color: var(--tertiary-bg-color);
-  min-height: 100vh;
-  opacity: 1;
-  overflow: hidden;
+.btn {
+  border: 1px solid var(--primary-accent-color);
+  border-radius: 5px;
+  font-size: 1rem;
+  color: var(--primary-accent-color);
+  cursor: pointer;
+  display: inline-block;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
   transition: var(--transition-three-ms);
-  width: 100%;
+  padding: 0.3rem 0.8rem;
 }
 
-.section-1 {
-  padding-left: 5rem;
+.btn.cursor-def {
+  cursor: default;
+}
+
+.btn.btn-md {
+  font-size: 1.1rem;
+}
+
+.btn.btn-hv:hover {
+  background-color: var(--primary-accent-color);
+  color: white;
+}
+
+.btn.active {
+  background-color: var(--primary-accent-color);
+  color: white;
+}
+
+/**************** FLEX BOXES ***************/
+
+.flx {
   display: flex;
+}
+
+.flx.flx-cntr {
+  justify-content: center;
+  align-items: center;
+}
+
+.flx.flx-clmn {
   flex-direction: column;
-  width: 100vw;
-  height: 100vh;
+}
+
+.flx.flx-gap-sm {
   gap: 0.5rem;
+}
+
+.flx.flx-gap-md {
+  gap: 1rem;
 }
