@@ -1,7 +1,6 @@
 @import url(/styles/base/global.css);
 @import url(/styles/base/main.css);
 @import url(/styles/utils/variables.css);
-@import url(/styles/components/reusables.css);
 @import url(/styles/layouts/header.css);
 @import url(/styles/layouts/movies.css);
 @import url(/styles/layouts/spinner.css);

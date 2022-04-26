@@ -24,7 +24,7 @@
   display: none;
 }
 
-/**************** HEADER STYLING ***************/
+/**************** HEADER COMPONENTS STYLING ***************/
 
 .header-title {
   font-size: 2rem;
@@ -46,7 +46,6 @@
   cursor: pointer;
   background-color: var(--primary-accent-color);
   border-radius: 5px;
-  z-index: 99;
 }
 
 /**************** FILTER BUTTONS ***************/

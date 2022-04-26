@@ -1,7 +1,11 @@
 @media screen and (max-width: 580px) {
+  /**************** SHRINKS EVERY ELEMENT ***************/
+
   html {
     font-size: 80%;
   }
+
+  /**************** SECTIONS ***************/
 
   .section-1 {
     padding-left: 0rem;
@@ -13,14 +17,20 @@
     padding: 1rem;
   }
 
+  /**************** MOVIE CARDS ***************/
+
   .movie-card:hover .movie-info {
     opacity: 0;
     transform: unset;
   }
 
+  /**************** SHOW SIDEBAR BUTTON ***************/
+
   .menu-btn {
     display: block;
   }
+
+  /**************** SIDEBAR ***************/
 
   .movie-sidebar-nav {
     transform: translateX(-100%);
@@ -36,7 +46,12 @@
     opacity: 0;
   }
 
-  /* expand section */
+  .sidebar-footer {
+    transform: translateY(-100%);
+    margin-top: unset;
+  }
+
+  /**************** EXPAND SECTION ***************/
 
   .expand-sec {
     flex-wrap: wrap;
@@ -68,10 +83,6 @@
 
   .secondary-poster-overview {
     display: block;
-  }
-
-  .sidebar-footer {
-    margin-top: auto;
   }
 }
 
