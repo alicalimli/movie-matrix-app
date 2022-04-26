@@ -1,3 +1,10 @@
+/**************** SECTIONS ***************/
+
+.section {
+  padding: 1rem;
+  padding-left: 6rem;
+}
+
 /**************** BUTTONS STYLING ***************/
 
 .btn {

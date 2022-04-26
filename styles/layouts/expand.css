@@ -1,23 +1,31 @@
+/**************** BACK BUTTON STYLING***************/
+
+.back-btn {
+  width: 6rem;
+}
+
+/**************** EXPAND SECTION ***************/
+
 .expand-sec {
   position: relative;
 }
 
 .expansion-section {
+  background-color: var(--tertiary-bg-color);
+  display: flex;
   height: 100vh;
   width: 100vw;
-  display: flex;
   flex-direction: column;
+  transition: var(--transition-three-ms);
   gap: 1rem;
-  background-color: var(--tertiary-bg-color);
   top: 0;
   left: 0;
   overflow-y: scroll;
-  position: absolute;
-  z-index: 100;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: var(--transition-three-ms);
+  position: absolute;
+  z-index: 100;
 }
 
 .expansion-section.active {
@@ -25,6 +33,7 @@
   visibility: visible;
   pointer-events: auto;
 }
+
 .video-overview-container {
   display: flex;
   flex-direction: column;
@@ -67,7 +76,7 @@
   left: 0;
 }
 
-/* Video Trailer Youtube Embed */
+/**************** CLOSE VIDEO BUTTON STYLING ***************/
 
 .close-video {
   color: white;
@@ -96,6 +105,8 @@
   visibility: visible;
 }
 
+/**************** VIDEO TRAILER ***************/
+
 .trailer-container {
   padding-bottom: 52%;
   border-radius: 5px;
@@ -123,7 +134,7 @@
   pointer-events: auto;
 }
 
-/* Big Poster Layput */
+/**************** MOVIE/TV POSTER STYLING ***************/
 
 .poster-overview {
   display: flex;
@@ -179,7 +190,19 @@
   font-size: 1.8rem;
 }
 
-/* Movie/Tv Description */
+/**************** GENRE TAGS ***************/
+
+.poster-genre-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.poster-genre-tag {
+  display: inline-block;
+}
+
+/**************** MOVIE/TV DESCRIPTION **************/
 
 .trailer-overview {
   display: flex;
@@ -200,13 +223,7 @@
   line-height: 1.5;
 }
 
-/* Back button */
-
-.back-btn {
-  width: 6rem;
-}
-
-/* Movie Stats */
+/**************** MOVIE/TV STATS ***************/
 
 .movie-stats {
   display: flex;
@@ -247,6 +264,8 @@
   font-size: 0.9rem;
 }
 
+/**************** BOOKMARK BUTTON ***************/
+
 .bookmark-btn {
   position: absolute;
   right: 0;
@@ -261,7 +280,7 @@
   font-size: 1.2rem;
 }
 
-/* Casts Section */
+/**************** CASTS SECTION ***************/
 
 .casts-section {
   margin: 1rem 0 1rem 0;
@@ -316,7 +335,7 @@
   font-size: 1rem;
 }
 
-/* Image Unavailable Casts */
+/**************** IMAGE UNAVAILABLE STYLING ***************/
 
 .ph-icon {
   font-size: 3rem;
@@ -325,16 +344,4 @@
 
 .img-unavailable-text {
   color: var(--primary-accent-color);
-}
-
-/* GEnre tags */
-
-.poster-genre-tags {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.poster-genre-tag {
-  display: inline-block;
 }

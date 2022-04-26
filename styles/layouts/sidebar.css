@@ -1,4 +1,4 @@
-/* Sidebar navigation */
+/**************** SIDEBAR NAVIGATION ***************/
 
 .movie-sidebar-nav {
   background-color: var(--sidebar-bg-color);
@@ -15,7 +15,7 @@
   z-index: 104;
 }
 
-/* Nav buttons */
+/**************** SIDEBAR BUTTONS***************/
 
 .nav-lists {
   display: flex;
@@ -91,7 +91,7 @@
   animation-play-state: inherit;
 }
 
-/* Secondary Title */
+/**************** TOOLTIP/SECONDARY TITLE ***************/
 
 .movie-sidebar-nav .secondary-title {
   color: var(--primary-text-color-inverted);
@@ -122,7 +122,7 @@
   display: none;
 }
 
-/* SearchBar */
+/**************** SIDEBAR SEARCH-BAR ***************/
 
 .sidebar-form {
   margin-top: 1.5rem;
@@ -184,7 +184,7 @@
   color: var(--primary-accent-color);
 }
 
-/* Sidebar expand button */
+/**************** EXPAND BUTTON SIDEBAR***************/
 
 .sidebar-expand-btn {
   right: 0;
@@ -197,7 +197,7 @@
   opacity: 1;
 }
 
-/* Website Logo */
+/**************** WEBSITE LOGO ***************/
 
 .logo-container {
   align-items: center;
@@ -233,7 +233,7 @@
   opacity: 1;
 }
 
-/* Footer Sidebar */
+/**************** SIDEBAR FOOTER ***************/
 
 .sidebar-footer {
   margin-top: auto;

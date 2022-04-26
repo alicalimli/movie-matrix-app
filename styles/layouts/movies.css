@@ -1,3 +1,5 @@
+/**************** MOVIE SECTION ***************/
+
 .movie-main {
   display: flex;
   flex-direction: column;
@@ -9,6 +11,8 @@
   position: relative;
   transition: var(--transition-three-ms);
 }
+
+/**************** MOVIE CARDS ***************/
 
 .movie-cards {
   display: grid;
@@ -22,8 +26,6 @@
   overflow: hidden;
   position: relative;
 }
-
-/* Animates the movie-info when the user mouse hovers in movie card */
 
 .movie-card:hover .movie-info {
   opacity: 1;
@@ -77,6 +79,8 @@
   opacity: 0.8;
 }
 
+/**************** EXPAND BUTTON ***************/
+
 .expand-btn {
   display: flex;
   align-items: center;
@@ -117,7 +121,7 @@
   opacity: 1;
 }
 
-/* Cards */
+/**************** CARDS STYLING ***************/
 
 .card {
   align-self: center;
