@@ -345,6 +345,7 @@ const loadDatas = function () {
   // sets data's in the model.data
   model.data.bookMarksData = [...new Set(bookMarksData)];
   console.log(settingsData);
+  console.log(othersView.zoomDisabled);
   model.data.settings = settingsData;
 
   settingsView.updateSettings(model.data.settings);
