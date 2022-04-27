@@ -107,14 +107,6 @@
 
 /**************** VIDEO TRAILER ***************/
 
-.trailer-container {
-  padding-bottom: 52%;
-  border-radius: 5px;
-  overflow: hidden;
-  position: relative;
-  height: 0;
-}
-
 .trailer-video {
   border-radius: 5px;
   width: 100%;
@@ -126,12 +118,6 @@
   top: 0;
   left: 0;
   transition: var(--transition-four-ms);
-}
-
-.trailer-container.active .trailer-video {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
 }
 
 /**************** MOVIE/TV POSTER STYLING ***************/
@@ -162,10 +148,6 @@
   align-items: center;
   width: fit-content;
   gap: 0.5rem;
-}
-
-.poster-btn:hover {
-  background-color: #20c997;
 }
 
 .poster-btn i {

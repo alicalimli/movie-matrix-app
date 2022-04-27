@@ -353,11 +353,11 @@ const loadDatas = function () {
 
 const init = function () {
   // Show expand section when page is loaded and there's an id in the url.
-  // showExpandSection();
+  showExpandSection();
   // Load data's when page has been loaded.
   loadDatas();
   // Loads Discover Movie Card's when page is loaded.
-  // controlDiscoverMovies();
+  controlDiscoverMovies();
   // Attach Event Handlers
   movieSectionView.addBackEventHandler(controlExpandBackButton);
   movieSectionView.addEventHandler(controlMovieSection);
