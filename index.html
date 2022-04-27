@@ -212,7 +212,7 @@
 
     <!-- *********** SETTINGS *********** -->
 
-    <div class="settings-container">
+    <menu class="settings-container">
       <header class="settings-header">
           <h2 class="settings-header-title">Settings</h2>
       </header>
@@ -256,36 +256,42 @@
       <footer class="settings-footer">
         <button class="btn btn-hv close-settings-btn">< close</button>
       </footer>
-    </div>
+    </menu>
 
-    <!-- *********** EXPANSION SECTION *********** -->
+    <!-- *********** EXPANSION PAGE *********** -->
 
-    <section class="section expansion-section">
+    <main class="section expansion-section active">
       <button class="btn btn-hv back-btn">< Back</button>
       <div class="video-overview-container">
-        <!-- <div class="video-section">
+
+         <!-- *********** MOVIE/TVs POSTER AND TRAILER SECTION*********** -->
+
+        <section class="video-section">
           <div class="expand-sec video-trailer-container">
-         <button class="close-video active">x</button>
-            <div class="trailer-container">
-              <div class="poster-container">
+            <button class="close-video active">x</button>
+
+             <!-- *********** POSTER CONTAINER*********** -->
+
+              <figure class="poster-container">
                 <img
                   class="video-poster-path"
                   src="https://image.tmdb.org/t/p/w1280/4YOpxmGyQZFELwLB7JqcpYKnmKw.jpg"
                   alt=""
                 />
-                <div class="poster-overview">
-                  <div class="poster-desc-container">
-                    <h1 id="main-poster-title" class="poster-title">Turning Red</h1>
-                    <div class="poster-btn-container">
-                      <button class="btn btn-hv poster-btn watch-poster-btn">
-                        <i class="bx bx-play"></i>
-                        <span class="btn-title">Watch Trailer</span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
+
+                <figure class="poster-desc-container">
+                  <h1 id="main-poster-title" class="poster-title">Turning Red</h1>
+                     <button class="btn btn-hv poster-btn watch-poster-btn">
+                      <i class="bx bx-play"></i>
+                       <p class="btn-title">Watch Trailer</p>
+                    </button>
+                </figure>
+
                 <div class="overlay-poster"></div>
-              </div>
+              </figure>
+
+              <!-- *********** VIDEO TRAILER *********** -->
+
               <iframe
                 class="trailer-video"
                 width="560"
@@ -297,65 +303,80 @@
               ></iframe>
             </div>
           </div>
-        </div>
+        </section>
+
+         <!-- *********** GENRE TAGS *********** -->
+      
         <ul class="poster-genre-tags">
             <li class="btn active cursor-def poster-genre-tag">Action</li>    
             <li class="btn active cursor-def poster-genre-tag">Comedy</li>    
             <li class="btn active cursor-def poster-genre-tag">Crime</li>
         </ul>
-        <div class="secondary-poster-overview">
-          <div class="poster-desc-container">
-            <h1 class="poster-title">Turning Red</h1>
-          </div>
-        </div>
 
-        <div class="expand-sec movie-stats">
-          <div class="rating-container
+         <!-- *********** SECONDARY MOVIE/TVs TITLE *********** -->
+
+        <section class="secondary-poster-overview active">
+            <h1 class="poster-title">Turning Red</h1>
+        </section>
+
+         <!-- *********** MOVIE/TVs RATING AND OTHER INFO'S *********** -->
+
+        <section class="expand-sec movie-stats">
+          <article class="rating-container
           flx flx-clmn flx-cntr">
-            <span class="rating-text">8.4</span>
+            <p class="rating-text">8.4</p>
             <span class="rating-count">3,232</span>
-          </div>
-          <div class="other-details">
-            <p class="other-detail date-detail"><span>Release Date:</span> 2021-11-24</p>
-            <p class="other-detail duration-detail"><span>Duration:</span> 120min</p>
-            <p class="other-detail status-detail"><span>Status:</span> Released</p>
-          </div>
+          </article>
+
+          <article class="other-details">
+            <time class="other-detail date-detail"><mark>Release Date:</mark> 2021-11-24</time>
+            <time class="other-detail duration-detail"><mark>Duration:</mark> 120min</time>
+            <p class="other-detail status-detail"><mark>Status:</mark> Released</p>
+          </article>
 
           <button class="btn btn-md flx flx-cntr bookmark-btn">
-            <div class="container-bookmark flx flx-cntr flx-gap-md">
+            <figure class="container-bookmark flx flx-cntr flx-gap-md">
                 <i class="icon-bm bx bx-book-bookmark"></i>
-                <span class="bookmark-text">Bookmark</span>
-            </div>
+                <figcaption class="bookmark-text">Bookmark</figcaption>
+            </figure>
           </button>
-        </div>
-        <div class="expand-sec trailer-overview">
-          <div class="trailer-desc-container">
+        </section>
+
+        <!-- *********** MOVIE/TVs DESCRIPTION *********** -->
+
+        <section class="expand-sec trailer-overview">
+          <article class="trailer-desc-container">
             <p class="trailer-desc">
               "Thirteen-year-old Mei is experiencing the awkwardness
               of being a teenager with a twist – when she gets too
               excited, she transforms into a giant red panda."
             </p>
-        </div>
+          </article> 
+        </section>
+
+         <!-- *********** CASTS SECTION *********** -->
+
         <section class="casts-section">
           <h2 class="cast-sec-title">Casts</h2>
+          
           <div class="casts-container">
-            <div class="cast-container">
-              <div class="flx flx-cntr flx-clmn picture-cicle">
+            <figure class="cast-container">
+              <a target="_blank" href="https://www.google.com/search?q=galgadot" class="flx flx-cntr flx-clmn picture-cicle">
                 <img class="cast-picture" src="https://image.tmdb.org/t/p/w1280/plLfB60M5cJrnog8KvAKhI4UJuk.jpg" alt="">
-              </div>
-              <span class="cast-name">Gal Gadot</span>
-            </div>
-            <div class="cast-container">
+              </a>
+              <figcaption class="cast-name">Gal Gadot</figcaption>
+            </figure>
+
+            <figure class="cast-container">
               <div class="flx flx-cntr flx-clmn picture-cicle">
                 <i class="ph-icon ph-warning"></i>
-                <span class="img-unavailable-text">Image <br> Unavailable</span>
+                <p class="img-unavailable-text">Image <br> Unavailable</p>
               </div>
-              <span class="cast-name">Gal Gadot</span>
-            </div>
+              <figcaption class="cast-name">Gal Gadot</figcaption>
+            </figure>
           </div>
         </section> 
-      </div>  -->
       </div>
-    </section>
+    </main>
   </body>
 </html>

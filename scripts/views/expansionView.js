@@ -80,10 +80,9 @@ class paginationView {
 
   _generateHTML(bookmarked) {
     const expandHTML = `
-    <div class="video-section">
+        <section class="video-section">
             <div class="expand-sec video-trailer-container">
             <button class="close-video">x</button>
-              <div class="trailer-container">
                 <div class="poster-container">
                   <img
                     class="video-poster-path"
@@ -94,23 +93,23 @@ class paginationView {
                       this._expandVideoDetails.original_title
                     }"
                   />
-                  <div class="poster-overview">
-                    <div class="poster-desc-container">
-                      <h1 id="main-poster-title" class="poster-title">${
-                        this._expandVideoDetails.name ??
-                        this._expandVideoDetails.title ??
-                        this._expandVideoDetails.original_title
-                      }</h1>
-                      <div class="poster-btn-container">
-                        <button class="btn btn-hv poster-btn watch-poster-btn">
-                          <i class="bx bx-play"></i>
-                          <span class="btn-title">Watch Trailer</span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="overlay-poster"></div>
+
+                  <figure class="poster-desc-container">
+                    <h1 id="main-poster-title" class="poster-title">${
+                      this._expandVideoDetails.name ??
+                      this._expandVideoDetails.title ??
+                      this._expandVideoDetails.original_title
+                    }</h1>
+
+                     <button class="btn btn-hv poster-btn watch-poster-btn">
+                       <i class="bx bx-play"></i>
+                       <span class="btn-title">Watch Trailer</span>
+                     </button>
+
+                   </figure>
+                   <div class="overlay-poster"></div>
                 </div>
+
                 ${
                   this._expandVideoData[0]
                     ? `
@@ -138,70 +137,77 @@ class paginationView {
                 }
               </div>
             </div>
-          </div>
+          </section>
+
           <ul class="poster-genre-tags">
               ${this._createGenreTags(this._expandVideoDetails.genres)}
           </ul>
-          <div class="secondary-poster-overview">
-            <div class="poster-desc-container">
+
+          <section class="secondary-poster-overview">
               <h1 class="poster-title">${
                 this._expandVideoDetails.name ??
                 this._expandVideoDetails.title ??
                 this._expandVideoDetails.original_title
               }</h1>
-            </div>
-          </div>
-          <div class="expand-sec movie-stats">
-            <div class="rating-container 
+          </section>
+          
+          <section class="expand-sec movie-stats">
+            <article class="rating-container 
             flx flx-clmn flx-cntr">
-              <span class="rating-text">${
+              <p class="rating-text">${
                 this._expandVideoDetails.vote_average
-              }</span>
+              }</p>
               <span class="rating-count">${
                 this._expandVideoDetails.vote_count
               }</span>
-            </div>
-            <div class="other-details">
-              <p class="other-detail date-detail"><span>Release Date:</span> ${
+            </article>
+
+            <article class="other-details">
+              <time class="other-detail date-detail"><mark>Release Date:</mark> ${
                 this._expandVideoDetails.release_date ??
                 this._expandVideoDetails.first_air_date
-              }</p>
-              <p class="other-detail duration-detail"><span>Duration:</span> ${
+              }</time>
+              <time class="other-detail duration-detail"><mark>Duration:</mark> ${
                 this._expandVideoDetails.runtime ??
                 this._expandVideoDetails.episode_run_time
-              }min</p>
-              <p class="other-detail status-detail"><span>Status:</span> ${
+              }min</time>
+              <p class="other-detail status-detail"><mark>Status:</mark> ${
                 this._expandVideoDetails.status
               }</p>
-            </div>
+            </article>
+
             ${
               bookmarked
                 ? `
              <button class="btn btn-md flx flx-cntr bookmark-btn active">
-              <div class="container-bookmark flx flx-cntr flx-gap-md">
+              <figure class="container-bookmark flx flx-cntr flx-gap-md">
                   <i class="icon-bm bx bx-book-bookmark"></i>
-                  <span class="bookmark-text">Bookmarked</span>
-              </div>
+                  <figcaption class="bookmark-text">Bookmarked</figcaption>
+              </figure>
             </button>
              `
                 : `
             <button class="btn btn-md flx flx-cntr bookmark-btn">
-              <div class="container-bookmark flx flx-cntr flx-gap-md">
+              <figure class="container-bookmark flx flx-cntr flx-gap-md">
                   <i class="icon-bm bx bx-book-bookmark"></i>
-                  <span class="bookmark-text">Bookmark</span>
-              </div>
+                  <figcaption class="bookmark-text">Bookmark</figcaption>
+              </figure>
             </button>
             `
             }
-          </div>
-          <div class="expand-sec trailer-overview">
-            <div class="trailer-desc-container">
+          </section>
+
+          <section class="expand-sec trailer-overview">
+            <article class="trailer-desc-container">
               <p class="trailer-desc">
               ${this._expandVideoDetails.overview}
               </p>
-          </div>
+            </article>
+          </section>
+
           <section class="casts-section">
             <h2 class="cast-sec-title">Casts</h2>
+            
             <div class="casts-container">
             ${this._createCastCircle(this._expandVideoCasts)}
             </div>
@@ -226,23 +232,23 @@ class paginationView {
       // Returns after hitting index 10 in the array
       if (i > 20) return;
       return (castsMarkUp += `
-        <div class="cast-container">
-          <div class="flx flx-cntr flx-clmn picture-cicle">
+        <figure class="cast-container">
           ${
             cast.profile_path
               ? `
-            <a target="_blank" href="https://www.google.com/search?q=${cast.name}">
+            <a class="flx flx-cntr flx-clmn picture-cicle" target="_blank" href="https://www.google.com/search?q=${cast.name}">
               <img class="cast-picture" src="${IMG_PATH}${cast.profile_path}" alt="${cast.name}">
             </a>
             `
               : `
-            <i class="ph-icon ph-warning"></i>
-            <span class="img-unavailable-text">Image <br> Unavailable</span>
+            <div class="flx flx-cntr flx-clmn picture-cicle">
+              <i class="ph-icon ph-warning"></i>
+              <p class="img-unavailable-text">Image <br> Unavailable</p>
+            </div>
             `
           }
-          </div>
-          <span class="cast-name">${cast.name}</span>
-        </div>
+          <figcaption class="cast-name">${cast.name}</figcaption>
+        </figure>
         `);
     });
     return castsMarkUp;
