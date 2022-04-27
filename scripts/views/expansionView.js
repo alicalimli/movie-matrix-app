@@ -83,7 +83,7 @@ class paginationView {
         <section class="video-section">
             <div class="expand-sec video-trailer-container">
             <button class="close-video">x</button>
-                <div class="poster-container">
+                <figure class="poster-container">
                   <img
                     class="video-poster-path"
                     src="${IMG_PATH}${this._expandVideoDetails.backdrop_path}"
@@ -103,12 +103,12 @@ class paginationView {
 
                      <button class="btn btn-hv poster-btn watch-poster-btn">
                        <i class="bx bx-play"></i>
-                       <span class="btn-title">Watch Trailer</span>
+                       <p class="btn-title">Watch Trailer</p>
                      </button>
 
                    </figure>
                    <div class="overlay-poster"></div>
-                </div>
+                </figure>
 
                 ${
                   this._expandVideoData[0]
@@ -124,19 +124,18 @@ class paginationView {
                     </iframe>
                   `
                     : `
-                    <div class="trailer-video error-msg">
+                    <figure class="trailer-video error-msg">
                       <i class="ph-icon ph-warning"></i>
-                      <span class="img-unavailable-text">Unfortunately, we cant find the video trailer of this one.</span>
+                      <figcaption class="img-unavailable-text">Unfortunately, we cant find the video trailer of this one.</figcaption>
                       <a class="btn watch-yt" target="_blank" href="https://www.youtube.com/results?search_query=${
                         this._expandVideoDetails.name ??
                         this._expandVideoDetails.title ??
                         this._expandVideoDetails.original_title
-                      }">Watch in youtube <span>&#8594;</span></a>
-                    </div>
+                      }">Watch in youtube &#8594;</a>
+                    </figure>
                     `
                 }
               </div>
-            </div>
           </section>
 
           <ul class="poster-genre-tags">
@@ -207,7 +206,7 @@ class paginationView {
 
           <section class="casts-section">
             <h2 class="cast-sec-title">Casts</h2>
-            
+
             <div class="casts-container">
             ${this._createCastCircle(this._expandVideoCasts)}
             </div>
