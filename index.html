@@ -24,7 +24,7 @@
 
     <link rel="stylesheet" href="/styles/styles.css" />
 
-      <!-- *********** GOOGLE FONTS *********** -->
+    <!-- *********** GOOGLE FONTS *********** -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -33,21 +33,21 @@
       rel="stylesheet"
     />
 
-      <!-- *********** WEBSITE TITLE *********** -->
-      
-      <title>Moviematrix</title>
-    </head>
-    <body>
+    <!-- *********** WEBSITE TITLE *********** -->
 
+    <title>Moviematrix</title>
+  </head>
+  <body>
     <!-- *********** SIDEBAR NAVIGATION *********** -->
 
     <nav class="movie-sidebar-nav">
       <header class="sidebar-web-logo">
-        <div class="logo-container">
+        <figure class="logo-container">
           <img src="/images/web-logo.png" class="logo-img" alt="" />
-          <span class="logo-name">MOVIEMATRIX</span>
-        </div>
+          <figcaption class="logo-name">MOVIEMATRIX</figcaption>
+        </figure>
       </header>
+
       <div class="sidebar-buttons">
         <div class="search-input-container">
           <form
@@ -58,6 +58,7 @@
             <button class="sidebar-search-btn nav-search-btn">
               <i class="bx bx-search-alt"></i>
             </button>
+
             <input
               type="text"
               class="sidebar-search-input"
@@ -66,8 +67,10 @@
               id=""
             />
           </form>
-          <span class="secondary-title">Search</span>
+
+          <h3 class="secondary-title">Search</h3>
         </div>
+
         <ul class="nav-lists sidebar-lists-btn">
           <li class="nav-list sidebar-expansion-btn">
             <a
@@ -77,51 +80,57 @@
             >
               <i class="bx bx-chevrons-right"></i>
             </a>
-            <span class="secondary-title expand-secondary">Expand</span>
+            <h3 class="secondary-title expand-secondary">Expand</h3>
           </li>
+
           <li class="nav-list">
             <a data-page="home" class="nav-btn">
               <i class="bx bx-home"></i>
-              <span class="nav-title">Home</span>
+              <h3 class="nav-title">Home</h3>
             </a>
-            <span class="secondary-title">Home</span>
+            <h3 class="secondary-title">Home</h3>
           </li>
+
           <li class="nav-list">
             <a data-page="trending" class="nav-btn">
               <i class="bx bxs-hot"></i>
-              <span class="nav-title">Trending</span>
+              <h3 class="nav-title">Trending</h3>
             </a>
-            <span class="secondary-title">Trending</span>
+            <h3 class="secondary-title">Trending</h3>
           </li>
+
           <li class="nav-list">
             <a data-page="movies-pop" class="nav-btn">
               <i class="bx bx-movie"></i>
-              <span class="nav-title">Movies</span>
+              <h3 class="nav-title">Movies</h3>
             </a>
-            <span class="secondary-title">Movies</span>
+            <h3 class="secondary-title">Movies</h3>
           </li>
+
           <li class="nav-list">
             <a data-page="tvs-pop" class="nav-btn">
               <i class="bx bx-tv"></i>
-              <span class="nav-title">TV's</span>
+              <h3 class="nav-title">TV's</h3>
             </a>
-            <span class="secondary-title">TV Shows</span>
+            <h3 class="secondary-title">TV Shows</h3>
           </li>
+
           <li class="nav-list">
             <a data-page="bookmarks" class="nav-btn">
               <i class="icon-bm bx bx-book-bookmark"></i>
-              <span class="nav-title">Bookmarks</span>
+              <h3 class="nav-title">Bookmarks</h3>
             </a>
-            <span class="secondary-title">Bookmarks</span>
+            <h3 class="secondary-title">Bookmarks</h3>
           </li>
         </ul>
       </div>
+
       <footer class="sidebar-footer nav-list">
         <a data-page="settings" class="nav-btn">
           <i class="ph-gear settings-icon"></i>
-          <span class="nav-title">Settings</span>
+          <h3 class="nav-title">Settings</h3>
         </a>
-        <span class="secondary-title">Settings</span>
+        <h3 class="secondary-title">Settings</h3>
       </footer>
     </nav>
 
@@ -130,15 +139,16 @@
     <!-- *********** SECTION 1 *********** -->
 
     <section class="section-1">
-
-       <!-- *********** MOVIES SECTION HEADER *********** -->
+      <!-- *********** MOVIES SECTION HEADER *********** -->
 
       <section class="section-header">
-        <i class='bx bx-menu menu-btn'></i>
+        <i class="bx bx-menu menu-btn"></i>
+
         <header class="header-filter">
           <h1 class="header-title">Discover Movies</h1>
           <button class="header-filter-btn">genre</button>
         </header>
+
         <div class="filter-btn-container">
           <ul class="filters-btns">
             <!-- <li class="filters-btn">Romance</li>
@@ -147,8 +157,8 @@
             <li class="filters-btn">Comedy</li>
             <li class="filters-btn">Adventure</li>
             <li class="filters-btn">Animation</li>
-            <li class="filters-btn">Sci-fi</li>
-          </ul> -->
+            <li class="filters-btn">Sci-fi</li> -->
+          </ul>
         </div>
       </section>
 
@@ -156,96 +166,114 @@
 
       <main class="movie-main">
         <div class="movie-cards">
-          <div class="movie-card">
+          <!-- <div class="movie-card">
             <img
               class="movie-img"
               src="https://image.tmdb.org/t/p/w1280/qsdjk9oAKSQMWs0Vt5Pyfh6O4GZ.jpg"
-              alt=""
-            />
+              alt=""/>
+              
             <div class="overlay-card"></div>
   
             <button data-card-id="333"class="expand-btn">
-              <span class="movie-expand"></span>
-                <i class="bx bx-expand expand-icon"></i>Expand</span
-              >
+              <i class="bx bx-expand expand-icon"></i>
+              <p>Expand</p>
             </button>
+
             <div class="movie-info">
-              <span class="movie-title">No Way home bro</span>
+              <p class="movie-title">No Way home bro</p>
             </div>
           </div>
+
           <div class="card img-card">
             <i class="ph-icon ph-warning"></i>
-            <span class="img-unavailable-text">Image <br> Unavailable</span>
-          </div>
+            <p class="img-unavailable-text">Image <br> Unavailable</p>
+          </div> -->
         </div>
-               <!-- *********** PAGINATION SECTION *********** -->
 
-               <footer class="movie-pagination">
-                <!-- <div class="placeholder"></div>
-                 <div class="loading-spinner"></div>
-                 <div class="loading-spinner2"></div> -->
-                 <!--<button data-page-btn="first" class="pag-btns btn-arrow">
-                   < Page 1
-                 </button>
-                 <button data-page-btn="back" class="pag-btns btn-arrow">< Back</button>
-                 <button
-                   data-page-btn="page-num"
-                   data-page-num="3"
-                   class="pag-btns btn-page-num active"
-                 >
-                   3
-                 </button>
-                 <button
-                   data-page-btn="page-num"
-                   data-page-num="3"
-                   class="pag-btns btn-page-num active"
-                 >
-                   3
-                 </button>
-                 <button data-page-btn="next" class="pag-btns btn-arrow">Next ></button>
-                 <button data-page-btn="last" class="pag-btns btn-arrow">
-                   Page 1000 >
-                 </button> -->
-               </footer>
+        <!-- *********** PAGINATION SECTION *********** -->
+
+        <footer class="movie-pagination">
+          <!-- <div class="placeholder"></div>
+          <div class="loading-spinner"></div>
+          <div class="loading-spinner2"></div>
+
+          <button 
+          data-page-btn="first" 
+          class="pag-btns btn-arrow">< Page 1</button>
+
+          <button 
+          data-page-btn="back" 
+          class="pag-btns btn-arrow">< Back</button>
+
+          <button
+            data-page-btn="page-num"
+            data-page-num="3"
+            class="pag-btns btn-page-num active">3</button>
+
+          <button
+            data-page-btn="page-num"
+            data-page-num="3"
+            class="pag-btns btn-page-num active">3</button>
+
+          <button 
+          data-page-btn="next" 
+          class="pag-btns btn-arrow">Next ></button>
+
+          <button 
+          data-page-btn="last" 
+          class="pag-btns btn-arrow">Page 1000 ></button> -->
+        </footer>
       </main>
     </section>
 
     <!-- *********** SETTINGS *********** -->
 
+    <!-- prettier-ignore -->
     <menu class="settings-container">
       <header class="settings-header">
-          <h2 class="settings-header-title">Settings</h2>
+        <h2 class="settings-header-title">Settings</h2>
       </header>
       <main>
         <ul class="settings-lists">
           <li class="settings-list">
             <p class="settings-title">Dark mode</p>
-            <div  data-setting="dark-mode" class="dark-mode-setting toggle-container toggler-list">
+            <div
+              data-setting="dark-mode"
+              class="dark-mode-setting toggle-container toggler-list">
               <a class="toggler-btn">
                 <div class="toggle-circle"></div>
               </a>
             </div>
-          </li>          
+          </li>
+
           <li class="settings-list">
             <p class="settings-title">Disable transitions</p>
-            <div data-setting="disable-transition" class="disable-transition-setting toggle-container toggler-list">
+            <div
+              data-setting="disable-transition"
+              class="disable-transition-setting toggle-container toggler-list">
               <a class="toggler-btn">
                 <div class="toggle-circle"></div>
               </a>
             </div>
           </li>
+
           <li class="settings-list">
             <p class="settings-title">Disable zooms</p>
-            <div data-setting="disable-zooms" class="disable-zoom-setting toggle-container toggler-list">
+            <div
+              data-setting="disable-zooms"
+              class="disable-zoom-setting toggle-container toggler-list">
               <a class="toggler-btn">
                 <div class="toggle-circle"></div>
               </a>
             </div>
           </li>
+
           <li class="settings-list">
             <p class="settings-title">Card zooming</p>
-            <span class="experimental-txt">experimental</span>
-            <div data-setting="card-zooming" class="card-zoom-setting toggle-container toggler-list">
+            <mark class="experimental-txt">experimental</mark>
+            <div
+              data-setting="card-zooming"
+              class="card-zoom-setting toggle-container toggler-list">
               <a class="toggler-btn">
                 <div class="toggle-circle"></div>
               </a>
@@ -253,6 +281,7 @@
           </li>
         </ul>
       </main>
+
       <footer class="settings-footer">
         <button class="btn btn-hv close-settings-btn">< close</button>
       </footer>
@@ -263,62 +292,59 @@
     <main class="section expansion-section">
       <button class="btn btn-hv back-btn">< Back</button>
       <div class="video-overview-container">
-
-         <!-- *********** MOVIE/TVs POSTER AND TRAILER SECTION*********** -->
+        <!-- *********** MOVIE/TVs POSTER AND TRAILER SECTION*********** -->
 
         <!-- <section class="video-section">
           <div class="expand-sec video-trailer-container">
             <button class="close-video active">x</button> -->
 
-             <!-- *********** POSTER CONTAINER*********** -->
+        <!-- *********** POSTER CONTAINER*********** -->
 
-              <!-- <figure class="poster-container">
-                <img
-                  class="video-poster-path"
-                  src="https://image.tmdb.org/t/p/w1280/4YOpxmGyQZFELwLB7JqcpYKnmKw.jpg"
-                  alt=""
-                />
+        <!-- <figure class="poster-container">
+              <img
+                class="video-poster-path"
+                src="https://image.tmdb.org/t/p/w1280/4YOpxmGyQZFELwLB7JqcpYKnmKw.jpg"
+                alt=""/>
 
-                <figure class="poster-desc-container">
-                  <h1 id="main-poster-title" class="poster-title">Turning Red</h1>
-                     <button class="btn btn-hv poster-btn watch-poster-btn">
-                      <i class="bx bx-play"></i>
-                       <p class="btn-title">Watch Trailer</p>
-                    </button>
-                </figure>
+              <figure class="poster-desc-container">
+                <h1 id="main-poster-title" class="poster-title">Turning Red</h1>
+                <button class="btn btn-hv poster-btn watch-poster-btn">
+                  <i class="bx bx-play"></i>
+                  <p class="btn-title">Watch Trailer</p>
+                </button>
+              </figure>
 
-                <div class="overlay-poster"></div>
-              </figure> -->
+              <div class="overlay-poster"></div>
+            </figure> -->
 
-              <!-- *********** VIDEO TRAILER *********** -->
-<!-- 
-              <iframe
-                class="trailer-video"
-                width="560"
-                height="315"
-                src="https://www.youtube.com/embed/dLI4xgDBkRc"
-                title="YouTube video player"
-                frameborder="0"
-                allowfullscreen
-              ></iframe>
-            </div>
+        <!-- *********** VIDEO TRAILER *********** -->
+
+        <!-- <iframe
+              class="trailer-video"
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/dLI4xgDBkRc"
+              title="YouTube video player"
+              frameborder="0"
+              allowfullscreen></iframe>
+          </div>
         </section> -->
 
-         <!-- *********** GENRE TAGS *********** -->
-<!--       
-        <ul class="poster-genre-tags">
+        <!-- *********** GENRE TAGS *********** -->
+
+        <!-- <ul class="poster-genre-tags">
             <li class="btn active cursor-def poster-genre-tag">Action</li>    
             <li class="btn active cursor-def poster-genre-tag">Comedy</li>    
             <li class="btn active cursor-def poster-genre-tag">Crime</li>
         </ul> -->
 
-         <!-- *********** SECONDARY MOVIE/TVs TITLE *********** -->
-
-        <!-- <section class="secondary-poster-overview active">
+        <!-- *********** SECONDARY MOVIE/TVs TITLE *********** -->
+        <!-- 
+        <section class="secondary-poster-overview active">
             <h1 class="poster-title">Turning Red</h1>
         </section> -->
 
-         <!-- *********** MOVIE/TVs RATING AND OTHER INFO'S *********** -->
+        <!-- *********** MOVIE/TVs RATING AND OTHER INFO'S *********** -->
 
         <!-- <section class="expand-sec movie-stats">
           <article class="rating-container
@@ -350,15 +376,16 @@
               of being a teenager with a twist – when she gets too
               excited, she transforms into a giant red panda."
             </p>
-          </article> 
+          </article>
         </section> -->
 
-         <!-- *********** CASTS SECTION *********** -->
+        <!-- *********** CASTS SECTION *********** -->
 
         <!-- <section class="casts-section">
           <h2 class="cast-sec-title">Casts</h2>
           
           <div class="casts-container">
+
             <figure class="cast-container">
               <a target="_blank" href="https://www.google.com/search?q=galgadot" class="flx flx-cntr flx-clmn picture-cicle">
                 <img class="cast-picture" src="https://image.tmdb.org/t/p/w1280/plLfB60M5cJrnog8KvAKhI4UJuk.jpg" alt="">
@@ -373,6 +400,7 @@
               </div>
               <figcaption class="cast-name">Gal Gadot</figcaption>
             </figure>
+
           </div>
         </section>  -->
       </div>

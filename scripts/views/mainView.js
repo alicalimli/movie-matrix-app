@@ -72,18 +72,18 @@ export default class mainView {
             ` : `
             <div class="card img-card">
               <i class="ph-icon ph-warning"></i>
-              <span class="img-unavailable-text">Image <br> Unavailable</span>
+              <p class="img-unavailable-text">Image <br> Unavailable</p>
             </div>
             `
           }
           <div class="overlay-card"></div>
 
           <button data-card-id="${movie.id}" class="expand-btn">
-          <span class="movie-expand"></span>
-          <i class="bx bx-expand expand-icon"></i>Expand</span>
+            <i class="bx bx-expand expand-icon"></i>
+            <p>Expand</p>
           </button>
           <div class="movie-info">
-            <span class="movie-title">${movie.title}</span>
+            <p class="movie-title">${movie.title}</p>
           </div>
         </div>
           `;
