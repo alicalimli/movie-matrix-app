@@ -83,31 +83,31 @@ class paginationView {
         <section class="video-section">
             <div class="expand-sec video-trailer-container">
             <button class="close-video">x</button>
-                <figure class="poster-container">
-                  <img
-                    class="video-poster-path"
-                    src="${IMG_PATH}${this._expandVideoDetails.backdrop_path}"
-                    alt="${
-                      this._expandVideoDetails.name ??
-                      this._expandVideoDetails.title ??
-                      this._expandVideoDetails.original_title
-                    }"
-                  />
+              <figure class="poster-container">
+                <img
+                  class="video-poster-path"
+                  src="${IMG_PATH}${this._expandVideoDetails.backdrop_path}"
+                  alt="${
+                    this._expandVideoDetails.name ??
+                    this._expandVideoDetails.title ??
+                    this._expandVideoDetails.original_title
+                  }"
+                />
 
-                  <figure class="poster-desc-container">
-                    <h1 id="main-poster-title" class="poster-title">${
-                      this._expandVideoDetails.name ??
-                      this._expandVideoDetails.title ??
-                      this._expandVideoDetails.original_title
-                    }</h1>
+              <figure class="poster-desc-container">
+                <h1 id="main-poster-title" class="poster-title">${
+                  this._expandVideoDetails.name ??
+                  this._expandVideoDetails.title ??
+                  this._expandVideoDetails.original_title
+                }</h1>
 
-                     <button class="btn btn-hv poster-btn watch-poster-btn">
-                       <i class="bx bx-play"></i>
-                       <p class="btn-title">Watch Trailer</p>
-                     </button>
+                  <button class="btn btn-hv poster-btn watch-poster-btn">
+                    <i class="bx bx-play"></i>
+                    <p class="btn-title">Watch Trailer</p>
+                  </button>
 
-                   </figure>
-                   <div class="overlay-poster"></div>
+                </figure>
+                <div class="overlay-poster"></div>
                 </figure>
 
                 ${
@@ -178,13 +178,13 @@ class paginationView {
             ${
               bookmarked
                 ? `
-             <button class="btn btn-md flx flx-cntr bookmark-btn active">
+            <button class="btn btn-md flx flx-cntr bookmark-btn active">
               <figure class="container-bookmark flx flx-cntr flx-gap-md">
                   <i class="icon-bm bx bx-book-bookmark"></i>
                   <figcaption class="bookmark-text">Bookmarked</figcaption>
               </figure>
             </button>
-             `
+            `
                 : `
             <button class="btn btn-md flx flx-cntr bookmark-btn">
               <figure class="container-bookmark flx flx-cntr flx-gap-md">
