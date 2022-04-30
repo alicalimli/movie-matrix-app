@@ -10,18 +10,24 @@ class paginationView {
   pageNum = 1;
 
   addEventHandler(handle) {
-    const trailerContainer = document.querySelector(".trailer-container");
+    const trailerContainer = document.querySelector(".video-trailer-container");
+    const trailerVideo = document.querySelector(".trailer-video");
     const closeVideoBtn = document.querySelector(".close-video");
     const watchBtn = document.querySelector(".watch-poster-btn");
 
+    const source = trailerVideo.getAttribute("src");
+    console.log(source);
+
     watchBtn.addEventListener("click", function () {
-      trailerContainer.classList.toggle("active");
+      trailerContainer.classList.add("show-trailer");
       closeVideoBtn.classList.add("active");
+      trailerVideo.setAttribute("src", source);
     });
 
     closeVideoBtn.addEventListener("click", function () {
-      trailerContainer.classList.remove("active");
+      trailerContainer.classList.remove("show-trailer");
       closeVideoBtn.classList.remove("active");
+      trailerVideo.setAttribute("src", "");
     });
 
     const bmBtn = document.querySelector(".bookmark-btn");

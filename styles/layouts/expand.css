@@ -42,6 +42,7 @@
 
 .video-trailer-container {
   max-width: 85%;
+  transition: var(--transition-three-ms);
 }
 
 .poster-container {
@@ -50,6 +51,12 @@
   position: relative;
   height: 0;
   transition: var(--transition-four-ms);
+}
+
+.video-trailer-container.show-trailer .poster-container {
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .video-poster-path {
@@ -112,6 +119,12 @@
   top: 0;
   left: 0;
   transition: var(--transition-four-ms);
+}
+
+.video-trailer-container.show-trailer .trailer-video {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 /**************** MOVIE/TV POSTER STYLING ***************/
