@@ -61,6 +61,8 @@
   transition: var(--transition-three-ms);
   transform: translateX(-10%);
   position: relative;
+  font-weight: 500;
+  font-size: 1rem;
   left: 0.5rem;
   pointer-events: none;
   visibility: hidden;
@@ -98,6 +100,7 @@
   transform: translate(15%, -50%);
   text-align: left;
   font-weight: 600;
+  font-size: 1rem;
   opacity: 0;
   position: absolute;
   top: 50%;
