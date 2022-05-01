@@ -93,9 +93,15 @@
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 700px) {
   .movie-cards {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .movie-cards {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -104,8 +110,16 @@
     width: 95vw;
   }
 
+  .filter-btn-container {
+    height: 50vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+}
+
+@media screen and (max-width: 250px) {
   .movie-cards {
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 
