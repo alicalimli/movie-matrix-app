@@ -1,3 +1,5 @@
+import genreCardsView from "./genreCardsView";
+
 class othersView {
   _filterButtonContainer = document.querySelector(".filter-btn-container");
   _settingsContainer = document.querySelector(".settings-container");

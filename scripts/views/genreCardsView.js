@@ -5,9 +5,8 @@ class genreCardsView extends mainView {
   _filterButtonsParent = document.querySelector(".filters-btns");
   _genreParentEl = document.querySelector(".filters-btns");
 
+  _headerFilterIconBtn = document.querySelector(".filter-icon-btn");
   _headerFilterBtn = document.querySelector(".header-filter-btn");
-
-  _isGenresHidden = true;
 
   _errorMsg =
     "Unfortunately, this feature is not available yet in this section.";
@@ -16,6 +15,7 @@ class genreCardsView extends mainView {
   addEventHandler(handle) {
     this._filterButtonsParent.addEventListener("click", handle);
     this._headerFilterBtn.addEventListener("click",this._showGenres.bind(this));
+    this._headerFilterIconBtn.addEventListener("click",this._showGenres.bind(this));
   }
 
   renderHTML(movieData) {
@@ -48,23 +48,10 @@ class genreCardsView extends mainView {
   }
 
   _showGenres() {
-    if (this._isGenresHidden === true) {
-      this._isGenresHidden = false;
-      othersView.sidebarBtnPointerEvent("none");
-      othersView.sidebarPointerEvent("none");
-      othersView.showGenreButtons("add");
-      othersView.showOverlay("add");
-      return;
-    }
-
-    if (this._isGenresHidden === false) {
-      this._isGenresHidden = true;
-      othersView.sidebarBtnPointerEvent("auto");
-      othersView.sidebarPointerEvent("auto");
-      othersView.showGenreButtons("remove");
-      othersView.showOverlay("remove");
-      return;
-    }
+    othersView.sidebarBtnPointerEvent("none");
+    othersView.sidebarPointerEvent("none");
+    othersView.showGenreButtons("add");
+    othersView.showOverlay("add");
   }
 }
 

@@ -26,8 +26,13 @@
 
   /**************** SHOW SIDEBAR BUTTON ***************/
 
-  .menu-btn {
+  .menu-btn,
+  .filter-icon-btn {
     display: block;
+  }
+
+  .header-filter-btn {
+    display: none;
   }
 
   /**************** SIDEBAR ***************/
@@ -106,6 +111,9 @@
 }
 
 @media screen and (max-width: 300px) {
+  .header-title {
+    font-size: 1.8rem;
+  }
   .settings-container {
     width: 95vw;
   }
@@ -118,6 +126,15 @@
 }
 
 @media screen and (max-width: 250px) {
+  .header-btns-container {
+    flex-direction: column-reverse;
+  }
+
+  .menu-btn,
+  .filter-icon-btn {
+    padding: 0.2rem;
+  }
+
   .movie-cards {
     grid-template-columns: repeat(1, 1fr);
   }
