@@ -16,7 +16,7 @@ class paginationView {
     const watchBtn = document.querySelector(".watch-poster-btn");
 
     const source = trailerVideo.getAttribute("src");
-    console.log(source);
+    trailerVideo.setAttribute("src", "");
 
     watchBtn.addEventListener("click", function () {
       trailerContainer.classList.add("show-trailer");
@@ -115,6 +115,10 @@ class paginationView {
                 </figure>
                 <div class="overlay-poster"></div>
                 </figure>
+
+               <div class="loading-spinner"></div>
+               <div class="loading-spinner2"></div>
+
 
                 ${
                   this._expandVideoData[0]
