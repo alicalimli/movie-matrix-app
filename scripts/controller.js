@@ -23,8 +23,6 @@ import cardZoomingView from "./views/movieSectionView.js";
 import othersView from "./views/othersView.js";
 import movieSectionView from "./views/movieSectionView.js";
 
-let expandSecIsActive = false;
-
 // prettier-ignore
 const controlDiscoverMovies = async function () {
   try {
@@ -138,10 +136,6 @@ const controlPagination = async function (event) {
 
 const controlMovieSection = async function (e) {
   let expandDuration;
-  // This function wont work if expand section is already active
-  if (expandSecIsActive) return;
-
-  expandSecIsActive = true;
 
   const sidebar = document.querySelector(".movie-sidebar-nav");
   const btn = e.target.closest(".expand-btn");
@@ -185,8 +179,6 @@ const controlExpandBackButton = function (e) {
     cardZoomingView.renderCardShrink();
     expandDuration = 600;
   }
-
-  setTimeout(() => (expandSecIsActive = false), expandDuration);
 
   setTimeout(() => {
     movieSectionView.unShrinkSections();
@@ -328,7 +320,6 @@ const controlSettings = function (e) {
 const showExpandSection = function () {
   // Show's expand section immediately when there's an id in the url
   if (window.location.hash) {
-    expandSecIsActive = true;
     // Shrink's sections in the html and disable sidebar buttons pointer event
     movieSectionView.shrinkSections();
 
