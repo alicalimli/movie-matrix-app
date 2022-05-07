@@ -212,7 +212,7 @@
 }
 
 .rating-container {
-  border: 2px solid var(--primary-accent-color);
+  border: 1px solid var(--primary-accent-color);
   width: 7rem;
   height: 7rem;
   border-radius: 5px;
