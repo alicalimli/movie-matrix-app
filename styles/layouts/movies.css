@@ -140,19 +140,17 @@
 
 .copyright-user-link:after {
   content: "";
-  position: absolute;
   width: 0;
   height: 1.5px;
+  position: absolute;
   bottom: 0;
   left: 0;
   background-color: var(--primary-accent-color);
-  transform-origin: bottom right;
   transition: all 0.2s ease;
 }
 
 .copyright-user-link:hover:after {
   width: 100%;
-  transform-origin: bottom left;
 }
 
 /**************** CARDS STYLING ***************/
