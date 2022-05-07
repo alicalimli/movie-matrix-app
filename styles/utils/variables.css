@@ -11,6 +11,7 @@
   /* Text Colors */
   --primary-text-color: white;
   --primary-text-color-inverted: #111;
+  --footer-text-color: #343a40;
 
   /* Sidebar Colors */
   --sidebar-bg-color: #f1f3f5;
@@ -33,6 +34,7 @@
   /* Text Colors */
   --primary-text-color: #111;
   --primary-text-color-inverted: white;
+  --footer-text-color: #adb5bd;
 
   /* Sidebar Colors */
   --sidebar-bg-color: black;

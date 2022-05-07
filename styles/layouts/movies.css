@@ -7,6 +7,7 @@
   max-height: 90vh;
   overflow-y: scroll;
   padding: 1rem;
+  padding-bottom: 0;
   gap: 1rem;
   position: relative;
   transition: var(--transition-three-ms);
@@ -119,6 +120,39 @@
 
 .movie-card:hover .expand-btn {
   opacity: 1;
+}
+
+/**************** Copyright footer ***************/
+
+.copyright {
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--footer-text-color);
+  border-top: 1px solid var(--footer-text-color);
+}
+
+.copyright-user-link {
+  text-decoration: none;
+  position: relative;
+  color: var(--primary-accent-color);
+}
+
+.copyright-user-link:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 1.5px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--primary-accent-color);
+  transform-origin: bottom right;
+  transition: all 0.2s ease;
+}
+
+.copyright-user-link:hover:after {
+  width: 100%;
+  transform-origin: bottom left;
 }
 
 /**************** CARDS STYLING ***************/
