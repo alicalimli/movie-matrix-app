@@ -31,7 +31,7 @@ export default class mainView {
     `;
 
     this._clearHTML();
-    this._parentEl.insertAdjacentHTML("beforeend", errorMarkup);
+    this._paginationSection.insertAdjacentHTML("beforeend", errorMarkup);
   }
 
   renderLoading() {

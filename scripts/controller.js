@@ -70,10 +70,11 @@ const controlNavBtns = async function (event) {
     if (sideBarBtnsView.buttonPage === "bookmarks") {
       model.data.pages.currentPageType = "bookmark";
 
+      genreCardsView.renderGenreErrorMsg();
+
       // prettier-ignore
       if(model.data.bookMarksData.length === 0) throw new Error('You dont have any bookmarks yet.')
 
-      genreCardsView.renderGenreErrorMsg();
       // Render's Loading Spinner
       bookmarksView.renderLoading();
 
