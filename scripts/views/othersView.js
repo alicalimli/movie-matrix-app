@@ -15,7 +15,7 @@ class othersView {
   _overlay = document.querySelector(".overlay-main");
   _parent = document.body;
 
-  zoomDisabled = false;
+  zoomEnabled = false;
 
   // prettier-ignore
   constructor(){
@@ -66,7 +66,7 @@ class othersView {
   }
 
   shrinkSections(type) {
-    if (this.zoomDisabled) return;
+    if (!this.zoomEnabled) return;
     this._mainMovieSection.classList[type]("shrink");
     this._headerSection.classList[type]("shrink");
     this._paginationSection.classList[type]("shrink");

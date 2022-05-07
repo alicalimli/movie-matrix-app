@@ -46,7 +46,7 @@ export const data = {
     darkMode: false,
     cardZooming: false,
     disableTransitions: false,
-    disableZooms: false,
+    enableZoom: false,
   },
 };
 

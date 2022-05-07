@@ -312,8 +312,8 @@ const controlSettings = function (e) {
   }
   if (settingType === "disable-zooms") {
     othersView.shrinkSectionsCopy('toggle')
-    model.data.settings.disableZooms = !model.data.settings.disableZooms;
-    othersView.zoomDisabled = model.data.settings.disableZooms;
+    model.data.settings.enableZoom = !model.data.settings.enableZoom;
+    othersView.zoomEnabled = model.data.settings.enableZoom;
   }
 };
 
