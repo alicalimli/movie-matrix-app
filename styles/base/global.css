@@ -14,6 +14,7 @@
   color: var(--primary-accent-color);
   cursor: pointer;
   display: inline-block;
+  text-decoration: none;
   text-shadow: 1px 1px rgba(0, 0, 0, 0.2);
   transition: var(--transition-three-ms);
   padding: 0.3rem 0.8rem;

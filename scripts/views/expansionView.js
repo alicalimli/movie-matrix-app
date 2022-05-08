@@ -116,13 +116,13 @@ class paginationView {
                 <div class="overlay-poster"></div>
                 </figure>
 
-               <div class="loading-spinner"></div>
-               <div class="loading-spinner2"></div>
-
 
                 ${
                   this._expandVideoData[0]
                     ? `
+                    <div class="loading-spinner"></div>
+                    <div class="loading-spinner2"></div>
+                    
                     <iframe
                     class="trailer-video"
                     width="560"
@@ -137,11 +137,11 @@ class paginationView {
                     <figure class="trailer-video error-msg">
                       <i class="ph-icon ph-warning"></i>
                       <figcaption class="img-unavailable-text">Unfortunately, we cant find the video trailer of this one.</figcaption>
-                      <a class="btn watch-yt" target="_blank" href="https://www.youtube.com/results?search_query=${
+                      <a class="btn btn-hv watch-yt" target="_blank" href="https://www.youtube.com/results?search_query=${
                         this._expandVideoDetails.name ??
                         this._expandVideoDetails.title ??
                         this._expandVideoDetails.original_title
-                      }">Watch in youtube &#8594;</a>
+                      } Trailer">Watch in youtube &#8594;</a>
                     </figure>
                     `
                 }
