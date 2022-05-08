@@ -13,11 +13,7 @@ import paginationView from "./views/paginationView.js";
 import expansionView from "./views/expansionView.js";
 import bookmarksView from "./views/bookmarksView.js";
 import settingsView from "./views/settingsView.js";
-import {
-  controlMovieCards,
-  createMovieObj,
-  showExpandOverlay,
-} from "./helpers.js";
+import { controlMovieCards, createMovieObj } from "./helpers.js";
 import genreCardsView from "./views/genreCardsView.js";
 import cardZoomingView from "./views/movieSectionView.js";
 import othersView from "./views/othersView.js";
@@ -37,48 +33,46 @@ const controlDiscoverMovies = async function () {
 const controlNavBtns = async function (event) {
   try {
     const sidebar = document.querySelector(".movie-sidebar-nav");
+    const sidebarBtn = sideBarBtnsView.buttonPage;
 
     if (sidebar.classList.contains("active")) {
       othersView.shrinkSections("remove");
       othersView.expandSidebar("remove");
       othersView.showOverlay("remove");
       othersView.hideToolTip("hidden");
-      // Make's the tooltip visible again after 500ms
       setTimeout(() => othersView.hideToolTip("visible"), 2000);
     }
 
     sideBarBtnsView.renderActive(event);
-    // Prevents the data to be rendered again everytime user clicks the same button;
-    if (sideBarBtnsView.buttonPage === model.data.pages.currentPageType) return;
 
-    // Prevents HTML from rendering when expand button has been clicked
-    if (sideBarBtnsView.buttonPage === "expand") return;
+    // Prevents data from being rendered again each time the user clicks the same button.
+    if (sidebarBtn === model.data.pages.currentPageType) return;
 
-    // Render HTML cards and paginations buttons
-    if (sideBarBtnsView.buttonPage === "home") {
+    // Prevents data from rendering when user clicks nav expand button.
+    if (sidebarBtn === "expand") return;
+
+    if (sidebarBtn === "home") {
       controlMovieCards(discoverMoviesView, "discoverMovies", "home");
     }
-    if (sideBarBtnsView.buttonPage === "movies-pop") {
+    if (sidebarBtn === "movies-pop") {
       controlMovieCards(popularMoviesView, "popularMovies", "movies-pop");
     }
-    if (sideBarBtnsView.buttonPage === "trending") {
+    if (sidebarBtn === "trending") {
       controlMovieCards(trendingView, "trendingMovies", "trending");
     }
-    if (sideBarBtnsView.buttonPage === "tvs-pop") {
+    if (sidebarBtn === "tvs-pop") {
       controlMovieCards(popularTVsView, "popularTVS", "tvs-pop");
     }
-    if (sideBarBtnsView.buttonPage === "bookmarks") {
+    if (sidebarBtn === "bookmarks") {
       model.data.pages.currentPageType = "bookmark";
 
       genreCardsView.renderGenreErrorMsg();
 
-      // prettier-ignore
-      if(model.data.bookMarksData.length === 0) throw new Error('You dont have any bookmarks yet.')
+      if (model.data.bookMarksData.length === 0)
+        throw new Error("You dont have any bookmarks yet.");
 
-      // Render's Loading Spinner
       bookmarksView.renderLoading();
 
-      // Render's HTML Cards
       bookmarksView.renderHTML(
         model.data.bookMarksData,
         model.data.bookMarksData

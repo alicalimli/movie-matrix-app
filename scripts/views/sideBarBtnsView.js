@@ -11,19 +11,6 @@ class SideBarBtnView extends mainView {
 
   buttonPage = "home";
 
-  _shrinkSections(type) {
-    othersView.shrinkSections("add");
-    othersView.showOverlay("add");
-  }
-
-  _unShrinkSections() {
-    if (this._settingsContainer.classList.contains("show")) return;
-
-    othersView.shrinkSections("remove");
-    othersView.showOverlay("remove");
-    othersView.expandSidebar("remove");
-  }
-
   // prettier-ignore
   addHandlerEvent(handle) {
     // Attach Hover event listener in sidebar
@@ -43,6 +30,19 @@ class SideBarBtnView extends mainView {
       othersView.showOverlay('add')
       othersView.expandSidebar("add")
     });
+  }
+
+  _shrinkSections(type) {
+    othersView.shrinkSections("add");
+    othersView.showOverlay("add");
+  }
+
+  _unShrinkSections() {
+    if (this._settingsContainer.classList.contains("show")) return;
+
+    othersView.shrinkSections("remove");
+    othersView.showOverlay("remove");
+    othersView.expandSidebar("remove");
   }
 
   updateBtn(btnType) {

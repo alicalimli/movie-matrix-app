@@ -33,6 +33,19 @@ class othersView {
     this.hideToolTip("visible");
   }
 
+  shrinkSections(type) {
+    if (!this.zoomEnabled) return;
+    this._mainMovieSection.classList[type]("shrink");
+    this._headerSection.classList[type]("shrink");
+    this._paginationSection.classList[type]("shrink");
+  }
+
+  shrinkSectionsCopy(type) {
+    this._mainMovieSection.classList[type]("shrink");
+    this._headerSection.classList[type]("shrink");
+    this._paginationSection.classList[type]("shrink");
+  }
+
   showSettings(type) {
     this._settingsContainer.classList[type]("show");
   }
@@ -63,19 +76,6 @@ class othersView {
 
   showOverlay(type) {
     this._overlay.classList[type]("show");
-  }
-
-  shrinkSections(type) {
-    if (!this.zoomEnabled) return;
-    this._mainMovieSection.classList[type]("shrink");
-    this._headerSection.classList[type]("shrink");
-    this._paginationSection.classList[type]("shrink");
-  }
-
-  shrinkSectionsCopy(type) {
-    this._mainMovieSection.classList[type]("shrink");
-    this._headerSection.classList[type]("shrink");
-    this._paginationSection.classList[type]("shrink");
   }
 }
 
