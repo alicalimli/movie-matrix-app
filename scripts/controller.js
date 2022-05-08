@@ -79,7 +79,10 @@ const controlNavBtns = async function (event) {
       bookmarksView.renderLoading();
 
       // Render's HTML Cards
-      bookmarksView.renderHTML(model.data.bookMarksData);
+      bookmarksView.renderHTML(
+        model.data.bookMarksData,
+        model.data.bookMarksData
+      );
     }
   } catch (error) {
     bookmarksView.renderErrorMsg(error.message);
@@ -100,7 +103,10 @@ const controlSearchResults = async function () {
     // Creates Result's Data
     await model.createSearchResults(searchVal);
     // Renders HTML Card's
-    searchResultsView.renderHTML(model.data.searchResults);
+    searchResultsView.renderHTML(
+      model.data.searchResults,
+      model.data.bookMarksData
+    );
   } catch (error) {
     searchResultsView.renderErrorMsg(error.message);
   }
@@ -128,10 +134,13 @@ const controlPagination = async function (event) {
     await model.createPageResults(paginationView.btnType, paginationView.pageNum);
 
     // Render's Pagination buttons and HTML Card's
-    paginationView.renderHTML(model.data.pages.pageResults);
+    console.log(model.data.bookMarksData)
+    paginationView.renderHTML(model.data.pages.pageResults, model.data.bookMarksData);
     paginationView.renderPagination(model.data.pages.currentPageLast);
+    console.log('sss')
   } catch (error) {
     console.log(error);
+    paginationView.renderErrorMsg(error.message);
   }
 };
 
@@ -249,7 +258,10 @@ const renderGenreCards = async function () {
     // Create's Genre Cards
     await model.createGenreCards();
     // Render's the result to the DOM
-    genreCardsView.renderHTML(model.data.genre.genresResult);
+    genreCardsView.renderHTML(
+      model.data.genre.genresResult,
+      model.data.bookMarksData
+    );
     // Render's Pagination in the DOM
     paginationView.renderPagination(model.data.pages.currentPageLast);
   } catch (error) {

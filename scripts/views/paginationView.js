@@ -4,8 +4,9 @@ class paginationView extends mainView {
   btnType = "";
   pageNum = 1;
 
-  renderHTML(movieData) {
+  renderHTML(movieData, bmData) {
     this._movieData = movieData;
+    this._bmData = bmData;
     this._clearHTML();
     this._generateHTML();
     this._scrollToTop();

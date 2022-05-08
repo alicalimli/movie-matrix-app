@@ -4,6 +4,7 @@ export default class mainView {
   _paginationSection = document.querySelector(".movie-pagination");
   _parentEl = document.querySelector(".movie-cards");
   _movieData;
+  _bmData;
 
   _headTitle = document.querySelector(".header-title");
   _title = "Discover Movies";
@@ -13,9 +14,11 @@ export default class mainView {
   _paginationSection = document.querySelector(".movie-pagination");
   _sidebar = document.querySelector(".movie-sidebar-nav");
 
-  renderHTML(movieData) {
+  renderHTML(movieData, bmData) {
+    console.log(bmData);
     console.log(movieData);
     this._movieData = movieData;
+    this._bmData = bmData;
     this._clearHTML();
     this._generateHTML();
     this._updateTitle();
@@ -77,7 +80,8 @@ export default class mainView {
             `
           }
           <div class="overlay-card"></div>
-
+          ${this._checkBookMarked(movie, this._bmData)}
+          
           <button data-card-id="${movie.id}" class="expand-btn">
             <i class="bx bx-expand expand-icon"></i>
             <p>Expand</p>
@@ -89,5 +93,11 @@ export default class mainView {
           `;
       this._parentEl.insertAdjacentHTML("beforeend", markupHTML);
     });
+  }
+
+  _checkBookMarked(data, bmData) {
+    const isBookMarked = bmData.some((bmData) => bmData.id === data.id);
+
+    return isBookMarked ? `<i class="bm-icon bx bxs-bookmark"></i>` : "";
   }
 }

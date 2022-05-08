@@ -17,7 +17,7 @@ export const controlMovieCards = async function (viewType, viewName, pageType = 
     await model.createDiscoverCards(pageType,pageNum);
 
     // Render's HTML Cards
-    await viewType.renderHTML(model.data[viewName]);
+    await viewType.renderHTML(model.data[viewName], model.data.bookMarksData);
 
     // Sets Pagination View Page number to pageNum
     paginationView.pageNum = pageNum;

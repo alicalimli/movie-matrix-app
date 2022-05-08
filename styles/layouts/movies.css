@@ -80,6 +80,17 @@
   opacity: 0.8;
 }
 
+/**************** BOOKMARKED ICON ***************/
+
+.bm-icon {
+  position: absolute;
+  font-size: 2.5rem;
+  color: var(--primary-accent-color);
+  z-index: 3;
+  top: -5px;
+  left: 0;
+}
+
 /**************** EXPAND BUTTON ***************/
 
 .expand-btn {

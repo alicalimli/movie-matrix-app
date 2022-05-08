@@ -18,8 +18,9 @@ class genreCardsView extends mainView {
     this._headerFilterIconBtn.addEventListener("click",this._showGenres.bind(this));
   }
 
-  renderHTML(movieData) {
+  renderHTML(movieData, bmData) {
     this._movieData = movieData;
+    this._bmData = bmData;
     this._clearHTML();
     this._generateHTML();
     this._scrollToTop();
