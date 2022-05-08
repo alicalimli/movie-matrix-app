@@ -9,6 +9,7 @@ class paginationView {
   btnType = "";
   pageNum = 1;
 
+  // prettier-ignore
   addEventHandler(handle) {
     const trailerContainer = document.querySelector(".video-trailer-container");
     const trailerVideo = document.querySelector(".trailer-video");
@@ -35,22 +36,17 @@ class paginationView {
     let act = this._bookmarked;
 
     bmBtn.addEventListener("click", function () {
-      console.log(act);
       if (!act) {
         act = true;
         bmTxt.textContent = "Bookmarked";
         bmBtn.classList.toggle("active");
-
         handle(act);
-        return;
-      }
-      if (act) {
+      } 
+      else if (act) {
         act = false;
         bmTxt.textContent = "Bookmark";
         bmBtn.classList.toggle("active");
-
         handle(act);
-        return;
       }
     });
   }
@@ -122,7 +118,7 @@ class paginationView {
                     ? `
                     <div class="loading-spinner"></div>
                     <div class="loading-spinner2"></div>
-                    
+
                     <iframe
                     class="trailer-video"
                     width="560"

@@ -66,7 +66,7 @@ export default class mainView {
   _generateHTML() {
     this._movieData.forEach((movie) => {
       const markupHTML = `
-          <div class="movie-card">
+          <div id="movie-${movie.id}"class="movie-card">
           ${movie.img !== null ? `
             <img
             class="movie-img"

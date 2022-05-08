@@ -200,6 +200,8 @@ const controlExpandBackButton = function (e) {
 const controlBookmarkBtn = async function (isActive) {
   try {
     const id = +window.location.hash.slice(1);
+    const movieCard = document.querySelector(`#movie-${id}`)
+    const bmIcon = movieCard.querySelector('.bm-icon')
     
     if (!id) return;
 
@@ -209,12 +211,14 @@ const controlBookmarkBtn = async function (isActive) {
       dataHolder.push(model.data.expansion.videoDetails)
       const bookMarkData = createMovieObj(dataHolder)
       model.data.bookMarksData.push(...bookMarkData);
+      bmIcon.style.display = "block"
     }
 
      // Removes the bookmarked id in the data.
     if (!isActive) {
       const newBookmarkData = model.data.bookMarksData.filter((val) => val.id !== id);
       model.data.bookMarksData = newBookmarkData;
+      bmIcon.style.display = "none"
     }
     console.log(model.data.bookMarksData);
   } catch (error) {
