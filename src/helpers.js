@@ -2,7 +2,6 @@ import { API_KEY, MOVIES_API_URL } from "./config";
 import * as model from "./model.js";
 import genreCardsView from "./views/genreCardsView";
 import paginationView from "./views/paginationView";
-// ****************** Below functions is mostly used in Controller.js **************************
 
 // prettier-ignore
 export const controlMovieCards = async function (viewType, viewName, pageType = "home",pageNum = 1) {

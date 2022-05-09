@@ -22,7 +22,6 @@ import movieSectionView from "./views/movieSectionView.js";
 // prettier-ignore
 const controlDiscoverMovies = async function () {
   try {
-    // Movie Card's Controller
     controlMovieCards(discoverMoviesView, "discoverMovies", "home");
     sideBarBtnsView.updateBtn();
   } catch (error) {
@@ -85,18 +84,15 @@ const controlNavBtns = async function (event) {
 
 const controlSearchResults = async function () {
   try {
-    // Render error message in genre container
     genreCardsView.renderGenreErrorMsg();
+
     // Remove's active icons in sidebar
     sideBarBtnsView.updateBtn("search-res");
     sideBarBtnsView.buttonPage = "search";
-    // Takes Search Input Value
+
     const searchVal = searchResultsView.getInputValue();
-    // Render's Loading Spinner
     searchResultsView.renderLoading();
-    // Creates Result's Data
     await model.createSearchResults(searchVal);
-    // Renders HTML Card's
     searchResultsView.renderHTML(
       model.data.searchResults,
       model.data.bookMarksData
@@ -112,23 +108,18 @@ const controlPagination = async function (event) {
     // Starts the function when one of the buttons has been clicked
     paginationView.buttonClicked(event);
 
-    // Stops the function if btn Type is nothing
     if (paginationView.btnType === "") return;
 
-    // Stops the function if user clicks back and the page is number 1
+    // Function stops when user clicks back and the page is in the first page.
     if (paginationView.btnType === "back" && model.data.pages.currentPage === MOVIES_FIRST_PAGE) return;
 
-    // Stops the function if user clicks next and the page is the last page
+    // Function stops when user clicks next and the page is in the last page.
     if (paginationView.btnType === "next" && model.data.pages.currentPage === MOVIES_MAX_PAGE) return;
 
-    // Renders Loading Spinner
     paginationView.renderLoading();
 
-    // Fetches PageResults Data
     await model.createPageResults(paginationView.btnType, paginationView.pageNum);
 
-    // Render's Pagination buttons and HTML Card's
-    console.log(model.data.bookMarksData)
     paginationView.renderHTML(model.data.pages.pageResults, model.data.bookMarksData);
     paginationView.renderPagination(model.data.pages.currentPageLast);
     console.log('sss')
@@ -158,10 +149,8 @@ const controlMovieSection = async function (e) {
     cardZoomingView.renderCardZoom(movieCard);
   }
 
-  // Shrink's sections in the html and disable sidebar buttons pointer event
   movieSectionView.shrinkSections();
 
-  // Shows the expansion section after 400ms
   setTimeout(() => {
     controlExpansionSection();
     expandSection.classList.add("active");
