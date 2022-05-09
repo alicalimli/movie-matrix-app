@@ -11,6 +11,29 @@ class paginationView {
 
   // prettier-ignore
   addEventHandler(handle) {
+    this._addBtnListeners();
+
+    const bmBtn = document.querySelector(".bookmark-btn");
+    const bmTxt = document.querySelector(".bookmark-text");
+    let act = this._bookmarked;
+
+    bmBtn.addEventListener("click", function () {
+      if (!act) {
+        act = true;
+        bmTxt.textContent = "Bookmarked";
+        bmBtn.classList.toggle("active");
+        handle(act);
+      } 
+      else{
+        act = false;
+        bmTxt.textContent = "Bookmark";
+        bmBtn.classList.toggle("active");
+        handle(act);
+      }
+    });
+  }
+
+  _addBtnListeners() {
     const trailerContainer = document.querySelector(".video-trailer-container");
     const trailerVideo = document.querySelector(".trailer-video");
     const closeVideoBtn = document.querySelector(".close-video");
@@ -30,38 +53,17 @@ class paginationView {
       closeVideoBtn.classList.remove("active");
       trailerVideo.setAttribute("src", "");
     });
-
-    const bmBtn = document.querySelector(".bookmark-btn");
-    const bmTxt = document.querySelector(".bookmark-text");
-    let act = this._bookmarked;
-
-    bmBtn.addEventListener("click", function () {
-      if (!act) {
-        act = true;
-        bmTxt.textContent = "Bookmarked";
-        bmBtn.classList.toggle("active");
-        handle(act);
-      } 
-      else if (act) {
-        act = false;
-        bmTxt.textContent = "Bookmark";
-        bmBtn.classList.toggle("active");
-        handle(act);
-      }
-    });
   }
+
   renderLoading() {
     const loadingHTML = `
     <div class="placeholder"></div>
     <div class="loading-spinner"></div>
     <div class="loading-spinner2"></div>
-     `;
+    `;
+
     this._clearHTML();
     this._parentEl.insertAdjacentHTML("beforeend", loadingHTML);
-  }
-
-  _clearHTML() {
-    this._parentEl.innerHTML = "";
   }
 
   renderHTML(videoData, videoDetails, videoCasts, bookmarked) {
@@ -71,6 +73,10 @@ class paginationView {
     this._bookmarked = bookmarked;
     this._clearHTML();
     this._generateHTML(bookmarked);
+  }
+
+  _clearHTML() {
+    this._parentEl.innerHTML = "";
   }
 
   scrollToTop() {
