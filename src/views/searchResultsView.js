@@ -1,4 +1,4 @@
-import { showExpandOverlay } from "../helpers";
+import othersView from "./othersView";
 import mainView from "./mainView";
 
 class searchResultsView extends mainView {
@@ -12,6 +12,7 @@ class searchResultsView extends mainView {
     this._inputSearch = this._inputForm.querySelector(".sidebar-search-input");
   }
 
+  // prettier-ignore
   addHandlerEvent(handle) {
     const sidebar = document.querySelector(".movie-sidebar-nav");
     const searchInput = document.querySelector(".sidebar-search-input");
@@ -19,22 +20,20 @@ class searchResultsView extends mainView {
     this._inputForm.addEventListener("submit", function (event) {
       event.preventDefault();
 
-      showExpandOverlay("remove", "auto");
       // this function would only work if sidebar is expanded
-      if (sidebar.classList.contains("active")) {
-        if (searchInput.value === "") return;
+      if (sidebar.classList.contains("active") && searchInput.value !== "") {
         sidebar.classList.remove("active");
+        othersView.shrinkSections('remove');
+        othersView.hideToolTip('hidden');
+
+        setTimeout(() => othersView.hideToolTip('visible'), 500)
         handle();
-        return;
+      } 
+      else {
+        sidebar.classList.add("active");
+        // Focus doesnt work without a little delay
+        setTimeout(() => searchInput.focus(), 100);
       }
-
-      sidebar.classList.add("active");
-
-      // Expands sidebar when search button is clicked
-      // and the button only works if sidebar is not expanded
-
-      // Focus doesnt work without a little delay
-      setTimeout(() => searchInput.focus(), 100);
     });
   }
 
