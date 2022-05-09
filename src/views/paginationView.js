@@ -13,9 +13,7 @@ class paginationView extends mainView {
   }
 
   addHandlerEvent(handler) {
-    this._paginationSection.addEventListener("click", function (e) {
-      handler(e);
-    });
+    this._paginationSection.addEventListener("click", handler);
   }
 
   renderPagination(lastPage) {
@@ -23,14 +21,16 @@ class paginationView extends mainView {
     this._scrollToTop();
   }
 
+  // prettier-ignore
   buttonClicked(event) {
     const btn = event.target.closest(".pag-btns");
     if (!btn) {
       this.btnType = "";
-      return;
+    } 
+    else {
+      this.pageNum = +btn.dataset.pageNum;
+      this.btnType = btn.dataset.pageBtn;
     }
-    this.pageNum = +btn.dataset.pageNum;
-    this.btnType = btn.dataset.pageBtn;
   }
 
   _generatePagination(lastPage) {
