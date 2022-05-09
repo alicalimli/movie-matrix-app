@@ -42,7 +42,7 @@ class paginationView {
         bmBtn.classList.toggle("active");
         handle(act);
       } 
-      else if (act) {
+      else{
         act = false;
         bmTxt.textContent = "Bookmark";
         bmBtn.classList.toggle("active");
@@ -55,7 +55,7 @@ class paginationView {
     <div class="placeholder"></div>
     <div class="loading-spinner"></div>
     <div class="loading-spinner2"></div>
-     `;
+    `;
     this._clearHTML();
     this._parentEl.insertAdjacentHTML("beforeend", loadingHTML);
   }

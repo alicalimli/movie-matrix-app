@@ -99,6 +99,8 @@ export default class mainView {
   _checkBookMarked(data, bmData) {
     const isBookMarked = bmData.some((bmData) => bmData.id === data.id);
 
-    return isBookMarked ? `<i class="bm-icon bx bxs-bookmark"></i>` : "";
+    return isBookMarked
+      ? `<i class="bm-icon active bx bxs-bookmark"></i>`
+      : `<i class="bm-icon bx bxs-bookmark"></i>`;
   }
 }

@@ -194,14 +194,14 @@ const controlBookmarkBtn = async function (isActive) {
       dataHolder.push(model.data.expansion.videoDetails)
       const bookMarkData = createMovieObj(dataHolder)
       model.data.bookMarksData.push(...bookMarkData);
-      bmIcon.style.display = "block"
+      bmIcon.classList.add('active')
     }
-
-     // Removes the bookmarked id in the data.
+    
+    // Removes the bookmarked id in the data.
     if (!isActive) {
       const newBookmarkData = model.data.bookMarksData.filter((val) => val.id !== id);
       model.data.bookMarksData = newBookmarkData;
-      bmIcon.style.display = "none"
+      bmIcon.classList.remove('active')
     }
     console.log(model.data.bookMarksData);
   } catch (error) {

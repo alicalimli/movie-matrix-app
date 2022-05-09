@@ -83,12 +83,17 @@
 /**************** BOOKMARKED ICON ***************/
 
 .bm-icon {
+  display: none;
   position: absolute;
   font-size: 2.5rem;
   color: var(--primary-accent-color);
   z-index: 3;
   top: -5px;
   left: 0;
+}
+
+.bm-icon.active {
+  display: block;
 }
 
 /**************** EXPAND BUTTON ***************/
