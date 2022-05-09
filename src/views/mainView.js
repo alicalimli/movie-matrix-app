@@ -7,12 +7,13 @@ export default class mainView {
   _bmData;
 
   _headTitle = document.querySelector(".header-title");
-  _title = "Discover Movies";
-  viewName = "discoverMoviesView";
   _mainMovieSection = document.querySelector(".movie-main");
   _headerSection = document.querySelector(".section-header");
   _paginationSection = document.querySelector(".movie-pagination");
   _sidebar = document.querySelector(".movie-sidebar-nav");
+
+  _title = "Discover Movies";
+  viewName = "discoverMoviesView";
 
   renderHTML(movieData, bmData) {
     console.log(bmData);
