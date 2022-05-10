@@ -1,5 +1,8 @@
 import { IMG_PATH } from "../config";
 
+/**
+ * The main view
+ */
 export default class mainView {
   _paginationSection = document.querySelector(".movie-pagination");
   _parentEl = document.querySelector(".movie-cards");
@@ -15,9 +18,12 @@ export default class mainView {
   _title = "Discover Movies";
   viewName = "discoverMoviesView";
 
+  /**
+   * Renders the generated movie/tv show cards in the page.
+   * @param {Array} movieData - Array of objects that contains the id,image and title of the movie/tv show.
+   * @param {Array} bmData - Array that contains all the user bookmarked movies/tv shows data.
+   */
   renderHTML(movieData, bmData) {
-    console.log(bmData);
-    console.log(movieData);
     this._movieData = movieData;
     this._bmData = bmData;
     this._clearHTML();
@@ -26,6 +32,10 @@ export default class mainView {
     this._scrollToTop();
   }
 
+  /**
+   * Generates error HTML and renders it in the page.
+   * @param {String} errorMsg - Error message to be rendered in the page.
+   */
   renderErrorMsg(errorMsg) {
     const errorMarkup = `
     <div class="error-msg">
@@ -38,6 +48,9 @@ export default class mainView {
     this._paginationSection.insertAdjacentHTML("beforeend", errorMarkup);
   }
 
+  /**
+   * Renders loading spinner in the page.
+   */
   renderLoading() {
     const loadingHTML = `
     <div class="placeholder"></div>
@@ -49,22 +62,34 @@ export default class mainView {
     this._parentEl.insertAdjacentHTML("beforeend", loadingHTML);
   }
 
+  /**
+   * Scrolls the view to the very top of the page.
+   */
   _scrollToTop() {
     window.scrollTo({
       top: 0,
     });
   }
 
+  /**
+   * Updates the page title.
+   */
   _updateTitle() {
     this._headTitle.textContent = this._title;
   }
 
+  /**
+   * Clears the innerHTML of the parent element.
+   */
   _clearHTML() {
     this._parentEl.innerHTML = "";
     this._paginationSection.innerHTML = "";
   }
 
   // prettier-ignore
+  /**
+   * Generates movie/tv show cards and render it in the page once done.
+   */
   _generateHTML() {
     this._movieData.forEach((movie) => {
       const markupHTML = `
@@ -97,6 +122,12 @@ export default class mainView {
     });
   }
 
+  /**
+   * Checks if the movie/tv show is bookmarked and if bookmarked then the card would be generated with a bookmark icon.
+   * @param {Object} data - Contains the title,image and id of the movie/tv show.
+   * @param {Array} bmData - Contains all the user bookmarks data.
+   * @returns The bookmark icon element.
+   */
   _checkBookMarked(data, bmData) {
     const isBookMarked = bmData.some((bmData) => bmData.id === data.id);
 

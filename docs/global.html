@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: expansionView</title>
+    <title>JSDoc: Global</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: expansionView</h1>
+    <h1 class="page-title">Global</h1>
 
     
 
@@ -28,9 +28,7 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>expansionView<span class="signature">()</span><span class="type-signature"></span></h2>
-        
-            <div class="class-description"><p>This class is responsible for pagination.</p></div>
+        <h2></h2>
         
     
 </header>
@@ -40,28 +38,7 @@
     
         
 
-    
-    <h2>Constructor</h2>
-    
-
-    
-    <h4 class="name" id="expansionView"><span class="type-signature"></span>new expansionView<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
 
 
 <dl class="details">
@@ -91,11 +68,6 @@
     
 
     
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="views_expansionView.js.html">views/expansionView.js</a>, <a href="views_expansionView.js.html#line6">line 6</a>
-    </li></ul></dd>
-    
 
     
 
@@ -105,24 +77,7 @@
 </dl>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
     
     </div>
 
@@ -139,32 +94,19 @@
     
 
     
-
-    
-        <h3 class="subsection-title">Methods</h3>
+        <h3 class="subsection-title">Members</h3>
 
         
             
+<h4 class="name" id="controlMovieCards"><span class="type-signature">(constant) </span>controlMovieCards<span class="type-signature"></span></h4>
 
-    
-
-    
-    <h4 class="name" id="_addBtnListeners"><span class="type-signature"></span>_addBtnListeners<span class="signature">()</span><span class="type-signature"></span></h4>
-    
-
-    
 
 
 
 <div class="description">
-    <p>Add Event Listeners for Watch trailer button and close video button.</p>
+    <p>This function is responsible for rendering the cards in the page
+as well as the genre buttons, pagination buttons, and the error message.</p>
 </div>
-
-
-
-
-
-
 
 
 
@@ -201,7 +143,221 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="views_expansionView.js.html">views/expansionView.js</a>, <a href="views_expansionView.js.html#line46">line 46</a>
+        <a href="helpers.js.html">helpers.js</a>, <a href="helpers.js.html#line15">line 15</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="createExpandPage"><span class="type-signature">(constant) </span>createExpandPage<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    <p>Fetches the data from TMDB API.</p>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="model.js.html">model.js</a>, <a href="model.js.html#line150">line 150</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="_checkBookMarked"><span class="type-signature"></span>_checkBookMarked<span class="signature">(data, bmData)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Checks if the movie/tv show is bookmarked and if bookmarked then the card would be generated with a bookmark icon.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>data</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Contains the title,image and id of the movie/tv show.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>bmData</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Contains all the user bookmarks data.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="views_mainView.js.html">views/mainView.js</a>, <a href="views_mainView.js.html#line131">line 131</a>
     </li></ul></dd>
     
 
@@ -226,6 +382,16 @@
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>The bookmark icon element.</p>
+</div>
+
+
+
+    
 
 
 
@@ -245,7 +411,7 @@
 
 
 <div class="description">
-    <p>Clears the parent element's HTML.</p>
+    <p>Clears the innerHTML of the parent element.</p>
 </div>
 
 
@@ -289,7 +455,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="views_expansionView.js.html">views/expansionView.js</a>, <a href="views_expansionView.js.html#line101">line 101</a>
+        <a href="views_mainView.js.html">views/mainView.js</a>, <a href="views_mainView.js.html#line84">line 84</a>
     </li></ul></dd>
     
 
@@ -325,7 +491,7 @@
     
 
     
-    <h4 class="name" id="_createCastCircle"><span class="type-signature"></span>_createCastCircle<span class="signature">(castData)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="_generateHTML"><span class="type-signature"></span>_generateHTML<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
@@ -333,7 +499,271 @@
 
 
 <div class="description">
-    <p>Generates cast circles for the movie/tv show that has been expanded.</p>
+    <p>Generates movie/tv show cards and render it in the page once done.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="views_mainView.js.html">views/mainView.js</a>, <a href="views_mainView.js.html#line93">line 93</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="_scrollToTop"><span class="type-signature"></span>_scrollToTop<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Scrolls the view to the very top of the page.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="views_mainView.js.html">views/mainView.js</a>, <a href="views_mainView.js.html#line68">line 68</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="_updateTitle"><span class="type-signature"></span>_updateTitle<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Updates the page title.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="views_mainView.js.html">views/mainView.js</a>, <a href="views_mainView.js.html#line77">line 77</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="controlGenreCards"><span class="type-signature">(async) </span>controlGenreCards<span class="signature">(event)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Controls the genre filtering buttons.</p>
 </div>
 
 
@@ -369,13 +799,13 @@
 
         <tr>
             
-                <td class="name"><code>castData</code></td>
+                <td class="name"><code>event</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">castData</span>
+<span class="param-type">event</span>
 
 
             
@@ -385,7 +815,7 @@
 
             
 
-            <td class="description last"><p>Contains all the data about the casts of the movie/tv show.</p></td>
+            <td class="description last"><p>event fired when genre filter button has been clicked.</p></td>
         </tr>
 
     
@@ -426,7 +856,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="views_expansionView.js.html">views/expansionView.js</a>, <a href="views_expansionView.js.html#line281">line 281</a>
+        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line258">line 258</a>
     </li></ul></dd>
     
 
@@ -451,16 +881,6 @@
 
 
 
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>Cast circles markup HTML to be rendered in the page.</p>
-</div>
-
-
-
-    
 
 
 
@@ -472,7 +892,7 @@
     
 
     
-    <h4 class="name" id="_createGenreTags"><span class="type-signature"></span>_createGenreTags<span class="signature">(genreData)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="renderErrorMsg"><span class="type-signature"></span>renderErrorMsg<span class="signature">(errorMsg)</span><span class="type-signature"></span></h4>
     
 
     
@@ -480,7 +900,7 @@
 
 
 <div class="description">
-    <p>Generate genre tags for the movie/tv show that has been expanded.</p>
+    <p>Generates error HTML and renders it in the page.</p>
 </div>
 
 
@@ -516,7 +936,144 @@
 
         <tr>
             
-                <td class="name"><code>genreData</code></td>
+                <td class="name"><code>errorMsg</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Error message to be rendered in the page.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="views_mainView.js.html">views/mainView.js</a>, <a href="views_mainView.js.html#line39">line 39</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="renderHTML"><span class="type-signature"></span>renderHTML<span class="signature">(movieData, bmData)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Renders the generated movie/tv show cards in the page.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>movieData</code></td>
             
 
             <td class="type">
@@ -532,412 +1089,14 @@
 
             
 
-            <td class="description last"><p>Array of objects that contains the movie/tv show genre data's.</p></td>
+            <td class="description last"><p>Array of objects that contains the id,image and title of the movie/tv show.</p></td>
         </tr>
 
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="views_expansionView.js.html">views/expansionView.js</a>, <a href="views_expansionView.js.html#line265">line 265</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    <p>Genre tags markup HTML to be rendered in the page.</p>
-</div>
-
-
-
-    
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="_generateHTML"><span class="type-signature"></span>_generateHTML<span class="signature">(bookmarked)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Generates the HTML for the expansion page when a movie/tv card has been clicked.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>bookmarked</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>bookmarked movie or not</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="views_expansionView.js.html">views/expansionView.js</a>, <a href="views_expansionView.js.html#line119">line 119</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="addEventHandler"><span class="type-signature"></span>addEventHandler<span class="signature">(handle)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Listens to event when bookmark button has been clicked.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>handle</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">function</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>controls the button functionality</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="views_expansionView.js.html">views/expansionView.js</a>, <a href="views_expansionView.js.html#line20">line 20</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="renderHTML"><span class="type-signature"></span>renderHTML<span class="signature">(videoData, videoDetails, videoCasts, bookmarked)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    <p>Renders the expanded movie or tv show page.</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>videoData</code></td>
+                <td class="name"><code>bmData</code></td>
             
 
             <td class="type">
@@ -953,76 +1112,7 @@
 
             
 
-            <td class="description last"><p>Array of objects that contains the key to fetch the video from youtube</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>videoDetails</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Contains all the data about the expanded movie/tv show</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>videoCasts</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Contains all the data about the casts of the movie/tv show</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>bookmarked</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>bookmarked movie or not</p></td>
+            <td class="description last"><p>Array that contains all the user bookmarked movies/tv shows data.</p></td>
         </tr>
 
     
@@ -1063,7 +1153,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="views_expansionView.js.html">views/expansionView.js</a>, <a href="views_expansionView.js.html#line89">line 89</a>
+        <a href="views_mainView.js.html">views/mainView.js</a>, <a href="views_mainView.js.html#line26">line 26</a>
     </li></ul></dd>
     
 
@@ -1151,7 +1241,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="views_expansionView.js.html">views/expansionView.js</a>, <a href="views_expansionView.js.html#line71">line 71</a>
+        <a href="views_mainView.js.html">views/mainView.js</a>, <a href="views_mainView.js.html#line54">line 54</a>
     </li></ul></dd>
     
 
@@ -1187,7 +1277,7 @@
     
 
     
-    <h4 class="name" id="scrollToTop"><span class="type-signature"></span>scrollToTop<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="showExpandSection"><span class="type-signature"></span>showExpandSection<span class="signature">()</span><span class="type-signature"></span></h4>
     
 
     
@@ -1195,7 +1285,7 @@
 
 
 <div class="description">
-    <p>Scrolls the view to the very top of the page.</p>
+    <p>Shows the expanded page when a movie/tv show id has been detected in the URL.</p>
 </div>
 
 
@@ -1239,7 +1329,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="views_expansionView.js.html">views/expansionView.js</a>, <a href="views_expansionView.js.html#line108">line 108</a>
+        <a href="controller.js.html">controller.js</a>, <a href="controller.js.html#line316">line 316</a>
     </li></ul></dd>
     
 

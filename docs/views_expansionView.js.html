@@ -1,4 +1,32 @@
-import { IMG_PATH } from "../config";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: views/expansionView.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: views/expansionView.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import { IMG_PATH } from "../config";
 
 /**
  * This class is responsible for pagination.
@@ -14,7 +42,7 @@ class expansionView {
 
   /**
    * Listens to event when bookmark button has been clicked.
-   * @param {Function} handle - the function that controls the button functionality.
+   * @param {Function} handle - controls the button functionality
    */
   // prettier-ignore
   addEventHandler(handle) {
@@ -70,9 +98,9 @@ class expansionView {
    */
   renderLoading() {
     const loadingHTML = `
-    <div class="placeholder"></div>
-    <div class="loading-spinner"></div>
-    <div class="loading-spinner2"></div>
+    &lt;div class="placeholder">&lt;/div>
+    &lt;div class="loading-spinner">&lt;/div>
+    &lt;div class="loading-spinner2">&lt;/div>
     `;
 
     this._clearHTML();
@@ -118,11 +146,11 @@ class expansionView {
    */
   _generateHTML(bookmarked) {
     const expandHTML = `
-        <section class="video-section">
-            <div class="expand-sec video-trailer-container">
-            <button class="close-video">x</button>
-              <figure class="poster-container">
-                <img
+        &lt;section class="video-section">
+            &lt;div class="expand-sec video-trailer-container">
+            &lt;button class="close-video">x&lt;/button>
+              &lt;figure class="poster-container">
+                &lt;img
                   class="video-poster-path"
                   src="${IMG_PATH}${this._expandVideoDetails.backdrop_path}"
                   alt="${
@@ -132,30 +160,30 @@ class expansionView {
                   }"
                 />
 
-              <figure class="poster-desc-container">
-                <h1 id="main-poster-title" class="poster-title">${
+              &lt;figure class="poster-desc-container">
+                &lt;h1 id="main-poster-title" class="poster-title">${
                   this._expandVideoDetails.name ??
                   this._expandVideoDetails.title ??
                   this._expandVideoDetails.original_title
-                }</h1>
+                }&lt;/h1>
 
-                  <button class="btn btn-hv poster-btn watch-poster-btn">
-                    <i class="bx bx-play"></i>
-                    <p class="btn-title">Watch Trailer</p>
-                  </button>
+                  &lt;button class="btn btn-hv poster-btn watch-poster-btn">
+                    &lt;i class="bx bx-play">&lt;/i>
+                    &lt;p class="btn-title">Watch Trailer&lt;/p>
+                  &lt;/button>
 
-                </figure>
-                <div class="overlay-poster"></div>
-                </figure>
+                &lt;/figure>
+                &lt;div class="overlay-poster">&lt;/div>
+                &lt;/figure>
 
 
                 ${
                   this._expandVideoData[0]
                     ? `
-                    <div class="loading-spinner"></div>
-                    <div class="loading-spinner2"></div>
+                    &lt;div class="loading-spinner">&lt;/div>
+                    &lt;div class="loading-spinner2">&lt;/div>
 
-                    <iframe
+                    &lt;iframe
                     class="trailer-video"
                     width="560"
                     height="315"
@@ -163,96 +191,96 @@ class expansionView {
                     title="YouTube video player"
                     frameborder="0"
                     allowfullscreen>
-                    </iframe>
+                    &lt;/iframe>
                   `
                     : `
-                    <figure class="trailer-video error-msg">
-                      <i class="ph-icon ph-warning"></i>
-                      <figcaption class="img-unavailable-text">Unfortunately, we cant find the video trailer of this one.</figcaption>
-                      <a class="btn btn-hv watch-yt" target="_blank" href="https://www.youtube.com/results?search_query=${
+                    &lt;figure class="trailer-video error-msg">
+                      &lt;i class="ph-icon ph-warning">&lt;/i>
+                      &lt;figcaption class="img-unavailable-text">Unfortunately, we cant find the video trailer of this one.&lt;/figcaption>
+                      &lt;a class="btn btn-hv watch-yt" target="_blank" href="https://www.youtube.com/results?search_query=${
                         this._expandVideoDetails.name ??
                         this._expandVideoDetails.title ??
                         this._expandVideoDetails.original_title
-                      } Trailer">Watch in youtube &#8594;</a>
-                    </figure>
+                      } Trailer">Watch in youtube &amp;#8594;&lt;/a>
+                    &lt;/figure>
                     `
                 }
-              </div>
-          </section>
+              &lt;/div>
+          &lt;/section>
 
-          <ul class="poster-genre-tags">
+          &lt;ul class="poster-genre-tags">
               ${this._createGenreTags(this._expandVideoDetails.genres)}
-          </ul>
+          &lt;/ul>
 
-          <section class="secondary-poster-overview">
-              <h1 class="poster-title">${
+          &lt;section class="secondary-poster-overview">
+              &lt;h1 class="poster-title">${
                 this._expandVideoDetails.name ??
                 this._expandVideoDetails.title ??
                 this._expandVideoDetails.original_title
-              }</h1>
-          </section>
+              }&lt;/h1>
+          &lt;/section>
           
-          <section class="expand-sec movie-stats">
-            <article class="rating-container 
+          &lt;section class="expand-sec movie-stats">
+            &lt;article class="rating-container 
             flx flx-clmn flx-cntr">
-              <p class="rating-text">${
+              &lt;p class="rating-text">${
                 this._expandVideoDetails.vote_average
-              }</p>
-              <span class="rating-count">${
+              }&lt;/p>
+              &lt;span class="rating-count">${
                 this._expandVideoDetails.vote_count
-              }</span>
-            </article>
+              }&lt;/span>
+            &lt;/article>
 
-            <article class="other-details">
-              <time class="other-detail date-detail"><mark>Release Date:</mark> ${
+            &lt;article class="other-details">
+              &lt;time class="other-detail date-detail">&lt;mark>Release Date:&lt;/mark> ${
                 this._expandVideoDetails.release_date ??
                 this._expandVideoDetails.first_air_date
-              }</time>
-              <time class="other-detail duration-detail"><mark>Duration:</mark> ${
+              }&lt;/time>
+              &lt;time class="other-detail duration-detail">&lt;mark>Duration:&lt;/mark> ${
                 this._expandVideoDetails.runtime ??
                 this._expandVideoDetails.episode_run_time
-              }min</time>
-              <p class="other-detail status-detail"><mark>Status:</mark> ${
+              }min&lt;/time>
+              &lt;p class="other-detail status-detail">&lt;mark>Status:&lt;/mark> ${
                 this._expandVideoDetails.status
-              }</p>
-            </article>
+              }&lt;/p>
+            &lt;/article>
 
             ${
               bookmarked
                 ? `
-            <button class="btn btn-md flx flx-cntr bookmark-btn active">
-              <figure class="container-bookmark flx flx-cntr flx-gap-md">
-                  <i class="icon-bm bx bx-book-bookmark"></i>
-                  <figcaption class="bookmark-text">Bookmarked</figcaption>
-              </figure>
-            </button>
+            &lt;button class="btn btn-md flx flx-cntr bookmark-btn active">
+              &lt;figure class="container-bookmark flx flx-cntr flx-gap-md">
+                  &lt;i class="icon-bm bx bx-book-bookmark">&lt;/i>
+                  &lt;figcaption class="bookmark-text">Bookmarked&lt;/figcaption>
+              &lt;/figure>
+            &lt;/button>
             `
                 : `
-            <button class="btn btn-md flx flx-cntr bookmark-btn">
-              <figure class="container-bookmark flx flx-cntr flx-gap-md">
-                  <i class="icon-bm bx bx-book-bookmark"></i>
-                  <figcaption class="bookmark-text">Bookmark</figcaption>
-              </figure>
-            </button>
+            &lt;button class="btn btn-md flx flx-cntr bookmark-btn">
+              &lt;figure class="container-bookmark flx flx-cntr flx-gap-md">
+                  &lt;i class="icon-bm bx bx-book-bookmark">&lt;/i>
+                  &lt;figcaption class="bookmark-text">Bookmark&lt;/figcaption>
+              &lt;/figure>
+            &lt;/button>
             `
             }
-          </section>
+          &lt;/section>
 
-          <section class="expand-sec trailer-overview">
-            <article class="trailer-desc-container">
-              <p class="trailer-desc">
+          &lt;section class="expand-sec trailer-overview">
+            &lt;article class="trailer-desc-container">
+              &lt;p class="trailer-desc">
               ${this._expandVideoDetails.overview}
-              </p>
-            </article>
-          </section>
+              &lt;/p>
+            &lt;/article>
+          &lt;/section>
 
-          <section class="casts-section">
-            <h2 class="cast-sec-title">Casts</h2>
+          &lt;section class="casts-section">
+            &lt;h2 class="cast-sec-title">Casts&lt;/h2>
 
-            <div class="casts-container">
+            &lt;div class="casts-container">
             ${this._createCastCircle(this._expandVideoCasts)}
-            </div>
-          </section>
+            &lt;/div>
+          &lt;/section>
           `;
     this._parentEl.insertAdjacentHTML("beforeend", expandHTML);
   }
@@ -267,7 +295,7 @@ class expansionView {
     let genreMarkup = ``;
     genreData.forEach((data) => {
       return (genreMarkup += `
-      <li class="btn cursor-def active poster-genre-tag">${data.name}</li>    
+      &lt;li class="btn cursor-def active poster-genre-tag">${data.name}&lt;/li>    
       `);
     });
     return genreMarkup;
@@ -285,23 +313,23 @@ class expansionView {
       // Returns after hitting index 10 in the array
       if (i > 20) return;
       return (castsMarkUp += `
-        <figure class="cast-container">
+        &lt;figure class="cast-container">
           ${
             cast.profile_path
               ? `
-            <a class="flx flx-cntr flx-clmn picture-cicle" target="_blank" href="https://www.google.com/search?q=${cast.name}">
-              <img class="cast-picture" src="${IMG_PATH}${cast.profile_path}" alt="${cast.name}">
-            </a>
+            &lt;a class="flx flx-cntr flx-clmn picture-cicle" target="_blank" href="https://www.google.com/search?q=${cast.name}">
+              &lt;img class="cast-picture" src="${IMG_PATH}${cast.profile_path}" alt="${cast.name}">
+            &lt;/a>
             `
               : `
-            <div class="flx flx-cntr flx-clmn picture-cicle">
-              <i class="ph-icon ph-warning"></i>
-              <p class="img-unavailable-text">Image <br> Unavailable</p>
-            </div>
+            &lt;div class="flx flx-cntr flx-clmn picture-cicle">
+              &lt;i class="ph-icon ph-warning">&lt;/i>
+              &lt;p class="img-unavailable-text">Image &lt;br> Unavailable&lt;/p>
+            &lt;/div>
             `
           }
-          <figcaption class="cast-name">${cast.name}</figcaption>
-        </figure>
+          &lt;figcaption class="cast-name">${cast.name}&lt;/figcaption>
+        &lt;/figure>
         `);
     });
     return castsMarkUp;
@@ -309,3 +337,26 @@ class expansionView {
 }
 
 export default new expansionView();
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="expansionView.html">expansionView</a></li><li><a href="module.exports.html">exports</a></li></ul><h3>Global</h3><ul><li><a href="global.html#_checkBookMarked">_checkBookMarked</a></li><li><a href="global.html#_clearHTML">_clearHTML</a></li><li><a href="global.html#_generateHTML">_generateHTML</a></li><li><a href="global.html#_scrollToTop">_scrollToTop</a></li><li><a href="global.html#_updateTitle">_updateTitle</a></li><li><a href="global.html#controlGenreCards">controlGenreCards</a></li><li><a href="global.html#controlMovieCards">controlMovieCards</a></li><li><a href="global.html#createExpandPage">createExpandPage</a></li><li><a href="global.html#renderErrorMsg">renderErrorMsg</a></li><li><a href="global.html#renderHTML">renderHTML</a></li><li><a href="global.html#renderLoading">renderLoading</a></li><li><a href="global.html#showExpandSection">showExpandSection</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a> on Tue May 10 2022 07:56:15 GMT+0300 (GMT+03:00)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
