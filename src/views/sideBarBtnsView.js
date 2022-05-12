@@ -75,6 +75,7 @@ class SideBarBtnView extends mainView {
       return;
     }
 
+    console.log(this.buttonPage, "asd");
     if (btn.dataset.page !== this.buttonPage) {
       // Removes the active classes to all buttons
       // except the btn that has been clicked
@@ -90,7 +91,6 @@ class SideBarBtnView extends mainView {
       btn.querySelector(".bx").classList.toggle("active");
       btn.classList.toggle("active");
     }
-
     this.buttonPage = btn.dataset.page;
   }
 }

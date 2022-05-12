@@ -32,7 +32,6 @@ const controlDiscoverMovies = async function () {
 const controlNavBtns = async function (event) {
   try {
     const sidebar = document.querySelector(".movie-sidebar-nav");
-    const sidebarBtn = sideBarBtnsView.buttonPage;
 
     if (sidebar.classList.contains("active")) {
       othersView.shrinkSections("remove");
@@ -41,28 +40,27 @@ const controlNavBtns = async function (event) {
       othersView.hideToolTip("hidden");
       setTimeout(() => othersView.hideToolTip("visible"), 2000);
     }
-
     sideBarBtnsView.renderActive(event);
 
     // Prevents data from being rendered again each time the user clicks the same button.
-    if (sidebarBtn === model.data.pages.currentPageType) return;
+    if (sideBarBtnsView.buttonPage === model.data.pages.currentPageType) return;
 
     // Prevents data from rendering when user clicks nav expand button.
-    if (sidebarBtn === "expand") return;
+    if (sideBarBtnsView.buttonPage === "expand") return;
 
-    if (sidebarBtn === "home") {
+    if (sideBarBtnsView.buttonPage === "home") {
       controlMovieCards(discoverMoviesView, "discoverMovies", "home");
     }
-    if (sidebarBtn === "movies-pop") {
+    if (sideBarBtnsView.buttonPage === "movies-pop") {
       controlMovieCards(popularMoviesView, "popularMovies", "movies-pop");
     }
-    if (sidebarBtn === "trending") {
+    if (sideBarBtnsView.buttonPage === "trending") {
       controlMovieCards(trendingView, "trendingMovies", "trending");
     }
-    if (sidebarBtn === "tvs-pop") {
+    if (sideBarBtnsView.buttonPage === "tvs-pop") {
       controlMovieCards(popularTVsView, "popularTVS", "tvs-pop");
     }
-    if (sidebarBtn === "bookmarks") {
+    if (sideBarBtnsView.buttonPage === "bookmarks") {
       model.data.pages.currentPageType = "bookmark";
 
       genreCardsView.renderGenreErrorMsg();

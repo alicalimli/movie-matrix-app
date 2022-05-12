@@ -7,14 +7,14 @@ import paginationView from "./views/paginationView";
 /**
  * This function is responsible for rendering the cards in the page
  * as well as the genre buttons, pagination buttons, and the error message.
- * @param {Object} viewType - The view that will be rendered.
+ * @param {Object} viewType - The view that will be rendered [discoverView.js, trendingView.js, and etc.].
  * @param {String} viewName - The name of the view to be rendered in the page.
  * @param {String} [pageType=home] - The page type to be rendered in the page [home,trending,movies-pop,tvs-pop ].
  * @param {Number} [pageNum=1] - The page number of the movie cards to be displayed.
  */
 export const controlMovieCards = async function (viewType, viewName, pageType = "home",pageNum = 1) {
   try {
-    console.log(viewType)
+    console.log("dadadadaad")
     // Empty's genre's array
     model.data.genre.genreArr = [];
 

@@ -1,7 +1,7 @@
 import { IMG_PATH } from "../config";
 
 /**
- * The main view
+ * @module mainViewParent
  */
 export default class mainView {
   _paginationSection = document.querySelector(".movie-pagination");
