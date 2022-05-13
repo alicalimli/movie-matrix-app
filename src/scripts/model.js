@@ -96,17 +96,14 @@ export const createDiscoverCards = async function (pageName = "home",pageNum = 1
 // prettier-ignore
 export const createSearchResults = async function (searchVal) {
   try {
-    // Fetches Search Data's and convert it to JSON
-    const resultMovieData = await apiFetch(`${SEARCH_API_URL}&query=` + searchVal);
-    const resultTVData = await apiFetch(`${SEARCH_TVS_API_URL}&query=` + searchVal);
+    const searchData = await apiFetch(`${SEARCH_API_URL}&query=` + searchVal);
 
-    // Merges TvResults and Movie Results and returns the data
-    const finalRes = resultMovieData.results.concat(resultTVData.results);
+    const searchDataResults = await searchData.results.filter(data => data.media_type !== "person");
 
-    if(finalRes.length === 0) throw new Error("Sorry, We can't find what you're looking for.")
+    if(searchData.length === 0) throw new Error("Sorry, We can't find what you're looking for.")
 
     // Create's Movie Object
-    data.searchResults = createMovieObj(finalRes);
+    data.searchResults = createMovieObj(searchDataResults);
     data.pages.currentPageType = "search";
   } catch (error) {
     throw error;

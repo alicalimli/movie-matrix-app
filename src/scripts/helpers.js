@@ -51,13 +51,13 @@ export const apiFetch = async function (
 ) {
   try {
     // Fetches the data
-    const movieData = await fetch(url);
+    const data = await fetch(url);
 
     // Throws an error when the response fails
-    if (!movieData.ok) throw new Error(movieData.statusText);
+    if (!data.ok) throw new Error(data.statusText);
 
     // Takes the response and convert it to JSON
-    const movieDataResults = await movieData.json();
+    const dataResults = await data.json();
 
     // Sets the current URL to fetched URL
     model.data.pages.currentUrl = url;
@@ -65,7 +65,7 @@ export const apiFetch = async function (
     // Sets the obj to which type of page has been clicked
     model.data.pages.pageName = pageName;
 
-    return movieDataResults;
+    return dataResults;
   } catch (error) {
     console.log(error);
     throw error;
