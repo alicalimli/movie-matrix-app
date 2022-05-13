@@ -44,18 +44,6 @@ export const controlMovieCards = async function (viewType, viewName, pageType = 
   }
 };
 
-// This function is for enabling/disabling the zooming transition and the pointer event of sidebar buttons.
-export const showExpandOverlay = function (type, pointerEvent) {
-  // Shrink's every sections in the html
-  document.querySelector(".movie-main").classList[type]("active");
-  document.querySelector(".section-header").classList[type]("active");
-  document.querySelector(".movie-pagination").classList[type]("active");
-  document.querySelector(".overlay-main").classList[type]("active");
-  document.querySelector(".sidebar-buttons").style.pointerEvents = pointerEvent;
-};
-
-// ****************** Below functions is mostly used in Model.js **************************
-
 // This function is for fetching data's from TMDB Api
 export const apiFetch = async function (
   url,
