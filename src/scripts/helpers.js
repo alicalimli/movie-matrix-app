@@ -1,4 +1,4 @@
-import { API_KEY, MOVIES_API_URL } from "./config";
+import { API_KEY, API_URL } from "./config";
 import * as model from "./model.js";
 import genreCardsView from "./views/genreCardsView";
 import paginationView from "./views/paginationView";
@@ -88,10 +88,10 @@ export const createMovieObj = function (movieData) {
 export const getMovieTvData = async function (videoId, detailType = "") {
   try {
     const movieData = await fetch(
-      `${MOVIES_API_URL}movie/${videoId}${detailType}?api_key=${API_KEY}&language=en-US`
+      `${API_URL}movie/${videoId}${detailType}?api_key=${API_KEY}&language=en-US`
     );
     const tvData = await fetch(
-      `${MOVIES_API_URL}tv/${videoId}${detailType}?api_key=${API_KEY}&language=en-US`
+      `${API_URL}tv/${videoId}${detailType}?api_key=${API_KEY}&language=en-US`
     );
 
     if (!movieData.ok && !tvData.ok) throw new Error("eeeee");

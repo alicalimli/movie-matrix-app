@@ -9,7 +9,7 @@ import {
   SEARCH_TVS_API_URL,
   MOVIES_MAX_PAGE,
   API_KEY,
-  MOVIES_API_URL,
+  API_URL,
 } from "./config";
 import { apiFetch, createMovieObj, getMovieTvData } from "./helpers";
 
@@ -72,7 +72,7 @@ export const createDiscoverCards = async function (pageName = "home",pageNum = 1
       tvOrMovie = "tv";
     }
 
-    const genreData = await fetch(`${MOVIES_API_URL}/genre/${tvOrMovie}/list?api_key=${API_KEY}&language=en-US`);
+    const genreData = await fetch(`${API_URL}/genre/${tvOrMovie}/list?api_key=${API_KEY}&language=en-US`);
     const genreRes = await genreData.json();
 
     console.log(movieData)
@@ -104,11 +104,11 @@ export const createSearchResults = async function (searchVal) {
 
     const searchDataResults = await searchData.results.filter(data => data.media_type !== "person");
 
-    if(searchData.length === 0) throw new Error("Sorry, We can't find what you're looking for.")
-
-    // Create's Movie Object
-    data.searchResults = createMovieObj(searchDataResults);
     data.pages.currentPageType = "search";
+
+    if(searchDataResults.length === 0) throw new Error("Sorry, We can't find what you're looking for.")
+
+    data.searchResults = createMovieObj(searchDataResults);
   } catch (error) {
     throw error;
   }
