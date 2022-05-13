@@ -3,7 +3,6 @@ import * as model from "./model.js";
 import genreCardsView from "./views/genreCardsView";
 import paginationView from "./views/paginationView";
 
-// prettier-ignore
 /**
  * This function is responsible for rendering the cards in the page
  * as well as the genre buttons, pagination buttons, and the error message.
@@ -12,7 +11,7 @@ import paginationView from "./views/paginationView";
  * @param {String} viewName - The name of the view to be rendered in the page.
  * @param {String} [pageType=home] - The page type to be rendered in the page [home,trending,movies-pop,tvs-pop ].
  * @param {Number} [pageNum=1] - The page number of the movie cards to be displayed.
- */
+ */ // prettier-ignore
 export const controlMovieCards = async function (viewType, viewName, pageType = "home",pageNum = 1) {
   try {
     model.data.genre.genreArr = [];
@@ -35,11 +34,13 @@ export const controlMovieCards = async function (viewType, viewName, pageType = 
   }
 };
 
-// This function is for fetching data's from TMDB Api
-export const apiFetch = async function (
-  url,
-  pageName = model.data.pages.pageName
-) {
+/**
+ * @function
+ * @param {string} url - URL of the api to be fetched
+ * @param {*} pageName - The title of the page ex[discoverMovies,popularMovies]
+ * @returns The results of the fetched data.
+ */ //prettier-ignore
+export const apiFetch = async function (url,pageName = model.data.pages.pageName) {
   try {
     const data = await fetch(url);
 
@@ -59,8 +60,14 @@ export const apiFetch = async function (
   }
 };
 
-// This function is for creating moviecards
+/**
+ * @function
+ * Creates a new array of objects that only contains the title,image and the id.
+ * @param {Array} movieData - Array of Objects that contains the data's of movie/tv show
+ * @returns The new array of objects that only contains the title,image and the id.
+ */
 export const createMovieObj = function (movieData) {
+  console.log(movieData);
   // Returns an Object that contains only Image and Title
   return movieData.map((data) => {
     return {
@@ -72,10 +79,14 @@ export const createMovieObj = function (movieData) {
   });
 };
 
-// This function is for getting data's in the api both for TV's and Movies.
+/**
+ * @function
+ * @param {number} videoId - id of the movie/tv show
+ * @param {string} detailType - type of the data to be searched ex.[videos,credits]
+ * @returns The results of the fetched data
+ */ // prettier-ignore
 export const getMovieTvData = async function (videoId, detailType = "") {
   try {
-    // Fetching Movie's and TV's Data's from TMDB API
     const movieData = await fetch(
       `${MOVIES_API_URL}movie/${videoId}${detailType}?api_key=${API_KEY}&language=en-US`
     );
@@ -88,16 +99,14 @@ export const getMovieTvData = async function (videoId, detailType = "") {
     const movieDataRes = await movieData.json();
     const tvDataRes = await tvData.json();
 
-    // prettier-ignore
     if(movieDataRes.results || tvDataRes.results){   
-      // Merges the 2 results array and filters only the values that isnt undefined
+      // Merges the 2 results array and filters only the values that isn't undefined
       const finalRes = [tvDataRes.results || movieDataRes.results]
       .concat(tvDataRes.results || movieDataRes.results)
       .filter(val => val !== undefined);
       return finalRes;
     }
 
-    // prettier-ignore
     // Merges the two objects
     const finalRes = Object.assign(movieDataRes,tvDataRes)
 
