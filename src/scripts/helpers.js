@@ -37,7 +37,7 @@ export const controlMovieCards = async function (viewType, viewName, pageType = 
 /**
  * @function
  * @param {string} url - URL of the api to be fetched
- * @param {*} pageName - The title of the page ex[discoverMovies,popularMovies]
+ * @param {string} pageName - The title of the page ex[discoverMovies,popularMovies]
  * @returns The results of the fetched data.
  */ //prettier-ignore
 export const apiFetch = async function (url,pageName = model.data.pages.pageName) {
