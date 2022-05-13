@@ -92,7 +92,11 @@ export const createDiscoverCards = async function (pageName = "home",pageNum = 1
   }
 };
 
-// This function is for creating search results when user search something
+/**
+ * Fetches the data that the user searched from the TMDB Api.
+ * @function
+ * @param {string} searchVal - string to search in the api
+ */
 // prettier-ignore
 export const createSearchResults = async function (searchVal) {
   try {
@@ -110,7 +114,12 @@ export const createSearchResults = async function (searchVal) {
   }
 };
 
-// This function is for creating page results when pagination buttons is clicked
+/**
+ * Fetches the data of page results from the TMD API.
+ * @function
+ * @param {string} btnType - type of the button that the user clicked
+ * @param {number} pageNum - number of the page to fetch
+ */
 // prettier-ignore
 export const createPageResults = async function (btnType, pageNum = 1) {
   try {
@@ -141,7 +150,8 @@ export const createPageResults = async function (btnType, pageNum = 1) {
 };
 
 /**
- * Fetches the data from TMDB API.
+ * Fetches the data's of the movie/tv show that has been expanded from TMDB API.
+ * @function
  * @param {number} videoId - movie/tv show id  -
  */
 export const createExpandPage = async function (videoId) {
