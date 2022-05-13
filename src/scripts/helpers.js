@@ -15,30 +15,20 @@ import paginationView from "./views/paginationView";
  */
 export const controlMovieCards = async function (viewType, viewName, pageType = "home",pageNum = 1) {
   try {
-    console.log("dadadadaad")
-    // Empty's genre's array
     model.data.genre.genreArr = [];
 
-    // Render's Loading Spinner
     viewType.renderLoading();
-    
-    // Create's Movie Data
-    await model.createDiscoverCards(pageType,pageNum);
 
-    // Render's HTML Cards
+    await model.createDiscoverCards(pageType,pageNum);
     await viewType.renderHTML(model.data[viewName], model.data.bookMarksData);
 
-    // Sets Pagination View Page number to pageNum
     paginationView.pageNum = pageNum;
-
-    // Render's pagination
     paginationView.renderPagination(model.data.pages.currentPageLast);
 
-    // Render's Genre tags
     if(pageType === "trending"){
       genreCardsView.renderGenreErrorMsg();
     }else{
-      await genreCardsView.renderGenreTags(model.data.genre.genresData);
+      genreCardsView.renderGenreTags(model.data.genre.genresData);
     }
   } catch (error) {
     viewType.renderErrorMsg(error.message)
@@ -51,16 +41,12 @@ export const apiFetch = async function (
   pageName = model.data.pages.pageName
 ) {
   try {
-    // Fetches the data
     const data = await fetch(url);
 
-    // Throws an error when the response fails
     if (!data.ok) throw new Error(data.statusText);
 
-    // Takes the response and convert it to JSON
     const dataResults = await data.json();
 
-    // Sets the current URL to fetched URL
     model.data.pages.currentUrl = url;
 
     // Sets the obj to which type of page has been clicked
@@ -97,7 +83,6 @@ export const getMovieTvData = async function (videoId, detailType = "") {
       `${MOVIES_API_URL}tv/${videoId}${detailType}?api_key=${API_KEY}&language=en-US`
     );
 
-    // Throw's and error if Movie's and TV's data doesn't exist
     if (!movieData.ok && !tvData.ok) throw new Error("eeeee");
 
     const movieDataRes = await movieData.json();
