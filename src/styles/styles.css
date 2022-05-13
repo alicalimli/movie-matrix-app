@@ -1,0 +1,12 @@
+@import url(/src/styles/base/global.css);
+@import url(/src/styles/base/main.css);
+@import url(/src/styles/utils/variables.css);
+@import url(/src/styles/layouts/header.css);
+@import url(/src/styles/layouts/movies.css);
+@import url(/src/styles/layouts/spinner.css);
+@import url(/src/styles/layouts/pagination.css);
+@import url(/src/styles/layouts/sidebar.css);
+@import url(/src/styles/layouts/expand.css);
+@import url(/src/styles/layouts/settings.css);
+@import url(/src/styles/layouts/others.css);
+@import url(/src/styles/queries.css);
