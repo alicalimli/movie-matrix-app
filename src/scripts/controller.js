@@ -2,7 +2,12 @@ import "core-js/stable";
 import "regenerator-runtime/runtime";
 
 import * as model from "./model.js";
-import { MOVIES_FIRST_PAGE, MOVIES_MAX_PAGE } from "./config.js";
+import {
+  EXPAND_CARD_DURATION,
+  FIRST_PAGE,
+  MAX_PAGE,
+  UNEXPAND_CARD_DURATION,
+} from "./config.js";
 import sideBarBtnsView from "./views/sideBarBtnsView.js";
 import discoverMoviesView from "./views/discoverView.js";
 import popularMoviesView from "./views/popularMoviesView.js";
@@ -109,10 +114,10 @@ const controlPagination = async function (event) {
     if (paginationView.btnType === "") return;
 
     // Function stops when user clicks back and the page is in the first page.
-    if (paginationView.btnType === "back" && model.data.pages.currentPage === MOVIES_FIRST_PAGE) return;
+    if (paginationView.btnType === "back" && model.data.pages.currentPage === FIRST_PAGE) return;
 
     // Function stops when user clicks next and the page is in the last page.
-    if (paginationView.btnType === "next" && model.data.pages.currentPage === MOVIES_MAX_PAGE) return;
+    if (paginationView.btnType === "next" && model.data.pages.currentPage === MAX_PAGE) return;
 
     paginationView.renderLoading();
 
@@ -120,7 +125,6 @@ const controlPagination = async function (event) {
 
     paginationView.renderHTML(model.data.pages.pageResults, model.data.bookMarksData);
     paginationView.renderPagination(model.data.pages.currentPageLast);
-    console.log('sss')
   } catch (error) {
     console.log(error);
     paginationView.renderErrorMsg(error.message);
@@ -130,7 +134,6 @@ const controlPagination = async function (event) {
 const controlMovieSection = async function (e) {
   let expandDuration;
 
-  const sidebar = document.querySelector(".movie-sidebar-nav");
   const btn = e.target.closest(".expand-btn");
 
   if (!btn) return;
@@ -143,7 +146,7 @@ const controlMovieSection = async function (e) {
   console.log(model.data.settings.cardZooming);
 
   if (model.data.settings.cardZooming) {
-    expandDuration = 400;
+    expandDuration = EXPAND_CARD_DURATION;
     cardZoomingView.renderCardZoom(movieCard);
   }
 
@@ -168,7 +171,7 @@ const controlExpandBackButton = function (e) {
 
   if (model.data.settings.cardZooming && cardClone) {
     cardZoomingView.renderCardShrink();
-    expandDuration = 600;
+    expandDuration = UNEXPAND_CARD_DURATION;
   }
 
   setTimeout(() => {
@@ -339,6 +342,7 @@ const init = function () {
   loadDatas();
   // Loads Discover Movie Card's when page is loaded.
   controlDiscoverMovies();
+
   // Attach Event Handlers
   movieSectionView.addBackEventHandler(controlExpandBackButton);
   movieSectionView.addEventHandler(controlMovieSection);

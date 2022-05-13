@@ -10,5 +10,17 @@ export const TRENDING_API_URL = `${API_URL}trending/all/day?api_key=${API_KEY}&l
 
 export const SEARCH_API_URL = `${API_URL}search/multi?api_key=${API_KEY}&language=en-US&page=1`;
 
-export const MOVIES_MAX_PAGE = 500; // DONT CHANGE NUMBER ABOVE 500
-export const MOVIES_FIRST_PAGE = 1; // ALWAYS 1
+// VARIABLES
+
+export const DEFAULT_PAGE_TYPE = "home";
+
+export const MAX_PAGE = 500; // DONT CHANGE NUMBER ABOVE 500
+export const FIRST_PAGE = 1; // ALWAYS 1
+
+export const MAX_AFTER_PAGES_BUTTONS = 3;
+export const MAX_BEFORE_PAGES_BUTTONS = 3;
+
+export const EXPAND_CARD_DURATION = 400;
+export const UNEXPAND_CARD_DURATION = 600;
+
+export const MAX_CAST_CARDS = 20;

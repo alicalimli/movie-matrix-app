@@ -1,3 +1,4 @@
+import { MAX_AFTER_PAGES_BUTTONS, MAX_BEFORE_PAGES_BUTTONS } from "../config";
 import mainView from "./mainView";
 
 class paginationView extends mainView {
@@ -65,10 +66,11 @@ class paginationView extends mainView {
     this._paginationSection.insertAdjacentHTML("beforeend", paginationHTML);
   }
 
+  // prettier-ignore
   _generateNumPageBtnsBefore() {
     let pageNumBtnBeforeHTML = ``;
 
-    for (let i = +this.pageNum - 2; i < +this.pageNum; i++) {
+    for (let i = +this.pageNum - MAX_BEFORE_PAGES_BUTTONS; i < +this.pageNum; i++) {
       // Only create HTML when i is greater than 0
       if (i > 0) {
         pageNumBtnBeforeHTML += `
@@ -82,10 +84,11 @@ class paginationView extends mainView {
     return pageNumBtnBeforeHTML;
   }
 
+  // prettier-ignore
   _generateNumPageBtnsAfter(lastPage) {
     let pageNumBtnAfterHTML = ``;
 
-    for (let i = +this.pageNum; i < +this.pageNum + 3; i++) {
+    for (let i = +this.pageNum; i < +this.pageNum + MAX_AFTER_PAGES_BUTTONS; i++) {
       // Only creates HTML when i is not exceeding 500+
       if (i <= lastPage - 1) {
         pageNumBtnAfterHTML += `

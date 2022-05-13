@@ -1,3 +1,4 @@
+import { DEFAULT_PAGE_TYPE } from "../config.js";
 import mainView from "./mainView.js";
 import othersView from "./othersView.js";
 
@@ -56,7 +57,7 @@ class SideBarBtnView extends mainView {
       }
 
       // Stops the function when pageType isn't home
-      if (elParent.dataset.page !== "home" || !elParent) return;
+      if (elParent.dataset.page !== DEFAULT_PAGE_TYPE || !elParent) return;
       // sets active class to buttons
       elParent.classList.toggle("active");
       elParent.querySelector(".bx").classList.toggle("active");
@@ -68,14 +69,11 @@ class SideBarBtnView extends mainView {
 
     if (!btn) return;
 
-    // Toggles active class to sidebar if expand button is clicked and stops the function
-
     if (btn.dataset.typeBtn === "expand") {
       othersView.expandSidebar("add");
       return;
     }
 
-    console.log(this.buttonPage, "asd");
     if (btn.dataset.page !== this.buttonPage) {
       // Removes the active classes to all buttons
       // except the btn that has been clicked

@@ -1,4 +1,4 @@
-import { IMG_PATH } from "../config";
+import { FIRST_PAGE, IMG_PATH, MAX_CAST_CARDS } from "../config";
 
 /**
  * This class is responsible for pagination.
@@ -10,7 +10,7 @@ class expansionView {
   _expandVideoCasts;
   _bookmarked;
   btnType = "";
-  pageNum = 1;
+  pageNum = FIRST_PAGE;
 
   /**
    * Listens to event when bookmark button has been clicked.
@@ -283,7 +283,7 @@ class expansionView {
     let castsMarkUp = ``;
     castData.forEach((cast, i) => {
       // Returns after hitting index 10 in the array
-      if (i > 20) return;
+      if (i > MAX_CAST_CARDS) return;
       return (castsMarkUp += `
         <figure class="cast-container">
           ${

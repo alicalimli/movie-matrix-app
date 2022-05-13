@@ -6,14 +6,12 @@ import {
   TRENDING_API_URL,
   POPULAR_TVS_API_URL,
   SEARCH_API_URL,
-  SEARCH_TVS_API_URL,
-  MOVIES_MAX_PAGE,
+  MAX_PAGE,
   API_KEY,
   API_URL,
+  FIRST_PAGE,
 } from "./config";
 import { apiFetch, createMovieObj, getMovieTvData } from "./helpers";
-
-// This object is the overall data
 
 export const data = {
   movie: {},
@@ -51,7 +49,7 @@ export const data = {
 };
 
 // prettier-ignore
-export const createDiscoverCards = async function (pageName = "home",pageNum = 1) {
+export const createDiscoverCards = async function (pageName = "home",pageNum = FIRST_PAGE) {
   try {
     let movieData;
     let tvOrMovie;
@@ -83,7 +81,7 @@ export const createDiscoverCards = async function (pageName = "home",pageNum = 1
     // Sets the currentPageType to which button has been click(ex.Movies)
     data.pages.currentPageType = pageName;
     // Always sets the currentpagelast to lastpage
-    data.pages.currentPageLast = MOVIES_MAX_PAGE; // TMDB returns an error when page is above 500
+    data.pages.currentPageLast = MAX_PAGE; // TMDB returns an error when page is above 500
 
     // Creates Movie Object
     data[data.pages.pageName] = createMovieObj(movieData.results);
@@ -121,7 +119,7 @@ export const createSearchResults = async function (searchVal) {
  * @param {number} pageNum - number of the page to fetch
  */
 // prettier-ignore
-export const createPageResults = async function (btnType, pageNum = 1) {
+export const createPageResults = async function (btnType, pageNum = FIRST_PAGE) {
   try {
     // Copies currentPage to be able to compare it later
     const currentPage = data.pages.currentPage;
@@ -130,7 +128,7 @@ export const createPageResults = async function (btnType, pageNum = 1) {
     // Decrement and increment the currentPage number
     if (btnType === "next") data.pages.currentPage++;
     if (btnType === "back" && pageNum > 0) data.pages.currentPage--;
-    if (btnType === "first") data.pages.currentPage = 1;
+    if (btnType === "first") data.pages.currentPage = FIRST_PAGE;
     if (btnType === "last") data.pages.currentPage = data.pages.currentPageLast;
     if (btnType === "page-num") data.pages.currentPage = pageNum;
 

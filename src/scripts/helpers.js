@@ -1,4 +1,4 @@
-import { API_KEY, API_URL } from "./config";
+import { API_KEY, API_URL, FIRST_PAGE } from "./config";
 import * as model from "./model.js";
 import genreCardsView from "./views/genreCardsView";
 import paginationView from "./views/paginationView";
@@ -12,7 +12,7 @@ import paginationView from "./views/paginationView";
  * @param {String} [pageType=home] - The page type to be rendered in the page [home,trending,movies-pop,tvs-pop ].
  * @param {Number} [pageNum=1] - The page number of the movie cards to be displayed.
  */ // prettier-ignore
-export const controlMovieCards = async function (viewType, viewName, pageType = "home",pageNum = 1) {
+export const controlMovieCards = async function (viewType, viewName, pageType = "home",pageNum = FIRST_PAGE) {
   try {
     model.data.genre.genreArr = [];
 
