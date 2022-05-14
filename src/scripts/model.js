@@ -48,7 +48,11 @@ export const data = {
   },
 };
 
-// prettier-ignore
+/**
+ *
+ * @param {string} pageName - Name of the page to be rendered.
+ * @param {number} pageNum - Number of the page to be rendered.
+ */ // prettier-ignore
 export const createDiscoverCards = async function (pageName = "home",pageNum = FIRST_PAGE) {
   try {
     let movieData;
@@ -76,14 +80,14 @@ export const createDiscoverCards = async function (pageName = "home",pageNum = F
     console.log(movieData)
 
     data.genre.genresData = genreRes.genres;
+
     //Always Sets the current page to 1
     data.pages.currentPage = movieData.page;
-    // Sets the currentPageType to which button has been click(ex.Movies)
-    data.pages.currentPageType = pageName;
-    // Always sets the currentpagelast to lastpage
-    data.pages.currentPageLast = MAX_PAGE; // TMDB returns an error when page is above 500
 
-    // Creates Movie Object
+    data.pages.currentPageType = pageName;
+
+    data.pages.currentPageLast = MAX_PAGE;
+
     data[data.pages.pageName] = createMovieObj(movieData.results);
   } catch (error) {
     throw error;
@@ -94,8 +98,7 @@ export const createDiscoverCards = async function (pageName = "home",pageNum = F
  * Fetches the data that the user searched from the TMDB Api.
  * @function
  * @param {string} searchVal - string to search in the api
- */
-// prettier-ignore
+ */ // prettier-ignore
 export const createSearchResults = async function (searchVal) {
   try {
     const searchData = await apiFetch(`${SEARCH_API_URL}&query=` + searchVal);
@@ -117,8 +120,7 @@ export const createSearchResults = async function (searchVal) {
  * @function
  * @param {string} btnType - type of the button that the user clicked
  * @param {number} pageNum - number of the page to fetch
- */
-// prettier-ignore
+ */ // prettier-ignore
 export const createPageResults = async function (btnType, pageNum = FIRST_PAGE) {
   try {
     // Copies currentPage to be able to compare it later
