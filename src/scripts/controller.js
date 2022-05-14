@@ -2,12 +2,6 @@ import "core-js/stable";
 import "regenerator-runtime/runtime";
 
 import * as model from "./model.js";
-import {
-  EXPAND_CARD_DURATION,
-  FIRST_PAGE,
-  MAX_PAGE,
-  UNEXPAND_CARD_DURATION,
-} from "./config.js";
 import sideBarBtnsView from "./views/sideBarBtnsView.js";
 import discoverMoviesView from "./views/discoverView.js";
 import popularMoviesView from "./views/popularMoviesView.js";
@@ -23,6 +17,13 @@ import genreCardsView from "./views/genreCardsView.js";
 import cardZoomingView from "./views/movieSectionView.js";
 import othersView from "./views/othersView.js";
 import movieSectionView from "./views/movieSectionView.js";
+
+import {
+  EXPAND_CARD_DURATION,
+  FIRST_PAGE,
+  MAX_PAGE,
+  UNEXPAND_CARD_DURATION,
+} from "./config.js";
 
 /**
  * Controls the rendering of the home page.
@@ -233,7 +234,7 @@ const controlExpansionSection = async function () {
 
     if (!model.data.expansion.videoData) return;
 
-    await expansionView.renderHTML(
+    expansionView.renderHTML(
       model.data.expansion.videoData,
       model.data.expansion.videoDetails,
       model.data.expansion.videoCasts,
