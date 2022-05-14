@@ -10,7 +10,8 @@ of the movies or tv shows that you might like.
 
 ## Screenshots
 
-![App Screenshot](https://i.ibb.co/4K7wxGY/FQe-Uyb1-Vg-AAib4-T.jpg)
+![App Screenshot](/src/images/app-preview-one.png)
+![App Screenshot](/src/images/app-preview-two.png)
 
 ## FAQ
 
