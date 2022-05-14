@@ -5,8 +5,10 @@ of the movies or tv shows that you might like.
 
 ## Features
 
-- Light and Dark mode toggler
-- Watch Movie/TVs trailer
+- Search for movies and tv shows.
+- Light and dark mode toggler
+- Watch movies and tv shows trailer
+- Bookmarking functionality
 
 ## Screenshots
 
@@ -17,7 +19,7 @@ of the movies or tv shows that you might like.
 
 #### Can we watch movies in this website?
 
-No, You can only search and watch trailers.
+No, You can only search movies and watch trailers.
 
 ## Authors
 
