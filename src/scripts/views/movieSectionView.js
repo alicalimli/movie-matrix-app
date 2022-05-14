@@ -1,5 +1,8 @@
 import othersView from "./othersView";
 
+/**
+ * Animates the card zooming animation if the user enabled this in the settings.
+ */
 class cardZoomingView {
   _mainSection = document.querySelector(".movie-main");
   _backButton = document.querySelector(".back-btn");
@@ -9,10 +12,18 @@ class cardZoomingView {
   _widthCopy;
   _heightCopy;
 
+  /**
+   * Attaches event listener to the main section.
+   * @param {function} handle - Function that controls what happens when button has been clicked.
+   */
   addEventHandler(handle) {
     this._mainSection.addEventListener("click", handle);
   }
 
+  /**
+   * Attaches event listener to the main section.
+   * @param {function} handle - Function that controls what happens when back button has been clicked.
+   */
   addBackEventHandler(handle) {
     this._backButton.addEventListener("click", handle);
   }
@@ -38,6 +49,10 @@ class cardZoomingView {
     othersView.showOverlay("remove");
   }
 
+  /**
+   * Renders the card zooming effect when enabled in the settings.
+   * @param {Element} cardElement - Card element to be animated.
+   */ // prettier-ignore
   renderCardZoom(cardElement) {
     const { top, left, width, height } = cardElement.getBoundingClientRect();
     this._heightCopy = height;
@@ -45,7 +60,6 @@ class cardZoomingView {
     this._leftCopy = left;
     this._topCopy = top;
 
-    // prettier-ignore
     const movieCardClone = cardElement.querySelector("img")?.cloneNode(true) ?? document.createElement('div');
     movieCardClone.classList.remove("movie-img");
 
@@ -81,6 +95,10 @@ class cardZoomingView {
     }, 100);
   }
 
+  /**
+   * Renders the card shrinking animation when enabled in the settings.
+   * @param {Element} cardElement - Card element to be animated.
+   */
   renderCardShrink(cardElement = this._cardElementClone) {
     cardElement.style.transition = `all 0.5s ease`;
     cardElement.style.borderRadius = "5px";

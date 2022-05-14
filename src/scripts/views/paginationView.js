@@ -1,6 +1,9 @@
 import { MAX_AFTER_PAGES_BUTTONS, MAX_BEFORE_PAGES_BUTTONS } from "../config";
 import mainView from "./mainView";
 
+/**
+ * Generates HTML of pagination buttons to be rendered in the page.
+ */
 class paginationView extends mainView {
   btnType = "";
   pageNum = 1;
@@ -13,7 +16,7 @@ class paginationView extends mainView {
     this._scrollToTop();
   }
 
-  addHandlerEvent(handler) {
+  addEventHandler(handler) {
     this._paginationSection.addEventListener("click", handler);
   }
 
@@ -22,7 +25,10 @@ class paginationView extends mainView {
     this._scrollToTop();
   }
 
-  // prettier-ignore
+  /**
+   * Sets the page number and the button type of which user clicked.
+   * @param {event} event - Event that fires when pagination button has been clicked.
+   */ // prettier-ignore
   buttonClicked(event) {
     const btn = event.target.closest(".pag-btns");
     if (!btn) {
@@ -66,12 +72,15 @@ class paginationView extends mainView {
     this._paginationSection.insertAdjacentHTML("beforeend", paginationHTML);
   }
 
-  // prettier-ignore
+  /**
+   * Generates pagination buttons that comes before the current page.
+   * @returns Generated pagination buttons.
+   */ // prettier-ignore
   _generateNumPageBtnsBefore() {
     let pageNumBtnBeforeHTML = ``;
 
     for (let i = +this.pageNum - MAX_BEFORE_PAGES_BUTTONS; i < +this.pageNum; i++) {
-      // Only create HTML when i is greater than 0
+      // Only generates HTML when index is greater than 0
       if (i > 0) {
         pageNumBtnBeforeHTML += `
           <button 
@@ -84,7 +93,11 @@ class paginationView extends mainView {
     return pageNumBtnBeforeHTML;
   }
 
-  // prettier-ignore
+  /**
+   * Generates pagination buttons that comes after the current page.
+   * @param {number} lastPage - The last page of the page.
+   * @returns Generated pagination buttons.
+   */ // prettier-ignore
   _generateNumPageBtnsAfter(lastPage) {
     let pageNumBtnAfterHTML = ``;
 

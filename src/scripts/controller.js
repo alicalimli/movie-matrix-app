@@ -24,7 +24,9 @@ import cardZoomingView from "./views/movieSectionView.js";
 import othersView from "./views/othersView.js";
 import movieSectionView from "./views/movieSectionView.js";
 
-// prettier-ignore
+/**
+ * Controls the rendering of the home page.
+ */ // prettier-ignore
 const controlDiscoverMovies = async function () {
   try {
     controlMovieCards(discoverMoviesView, "discoverMovies", "home");
@@ -34,6 +36,10 @@ const controlDiscoverMovies = async function () {
   }
 };
 
+/**
+ * Controls the buttons in the sidebar.
+ * @param {event} event - Event that fires when user clicks a button in the sidebar.
+ */
 const controlNavBtns = async function (event) {
   try {
     const sidebar = document.querySelector(".movie-sidebar-nav");
@@ -85,6 +91,9 @@ const controlNavBtns = async function (event) {
   }
 };
 
+/**
+ * Controls the rendering of search results in the page.
+ */
 const controlSearchResults = async function () {
   try {
     genreCardsView.renderGenreErrorMsg();
@@ -105,18 +114,20 @@ const controlSearchResults = async function () {
   }
 };
 
-// prettier-ignore
+/**
+ * Controls the rendering of pagination buttons in the page.
+ * @param {event} event - Event that fires when user clicked the button.
+ */ // prettier-ignore
 const controlPagination = async function (event) {
   try {
-    // Starts the function when one of the buttons has been clicked
     paginationView.buttonClicked(event);
 
     if (paginationView.btnType === "") return;
 
-    // Function stops when user clicks back and the page is in the first page.
+    // Prevents data from rendering when user clicks back on the first page.
     if (paginationView.btnType === "back" && model.data.pages.currentPage === FIRST_PAGE) return;
-
-    // Function stops when user clicks next and the page is in the last page.
+    
+    // Prevents data from rendering when user clicks next on the last page.
     if (paginationView.btnType === "next" && model.data.pages.currentPage === MAX_PAGE) return;
 
     paginationView.renderLoading();
@@ -236,14 +247,15 @@ const controlExpansionSection = async function () {
   }
 };
 
+/**
+ * Controls the rendering of the filtered movies/tv shows in the page.
+ */ // prettier-ignore
 const renderGenreCards = async function () {
   try {
     paginationView.renderLoading();
     await model.createGenreCards();
-    genreCardsView.renderHTML(
-      model.data.genre.genresResult,
-      model.data.bookMarksData
-    );
+
+    genreCardsView.renderHTML(model.data.genre.genresResult,model.data.bookMarksData);
     paginationView.renderPagination(model.data.pages.currentPageLast);
   } catch (error) {
     console.error(error);
@@ -254,8 +266,7 @@ const renderGenreCards = async function () {
 /**
  * Controls the genre filtering buttons.
  * @param {event} event - event fired when genre filter button has been clicked.
- */
-// prettier-ignore
+ */ // prettier-ignore
 const controlGenreCards = async function (event) {
   try {
     const btn = event.target.closest(".filters-btn");
@@ -281,9 +292,11 @@ const controlGenreCards = async function (event) {
   }
 };
 
-// prettier-ignore
-const controlSettings = function (e) {
-  const btn = e.target.closest(".toggler-list");
+/**
+ * @param {event} event - Event that fires when user clicks a button in the settings.
+ */ // prettier-ignore
+const controlSettings = function (event) {
+  const btn = event.target.closest(".toggler-list");
 
   if (!btn) return;
 
@@ -323,7 +336,9 @@ const showExpandSection = function () {
   }
 };
 
-// prettier-ignore
+/**
+ * Fetch the datas from the user browser storage and set it in the data.
+ */ // prettier-ignore
 const loadDatas = function () {
   const bookMarksData = JSON.parse(localStorage.getItem("bookmarksData"));
   const settingsData = JSON.parse(localStorage.getItem("settingsData")) ?? model.data.settings;
@@ -335,30 +350,31 @@ const loadDatas = function () {
   settingsView.updateSettings(model.data.settings);
 };
 
-const init = function () {
-  // Show expand section when page is loaded and there's an id in the url.
-  showExpandSection();
-  // Load data's when page has been loaded.
-  loadDatas();
-  // Loads Discover Movie Card's when page is loaded.
+/**
+ * Immediately invoked function,
+ * this attaches event listeners, load data's, and loads the home page.
+ */
+const init = (function () {
   controlDiscoverMovies();
+  showExpandSection();
+  loadDatas();
 
   // Attach Event Handlers
   movieSectionView.addBackEventHandler(controlExpandBackButton);
   movieSectionView.addEventHandler(controlMovieSection);
 
-  genreCardsView.addEventHandler(controlGenreCards);
-  paginationView.addHandlerEvent(controlPagination);
-
-  searchResultsView.addHandlerEvent(controlSearchResults);
-  sideBarBtnsView.addHandlerEvent(controlNavBtns);
+  searchResultsView.addEventHandler(controlSearchResults);
+  sideBarBtnsView.addEventHandler(controlNavBtns);
   settingsView.addEventHandler(controlSettings);
-};
 
-init();
+  genreCardsView.addEventHandler(controlGenreCards);
+  paginationView.addEventHandler(controlPagination);
+})();
 
-// prettier-ignore
-window.onbeforeunload = () => {
+/**
+ * Saves the data's in the user browser storage.
+ */ //prettier-ignore
+const saveData = window.onbeforeunload = () => {
   localStorage.setItem("bookmarksData",JSON.stringify(model.data.bookMarksData))
   localStorage.setItem('settingsData', JSON.stringify(model.data.settings))
 }

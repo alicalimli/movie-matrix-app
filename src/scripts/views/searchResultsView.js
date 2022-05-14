@@ -13,7 +13,7 @@ class searchResultsView extends mainView {
   }
 
   // prettier-ignore
-  addHandlerEvent(handle) {
+  addEventHandler(handle) {
     const sidebar = document.querySelector(".movie-sidebar-nav");
     const searchInput = document.querySelector(".sidebar-search-input");
 
