@@ -49,7 +49,8 @@ export const data = {
 };
 
 /**
- *
+ * Fetches the data's from the API to be rendered in the page.
+ * @function
  * @param {string} pageName - Name of the page to be rendered.
  * @param {number} pageNum - Number of the page to be rendered.
  */ // prettier-ignore
@@ -153,25 +154,30 @@ export const createPageResults = async function (btnType, pageNum = FIRST_PAGE) 
  * Fetches the data's of the movie/tv show that has been expanded from TMDB API.
  * @function
  * @param {number} videoId - movie/tv show id  -
- */
+ */ //prettier-ignore
 export const createExpandPage = async function (videoId) {
   try {
     const videoData = await getMovieTvData(videoId, "/videos");
     const videoDetails = await getMovieTvData(videoId);
     const videoCasts = await getMovieTvData(videoId, "/credits");
+    
     data.expansion.videoDetails = await videoDetails;
     data.expansion.videoData = await videoData
       .filter((val) => val.type === "Trailer")
       .map((data) => {
         return { key: data.key };
       });
-    console.log(data.expansion.videoData);
+
     data.expansion.videoCasts = await videoCasts.cast;
   } catch (error) {
     console.log(error);
   }
 };
 
+/**
+ * Fetch filtered genre movie/tv show cards data in the API to be rendered in the page.
+ * @function
+ */
 // prettier-ignore
 export const createGenreCards = async function () {
   try{
@@ -187,8 +193,6 @@ export const createGenreCards = async function () {
     if(genreRes.results.length === 0) throw new Error("Sorry, We can't find any results with the given genre.")
 
     data.genre.genresResult = await createMovieObj(genreRes.results);
-  
-    console.log(genreRes.results);
   
     //Always Sets the current page to 1
     data.pages.currentPage = genreRes.page;
