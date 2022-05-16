@@ -289,7 +289,7 @@
 
 .picture-cicle {
   border-radius: 5px;
-  border: 3px solid var(--primary-accent-color);
+  border: 2px solid var(--primary-accent-color);
   width: 10rem;
   height: 13rem;
   overflow: hidden;
@@ -321,4 +321,32 @@
 
 .img-unavailable-text {
   color: var(--primary-accent-color);
+}
+
+/**************** SHOW ALL CASTS BUTTON ***************/
+
+.show-casts-btn {
+  border-radius: 5px;
+  border: 2px solid var(--primary-accent-color);
+  width: 10rem;
+  height: 13rem;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--primary-accent-color);
+  transition: var(--transition-three-ms);
+}
+
+.show-casts-btn span {
+  display: inline-block;
+  transition: var(--transition-three-ms);
+  transform: translateX(0);
+}
+
+.show-casts-btn:hover {
+  background-color: var(--primary-accent-color);
+  color: white;
+}
+
+.show-casts-btn:hover span {
+  transform: translateX(50%);
 }
