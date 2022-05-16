@@ -182,6 +182,12 @@ const controlExpandBackButton = function () {
   const trailerVideo = document?.querySelector(".trailer-video");
   const cardClone = document?.querySelector(".movie-card-clone");
 
+  if (expansionView.isAllCastsSectionActive) {
+    controlExpansionSection();
+    expansionView.isAllCastsSectionActive = false;
+    return;
+  }
+
   let expandDuration;
 
   window.location.hash = "";

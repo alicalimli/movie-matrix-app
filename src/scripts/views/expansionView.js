@@ -5,6 +5,7 @@ import { FIRST_PAGE, IMG_PATH, MAX_CAST_CARDS } from "../config";
  */
 class expansionView {
   _parentEl = document.querySelector(".video-overview-container");
+  isAllCastsSectionActive = false;
   _expandVideoDetails;
   _expandVideoData;
   _expandVideoCasts;
@@ -72,7 +73,7 @@ class expansionView {
    * Generates all casts section and render it in the page.
    */
   _showAllCasts() {
-    console.log(this._expandVideoCasts);
+    this.isAllCastsSectionActive = true;
     this._clearHTML();
 
     const allCasts = `
