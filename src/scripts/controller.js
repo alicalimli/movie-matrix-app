@@ -38,7 +38,7 @@ const controlDiscoverMovies = async function () {
 };
 
 /**
- * Controls the buttons in the sidebar.
+ * Controls the sidebar buttons functionality.
  * @param {event} event - Event that fires when user clicks a button in the sidebar.
  */
 const controlNavBtns = async function (event) {
@@ -93,7 +93,7 @@ const controlNavBtns = async function (event) {
 };
 
 /**
- * Controls the rendering of search results in the page.
+ * Controls the search bar functionality.
  */
 const controlSearchResults = async function () {
   try {
@@ -116,7 +116,7 @@ const controlSearchResults = async function () {
 };
 
 /**
- * Controls the rendering of pagination buttons in the page.
+ * Controls pagination buttons functionality.
  * @param {event} event - Event that fires when user clicked the button.
  */ // prettier-ignore
 const controlPagination = async function (event) {
@@ -143,15 +143,19 @@ const controlPagination = async function (event) {
   }
 };
 
-const controlMovieSection = async function (e) {
+/**
+ * Controls the expand button functionality of movie/tv show cards in the page.
+ * @param {event} event - Event that fires when user clicked the button.
+ */
+const controlMovieSection = async function (event) {
   let expandDuration;
 
-  const btn = e.target.closest(".expand-btn");
+  const btn = event.target.closest(".expand-btn");
 
   if (!btn) return;
 
   const expandSection = document.querySelector(".expansion-section");
-  const movieCard = e.target.closest(".movie-card");
+  const movieCard = event.target.closest(".movie-card");
   const btnId = btn.dataset.cardId;
 
   window.location.hash = btnId;
@@ -170,7 +174,10 @@ const controlMovieSection = async function (e) {
   }, expandDuration);
 };
 
-const controlExpandBackButton = function (e) {
+/**
+ * Controls the back button functionality in the expansion page.
+ */
+const controlExpandBackButton = function () {
   const expandSection = document.querySelector(".expansion-section");
   const trailerVideo = document?.querySelector(".trailer-video");
   const cardClone = document?.querySelector(".movie-card-clone");
@@ -192,7 +199,10 @@ const controlExpandBackButton = function (e) {
   }, expandDuration / 2);
 };
 
-// prettier-ignore
+/**
+ * Controls the bookmark button functionality in the expand page.
+ * @param {boolean} isActive - If the expanded movie/tv show has been bookmarked already.
+ */ // prettier-ignore
 const controlBookmarkBtn = async function (isActive) {
   try {
     const id = +window.location.hash.slice(1);
