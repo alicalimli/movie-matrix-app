@@ -68,6 +68,9 @@ class expansionView {
     showCastsBtn.addEventListener("click", this._showAllCasts.bind(this));
   }
 
+  /**
+   * Generates all casts section and render it in the page.
+   */
   _showAllCasts() {
     console.log(this._expandVideoCasts);
     this._clearHTML();
