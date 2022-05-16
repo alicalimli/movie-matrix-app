@@ -6,9 +6,6 @@ import othersView from "./othersView";
  *
  * Extends of {@link mainView}
  */
-/**
- * Displays filtered movie/tv show cards in the page.
- */
 class genreCardsView extends mainView {
   _filterButtonsParent = document.querySelector(".filters-btns");
   _genreParentEl = document.querySelector(".filters-btns");
