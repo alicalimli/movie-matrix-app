@@ -299,6 +299,18 @@
   justify-content: center;
   align-items: center;
 }
+
+.picture-cicle.img-unavailable:hover {
+  background-color: var(--primary-accent-color);
+  transition: var(--transition-three-ms);
+}
+
+.picture-cicle.img-unavailable:hover i,
+.picture-cicle.img-unavailable:hover p {
+  transition: var(--transition-three-ms);
+  color: white;
+}
+
 .cast-picture {
   width: 100%;
   transition: var(--transition-four-ms);

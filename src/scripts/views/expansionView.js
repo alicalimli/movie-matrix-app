@@ -325,7 +325,7 @@ class expansionView {
             </a>
             `
               : `
-            <a href="https://www.google.com/search?q=${cast.name}" target="_blank" class="flx flx-cntr flx-clmn picture-cicle">
+            <a href="https://www.google.com/search?q=${cast.name}" target="_blank" class="flx flx-cntr flx-clmn picture-cicle img-unavailable">
               <i class="ph-icon ph-warning"></i>
               <p class="img-unavailable-text">Image <br> Unavailable</p>
             </a>
