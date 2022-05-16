@@ -5,7 +5,7 @@ import othersView from "./othersView.js";
 /**
  * Handles the sidebar view.
  */ //prettier-ignore
-class SideBarBtnView extends mainView {
+class SideBarBtnView {
   _settingsContainer = document.querySelector(".settings-container");
   _parentEl = document.querySelector(".sidebar-lists-btn");
   _sidebar = document.querySelector(".movie-sidebar-nav");

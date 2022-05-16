@@ -2,6 +2,11 @@ import mainView from "./mainView";
 import othersView from "./othersView";
 
 /**
+ * Handle's the rendering of filtered movie/tv show cards and the genre filter buttons in the page.
+ *
+ * Extends of {@link mainView}
+ */
+/**
  * Displays filtered movie/tv show cards in the page.
  */
 class genreCardsView extends mainView {

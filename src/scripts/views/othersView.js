@@ -1,5 +1,6 @@
-import genreCardsView from "./genreCardsView";
-
+/**
+ * Handles the rendering of transitions in the page.
+ */
 class othersView {
   _filterButtonContainer = document.querySelector(".filter-btn-container");
   _settingsContainer = document.querySelector(".settings-container");

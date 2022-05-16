@@ -2,7 +2,9 @@ import { MAX_AFTER_PAGES_BUTTONS, MAX_BEFORE_PAGES_BUTTONS } from "../config";
 import mainView from "./mainView";
 
 /**
- * Generates HTML of pagination buttons to be rendered in the page.
+ * Handle's the rendering of pagination buttons and the movie/tv show cards when a pagination button is clicked.
+ *
+ * Extends of {@link mainView}
  */
 class paginationView extends mainView {
   btnType = "";

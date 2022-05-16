@@ -1,9 +1,9 @@
 import { IMG_PATH } from "../config";
 
 /**
- * @module mainViewParent
+ * Handles the rendering of movies/tv show cards in the page.
  */
-export default class mainView {
+class mainView {
   _paginationSection = document.querySelector(".movie-pagination");
   _parentEl = document.querySelector(".movie-cards");
   _movieData;
@@ -136,3 +136,5 @@ export default class mainView {
       : `<i class="bm-icon bx bxs-bookmark"></i>`;
   }
 }
+
+export default mainView;

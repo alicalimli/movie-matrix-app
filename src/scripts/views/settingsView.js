@@ -1,7 +1,7 @@
 import othersView from "./othersView";
 
 /**
- * Handles the views in the settings panel like its transitions.
+ * Handles the transitions in the settings panel.
  */ //prettier-ignore
 class settingsView {
   _disableTransitionSetting = document.querySelector(".disable-transition-setting");

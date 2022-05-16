@@ -1,7 +1,7 @@
 import othersView from "./othersView";
 
 /**
- * Animates the card zooming animation if the user enabled this in the settings.
+ * Handle's the card zooming animation, if user enabled it in the settings.
  */
 class cardZoomingView {
   _mainSection = document.querySelector(".movie-main");

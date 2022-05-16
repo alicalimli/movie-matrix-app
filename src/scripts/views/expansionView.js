@@ -1,7 +1,7 @@
 import { FIRST_PAGE, IMG_PATH, MAX_CAST_CARDS } from "../config";
 
 /**
- * This class is responsible for pagination.
+ * Handle's the rendering of the expansion page when user clicked a movie/tv show card.
  */
 class expansionView {
   _parentEl = document.querySelector(".video-overview-container");

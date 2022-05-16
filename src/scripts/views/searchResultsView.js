@@ -1,6 +1,11 @@
 import othersView from "./othersView";
 import mainView from "./mainView";
 
+/**
+ * Handle's the rendering of movie/tv show cards that the user searched.
+ *
+ * Extends of {@link mainView}
+ */
 class searchResultsView extends mainView {
   _inputForm;
   _inputSearch;
