@@ -230,7 +230,9 @@ const controlBookmarkBtn = async function (isActive) {
   }
 };
 
-// prettier-ignore
+/**
+ * Controls the rendering of the expansion page when a movie/tv show card has been clicked.
+ */ // prettier-ignore
 const controlExpansionSection = async function () {
   try {
     const videoId = +window.location.hash.slice(1);
@@ -304,6 +306,7 @@ const controlGenreCards = async function (event) {
 };
 
 /**
+ * Controls the settings panel buttons functionality.
  * @param {event} event - Event that fires when user clicks a button in the settings.
  */ // prettier-ignore
 const controlSettings = function (event) {
@@ -348,7 +351,7 @@ const showExpandSection = function () {
 };
 
 /**
- * Fetch the datas from the user browser storage and set it in the data.
+ * Fetch the data's from the user browser storage and set it in the data.
  */ // prettier-ignore
 const loadDatas = function () {
   const bookMarksData = JSON.parse(localStorage.getItem("bookmarksData"));
