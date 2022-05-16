@@ -48,6 +48,7 @@ class expansionView {
     const trailerVideo = document.querySelector(".trailer-video");
     const closeVideoBtn = document.querySelector(".close-video");
     const watchBtn = document.querySelector(".watch-poster-btn");
+    const showCastsBtn = document.querySelector(".show-casts-btn");
 
     const source = trailerVideo.getAttribute("src");
     trailerVideo.setAttribute("src", "");
@@ -63,6 +64,27 @@ class expansionView {
       closeVideoBtn.classList.remove("active");
       trailerVideo.setAttribute("src", "");
     });
+
+    showCastsBtn.addEventListener("click", this._showAllCasts.bind(this));
+  }
+
+  _showAllCasts() {
+    console.log(this._expandVideoCasts);
+    this._clearHTML();
+
+    const allCasts = `
+
+    <section class="all-casts-section">
+      <header class="all-casts-header">
+        <h2 class="all-casts-title">Casts</h2>
+      </header>
+      <div class="all-casts-container">
+        ${this._createCastCircle(this._expandVideoCasts)}
+      </div>
+    </section>
+    `;
+
+    this._parentEl.insertAdjacentHTML("beforeend", allCasts);
   }
 
   /**
@@ -250,7 +272,7 @@ class expansionView {
             <h2 class="cast-sec-title">Casts</h2>
 
             <div class="casts-container">
-            ${this._createCastCircle(this._expandVideoCasts)}
+            ${this._createCastCircle(this._expandVideoCasts, true, true)}
             </div>
           </section>
           `;
@@ -275,15 +297,21 @@ class expansionView {
 
   /**
    * Generates cast circles for the movie/tv show that has been expanded.
-   * @param {castData} castData - Contains all the data about the casts of the movie/tv show.
+   * @param {Array} castData - Contains all the data about the casts of the movie/tv show.
+   * @param {Boolean} showAllButton - If the show all button would be rendered or not.
+   * @param {Boolean} limitCasts - Limits the generated cast HTML's.
    * @returns Cast circles markup HTML to be rendered in the page.
    */
-  _createCastCircle(castData) {
-    console.log(castData, "ASDASDASD");
+  _createCastCircle(castData, showAllButton = false, limitCasts = false) {
+    const castDataCopy = [...castData];
     let castsMarkUp = ``;
-    castData.forEach((cast, i) => {
+
+    if (limitCasts) {
+      castDataCopy.length = MAX_CAST_CARDS;
+    }
+
+    castDataCopy.forEach((cast) => {
       // Returns after hitting index 10 in the array
-      if (i > MAX_CAST_CARDS) return;
       return (castsMarkUp += `
         <figure class="cast-container">
           ${
@@ -304,6 +332,13 @@ class expansionView {
         </figure>
         `);
     });
+    if (showAllButton) {
+      castsMarkUp += `
+      <button class="show-casts-btn">
+        Show All <span>&rightarrow;</span>
+      </button>
+      `;
+    }
     return castsMarkUp;
   }
 }

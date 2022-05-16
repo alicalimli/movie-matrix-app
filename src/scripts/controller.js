@@ -369,8 +369,8 @@ const loadDatas = function () {
  * this attaches event listeners, load data's, and loads the home page.
  */
 const init = (function () {
-  // controlDiscoverMovies();
-  // showExpandSection();
+  controlDiscoverMovies();
+  showExpandSection();
   loadDatas();
 
   // Attach Event Handlers
