@@ -311,7 +311,6 @@ class expansionView {
     }
 
     castDataCopy.forEach((cast) => {
-      // Returns after hitting index 10 in the array
       return (castsMarkUp += `
         <figure class="cast-container">
           ${
