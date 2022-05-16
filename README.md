@@ -14,6 +14,7 @@ of the movies or tv shows that you might like.
 
 ![App Screenshot](/src/images/app-preview-one.png)
 ![App Screenshot](/src/images/app-preview-two.png)
+![App Screenshot](/src/images/app-preview-three.png)
 
 ## FAQ
 
