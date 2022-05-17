@@ -102,7 +102,6 @@ export const apiFetch = async function (url,pageName = model.data.pages.pageName
  * @returns The new array of objects that only contains the title,image and the id.
  */
 export const createMovieObj = function (movieData) {
-  console.log(movieData);
   // Returns an Object that contains only Image and Title
   return movieData.map((data) => {
     return {
@@ -129,8 +128,6 @@ export const getMovieTvData = async function (videoId, detailType = "") {
 
     const movieDataRes = await movieData.json();
     const tvDataRes = await tvData.json();
-
-    console.log(await tvDataRes.results ?? await movieData.results, "SRTHIWSIEDGSEK")
 
     // Only fires when TMDB sends back a data with a results object.
     if(movieDataRes.results ?? tvDataRes.results){ 

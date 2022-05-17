@@ -133,7 +133,6 @@ const controlMovieSection = async function (event) {
   const btnId = btn.dataset.cardId;
 
   window.location.hash = btnId;
-  console.log(model.data.settings.cardZooming);
 
   if (model.data.settings.cardZooming) {
     expandDuration = EXPAND_CARD_DURATION;
@@ -187,7 +186,7 @@ const controlBookmarkBtn = async function (isActive) {
   try {
     const id = +window.location.hash.slice(1);
     const movieCard = document.querySelector(`#movie-${id}`)
-    const bmIcon = movieCard.querySelector('.bm-icon')
+    const bmIcon = movieCard?.querySelector('.bm-icon')
     
     if (!id) return;
 
@@ -197,14 +196,15 @@ const controlBookmarkBtn = async function (isActive) {
       dataHolder.push(model.data.expansion.videoDetails)
       const bookMarkData = createMovieObj(dataHolder)
       model.data.bookMarksData.push(...bookMarkData);
-      bmIcon.classList.add('active')
+      bmIcon?.classList.add('active')
     }
     else {
       const newBookmarkData = model.data.bookMarksData.filter((val) => val.id !== id);
       model.data.bookMarksData = newBookmarkData;
-      bmIcon.classList.remove('active')
+      bmIcon?.classList.remove('active')
     }
-    console.log(model.data.bookMarksData);
+
+    if(model.data.pages.currentPageType === "bookmark") controlMovieCards(...pageObj.bookmarks);
   } catch (error) {
     console.log(error);
   }
@@ -234,7 +234,6 @@ const controlExpansionSection = async function () {
     );
 
     expansionView.addEventHandler(controlBookmarkBtn);
-    console.log(model.data.expansion.videoDetails);
   } catch (error) {
     console.log(error);
   }
@@ -337,7 +336,6 @@ const loadDatas = function () {
   const settingsData = JSON.parse(localStorage.getItem("settingsData")) ?? model.data.settings;
 
   model.data.bookMarksData = [...new Set(bookMarksData)];
-  console.log(settingsData);
   model.data.settings = settingsData;
 
   settingsView.updateSettings(model.data.settings);

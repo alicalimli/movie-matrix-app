@@ -141,8 +141,6 @@ export const createPageResults = async function (btnType, pageNum = FIRST_PAGE) 
     // Fetches the data
     const pageData = await apiFetch(`${data.pages.currentUrl}&page=${data.pages.currentPage}`)
 
-    console.log(data.pages.currentUrl)
-
     // Create's Movie
     data.pages.pageResults = createMovieObj(pageData.results);
   } catch (error) {
@@ -187,8 +185,6 @@ export const createGenreCards = async function () {
     if (!genreData) return;
   
     const genreRes = await genreData.json();
-
-    console.log(genreRes)
 
     if(genreRes.results.length === 0) throw new Error("Sorry, We can't find any results with the given genre.")
 
