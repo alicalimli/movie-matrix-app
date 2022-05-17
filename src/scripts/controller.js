@@ -41,39 +41,29 @@ const controlDiscoverMovies = async function () {
   }
 };
 
+// prettier-ignore
+const pageObj = {
+  "home": [discoverMoviesView, "discoverMovies", "home"],
+  "trending": [trendingView, "trendingMovies", "trending", false],
+  "movies-pop": [popularMoviesView, "popularMovies", "movies-pop"],
+  "tvs-pop": [popularTVsView, "popularTVS", "tvs-pop"],
+  "bookmarks": [bookmarksView, "bookMarksData", "bookmark"],
+};
+
 /**
  * Controls the sidebar buttons functionality.
  * @param {event} event - Event that fires when user clicks a button in the sidebar.
  */
 const controlNavBtns = async function (event) {
   try {
-    const sidebar = document.querySelector(".movie-sidebar-nav");
-
-    if (sidebar.classList.contains("active")) unExpandSidebar();
+    unExpandSidebar();
 
     sideBarBtnsView.renderActive(event);
 
     // Prevents data from being rendered again each time the user clicks the same button.
     if (sideBarBtnsView.buttonPage === model.data.pages.currentPageType) return;
 
-    // Prevents data from rendering when user clicks nav expand button.
-    if (sideBarBtnsView.buttonPage === "expand") return;
-
-    if (sideBarBtnsView.buttonPage === "home") {
-      controlMovieCards(discoverMoviesView, "discoverMovies", "home");
-    }
-    if (sideBarBtnsView.buttonPage === "movies-pop") {
-      controlMovieCards(popularMoviesView, "popularMovies", "movies-pop");
-    }
-    if (sideBarBtnsView.buttonPage === "trending") {
-      controlMovieCards(trendingView, "trendingMovies", "trending");
-    }
-    if (sideBarBtnsView.buttonPage === "tvs-pop") {
-      controlMovieCards(popularTVsView, "popularTVS", "tvs-pop");
-    }
-    if (sideBarBtnsView.buttonPage === "bookmarks") {
-      controlMovieCards(bookmarksView, "bookMarksData", "bookmark");
-    }
+    controlMovieCards(...pageObj[sideBarBtnsView.buttonPage]);
   } catch (error) {
     bookmarksView.renderErrorMsg(error.message);
   }

@@ -1,5 +1,6 @@
 import { API_KEY, API_URL, FIRST_PAGE } from "./config";
 import * as model from "./model.js";
+import bookmarksView from "./views/bookmarksView";
 import genreCardsView from "./views/genreCardsView";
 import othersView from "./views/othersView";
 import paginationView from "./views/paginationView";
@@ -11,27 +12,16 @@ import paginationView from "./views/paginationView";
  * @param {Object} viewType - The view that will be rendered [discoverView.js, trendingView.js, and etc.].
  * @param {String} viewName - The name of the view to be rendered in the page.
  * @param {String} [pageType=home] - The page type to be rendered in the page [home,trending,movies-pop,tvs-pop ].
+ * @param {Boolean} filtering - If genre filtering is available in that type of page.
  * @param {Number} [pageNum=1] - The page number of the movie cards to be displayed.
  */ // prettier-ignore
-export const controlMovieCards = async function (viewType, viewName, pageType = "home",pageNum = FIRST_PAGE) {
+export const controlMovieCards = async function (viewType, viewName, pageType = "home", filtering = true, pageNum = FIRST_PAGE) {
   try {
     if(pageType === "bookmark"){
-      model.data.pages.currentPageType = pageType;
-
-      genreCardsView.renderGenreErrorMsg();
-
-      if (model.data[viewName].length === 0)
-        throw new Error("You dont have any bookmarks yet.");
-
-      viewType.renderLoading();
-
-      viewType.renderHTML(
-        model.data[viewName],
-        model.data[viewName]
-      );
-      console.log('sucess')
+      controlBookmarks();
       return
     }
+    
     model.data.genre.genreArr = [];
 
     viewType.renderLoading();
@@ -42,13 +32,29 @@ export const controlMovieCards = async function (viewType, viewName, pageType = 
     paginationView.pageNum = pageNum;
     paginationView.renderPagination(model.data.pages.currentPageLast);
 
-    if(pageType === "trending"){
-      genreCardsView.renderGenreErrorMsg();
-    }else{
-      genreCardsView.renderGenreTags(model.data.genre.genresData);
-    }
+    !filtering ? genreCardsView.renderGenreErrorMsg() : genreCardsView.renderGenreTags(model.data.genre.genresData);
+
   } catch (error) {
     viewType.renderErrorMsg(error.message)
+  }
+};
+
+/**
+ * Controls the rendering of bookmarks movie/tv show cards.
+ */ // prettier-ignore
+const controlBookmarks = function () {
+  try {
+    model.data.pages.currentPageType = "bookmark";
+
+    genreCardsView.renderGenreErrorMsg();
+
+    if (model.data.bookMarksData.length === 0) throw new Error("You dont have any bookmarks yet.");
+
+    bookmarksView.renderLoading();
+
+    bookmarksView.renderHTML(model.data.bookMarksData, model.data.bookMarksData);
+  } catch (error) {
+    throw error;
   }
 };
 
@@ -56,11 +62,14 @@ export const controlMovieCards = async function (viewType, viewName, pageType = 
  * Unexpand the sidebar navigation.
  */
 export const unExpandSidebar = function () {
-  othersView.shrinkSections("remove");
-  othersView.expandSidebar("remove");
-  othersView.showOverlay("remove");
-  othersView.hideToolTip("hidden");
-  setTimeout(() => othersView.hideToolTip("visible"), 2000);
+  const sidebar = document.querySelector(".movie-sidebar-nav");
+  if (sidebar.classList.contains("active")) {
+    othersView.shrinkSections("remove");
+    othersView.expandSidebar("remove");
+    othersView.showOverlay("remove");
+    othersView.hideToolTip("hidden");
+    setTimeout(() => othersView.hideToolTip("visible"), 2000);
+  }
 };
 
 /**
