@@ -12,7 +12,11 @@ import paginationView from "./views/paginationView.js";
 import expansionView from "./views/expansionView.js";
 import bookmarksView from "./views/bookmarksView.js";
 import settingsView from "./views/settingsView.js";
-import { controlMovieCards, createMovieObj } from "./helpers.js";
+import {
+  controlMovieCards,
+  createMovieObj,
+  unExpandSidebar,
+} from "./helpers.js";
 import genreCardsView from "./views/genreCardsView.js";
 import cardZoomingView from "./views/movieSectionView.js";
 import othersView from "./views/othersView.js";
@@ -45,13 +49,8 @@ const controlNavBtns = async function (event) {
   try {
     const sidebar = document.querySelector(".movie-sidebar-nav");
 
-    if (sidebar.classList.contains("active")) {
-      othersView.shrinkSections("remove");
-      othersView.expandSidebar("remove");
-      othersView.showOverlay("remove");
-      othersView.hideToolTip("hidden");
-      setTimeout(() => othersView.hideToolTip("visible"), 2000);
-    }
+    if (sidebar.classList.contains("active")) unExpandSidebar();
+
     sideBarBtnsView.renderActive(event);
 
     // Prevents data from being rendered again each time the user clicks the same button.
@@ -73,19 +72,7 @@ const controlNavBtns = async function (event) {
       controlMovieCards(popularTVsView, "popularTVS", "tvs-pop");
     }
     if (sideBarBtnsView.buttonPage === "bookmarks") {
-      model.data.pages.currentPageType = "bookmark";
-
-      genreCardsView.renderGenreErrorMsg();
-
-      if (model.data.bookMarksData.length === 0)
-        throw new Error("You dont have any bookmarks yet.");
-
-      bookmarksView.renderLoading();
-
-      bookmarksView.renderHTML(
-        model.data.bookMarksData,
-        model.data.bookMarksData
-      );
+      controlMovieCards(bookmarksView, "bookMarksData", "bookmark");
     }
   } catch (error) {
     bookmarksView.renderErrorMsg(error.message);
@@ -94,22 +81,19 @@ const controlNavBtns = async function (event) {
 
 /**
  * Controls the search bar functionality.
- */
+ */ // prettier-ignore
 const controlSearchResults = async function () {
   try {
     genreCardsView.renderGenreErrorMsg();
 
-    // Remove's active icons in sidebar
     sideBarBtnsView.updateBtn("search-res");
     sideBarBtnsView.buttonPage = "search";
 
     const searchVal = searchResultsView.getInputValue();
+
     searchResultsView.renderLoading();
     await model.createSearchResults(searchVal);
-    searchResultsView.renderHTML(
-      model.data.searchResults,
-      model.data.bookMarksData
-    );
+    searchResultsView.renderHTML(model.data.searchResults, model.data.bookMarksData);
   } catch (error) {
     searchResultsView.renderErrorMsg(error.message);
   }
@@ -348,7 +332,6 @@ const controlSettings = function (event) {
  * Shows the expanded page when a movie/tv show id has been detected in the URL.
  */
 const showExpandSection = function () {
-  // Show's expand section immediately when there's an id in the url
   if (window.location.hash) {
     movieSectionView.shrinkSections();
     document.querySelector(".expansion-section").classList.add("active");

@@ -1,6 +1,7 @@
 import { API_KEY, API_URL, FIRST_PAGE } from "./config";
 import * as model from "./model.js";
 import genreCardsView from "./views/genreCardsView";
+import othersView from "./views/othersView";
 import paginationView from "./views/paginationView";
 
 /**
@@ -14,6 +15,23 @@ import paginationView from "./views/paginationView";
  */ // prettier-ignore
 export const controlMovieCards = async function (viewType, viewName, pageType = "home",pageNum = FIRST_PAGE) {
   try {
+    if(pageType === "bookmark"){
+      model.data.pages.currentPageType = pageType;
+
+      genreCardsView.renderGenreErrorMsg();
+
+      if (model.data[viewName].length === 0)
+        throw new Error("You dont have any bookmarks yet.");
+
+      viewType.renderLoading();
+
+      viewType.renderHTML(
+        model.data[viewName],
+        model.data[viewName]
+      );
+      console.log('sucess')
+      return
+    }
     model.data.genre.genreArr = [];
 
     viewType.renderLoading();
@@ -35,6 +53,17 @@ export const controlMovieCards = async function (viewType, viewName, pageType = 
 };
 
 /**
+ * Unexpand the sidebar navigation.
+ */
+export const unExpandSidebar = function () {
+  othersView.shrinkSections("remove");
+  othersView.expandSidebar("remove");
+  othersView.showOverlay("remove");
+  othersView.hideToolTip("hidden");
+  setTimeout(() => othersView.hideToolTip("visible"), 2000);
+};
+
+/**
  * @function
  * @param {string} url - URL of the api to be fetched
  * @param {string} pageName - The title of the page ex[discoverMovies,popularMovies]
@@ -47,10 +76,7 @@ export const apiFetch = async function (url,pageName = model.data.pages.pageName
     if (!data.ok) throw new Error(data.statusText);
 
     const dataResults = await data.json();
-
     model.data.pages.currentUrl = url;
-
-    // Sets the obj to which type of page has been clicked
     model.data.pages.pageName = pageName;
 
     return dataResults;
@@ -87,29 +113,27 @@ export const createMovieObj = function (movieData) {
  */ // prettier-ignore
 export const getMovieTvData = async function (videoId, detailType = "") {
   try {
-    const movieData = await fetch(
-      `${API_URL}movie/${videoId}${detailType}?api_key=${API_KEY}&language=en-US`
-    );
-    const tvData = await fetch(
-      `${API_URL}tv/${videoId}${detailType}?api_key=${API_KEY}&language=en-US`
-    );
+    const movieData = await fetch(`${API_URL}movie/${videoId}${detailType}?api_key=${API_KEY}&language=en-US`);
+    const tvData = await fetch(`${API_URL}tv/${videoId}${detailType}?api_key=${API_KEY}&language=en-US`);
 
     if (!movieData.ok && !tvData.ok) throw new Error("eeeee");
 
     const movieDataRes = await movieData.json();
     const tvDataRes = await tvData.json();
 
-    if(movieDataRes.results || tvDataRes.results){   
-      // Merges the 2 results array and filters only the values that isn't undefined
-      const finalRes = [tvDataRes.results || movieDataRes.results]
-      .concat(tvDataRes.results || movieDataRes.results)
+    console.log(await tvDataRes.results ?? await movieData.results, "SRTHIWSIEDGSEK")
+
+    // Only fires when TMDB sends back a data with a results object.
+    if(movieDataRes.results ?? tvDataRes.results){ 
+      const finalRes = [tvDataRes.results ?? movieDataRes.results]
+      .concat(tvDataRes.results ?? movieDataRes.results)
       .filter(val => val !== undefined);
       return finalRes;
     }
-
+  
     // Merges the two objects
     const finalRes = Object.assign(movieDataRes,tvDataRes)
-
+    
     return finalRes;
   } catch (error) {
     throw error;
