@@ -52,7 +52,7 @@ const pageObj = {
 
 /**
  * Controls the sidebar buttons functionality.
- * @param {event} event - Event that fires when user clicks a button in the sidebar.
+ * @param {event} event - Event that fires when a button has been clicked in the sidebar.
  */
 const controlNavBtns = async function (event) {
   try {
@@ -60,7 +60,7 @@ const controlNavBtns = async function (event) {
 
     sideBarBtnsView.renderActive(event);
 
-    // Prevents data from being rendered again each time the user clicks the same button.
+    // Prevents data from being rendered again when same button has been clicked.
     if (sideBarBtnsView.buttonPage === model.data.pages.currentPageType) return;
 
     controlMovieCards(...pageObj[sideBarBtnsView.buttonPage]);
@@ -190,10 +190,10 @@ const controlBookmarkBtn = async function (isActive) {
     
     if (!id) return;
 
-    // Inserts the bookmarked id in the data.
     if (isActive) {
       const dataHolder = [];
       dataHolder.push(model.data.expansion.videoDetails)
+
       const bookMarkData = createMovieObj(dataHolder)
       model.data.bookMarksData.push(...bookMarkData);
       bmIcon?.classList.add('active')
