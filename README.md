@@ -1,7 +1,6 @@
 # Moviematrix
 
-A website where you can search and watch trailers
-of the movies or tv shows that you might like.
+Moviematrix is a website that allows you to search movies and tv shows and watch its trailer.
 
 ## Features
 
