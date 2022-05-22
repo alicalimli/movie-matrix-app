@@ -100,10 +100,12 @@ const controlPagination = async function (event) {
     if (paginationView.btnType === "") return;
 
     // Prevents data from rendering when user clicks back on the first page.
-    if (paginationView.btnType === "back" && model.data.pages.currentPage === FIRST_PAGE) return;
+    if (paginationView.btnType === "back" && model.data.pages.currentPage === FIRST_PAGE
+    || paginationView.btnType === "first" && model.data.pages.currentPage === FIRST_PAGE) return;
     
     // Prevents data from rendering when user clicks next on the last page.
-    if (paginationView.btnType === "next" && model.data.pages.currentPage === MAX_PAGE) return;
+    if (paginationView.btnType === "next" && model.data.pages.currentPage === MAX_PAGE
+    || paginationView.btnType === "last" && model.data.pages.currentPage === MAX_PAGE) return;
 
     paginationView.renderLoading();
 
