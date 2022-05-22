@@ -11,7 +11,7 @@ Moviematrix is a website that allows you to search movies and tv shows and watch
 
 ## Documentation
 
-- [Documentation website](https://moviematrix-docs.netlify.app/)
+- Checkout the documentation website [moviematrix-docs](https://moviematrix-docs.netlify.app/)
 
 ## Screenshots
 
@@ -26,7 +26,7 @@ If you have any feedbacks about the website, you can reach me out by
 
 - Sending me an email at alicalimli76@gmail.com.
 
-- Sending me a dm on [Twitter](https://twitter.com/alicalimli_dev).
+- Sending me a dm on twitter [alicalimli_dev](https://twitter.com/alicalimli_dev).
 
 ## FAQ
 
