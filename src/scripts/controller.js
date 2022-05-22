@@ -306,6 +306,10 @@ const controlSettings = function (event) {
 
   if (settingType === "card-zooming") {
     model.data.settings.cardZooming = !model.data.settings.cardZooming;
+
+    // If there is a cloneCard then it would be removed
+    const clonedCard = document?.querySelector('.movie-card-clone')
+    clonedCard?.remove();
   }  
   
   if (settingType === "disable-transition") {
