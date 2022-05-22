@@ -73,22 +73,26 @@ class expansionView {
    * Generates all casts section and render it in the page.
    */
   _showAllCasts() {
-    this.isAllCastsSectionActive = true;
-    this._clearHTML();
-
-    const allCasts = `
-
-    <section class="all-casts-section">
-      <header class="all-casts-header">
-        <h2 class="all-casts-title">Casts</h2>
-      </header>
-      <div class="all-casts-container">
-        ${this._createCastCircle(this._expandVideoCasts)}
-      </div>
-    </section>
-    `;
-
-    this._parentEl.insertAdjacentHTML("beforeend", allCasts);
+    this.renderLoading();
+    setTimeout(()=>{
+      this.isAllCastsSectionActive = true;
+      this._clearHTML();
+  
+      const allCasts = `
+  
+      <section class="all-casts-section">
+        <header class="all-casts-header">
+          <h2 class="all-casts-title">Casts</h2>
+        </header>
+        <div class="all-casts-container">
+          ${this._createCastCircle(this._expandVideoCasts)}
+        </div>
+      </section>
+      `;
+  
+      this._parentEl.insertAdjacentHTML("beforeend", allCasts);
+    },300)
+ 
   }
 
   /**
