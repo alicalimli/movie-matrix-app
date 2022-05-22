@@ -1,4 +1,6 @@
-export const API_KEY = `b51b535b2fa399a23d7dfdf78f4f91c3`;
+import { KEY_API } from "./key";
+
+export const API_KEY = KEY_API;
 export const API_URL = `https://api.themoviedb.org/3/`;
 
 export const IMG_PATH = `https://image.tmdb.org/t/p/w1280`;
