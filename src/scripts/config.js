@@ -25,4 +25,4 @@ export const MAX_BEFORE_PAGES_BUTTONS = 3;
 export const EXPAND_CARD_DURATION = 400;
 export const UNEXPAND_CARD_DURATION = 600;
 
-export const MAX_CAST_CARDS = 20;
+export const MAX_CAST_CARDS = 10;

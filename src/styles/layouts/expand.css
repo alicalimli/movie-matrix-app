@@ -263,9 +263,6 @@
   margin: 1rem 0 1rem 0;
   width: 100%;
   padding: 0.5rem;
-  overflow-y: hidden;
-  overflow-x: scroll;
-  display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
@@ -277,6 +274,7 @@
 
 .casts-container {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
 }
 
