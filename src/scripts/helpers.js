@@ -46,7 +46,7 @@ const controlBookmarks = function () {
   try {
     model.data.pages.currentPageType = "bookmark";
 
-    bookmarksView._updateTitle();
+    bookmarksView.updateTitle();
 
     genreCardsView.renderGenreErrorMsg();
 

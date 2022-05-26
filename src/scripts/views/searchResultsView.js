@@ -17,6 +17,14 @@ class searchResultsView extends mainView {
     this._inputSearch = this._inputForm.querySelector(".sidebar-search-input");
   }
 
+  renderHTML(movieData, bmData) {
+    this._movieData = movieData;
+    this._bmData = bmData;
+    this._clearHTML();
+    this._generateHTML();
+    this._scrollToTop();
+  }
+
   // prettier-ignore
   addEventHandler(handle) {
     const sidebar = document.querySelector(".movie-sidebar-nav");
@@ -40,6 +48,10 @@ class searchResultsView extends mainView {
         setTimeout(() => searchInput.focus(), 100);
       }
     });
+  }
+
+  updateTitle(title){
+    this._headTitle.textContent = title;
   }
 
   getInputValue() {

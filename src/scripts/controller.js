@@ -84,6 +84,7 @@ const controlSearchResults = async function () {
 
     const searchVal = searchResultsView.getInputValue();
 
+    searchResultsView.updateTitle(searchVal)
     searchResultsView.renderLoading();
     await model.createSearchResults(searchVal);
     searchResultsView.renderHTML(model.data.searchResults, model.data.bookMarksData);
@@ -133,7 +134,6 @@ const controlMovieSection = async function (event) {
 
   if (!btn) return;
 
-  const expandSection = document.querySelector(".expansion-section");
   const movieCard = event.target.closest(".movie-card");
   const btnId = btn.dataset.cardId;
 

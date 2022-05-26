@@ -28,8 +28,8 @@ class mainView {
     this._bmData = bmData;
     this._clearHTML();
     this._generateHTML();
-    this._updateTitle();
     this._scrollToTop();
+    this.updateTitle();
   }
 
   /**
@@ -74,7 +74,7 @@ class mainView {
   /**
    * Updates the page title.
    */
-  _updateTitle() {
+  updateTitle() {
     this._headTitle.textContent = this._title;
   }
 
