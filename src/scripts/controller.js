@@ -56,6 +56,9 @@ const pageObj = {
  */
 const controlNavBtns = async function (event) {
   try {
+    othersView.showExpandSection('remove');
+    othersView.hideToolTip("visible");
+
     unExpandSidebar();
 
     sideBarBtnsView.renderActive(event);
@@ -145,7 +148,7 @@ const controlMovieSection = async function (event) {
 
   setTimeout(() => {
     controlExpansionSection();
-    expandSection.classList.add("active");
+    othersView.showExpandSection("add");
   }, expandDuration);
 };
 
@@ -153,7 +156,6 @@ const controlMovieSection = async function (event) {
  * Controls the back button functionality in the expansion page.
  */
 const controlExpandBackButton = function () {
-  const expandSection = document.querySelector(".expansion-section");
   const trailerVideo = document?.querySelector(".trailer-video");
   const cardClone = document?.querySelector(".movie-card-clone");
 
@@ -167,7 +169,7 @@ const controlExpandBackButton = function () {
 
   window.location.hash = "";
 
-  expandSection.classList.remove("active");
+  othersView.showExpandSection("remove");
 
   if (model.data.settings.cardZooming && cardClone) {
     cardZoomingView.renderCardShrink();

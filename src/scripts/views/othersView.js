@@ -5,6 +5,7 @@ class othersView {
   _filterButtonContainer = document.querySelector(".filter-btn-container");
   _settingsContainer = document.querySelector(".settings-container");
   _paginationSection = document.querySelector(".movie-pagination");
+  _expandSection = document.querySelector(".expansion-section");
   _sidebarButtons = document.querySelector(".sidebar-buttons");
   _toolTips = document.querySelectorAll(".secondary-title");
 
@@ -32,6 +33,10 @@ class othersView {
     this.showSettings("remove");
     this.showOverlay("remove");
     this.hideToolTip("visible");
+  }
+
+  showExpandSection(type){
+    this._expandSection.classList[type]('active')
   }
 
   shrinkSections(type) {
