@@ -36,14 +36,12 @@ class cardZoomingView {
   }
 
   shrinkSections() {
-    othersView.sidebarBtnPointerEvent("none");
     othersView.shrinkSections("add");
     othersView.hideToolTip("hidden");
     othersView.showOverlay("add");
   }
 
   unShrinkSections() {
-    othersView.sidebarBtnPointerEvent("auto");
     othersView.shrinkSections("remove");
     othersView.hideToolTip("visible");
     othersView.showOverlay("remove");

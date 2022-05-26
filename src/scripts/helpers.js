@@ -46,6 +46,8 @@ const controlBookmarks = function () {
   try {
     model.data.pages.currentPageType = "bookmark";
 
+    bookmarksView._updateTitle();
+
     genreCardsView.renderGenreErrorMsg();
 
     if (model.data.bookMarksData.length === 0) throw new Error("You dont have any bookmarks yet.");
