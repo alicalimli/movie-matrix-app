@@ -77,6 +77,9 @@ const controlNavBtns = async function (event) {
  */ // prettier-ignore
 const controlSearchResults = async function () {
   try {
+    othersView.showExpandSection('remove');
+    othersView.hideToolTip("visible");
+    
     genreCardsView.renderGenreErrorMsg();
 
     sideBarBtnsView.updateBtn("search-res");
