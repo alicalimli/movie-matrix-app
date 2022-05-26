@@ -56,8 +56,11 @@ const pageObj = {
  */
 const controlNavBtns = async function (event) {
   try {
-    othersView.showExpandSection('remove');
-    othersView.hideToolTip("visible");
+    const expandSec = document.querySelector('.expansion-section');
+    
+    if(expandSec.classList.contains('active')){
+      controlExpandBackButton(); // Hide's expand section
+    }
 
     unExpandSidebar();
 
@@ -77,9 +80,12 @@ const controlNavBtns = async function (event) {
  */ // prettier-ignore
 const controlSearchResults = async function () {
   try {
-    othersView.showExpandSection('remove');
-    othersView.hideToolTip("visible");
+    const expandSec = document.querySelector('.expansion-section');
     
+    if(expandSec.classList.contains('active')){
+      controlExpandBackButton(); // Hide's expand section
+    }
+
     genreCardsView.renderGenreErrorMsg();
 
     sideBarBtnsView.updateBtn("search-res");
