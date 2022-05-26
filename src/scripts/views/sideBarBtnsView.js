@@ -7,6 +7,7 @@ import othersView from "./othersView.js";
  */ //prettier-ignore
 class SideBarBtnView {
   _settingsContainer = document.querySelector(".settings-container");
+  _searchInput = document.querySelector(".sidebar-search-input");
   _parentEl = document.querySelector(".sidebar-lists-btn");
   _sidebar = document.querySelector(".movie-sidebar-nav");
   _navBtns = document.querySelectorAll(".nav-btn");
@@ -43,7 +44,7 @@ class SideBarBtnView {
 
   _unShrinkSections() {
     if (this._settingsContainer.classList.contains("show")) return;
-
+    if(this._searchInput === document.activeElement && this._sidebar.classList.contains('active')) return;
     othersView.shrinkSections("remove");
     othersView.showOverlay("remove");
     othersView.expandSidebar("remove");
