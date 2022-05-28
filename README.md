@@ -1,6 +1,6 @@
 # Moviematrix
 
-Moviematrix is a website that allows you to search movies and tv shows and watch its trailer.
+Moviematrix is a website that consumes [TMDB API](https://developers.themoviedb.org/3) and allows you to search movies and tv shows and watch its trailer.
 
 ## Features
 
