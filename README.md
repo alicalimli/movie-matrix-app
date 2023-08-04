@@ -26,8 +26,6 @@ If you have any feedbacks about the website, you can reach me out by
 
 - Sending me an email at alicalimli76@gmail.com.
 
-- Sending me a dm on twitter [alicalimli_dev](https://twitter.com/alicalimli_dev).
-
 ## FAQ
 
 #### Can we watch movies in this website?
