@@ -18,6 +18,9 @@ class mainView {
   _title = "Discover Movies";
   viewName = "discoverMoviesView";
 
+
+
+
   /**
    * Renders the generated movie/tv show cards in the page.
    * @param {Array} movieData - Array of objects that contains the id,image and title of the movie/tv show.
@@ -37,6 +40,7 @@ class mainView {
    * @param {String} errorMsg - Error message to be rendered in the page.
    */
   renderErrorMsg(errorMsg) {
+
     const errorMarkup = `
     <div class="error-msg">
       <i class="ph-icon ph-warning"></i>
@@ -91,6 +95,7 @@ class mainView {
    * Generates movie/tv show cards and render it in the page once done.
    */
   _generateHTML() {
+    console.log("this movie data", this._movieData)
     this._movieData.forEach((movie) => {
       const markupHTML = `
           <div id="movie-${movie.id}"class="movie-card">

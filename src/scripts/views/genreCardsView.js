@@ -45,6 +45,7 @@ class genreCardsView extends mainView {
    * @param {Array} genreData - Array of objects that contains the id and title of available genres.
    */
   renderGenreTags(genreData) {
+    console.log(genreData)
     this._genreParentEl.innerHTML = "";
     genreData.forEach((genre) => {
       const genreMarkup = `

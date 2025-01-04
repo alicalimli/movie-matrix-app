@@ -75,11 +75,11 @@ export const createDiscoverCards = async function (pageName = "home",pageNum = F
       tvOrMovie = "tv";
     }
 
-    const genreData = await fetch(`${API_URL}/genre/${tvOrMovie}/list?api_key=${API_KEY}&language=en-US`);
+    const genreURL = `${API_URL}genre/${tvOrMovie}/list?api_key=${API_KEY}&language=en-US`
+    const genreData = await fetch(genreURL);
     const genreRes = await genreData.json();
 
-    console.log(movieData)
-
+    console.log('Genres',genreRes, genreURL)
     data.genre.genresData = genreRes.genres;
 
     //Always Sets the current page to 1

@@ -35,6 +35,7 @@ export const controlMovieCards = async function (viewType, viewName, pageType = 
     !filtering ? genreCardsView.renderGenreErrorMsg() : genreCardsView.renderGenreTags(model.data.genre.genresData);
 
   } catch (error) {
+    console.error(error)
     viewType.renderErrorMsg(error.message)
   }
 };
@@ -89,6 +90,8 @@ export const apiFetch = async function (url,pageName = model.data.pages.pageName
     const dataResults = await data.json();
     model.data.pages.currentUrl = url;
     model.data.pages.pageName = pageName;
+
+    console.log('data', dataResults)
 
     return dataResults;
   } catch (error) {

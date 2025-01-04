@@ -28,6 +28,7 @@ import {
   MAX_PAGE,
   UNEXPAND_CARD_DURATION,
 } from "./config.js";
+import mainView from "./views/mainView.js";
 
 /**
  * Controls the rendering of the home page.
@@ -358,6 +359,9 @@ const loadDatas = function () {
   settingsView.updateSettings(model.data.settings);
 };
 
+
+
+
 /**
  * Immediately invoked function,
  * this attaches event listeners, load data's, and loads the home page.
@@ -366,6 +370,15 @@ const init = (function () {
   controlDiscoverMovies();
   showExpandSection();
   loadDatas();
+
+  const copyrightfooters = document.querySelectorAll(".copyright-year");
+  const year =  new Date().getFullYear()
+
+  copyrightfooters.forEach(c => {
+    c.textContent = year
+  
+  })
+
 
   // Attach Event Handlers
   movieSectionView.addBackEventHandler(controlExpandBackButton);
